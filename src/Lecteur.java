@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class Lecteur {
     private FileReader fileReader;
@@ -14,7 +15,7 @@ public class Lecteur {
     // Constructeur prenant comme argument le chemin vers un fichier sous la forme d'un string
         try {
             File fichier = new File(nomFichier);
-            this.fileReader = new FileReader(fichier);
+            this.fileReader = new FileReader(fichier, StandardCharsets.UTF_8);
             this.tete = (char) fileReader.read();
             this.cheminFichier = nomFichier;
             this.numLecteur = nbLecteurs;
