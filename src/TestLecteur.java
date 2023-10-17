@@ -10,5 +10,8 @@ public class TestLecteur {
             lecteur.lire(); // Sur la dernière itération, cette méthode affiche un avertissement, car la fin du fichier a été atteinte.
             System.out.print(lecteur.tete);
         }
+
+        // Test du nettoyage de fichier
+        Nettoyeur.nettoyerFichier("Programmes/undebut.adb");
     }
 }
