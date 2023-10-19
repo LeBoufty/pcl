@@ -44,7 +44,7 @@ public class Lecteur {
     // Avance d'un caractère et retourne sa valeur
         int nextChar = fileReader.read();
         if (nextChar == -1) {
-            System.out.println("AVERTISSEMENT : le lecteur "+this.toString()+" a atteint la fin de "+this.cheminFichier+" et ne peut plus le lire");
+            Logger.info("Fin de "+cheminFichier+" atteinte par "+this.toString());
             this.tete = '\0';
         } else {
             this.tete = (char) nextChar;

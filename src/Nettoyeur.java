@@ -64,6 +64,7 @@ public class Nettoyeur {
             lecteur.lire();
         }
         ecrivain.close();
+        Logger.info("Fichier "+nomFichier+" nettoyé et enregistré en tant que "+nomSortieStr);
         return nomSortieStr;
     }
 }
