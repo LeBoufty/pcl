@@ -3,61 +3,59 @@
 ## Syntaxe Ada
 
 * **Fichier**
-    * &#x27E8;expr&#x27E9;
-
     * `with Ada.Text.IO;`
     * `use Ada.Text.IO;`
-    * `procedure (ident) is (decl)*`
-    * `begin (instr)`<sup>`+`</sup>` end (ident)?; EOF`
+    * `procedure `&#x27E8;ident&#x27E9;` is `&#x27E8;decl&#x27E9;`*`
+    * `begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?; EOF`
 * **Déclaration**
-    * `type (ident);`
-    * `| type (ident) is access (ident);`
-    * `| type (ident) is record (champs)`<sup>`+`</sup>` and record;`
-    * `| (ident)`<sup>`+`</sup>`,: (type) (:= (expr))?;`
-    * `| procedure (ident) (params)? is (decl)*`
-    * `begin (instr)`<sup>`+`</sup>` end (ident)?;`
-    * `| function (ident) (params)? return (type) is (decl)*`
-    * `begin (instr)`<sup>`+`</sup>` end (ident)?;`
+    * `type `&#x27E8;ident&#x27E9;`;`
+    * `| type `&#x27E8;ident&#x27E9;` is access `&#x27E8;ident&#x27E9;`;`
+    * `| type `&#x27E8;ident&#x27E9;` is record `&#x27E8;champs&#x27E9;<sup>`+`</sup>` and record;`
+    * `| `&#x27E8;ident&#x27E9;<sup>`+`</sup>`,: `&#x27E8;type&#x27E9;` (:= `&#x27E8;expr&#x27E9;`)?;`
+    * `| procedure `&#x27E8;ident&#x27E9;` `&#x27E8;params&#x27E9;`? is `&#x27E8;decl&#x27E9;`*`
+    * `begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?;`
+    * `| function `&#x27E8;ident&#x27E9;` `&#x27E8;params&#x27E9;`? return `&#x27E8;type&#x27E9;` is `&#x27E8;decl&#x27E9;`*`
+    * `begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?;`
 * **Champs**
-    * `(ident)`<sup>`+`</sup>`,: (type):`
+    * &#x27E8;ident&#x27E9;<sup>`+`</sup>`,: `&#x27E8;type&#x27E9;`:`
 * **Type**
-    * `(ident)`
-    * `| access (ident)` 
+    * ``&#x27E8;ident&#x27E9;``
+    * `| access `&#x27E8;ident&#x27E9;`` 
 * **Params**
-    * `((params)`<sup>`+`</sup>`;)`
+    * `(`&#x27E8;params&#x27E9;<sup>`+`</sup>`;)`
 * **Param**    
-    * `(ident)`<sup>`+`</sup>`, : (mode)? (type)`
+    * &#x27E8;ident&#x27E9;<sup>`+`</sup>`, : `&#x27E8;mode&#x27E9;`? `&#x27E8;type&#x27E9;``
 * **Mode**
     * `in`
     * `| in out`
 * **Expr**
-    * `(entier)`
+    * &#x27E8;entier&#x27E9;
     * `| (caractère)`
     * `| true`
     * `| false`
     * `| null`
-    * `| ((expr))`
-    * `| (accès)`
-    * `| (expr) (opérateur) (expr)`
-    * `| not (expr) `
-    * `| - (expr)`
-    * `| new (ident)`
-    * `| (ident) ((expr)`<sup>`+`</sup>`,)`
-    * `| charactere ' val ((expr))`
+    * `| (`&#x27E8;expr&#x27E9;`)`
+    * `| `&#x27E8;accès&#x27E9;
+    * `| `&#x27E8;expr&#x27E9;` `&#x27E8;opérateur&#x27E9;` `&#x27E8;expr&#x27E9;
+    * `| not `&#x27E8;expr&#x27E9;
+    * `| - `&#x27E8;expr&#x27E9;
+    * `| new `&#x27E8;ident&#x27E9;``
+    * `| `&#x27E8;ident&#x27E9;` (`&#x27E8;expr&#x27E9;<sup>`+`</sup>`,)`
+    * `| charactere ' val (`&#x27E8;expr&#x27E9;`)`
 * **Instr**
-    * `(accès) := (expr);`
-    * `| (ident);`
-    * `| (ident) ((expr)`<sup>`+`</sup>`,);`
-    * `| return (expr)?;`
-    * `| begin (instr)`<sup>`+`</sup>`end;`
-    * `| if (expr) then (instr)`<sup>`+`</sup>` (elsif (expr) then (instr)`<sup>`+`</sup>`)* (else (instr)`<sup>`+`</sup>`)? end if;`
-    * `| for (ident) in reverse? (expr)..(expr) loop (instr)`<sup>`+`</sup>` end loop;`
-    * `| while (expr) loop (instr)`<sup>`+`</sup>` end loop;`
+    * &#x27E8;accès&#x27E9;` := `&#x27E8;expr&#x27E9;`;`
+    * `| `&#x27E8;ident&#x27E9;`;`
+    * `| `&#x27E8;ident&#x27E9;` (`&#x27E8;expr&#x27E9;<sup>`+`</sup>`,);`
+    * `| return `&#x27E8;expr&#x27E9;`?;`
+    * `| begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>`end;`
+    * `| if `&#x27E8;expr&#x27E9;` then `&#x27E8;instr&#x27E9;<sup>`+`</sup>` (elsif `&#x27E8;expr&#x27E9;` then `&#x27E8;instr&#x27E9;<sup>`+`</sup>`)* (else `&#x27E8;instr&#x27E9;<sup>`+`</sup>`)? end if;`
+    * `| for `&#x27E8;ident&#x27E9;` in reverse? `&#x27E8;expr&#x27E9;`..`&#x27E8;expr&#x27E9;` loop `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end loop;`
+    * `| while `&#x27E8;expr&#x27E9;` loop `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end loop;`
 * **Opérateur**
     + `= | /= | < | <= | > | >= | + | - | * | / | rem | and | and then | or | or else`
 * **Accès**
-    * `(ident)` 
-    * `| (expr). (ident)`
+    *  &#x27E8;ident&#x27E9;
+    * `| `&#x27E8;expr&#x27E9;`. `&#x27E8;ident&#x27E9;``
 
 ## Explications
 
