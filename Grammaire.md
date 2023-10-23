@@ -19,7 +19,7 @@
 * **Champs**
     * &#x27E8;ident&#x27E9;<sup>`+`</sup>`,: `&#x27E8;type&#x27E9;`:`
 * **Type**
-    * ``&#x27E8;ident&#x27E9;``
+    * `&#x27E8;ident&#x27E9;``
     * `| access `&#x27E8;ident&#x27E9;`` 
 * **Params**
     * `(`&#x27E8;params&#x27E9;<sup>`+`</sup>`;)`
