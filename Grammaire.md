@@ -18,11 +18,11 @@
     * &#x27E8;ident&#x27E9;<sup>`+`</sup>`,: `&#x27E8;type&#x27E9;`:`
 * **type**
     * &#x27E8;ident&#x27E9;
-    * `| access `&#x27E8;ident&#x27E9;`` 
+    * `| access `&#x27E8;ident&#x27E9;
 * **params**
     * `(`&#x27E8;param&#x27E9;<sup>`+`</sup>`;)`
 * **param**    
-    * &#x27E8;ident&#x27E9;<sup>`+`</sup>`, : `&#x27E8;mode&#x27E9;`? `&#x27E8;type&#x27E9;``
+    * &#x27E8;ident&#x27E9;<sup>`+`</sup>`, : `&#x27E8;mode&#x27E9;`? `&#x27E8;type&#x27E9;
 * **mode**
     * `in`
     * `| in out`
@@ -53,7 +53,7 @@
     + `= | /= | < | <= | > | >= | + | - | * | / | rem | and | and then | or | or else`
 * **accès**
     *  &#x27E8;ident&#x27E9;
-    * `| `&#x27E8;expr&#x27E9;`. `&#x27E8;ident&#x27E9;``
+    * `| `&#x27E8;expr&#x27E9;`. `&#x27E8;ident&#x27E9;
 
 ## Explications
 
