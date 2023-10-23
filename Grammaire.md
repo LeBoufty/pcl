@@ -1,5 +1,3 @@
-# Données de l'image
-
 ## Syntaxe Ada
 
 * **fichier**
@@ -72,7 +70,4 @@
 
 ## Notes
 
-* La syntaxe Ada est décrite dans la section `Syntaxe Ada`.
-* Les déclarations, les champs, les paramètres, les modes, les expressions, les instructions et les opérateurs sont expliqués dans les sections correspondantes.
-* Les notes sont fournies dans la section `Notes`.
 * sheet de la nouvelle grammaire : https://docs.google.com/spreadsheets/d/1h1LODxT6w9pzOH-wV-fyb90Rk0wJNa0G8ChHCoHRtao/edit?usp=sharing
