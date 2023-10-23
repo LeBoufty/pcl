@@ -2,12 +2,12 @@
 
 ## Syntaxe Ada
 
-* **Fichier**
+* **fichier**
     * `with Ada.Text.IO;`
     * `use Ada.Text.IO;`
     * `procedure `&#x27E8;ident&#x27E9;` is `&#x27E8;decl&#x27E9;`*`
     * `begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?; EOF`
-* **Déclaration**
+* **decl**
     * `type `&#x27E8;ident&#x27E9;`;`
     * `| type `&#x27E8;ident&#x27E9;` is access `&#x27E8;ident&#x27E9;`;`
     * `| type `&#x27E8;ident&#x27E9;` is record `&#x27E8;champs&#x27E9;<sup>`+`</sup>` and record;`
@@ -16,19 +16,19 @@
     * `begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?;`
     * `| function `&#x27E8;ident&#x27E9;` `&#x27E8;params&#x27E9;`? return `&#x27E8;type&#x27E9;` is `&#x27E8;decl&#x27E9;`*`
     * `begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?;`
-* **Champs**
+* **champs**
     * &#x27E8;ident&#x27E9;<sup>`+`</sup>`,: `&#x27E8;type&#x27E9;`:`
-* **Type**
+* **type**
     * &#x27E8;ident&#x27E9;
     * `| access `&#x27E8;ident&#x27E9;`` 
-* **Params**
-    * `(`&#x27E8;params&#x27E9;<sup>`+`</sup>`;)`
-* **Param**    
+* **params**
+    * `(`&#x27E8;param&#x27E9;<sup>`+`</sup>`;)`
+* **param**    
     * &#x27E8;ident&#x27E9;<sup>`+`</sup>`, : `&#x27E8;mode&#x27E9;`? `&#x27E8;type&#x27E9;``
-* **Mode**
+* **mode**
     * `in`
     * `| in out`
-* **Expr**
+* **expr**
     * &#x27E8;entier&#x27E9;
     * `| `&#x27E8;caractère&#x27E9;
     * `| true`
@@ -39,10 +39,10 @@
     * `| `&#x27E8;expr&#x27E9;` `&#x27E8;opérateur&#x27E9;` `&#x27E8;expr&#x27E9;
     * `| not `&#x27E8;expr&#x27E9;
     * `| - `&#x27E8;expr&#x27E9;
-    * `| new `&#x27E8;ident&#x27E9;``
+    * `| new `&#x27E8;ident&#x27E9;
     * `| `&#x27E8;ident&#x27E9;` (`&#x27E8;expr&#x27E9;<sup>`+`</sup>`,)`
     * `| charactere ' val (`&#x27E8;expr&#x27E9;`)`
-* **Instr**
+* **instr**
     * &#x27E8;accès&#x27E9;` := `&#x27E8;expr&#x27E9;`;`
     * `| `&#x27E8;ident&#x27E9;`;`
     * `| `&#x27E8;ident&#x27E9;` (`&#x27E8;expr&#x27E9;<sup>`+`</sup>`,);`
@@ -51,24 +51,24 @@
     * `| if `&#x27E8;expr&#x27E9;` then `&#x27E8;instr&#x27E9;<sup>`+`</sup>` (elsif `&#x27E8;expr&#x27E9;` then `&#x27E8;instr&#x27E9;<sup>`+`</sup>`)* (else `&#x27E8;instr&#x27E9;<sup>`+`</sup>`)? end if;`
     * `| for `&#x27E8;ident&#x27E9;` in reverse? `&#x27E8;expr&#x27E9;`..`&#x27E8;expr&#x27E9;` loop `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end loop;`
     * `| while `&#x27E8;expr&#x27E9;` loop `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end loop;`
-* **Opérateur**
+* **opérateur**
     + `= | /= | < | <= | > | >= | + | - | * | / | rem | and | and then | or | or else`
-* **Accès**
+* **accès**
     *  &#x27E8;ident&#x27E9;
     * `| `&#x27E8;expr&#x27E9;`. `&#x27E8;ident&#x27E9;``
 
 ## Explications
 
-* **Fichier** : la déclaration du fichier Ada.
-* **Type** : la déclaration d'un type.
-* **Déclaration** : la déclaration d'une variable, d'une procédure ou d'une fonction.
-* **Champs** : la liste des champs d'un type record.
-* **Paramètres** : la liste des paramètres d'une procédure ou d'une fonction.
-* **Modes** : le mode d'un paramètre.
-* **Expressions** : une expression Ada.
-* **Instructions** : une instruction Ada.
-* **Opérateurs** : les opérateurs Ada.
-* **Accès** : un accès à un objet.
+* **fichier** : la déclaration du fichier Ada.
+* **type** : la déclaration d'un type.
+* **decl** : la déclaration d'une variable, d'une procédure ou d'une fonction.
+* **champs** : la liste des champs d'un type record.
+* **params** : la liste des paramètres d'une procédure ou d'une fonction.
+* **modes** : le mode d'un paramètre.
+* **expre** : une expression Ada.
+* **instr** : une instruction Ada.
+* **opérateur** : les opérateurs Ada.
+* **accès** : un accès à un objet.
 
 ## Notes
 
