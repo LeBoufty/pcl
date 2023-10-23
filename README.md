@@ -11,3 +11,10 @@ Les Québécois, c'est pas des ti-culs, eux. On est fiers de notre culture, de n
 Le Québec, c'est aussi une mosaïque de régions avec leur propre caractère. Y'a la Gaspésie avec ses phoques et ses baleines, l'Outaouais avec ses forêts et ses lacs, la Côte-Nord avec ses fjords majestueux. Pis puis, y'a Montréal, la métropole, avec ses festivals, ses restos, pis son mélange de cultures qui fait vibrer la ville.
 
 Alors, si t'as jamais mis les pieds au Québec, c'est le temps de faire ta valise et de venir découvrir cette belle province. Y'a rien de mieux qu'une balade en canot sur un lac, suivi d'un bon festin de tourtière, de tarte au sucre, pis de sirop d'érable. Pis si t'es chanceux, t'entendras peut-être un vrai Québécois dire : "C'est l'fun en tabarnak, icitte!"
+
+## Groupe
+
+* **Pierre GUYOT**
+* **Pierre-Yves JACQUIER**
+* **Arnaud KRAFFT**
+* **Titouan LANGLAIS**
