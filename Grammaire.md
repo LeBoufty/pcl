@@ -1,10 +1,7 @@
 ## Syntaxe Ada
 
 * **fichier**
-    * `with Ada.Text.IO;`
-    * `use Ada.Text.IO;`
-    * `procedure `&#x27E8;ident&#x27E9;` is `&#x27E8;decl&#x27E9;`*`
-    * `begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?; EOF`
+    * `with Ada.Text.IO; use Ada.Text.IO; procedure `&#x27E8;ident&#x27E9;` is `&#x27E8;decl&#x27E9;`* begin `&#x27E8;instr&#x27E9;<sup>`+`</sup>` end `&#x27E8;ident&#x27E9;`?;$`
 * **decl**
     * `type `&#x27E8;ident&#x27E9;`;`
     * `| type `&#x27E8;ident&#x27E9;` is access `&#x27E8;ident&#x27E9;`;`
