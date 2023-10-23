@@ -34,8 +34,12 @@ gantt
     Réunion 1 :milestone, r1, 2023-10-19,
     Réunion 2 :milestone, r2, 2023-10-25,
 
-    section Analyseur Lexical
-    Dictionnaire Tokens : active, al1, after a1, 7d
+    section Tâche Importante
+    Analyseur Lexicale : t1, after s1, 30d
+    Analyse Syntaxique - Grammaire : t2, after r1, 34d
+    Analyse Syntaxique / Sémantique - Codage : t3, 2023-10-30, 60d
+    Débug et test : t4, 2023-11-15, 60d
+    Rapport et Soutenance : t5, after d4, 35d
     
 
 ```

@@ -14,7 +14,7 @@
 - vérifier que la grammaire n’est pas récursive à gauche, sinon la dérécursiver
 - vérifier que la grammaire est factorisée, sinon la factoriser
 
-### Analyse Lexicale : Descendante
+### Analyse Syntaxique : Descendante
 - Calculer les Premiers
 - Calculer les Suivants
 - Construire la Table d'Analyse
