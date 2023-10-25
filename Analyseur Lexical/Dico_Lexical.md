@@ -26,8 +26,6 @@
 [1] : Cela signifie que ce qui est à droite du "and then" ou du "or else" ne sera évalué que si la condition précédente est vraie dans le cas de and then ou fausse dans le cas de or else.
 Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait une erreur dans le cas où L est vide, car le programme vérifie quand même si son premier élément est égal à 1. Alors que `if len(L) >= 1 and then L[0] == 1` ne poserait aucun problème, car dans le cas où L est vide, on s'arrête là et on ne vérifie pas si son premier élément est égal à 1.
 
-## Unités lexicales génériques
-
 ## Mots-clés du langage
 
 | Mot-clé | Code | Associativité | Précédence | Utilité | Catégorie |
@@ -57,3 +55,10 @@ Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait
 | out | 40 |  |  |  | Divers |
 | record | 41 |  |  |  | Divers |
 | reverse | 42 |  |  |  | Divers |
+
+## Unités lexicales génériques
+
+| Nom | Code | Utilité |
+|:---:|:----:|:-------:|
+| var | 43 | Variable |
+| const | 44 | Constante |
