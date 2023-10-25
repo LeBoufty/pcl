@@ -48,7 +48,7 @@
     + `= | /= | < | <= | > | >= | + | - | * | / | rem | and | and then | or | or else`
 * **accès**
     *  &#x27E8;ident&#x27E9;
-    * `| `&#x27E8;expr&#x27E9;`. `&#x27E8;ident&#x27E9;
+    * `| `&#x27E8;expr&#x27E9;` . `&#x27E8;ident&#x27E9;
 
 ## Explications
 
