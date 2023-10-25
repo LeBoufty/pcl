@@ -23,11 +23,37 @@
 | or | 16 |  | 9 | "Ou" logique |
 | or else | 17 |  | 9 | "Ou" logique sous condition [1] |
 
-Note : Il y a 18 opérateurs, ce qui fait que l'entier en stockant un doit être défini sur au moins 5 bits. Ce qui est peu optimal car on aimerait pouvoir les stocker sur 4 (16 opérateurs).
-
 [1] : Cela signifie que ce qui est à droite du "and then" ou du "or else" ne sera évalué que si la condition précédente est vraie dans le cas de and then ou fausse dans le cas de or else.
 Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait une erreur dans le cas où L est vide, car le programme vérifie quand même si son premier élément est égal à 1. Alors que `if len(L) >= 1 and then L[0] == 1` ne poserait aucun problème, car dans le cas où L est vide, on s'arrête là et on ne vérifie pas si son premier élément est égal à 1.
 
 ## Unités lexicales génériques
 
 ## Mots-clés du langage
+
+| Mot-clé | Code | Associativité | Précédence | Utilité | Catégorie |
+|:-------:|:----:|:-------------:|:----------:|:-------:|:---------:|
+| procedure | 18 |  |  | Définition de procédure | Procédures et fonctions |
+| function | 19 |  |  | Définition de fonction | Procédures et fonctions |
+| is | 20 |  |  | Type de sortie | Procédures et fonctions |
+| begin | 21 |  |  | Début de bloc | Procédures et fonctions |
+| end | 22 |  |  | Fin de bloc | Procédures et fonctions |
+| return | 23 |  |  | Renvoi | Procédures et fonctions |
+| if | 24 |  |  | Si | Conditionnel |
+| then | 25 |  |  | Alors | Conditionnel |
+| else | 26 |  |  | Sinon | Conditionnel |
+| elsif | 27 |  |  | Sinon si | Conditionnel |
+| while | 28 |  |  | Tant que | Boucles |
+| for | 29 |  |  | Pour | Boucles |
+| in | 30 |  |  | Définition de l'itérant | Boucles |
+| loop | 31 |  |  |  | Boucles |
+| true | 32 |  |  | Vrai | Constantes |
+| false | 33 |  |  | Faux | Constantes |
+| null | 34 |  |  | Rien | Constantes |
+| type | 35 |  |  |  | Types |
+| new | 36 |  |  |  | Types |
+| with | 37 |  |  |  | Importation |
+| use | 38 |  |  |  | Importation |
+| access | 39 |  |  |  | Divers |
+| out | 40 |  |  |  | Divers |
+| record | 41 |  |  |  | Divers |
+| reverse | 42 |  |  |  | Divers |
