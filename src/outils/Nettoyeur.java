@@ -1,3 +1,4 @@
+package outils;
 import java.io.FileWriter;
 import java.nio.charset.Charset;
 import java.io.FileNotFoundException;

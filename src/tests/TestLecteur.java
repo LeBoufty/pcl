@@ -1,5 +1,10 @@
+package tests;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import outils.Lecteur;
+import outils.Logger;
+import outils.Nettoyeur;
 
 public class TestLecteur {
     public static void main(String[] args) throws FileNotFoundException, IOException{
