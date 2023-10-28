@@ -7,7 +7,7 @@ gantt
     dateFormat  YYYY-MM-DD
 
     section Semaine
-    Semaine 41 : s1, 2023-10-9, 7d
+    Semaine 41 : s1, 2023-10-09, 7d
     Semaine 42 : s2, after s1, 7d
     Semaine 43 : s3, after s2, 7d
     Semaine 44 : s4, after s3, 7d
