@@ -24,11 +24,11 @@ valeur : integer ;
 begin
     choix := 2;
 
-    if choix = 1
+    if choix = 1 or else choix = 2 
         then valeur := perimetreRectangle(2, 3) ;
             Ada.Text_IO.Put_Line("Le perimetre du rectangle est : " & valeur'Image) ;
         else valeur := aireRectangle(2, 3) ;
-            Ada.Text_IO.Put_Line("L'aire du rectangle est : " & valeur'Image) ;
+            Ada.Text_IO . Put_Line("L'aire du rectangle est : " & valeur'Image) ;
     end if;
 end unDebut ;
 

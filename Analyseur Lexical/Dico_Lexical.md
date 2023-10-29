@@ -80,3 +80,15 @@ Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait
 | Nom | Code | Utilité |
 |:---:|:----:|:-------:|
 | character'val | 52 | Conversion d'entier en caractère ASCII |
+
+## Informations complémentaires
+
+Toutes les unités lexicales peuvent être suivies d'un nombre quelconque d'espaces, de tabulations et de retours à la ligne.
+Les identifiants sont composés de lettres, de chiffres et de caractères de soulignement, et doivent commencer par une lettre.
+La casse n'est pas prise en compte.
+Les commentaires sont délimités par `--` et un retour à la ligne.
+Les constantes peuvent être des entiers ou des caractères ASCII.
+Les caractères ASCII sont délimités par des apostrophes simples et ne peuvent contenir qu'un seul caractère.
+Les chaînes de caractères sont délimitées par des guillemets.
+Les mots-clés ne peuvent pas être utilisés comme identifiants.
+Les mots-clés doivent être séparés de tout autre unité lexicale par un espace, une tabulation ou un retour à la ligne, sauf si l'unité lexicale est un symbole.
