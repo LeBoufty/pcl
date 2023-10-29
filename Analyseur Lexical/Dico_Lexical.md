@@ -62,3 +62,21 @@ Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait
 |:---:|:----:|:-------:|
 | var | 43 | Variable |
 | const | 44 | Constante |
+
+## Symboles du langage
+
+| Symbole | Code | Utilité |
+|:-------:|:----:|:-------:|
+| ( | 45 | Début de parenthèse |
+| ) | 46 | Fin de parenthèse |
+| := | 47 | Affectation |
+| ; | 48 | Fin d'instruction |
+| , | 49 | Séparateur |
+| : | 50 | Délimiteur variable |
+| .. | 51 | Délimiteur for |
+
+## Autres unités lexicales
+
+| Nom | Code | Utilité |
+|:---:|:----:|:-------:|
+| character'val | 52 | Conversion d'entier en caractère ASCII |
