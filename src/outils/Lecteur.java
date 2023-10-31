@@ -47,10 +47,69 @@ public class Lecteur {
         if (nextChar == -1) {
             Logger.info("Fin de "+cheminFichier+" atteinte par "+this.toString());
             this.tete = '\0';
-        } else {
+        } else if (nextChar >= 128) {
+            Logger.error(cheminFichier+" contient des caractères non-ASCII"); // Renvoie une erreur via throw
+            throw new IOException(cheminFichier+" contient des caractères non-ASCII");
+        }
+        else {
             this.tete = (char) nextChar;
         }
         return this.tete;
+    }
+
+    public String lire_mot() throws IOException {
+    // Lit tout un mot - S'occupe aussi de retirer les commentaires - Le transforme en minuscules
+    
+        while (tete_est_un_blanc()) { // On ignore les caractères de contrôle et les espaces (y compris les retours à la ligne et les tabulations)
+            this.lire();
+        }
+
+        if (this.tete == '\0') {
+            return null;
+        }
+
+        boolean est_un_symbole;
+        if (tete_est_un_alpanum()) { // Si le premier caractère est un chiffre
+            est_un_symbole = false;
+        }
+        else {
+            est_un_symbole = true;
+        }
+
+        String mot = "";
+        while (tete_est_un_symbole() == est_un_symbole && (tete_est_un_alpanum() || tete_est_un_symbole()) ) { // On lit le mot jusqu'à ce qu'on rencontre un caractère qui n'est pas du même type que le premier
+            mot += Character.toLowerCase(this.tete);
+            this.lire();
+        }
+        
+        if (mot.contentEquals("--")) { // Si on a lu un commentaire
+            while (this.tete != '\n' && this.tete != '\0') { // On ignore le commentaire
+                this.lire();
+            }
+            return lire_mot(); // On relit un mot
+        }
+
+        return mot;
+    }
+
+    public boolean tete_est_un_alpanum() {
+        return (this.tete_est_un_chiffre() || this.tete_est_une_lettre());
+    }
+
+    public boolean tete_est_un_chiffre() {
+        return (this.tete >= 48 && this.tete <= 57);
+    }
+
+    public boolean tete_est_une_lettre() {
+        return ((this.tete >= 65 && this.tete <= 90) || (this.tete >= 97 && this.tete <= 122));
+    }
+
+    public boolean tete_est_un_symbole() {
+        return ((this.tete >= 33 && this.tete <= 47) || (this.tete >= 58 && this.tete <= 64) || (this.tete >= 91 && this.tete <= 96) || (this.tete >= 123 && this.tete <= 126));
+    }
+
+    public boolean tete_est_un_blanc() {
+        return ((this.tete >= 9 && this.tete <= 32));
     }
 
     public String toString() {

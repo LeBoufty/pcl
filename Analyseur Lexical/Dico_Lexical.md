@@ -61,7 +61,7 @@ Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait
 | Nom | Code | Utilité |
 |:---:|:----:|:-------:|
 | var | 43 | Variable |
-| const | 44 | Constante |
+| const | 44 | Constante soit un chiffre soit un caractère avec 'a' |
 
 ## Symboles du langage
 
@@ -80,6 +80,7 @@ Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait
 | Nom | Code | Utilité |
 |:---:|:----:|:-------:|
 | character'val | 52 | Conversion d'entier en caractère ASCII |
+| -- |  | Commentaire ne doit pas être gardé |
 
 ## Informations complémentaires
 
@@ -91,4 +92,4 @@ Les constantes peuvent être des entiers ou des caractères ASCII.
 Les caractères ASCII sont délimités par des apostrophes simples et ne peuvent contenir qu'un seul caractère.
 Les chaînes de caractères sont délimitées par des guillemets.
 Les mots-clés ne peuvent pas être utilisés comme identifiants.
-Les mots-clés doivent être séparés de tout autre unité lexicale par un espace, une tabulation ou un retour à la ligne, sauf si l'unité lexicale est un symbole.
+Les unités lexicales utilisant des alphanumériques doivent être séparé par des espaces, tabulations ou retours à la ligne.

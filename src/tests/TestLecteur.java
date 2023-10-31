@@ -13,7 +13,7 @@ public class TestLecteur {
         System.out.println(lecteur.lire()); // Afriche "a" car lire() avance la tête de 1
         for (int i = 0; i < 19; i++) {
             lecteur.lire(); // Sur la dernière itération, cette méthode affiche un avertissement, car la fin du fichier a été atteinte.
-            //System.out.print(lecteur.tete);
+            System.out.print((int) lecteur.tete);
         }
 
         // Test du nettoyage de fichier
