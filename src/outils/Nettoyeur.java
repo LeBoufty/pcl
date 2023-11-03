@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Nettoyeur {
-    public static Charset fileCharset = Lecteur.fileCharset;
+    public static Charset fileCharset = OLD_Lecteur.fileCharset;
     private static char[] nonAcceptes = {'\n', '\t', '\r'};
     private static char[] espaces = {' ', '\n', '\t', '\r'};
 
@@ -36,7 +36,7 @@ public class Nettoyeur {
         reset.write("");
         reset.close();
         // Étape 3 : on initialise le lecteur et l'écrivain
-        Lecteur lecteur = new Lecteur(nomFichier);
+        OLD_Lecteur lecteur = new OLD_Lecteur(nomFichier);
         FileWriter ecrivain = new FileWriter(nomSortieStr, fileCharset, true);
         // On utilise des drapeaux en guise de mémoire.
         boolean lastWasSpace = false;

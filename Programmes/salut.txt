@@ -1,3 +1,2 @@
-salut
-comment=;a 0va;
-dad
+procedure Hello_World is
+begin

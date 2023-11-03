@@ -2,18 +2,15 @@ package tests;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import outils.Lecteur;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import outils.Analyseur_Lexical;
 
 public class TestLecteur2 {
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        // Test lecture mot
-        Lecteur lecteur = new Lecteur("Programmes/salut.txt");
-        String mot = lecteur.lire_mot();
-        while (mot != null) {
-            System.out.println(mot);
-            mot = lecteur.lire_mot();
-        }
-
+    public static void main(String[] args) throws Exception {
+        Analyseur_Lexical al = new Analyseur_Lexical("Programmes/Hello_World.adb");
+        
+        al.analyse();
     }
 }

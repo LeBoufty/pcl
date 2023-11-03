@@ -1,118 +1,122 @@
 package outils;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
+import java.io.File;
 import java.nio.charset.StandardCharsets;
+//import outils.Logger;
+
 
 public class Lecteur {
-    private FileReader fileReader;
-    public char tete;
-    public String cheminFichier;
-    private static int nbLecteurs = 0;
-    private int numLecteur;
-    public static Charset fileCharset = StandardCharsets.UTF_8;
-
-    public Lecteur(String nomFichier) throws FileNotFoundException, IOException {
-    // Constructeur prenant comme argument le chemin vers un fichier sous la forme d'un string
-        try {
-            File fichier = new File(nomFichier);
-            this.fileReader = new FileReader(fichier, fileCharset);
-            this.tete = (char) fileReader.read();
-            this.cheminFichier = nomFichier;
-            this.numLecteur = nbLecteurs;
-            nbLecteurs++;
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException(nomFichier + " introuvable");
-        }
-    }
-
-    public Lecteur(File fichier) throws FileNotFoundException, IOException {
-    // Constructeur prenant comme argument un fichier
-        try {
-            this.fileReader = new FileReader(fichier);
-            this.tete = (char) fileReader.read();
-            this.cheminFichier = fichier.getPath().toString();
-            this.numLecteur = nbLecteurs;
-            nbLecteurs++;
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException(fichier.toString() + " introuvable");
-        }
-    }
-
-    public char lire() throws IOException {
-    // Avance d'un caractère et retourne sa valeur
-        int nextChar = fileReader.read();
-        if (nextChar == -1) {
-            Logger.info("Fin de "+cheminFichier+" atteinte par "+this.toString());
-            this.tete = '\0';
-        } else if (nextChar >= 128) {
-            Logger.error(cheminFichier+" contient des caractères non-ASCII"); // Renvoie une erreur via throw
-            throw new IOException(cheminFichier+" contient des caractères non-ASCII");
-        }
-        else {
-            this.tete = (char) nextChar;
-        }
-        return this.tete;
-    }
-
-    public String lire_mot() throws IOException {
-    // Lit tout un mot - S'occupe aussi de retirer les commentaires - Le transforme en minuscules
     
-        while (tete_est_un_blanc()) { // On ignore les caractères de contrôle et les espaces (y compris les retours à la ligne et les tabulations)
-            this.lire();
+    private FileReader filereader;
+    private String chemin_fichier;
+    private int num_ligne_en_lecture;
+    private int num_char_en_lecture;
+    private char tete_de_lecture;
+    private char tete_de_lecture_precedente;
+    private boolean en_erreur;
+
+    public Lecteur(String nom_fichier) throws Exception {
+        this.chemin_fichier = nom_fichier;
+        this.num_ligne_en_lecture = 1;
+        this.num_char_en_lecture = 0;
+        this.en_erreur = false;
+        File fichier = new File(nom_fichier);
+        this.filereader = new FileReader(fichier, StandardCharsets.UTF_8);
+    }
+
+    private boolean is_tete_ASCII() {
+        return (int) this.tete_de_lecture < 128;
+    }
+
+
+
+    public char lire() throws Exception {
+        this.tete_de_lecture_precedente = this.tete_de_lecture;
+        int nextChar = this.filereader.read();
+        this.num_char_en_lecture++;
+
+        if (nextChar == -1) {
+            this.tete_de_lecture = '\0';
+        } else {
+            this.tete_de_lecture = (char) nextChar;
+            if (!this.is_tete_ASCII()) {
+                Logger.error("Le fichier " + this.chemin_fichier + " contient des caractères non-ASCII" + " à la ligne " + this.num_ligne_en_lecture + " et au caractère " + this.num_char_en_lecture);
+                this.tete_de_lecture = ' ';
+                this.en_erreur = true;
+            }
+            if (this.tete_de_lecture == '\n') {
+                this.num_ligne_en_lecture++;
+                this.num_char_en_lecture = 0;
+            } else {
+                this.num_char_en_lecture++;
+            }
         }
 
-        if (this.tete == '\0') {
-            return null;
-        }
-
-        boolean est_un_symbole;
-        if (tete_est_un_alpanum()) { // Si le premier caractère est un chiffre
-            est_un_symbole = false;
-        }
-        else {
-            est_un_symbole = true;
-        }
-
-        String mot = "";
-        while (tete_est_un_symbole() == est_un_symbole && (tete_est_un_alpanum() || tete_est_un_symbole()) ) { // On lit le mot jusqu'à ce qu'on rencontre un caractère qui n'est pas du même type que le premier
-            mot += Character.toLowerCase(this.tete);
-            this.lire();
+        if (this.tete_de_lecture_precedente != '\'') {
+            this.to_lower();
         }
         
-        if (mot.contentEquals("--")) { // Si on a lu un commentaire
-            while (this.tete != '\n' && this.tete != '\0') { // On ignore le commentaire
-                this.lire();
-            }
-            return lire_mot(); // On relit un mot
+
+        return this.tete_de_lecture;
+    }
+
+    public void fermer() throws Exception {
+        this.filereader.close();
+    }
+
+    public int get_num_ligne_en_lecture() {
+        return this.num_ligne_en_lecture;
+    }
+
+    public int get_num_char_en_lecture() {
+        return this.num_char_en_lecture;
+    }
+
+    public boolean get_en_erreur() {
+        return this.en_erreur;
+    }
+
+    public String get_chemin_fichier() {
+        return this.chemin_fichier;
+    }
+
+    public char get_tete_de_lecture() {
+        return this.tete_de_lecture;
+    }
+
+    public boolean is_control_char() {
+        return this.tete_de_lecture <= 32;
+    }
+
+    public boolean is_digit() {
+        return this.tete_de_lecture >= '0' && this.tete_de_lecture <= '9';
+    }
+
+    public boolean is_letter() {
+        return (this.tete_de_lecture >= 'a' && this.tete_de_lecture <= 'z') || (this.tete_de_lecture >= 'A' && this.tete_de_lecture <= 'Z');
+    }
+
+    public boolean is_upper() {
+        return this.tete_de_lecture >= 'A' && this.tete_de_lecture <= 'Z';
+    }
+
+    private void to_lower() {
+        if (this.is_upper()) {
+            this.tete_de_lecture = (char) (this.tete_de_lecture + 32);
         }
-
-        return mot;
     }
 
-    public boolean tete_est_un_alpanum() {
-        return (this.tete_est_un_chiffre() || this.tete_est_une_lettre());
+    public boolean is_letter_or_digit() {
+        return this.is_letter() || this.is_digit() || this.tete_de_lecture == '_';
     }
 
-    public boolean tete_est_un_chiffre() {
-        return (this.tete >= 48 && this.tete <= 57);
+    public boolean is_symbol() {
+        return (this.tete_de_lecture >= 33 && this.tete_de_lecture <= 47 && this.tete_de_lecture != 39) || (this.tete_de_lecture >= 58 && this.tete_de_lecture <= 94) || (this.tete_de_lecture >= 123 && this.tete_de_lecture <= 126);
     }
 
-    public boolean tete_est_une_lettre() {
-        return ((this.tete >= 65 && this.tete <= 90) || (this.tete >= 97 && this.tete <= 122));
+    public boolean is_symbol_2() {
+        return this.tete_de_lecture == '=' || this.tete_de_lecture == '.';
     }
 
-    public boolean tete_est_un_symbole() {
-        return ((this.tete >= 33 && this.tete <= 47) || (this.tete >= 58 && this.tete <= 64) || (this.tete >= 91 && this.tete <= 96) || (this.tete >= 123 && this.tete <= 126));
-    }
-
-    public boolean tete_est_un_blanc() {
-        return ((this.tete >= 9 && this.tete <= 32));
-    }
-
-    public String toString() {
-        return "Lecteur " + String.valueOf(this.numLecteur);
-    }
 }
