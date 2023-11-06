@@ -1,7 +1,5 @@
 package outils;
 
-import java.util.HashMap;
-
 public class Mot_Lexical {
     public String mot;
     public int code_mot;

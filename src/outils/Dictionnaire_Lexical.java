@@ -1,7 +1,6 @@
 package outils;
 
 import java.util.HashMap;
-import outils.Logger;
 
 public class Dictionnaire_Lexical {
     private HashMap<String, Integer> dico;
