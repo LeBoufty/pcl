@@ -21,6 +21,6 @@ public class Bloc implements Noeud {
         for (Noeud noeud : instructions) {
             instructionsStrings.add(noeud.toString());
         }
-        return "{" + String.join(" ", instructionsStrings) + "}";
+        return String.join(" ", instructionsStrings);
     }
 }

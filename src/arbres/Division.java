@@ -5,6 +5,6 @@ public class Division extends Expression {
         super(g, d);
     }
     public String toString() {
-        return this.gauche.toString() + "-" + this.droite.toString();
+        return this.gauche.toString() + "/" + this.droite.toString();
     }
 }

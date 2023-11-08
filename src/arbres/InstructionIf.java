@@ -15,11 +15,12 @@ public class InstructionIf implements Noeud {
         this.sinon = sinon;
     }
     public String toString() {
-        String sortie = "if (" + condition.toString() + ") ";
+        String sortie = "if " + condition.toString() + " then ";
         sortie += alors.toString();
         if (this.sinon != null) {
             sortie += " else " + sinon.toString();
         }
+        sortie += " end if";
         return sortie;
     }
 }
