@@ -66,3 +66,4 @@
 ## Notes
 
 * sheet de la nouvelle grammaire : https://docs.google.com/spreadsheets/d/1h1LODxT6w9pzOH-wV-fyb90Rk0wJNa0G8ChHCoHRtao/edit?usp=sharing
+* outils pour analyser la grammaire : https://mdaines.github.io/grammophone/#/
