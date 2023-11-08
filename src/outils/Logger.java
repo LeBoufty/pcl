@@ -1,3 +1,4 @@
+package outils;
 public class Logger {
     public static String COLOR_RESET = "\u001B[0m";
     public static String COLOR_ERROR = "\u001B[31m";

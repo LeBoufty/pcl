@@ -1,2 +1,2 @@
-salut
-comment ça va;
+procedure Hello_World is
+begin
