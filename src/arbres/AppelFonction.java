@@ -18,7 +18,7 @@ public class AppelFonction extends Evaluable {
         for (Evaluable p : params) {
             parStrings.add(p.toString());
         }
-        sortie += String.join(", ", parStrings);
+        sortie += String.join(", ", parStrings) + ")";
         return sortie;
     }
 }

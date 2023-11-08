@@ -27,7 +27,7 @@ public class Fonction implements Noeud {
         sortie += String.join(" ", paramStrings);
         sortie += ") return " + this.type.toString() + " is ";
         sortie += definitions.toString() + " begin ";
-        sortie += instructions.toString() + " end " + this.nom;
+        sortie += instructions.toString() + " end " + this.nom +";";
         return sortie;
     }
 }
