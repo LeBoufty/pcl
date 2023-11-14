@@ -11,6 +11,7 @@ public class AppelFonction extends Evaluable {
         for (Evaluable p : parametres) {
             this.params.add(p);
         }
+        this.type = fonction.type;
     }
     public String toString() {
         String sortie = this.fonction.nom + "(";
