@@ -17,6 +17,6 @@ begin
       end loop;
    end;
 
-   Ada.Text_IO.Put_Line("Somme avec boucle for : " & Integer'Image(Sum_For));
-   Ada.Text_IO.Put_Line("Somme avec boucle while : " & Integer'Image(Sum_While));
+   --Ada.Text_IO.Put_Line("Somme avec boucle for : " & Integer'Image(Sum_For));
+   --Ada.Text_IO.Put_Line("Somme avec boucle while : " & Integer'Image(Sum_While));
 end williamfaure;
