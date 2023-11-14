@@ -97,14 +97,15 @@ public class Analyseur_Lexical {
             this.lire_char();
             if (this.lecteur.is_symbol_2()) {
                 this.mot_en_lecture.mot += this.lecteur.get_tete_de_lecture();
-                this.lire_char();
+                this.lire_char();      
             }
-
-            if (this.mot_en_lecture.mot == "--") { // Cas commentaire
+            if (this.mot_en_lecture.mot.equals("--")) { // Cas commentaire
+                
                 while (this.lecteur.get_tete_de_lecture() != '\n' && this.lecteur.get_tete_de_lecture() != '\0') {
                     this.lire_char();
                 }
                 this.mot_en_lecture = this.mot_precedent;
+                
                 this.lit_mot();
             }
             return;

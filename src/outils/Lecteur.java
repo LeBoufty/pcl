@@ -116,7 +116,7 @@ public class Lecteur {
     }
 
     public boolean is_symbol_2() {
-        return this.tete_de_lecture == '=' || this.tete_de_lecture == '.';
+        return this.tete_de_lecture == '=' || this.tete_de_lecture == '.' || this.tete_de_lecture == '-';
     }
 
 }
