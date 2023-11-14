@@ -1,6 +1,7 @@
 package outils;
 
 import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
 
 public class Ecrivain_Lexical {
     
@@ -11,23 +12,25 @@ public class Ecrivain_Lexical {
     public Ecrivain_Lexical(String nom_fichier) throws Exception {
         this.chemin_fichier = nom_fichier;
         this.num_ligne_en_ecriture = 1;
-        this.filewriter = new FileWriter(nom_fichier);
+        this.filewriter = new FileWriter(nom_fichier, StandardCharsets.UTF_8);
     }
 
     public void ecrire_mot_clef(Integer code) throws Exception {
-        this.filewriter.write(code.toString() + ";");
+        this.filewriter.write((char) (code + 200));
     }
 
     public void ecrire_idf(Integer code, Integer code_idf) throws Exception {
-        this.filewriter.write(code.toString() + "=" + code_idf.toString() + ";");
+        this.filewriter.write((char) (code + 200));
+        this.filewriter.write((char) (code_idf + 200));
     }
 
     public void ecrire_constante(Integer code, String constante) throws Exception {
-        this.filewriter.write(code.toString() + "=" + constante + ";");
+        this.filewriter.write((char) (code + 200));
+        this.filewriter.write(constante);
     }
 
     public void sauter_ligne() throws Exception {
-        this.filewriter.write("\n");
+        this.filewriter.write((char) 38);
         this.num_ligne_en_ecriture++;
     }
 
