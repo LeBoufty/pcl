@@ -30,4 +30,11 @@ public class Fonction implements Noeud {
         sortie += instructions.toString() + " end " + this.nom +";";
         return sortie;
     }
+    public boolean valide() {
+        boolean valide = true;
+        for (Instanciation p : params) {
+            valide = valide && p.valide();
+        }
+        return valide && definitions.valide() && instructions.valide();
+    }
 }

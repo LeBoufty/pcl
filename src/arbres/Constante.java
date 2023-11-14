@@ -8,4 +8,7 @@ public class Constante extends Evaluable {
     public String toString() {
         return String.valueOf(valeur);
     }
+    public boolean valide() {
+        return true;
+    }
 }

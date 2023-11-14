@@ -23,4 +23,7 @@ public class InstructionIf implements Noeud {
         sortie += " end if";
         return sortie;
     }
+    public boolean valide() {
+        return condition.valide() && alors.valide() && (sinon == null || sinon.valide());
+    }
 }

@@ -23,4 +23,7 @@ public class InstructionFor implements Noeud {
         sortie += " end loop";
         return sortie;
     }
+    public boolean valide() {
+        return this.iterateur.valide() && this.borneInf.valide() && this.borneSup.valide() && this.corps.valide();
+    }
 }

@@ -12,4 +12,7 @@ public class Procedure implements Noeud {
     public String toString() {
         return "procedure "+nom+" is "+definitions.toString()+" begin "+instructions.toString()+" end "+nom+";";
     }
+    public boolean valide() {
+        return definitions.valide() && instructions.valide();
+    }
 }

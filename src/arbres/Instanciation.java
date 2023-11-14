@@ -7,4 +7,7 @@ public class Instanciation implements Noeud {
     public String toString() {
         return variable.toString() + " : " + type.toString() + ";";
     }
+    public boolean valide() {
+        return true;
+    }
 }

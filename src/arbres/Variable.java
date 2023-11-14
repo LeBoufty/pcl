@@ -13,4 +13,7 @@ public class Variable extends Evaluable {
     public String toString() {
         return "&"+String.valueOf(identifiant);
     }
+    public boolean valide() {
+        return true;
+    }
 }

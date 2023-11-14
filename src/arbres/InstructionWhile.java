@@ -13,4 +13,7 @@ public class InstructionWhile implements Noeud {
         sortie += " end loop";
         return sortie;
     }
+    public boolean valide() {
+        return condition.valide() && corps.valide();
+    }
 }

@@ -8,4 +8,7 @@ public class Return implements Noeud {
     public String toString() {
         return "return " + this.valeur.toString() + ";";
     }
+    public boolean valide() {
+        return this.valeur.valide();
+    }
 }

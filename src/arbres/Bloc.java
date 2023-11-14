@@ -23,4 +23,11 @@ public class Bloc implements Noeud {
         }
         return String.join(" ", instructionsStrings);
     }
+    public boolean valide() {
+        boolean valide = true;
+        for (Noeud noeud : instructions) {
+            valide = valide && noeud.valide();
+        }
+        return valide;
+    }
 }
