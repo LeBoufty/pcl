@@ -1,5 +1,5 @@
 package arbres;
 
 public enum Type {
-    INTEGER
+    INTEGER, CHARACTER, BOOLEAN, NULLTYPE;
 }
