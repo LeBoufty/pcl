@@ -159,7 +159,8 @@ public class Analyseur_Lexical {
             while (this.mot_precedent.num_ligne_mot > ecrivain.get_num_ligne_en_ecriture()) {
                 ecrivain.sauter_ligne();
             }
-
+            Logger.debug("Ecriture du mot : " + this.mot_precedent.mot + " à la ligne " + this.mot_precedent.num_ligne_mot + " et au caractère " + this.mot_precedent.num_char_mot);
+            
             if (this.mot_precedent.code_mot == 43) {
                 ecrivain.ecrire_idf(this.mot_precedent.code_mot, this.mot_precedent.code_idf);
             } else if (this.mot_precedent.code_mot == 44) {
