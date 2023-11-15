@@ -7,6 +7,7 @@ public class Affectation implements Noeud {
     public Evaluable droite;
     public Affectation(Variable g, Evaluable d) {
         this.gauche = g; this.droite = d;
+        if (g.type != d.type) Logger.warn("Affectation "+ this.toString() +" : types différents");
     }
     public String toString() {
         return this.gauche.toString() + ":=" + this.droite.toString() + ";";
@@ -22,7 +23,7 @@ public class Affectation implements Noeud {
         } else {
             sortie = this.gauche.valide() && this.droite.valide();
             if (this.gauche.type != this.droite.type) {
-                Logger.error("Affectation "+ this.hashCode() +" invalide : types différents");
+                Logger.error("Affectation "+ this.toString() +" invalide : types différents");
                 sortie = false;
             }
         }

@@ -7,8 +7,9 @@ public abstract class Expression extends Evaluable {
     public Evaluable droite;
     public Expression(Evaluable g, Evaluable d) {
         if (g == null || d == null) Logger.warn("Expression "+ this.hashCode() +" invalide : membre null");
-        if (g.type != d.type) Logger.warn("Expression "+ this.hashCode() +" : types différents");
+        this.type = g.type;
         this.gauche = g; this.droite = d;
+        if (g.type != d.type) Logger.warn("Expression "+ this.toString() +" : types différents");
     }
     public boolean valide() {
         boolean sortie = true;
@@ -21,7 +22,7 @@ public abstract class Expression extends Evaluable {
         } else {
             sortie = this.gauche.valide() && this.droite.valide();
             if (this.gauche.type != this.droite.type) {
-                Logger.error("Expression "+ this.hashCode() +" invalide : types différents");
+                Logger.error("Expression "+ this.toString() +" invalide : types différents");
                 sortie = false;
             }
         }
