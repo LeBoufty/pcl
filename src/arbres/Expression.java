@@ -5,6 +5,7 @@ import outils.Logger;
 public abstract class Expression extends Evaluable {
     public Evaluable gauche;
     public Evaluable droite;
+    protected String operateur;
     public Expression(Evaluable g, Evaluable d) {
         if (g == null || d == null) Logger.warn("Expression "+ this.hashCode() +" invalide : membre null");
         this.type = g.type;
@@ -27,5 +28,8 @@ public abstract class Expression extends Evaluable {
             }
         }
         return sortie;
+    }
+    public String toString() {
+        return this.gauche.toString() +" "+ this.operateur +" "+ this.droite.toString();
     }
 }
