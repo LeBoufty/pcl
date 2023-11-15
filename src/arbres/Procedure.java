@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.Logger;
+
 public class Procedure implements Noeud {
     public String nom;
     public Noeud definitions;
@@ -13,6 +15,11 @@ public class Procedure implements Noeud {
         return "procedure "+nom+" is "+definitions.toString()+" begin "+instructions.toString()+" end "+nom+";";
     }
     public boolean valide() {
-        return definitions.valide() && instructions.valide();
+        boolean sortie = definitions.valide() && instructions.valide();
+        if (!nom.matches("[a-zA-Z][a-zA-Z0-9_]*")) {
+            Logger.error("Nom de procédure invalide : "+nom);
+            sortie = false;
+        }
+        return sortie;
     }
 }

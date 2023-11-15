@@ -71,6 +71,6 @@ public class TestArbreUnDebut {
         Procedure unDebut = new Procedure("unDebut", defBloc, instrBloc);
 
         // Impression
-        Logger.info(unDebut.toString());
+        if (unDebut.valide()) Logger.info(unDebut.toString());
     }
 }

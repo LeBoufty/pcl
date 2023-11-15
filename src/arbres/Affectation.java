@@ -21,6 +21,10 @@ public class Affectation implements Noeud {
             sortie = false;
         } else {
             sortie = this.gauche.valide() && this.droite.valide();
+            if (this.gauche.type != this.droite.type) {
+                Logger.error("Affectation "+ this.hashCode() +" invalide : types différents");
+                sortie = false;
+            }
         }
         return sortie;
     }
