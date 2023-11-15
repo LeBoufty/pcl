@@ -65,16 +65,17 @@ public class Dictionnaire_Lexical {
         this.dico.put("reverse", 42);
         //this.dico.put("", 43); IDF
         //this.dico.put("", 44); Constante entier
-        this.dico.put("(", 45);
-        this.dico.put(")", 46);
-        this.dico.put(":=", 47);
-        this.dico.put(";", 48);
-        this.dico.put(",", 49);
-        this.dico.put(":", 50);
-        this.dico.put("..", 51);
-        this.dico.put("character'val", 52);
-        this.dico.put("EOF", 53);
-        //this.dico.put("", 54); Constante caractère 'a'
+        //this.dico.put("", 45); Constante caractère 'a'
+        this.dico.put("(", 46);
+        this.dico.put(")", 47);
+        this.dico.put(":=", 48);
+        this.dico.put(";", 49);
+        this.dico.put(",", 50);
+        this.dico.put(":", 51);
+        this.dico.put("..", 52);
+        this.dico.put("character'val", 53);
+        this.dico.put("EOF", 54);
+        
 
     }
 
@@ -96,7 +97,7 @@ public class Dictionnaire_Lexical {
         }
 
         if (mot.is_it_constante_char()) {
-            mot.code_mot = 54;
+            mot.code_mot = 45;
             return;
         }
 

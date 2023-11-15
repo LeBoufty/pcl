@@ -162,9 +162,12 @@ public class Analyseur_Lexical {
 
             if (this.mot_precedent.code_mot == 43) {
                 ecrivain.ecrire_idf(this.mot_precedent.code_mot, this.mot_precedent.code_idf);
-            } else if (this.mot_precedent.code_mot == 54 || this.mot_precedent.code_mot == 44) {
+            } else if (this.mot_precedent.code_mot == 44) {
+                ecrivain.ecrire_chiffre(this.mot_precedent.code_mot, this.mot_precedent.mot);
+            } else if (this.mot_precedent.code_mot == 45) {
                 ecrivain.ecrire_constante(this.mot_precedent.code_mot, this.mot_precedent.mot);
-            } else {
+            } 
+            else {
                 ecrivain.ecrire_mot_clef(this.mot_precedent.code_mot);
             }
 

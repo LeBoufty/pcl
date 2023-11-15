@@ -28,6 +28,13 @@ public class Ecrivain_Lexical {
     public void ecrire_constante(Integer code, String constante) throws Exception {
         this.filewriter.write((char) (code + offset));
         this.filewriter.write(constante);
+        this.filewriter.write((char) (code + offset));
+        this.filewriter.write(constante.charAt(1) + offset);
+    }
+
+    public void ecrire_chiffre(Integer code, String chiffre) throws Exception {
+        this.filewriter.write((char) (code + offset));
+        this.filewriter.write((char) (Integer.parseInt(chiffre) + offset));
     }
 
     public void sauter_ligne() throws Exception {
