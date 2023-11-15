@@ -136,6 +136,7 @@ public class Analyseur_Lexical {
 
             if (this.dico.en_erreur) {
                 this.en_erreur = true;
+                this.dico.en_erreur = false;
                 continue;
             }
 
@@ -159,6 +160,7 @@ public class Analyseur_Lexical {
             while (this.mot_precedent.num_ligne_mot > ecrivain.get_num_ligne_en_ecriture()) {
                 ecrivain.sauter_ligne();
             }
+
             Logger.debug("Ecriture du mot : " + this.mot_precedent.mot + " à la ligne " + this.mot_precedent.num_ligne_mot + " et au caractère " + this.mot_precedent.num_char_mot + " avec le code " + this.mot_precedent.code_mot);
 
             if (this.mot_precedent.code_mot == 43) {

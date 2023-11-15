@@ -1,4 +1,4 @@
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO&;
 
 procedure Fibonacci is
     function Fib(n: Natural) return Natural is
@@ -6,11 +6,12 @@ procedure Fibonacci is
         if n = 0 then
             return 0;
         elsif n = 1 then
-            return 1;
+            return 1;&
         else
             return Fib(n - 1) + Fib(n - 2);
         end if;
     end Fib;
+    0daod
 
     --Variables
 n : Natural := 10;
