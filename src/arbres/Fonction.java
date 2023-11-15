@@ -2,6 +2,8 @@ package arbres;
 
 import java.util.ArrayList;
 
+import outils.Logger;
+
 public class Fonction implements Noeud {
     public String nom;
     public Type type;
@@ -29,5 +31,16 @@ public class Fonction implements Noeud {
         sortie += definitions.toString() + " begin ";
         sortie += instructions.toString() + " end " + this.nom +";";
         return sortie;
+    }
+    public boolean valide() {
+        boolean sortie = true;
+        for (Instanciation p : params) {
+            sortie = sortie && p.valide();
+        }
+        if (!nom.matches("[a-zA-Z][a-zA-Z0-9_]*")) {
+            Logger.error("Nom de fonction invalide : "+nom);
+            sortie = false;
+        }
+        return sortie && definitions.valide() && instructions.valide();
     }
 }

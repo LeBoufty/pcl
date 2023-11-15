@@ -8,6 +8,7 @@ public class Ecrivain_Lexical {
     private FileWriter filewriter;
     private String chemin_fichier;
     private int num_ligne_en_ecriture;
+    public static final int offset = 200;
 
     public Ecrivain_Lexical(String nom_fichier) throws Exception {
         this.chemin_fichier = nom_fichier;
@@ -16,22 +17,24 @@ public class Ecrivain_Lexical {
     }
 
     public void ecrire_mot_clef(Integer code) throws Exception {
-        this.filewriter.write((char) (code + 200));
+        this.filewriter.write((char) (code + offset));
     }
 
     public void ecrire_idf(Integer code, Integer code_idf) throws Exception {
-        this.filewriter.write((char) (code + 200));
-        this.filewriter.write((char) (code_idf + 200));
+        this.filewriter.write((char) (code + offset));
+        this.filewriter.write((char) (code_idf + offset));
     }
 
     public void ecrire_constante(Integer code, String constante) throws Exception {
-        this.filewriter.write((char) (code + 200));
-        this.filewriter.write(constante.charAt(1) + 200);
+        this.filewriter.write((char) (code + offset));
+        this.filewriter.write(constante);
+        this.filewriter.write((char) (code + offset));
+        this.filewriter.write(constante.charAt(1) + offset);
     }
 
     public void ecrire_chiffre(Integer code, String chiffre) throws Exception {
-        this.filewriter.write((char) (code + 200));
-        this.filewriter.write((char) (Integer.parseInt(chiffre) + 200));
+        this.filewriter.write((char) (code + offset));
+        this.filewriter.write((char) (Integer.parseInt(chiffre) + offset));
     }
 
     public void sauter_ligne() throws Exception {
