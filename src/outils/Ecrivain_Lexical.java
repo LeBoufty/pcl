@@ -27,8 +27,6 @@ public class Ecrivain_Lexical {
 
     public void ecrire_constante(Integer code, String constante) throws Exception {
         this.filewriter.write((char) (code + offset));
-        this.filewriter.write(constante);
-        this.filewriter.write((char) (code + offset));
         this.filewriter.write(constante.charAt(1) + offset);
     }
 
