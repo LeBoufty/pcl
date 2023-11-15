@@ -12,6 +12,7 @@ import arbres.Soustraction;
 import arbres.TestEgal;
 import arbres.Type;
 import arbres.Variable;
+import outils.Logger;
 
 public class TestArbre {
     public static void main(String[] args) {
@@ -40,6 +41,15 @@ public class TestArbre {
         Bloc procedureInstructions = new Bloc(instructions);
         Bloc procedureDefinitions = new Bloc(definitions);
         Procedure arbre = new Procedure("testArbre", procedureDefinitions, procedureInstructions);
-        System.out.println(arbre);
+        Logger.debug(arbre.toString());
+
+        Constante _true = new Constante(true);
+        Constante _false = new Constante(false);
+        Constante _null = new Constante();
+        Constante _char = new Constante('c');
+        Logger.debug(_true.toString());
+        Logger.debug(_false.toString());
+        Logger.debug(_null.toString());
+        Logger.debug(_char.toString());
     }
 }
