@@ -97,8 +97,8 @@ public class Dictionnaire_Lexical {
         }
 
         if (mot.is_it_constante_char()) {
-            return;
             mot.code_mot = 45;
+            return;
         }
 
         if (mot.is_it_constante_int()) {
