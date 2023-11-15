@@ -34,7 +34,7 @@ public class Lecteur {
     public char lire() throws Exception {
         this.tete_de_lecture_precedente = this.tete_de_lecture;
         int nextChar = this.filereader.read();
-        this.num_char_en_lecture++;
+        //this.num_char_en_lecture++; Il était en trop le coquin heheh
 
         if (nextChar == -1) {
             this.tete_de_lecture = '\0';
