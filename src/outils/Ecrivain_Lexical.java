@@ -26,7 +26,12 @@ public class Ecrivain_Lexical {
 
     public void ecrire_constante(Integer code, String constante) throws Exception {
         this.filewriter.write((char) (code + 200));
-        this.filewriter.write(constante);
+        this.filewriter.write(constante.charAt(1) + 200);
+    }
+
+    public void ecrire_chiffre(Integer code, String chiffre) throws Exception {
+        this.filewriter.write((char) (code + 200));
+        this.filewriter.write((char) (Integer.parseInt(chiffre) + 200));
     }
 
     public void sauter_ligne() throws Exception {

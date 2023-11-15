@@ -1,5 +1,7 @@
 # Dictionnaire Lexical
 
+On ajoute 200 pour coder en ASCII
+
 ## Unités lexicales simples
 
 | Opérateurs | Code | Associativité | Précédence | Utilité |
@@ -67,19 +69,20 @@ Par exemple (sous la forme de python) : `if len(L) >= 1 and L[0] == 1` lèverait
 
 | Symbole | Code | Utilité |
 |:-------:|:----:|:-------:|
-| ( | 45 | Début de parenthèse |
-| ) | 46 | Fin de parenthèse |
-| := | 47 | Affectation |
-| ; | 48 | Fin d'instruction |
-| , | 49 | Séparateur |
-| : | 50 | Délimiteur variable |
-| .. | 51 | Délimiteur for |
+| ( | 46 | Début de parenthèse |
+| ) | 47 | Fin de parenthèse |
+| := | 48 | Affectation |
+| ; | 49 | Fin d'instruction |
+| , | 50 | Séparateur |
+| : | 51 | Délimiteur variable |
+| .. | 52 | Délimiteur for |
 
 ## Autres unités lexicales
 
 | Nom | Code | Utilité |
 |:---:|:----:|:-------:|
-| character'val | 52 | Conversion d'entier en caractère ASCII |
+| character'val | 53 | Conversion d'entier en caractère ASCII |
+| EOF | 54 | Fin de fichier |
 | -- |  | Commentaire ne doit pas être gardé |
 
 ## Informations complémentaires
