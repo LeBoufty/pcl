@@ -12,7 +12,7 @@ public class TestArbreUnDebut {
         // Déclarations de aireRectangle
         Instanciation aire = new Instanciation(Type.INTEGER);
         // Instructions de aireRectangle : préparatifs
-        Multiplication aireMultiplication = new Multiplication(aireLarg.variable, aireLong.variable);
+        Operation aireMultiplication = new Operation(aireLarg.variable, aireLong.variable, Operateur.FOIS);
         // Instructions de aireRectangle
         Affectation aireAffectation = new Affectation(aire.variable, aireMultiplication);
         Return retourAire = new Return(aire.variable);
@@ -30,9 +30,9 @@ public class TestArbreUnDebut {
         Instanciation p = new Instanciation(Type.INTEGER);
         // Instructions 1
         Constante _2 = new Constante(2);
-        Multiplication mulLarg = new Multiplication(periLarg.variable, _2);
-        Multiplication mulLong = new Multiplication(periLong.variable, _2);
-        Addition perimAddition = new Addition(mulLarg, mulLong);
+        Operation mulLarg = new Operation(periLarg.variable, _2, Operateur.FOIS);
+        Operation mulLong = new Operation(periLong.variable, _2, Operateur.FOIS);
+        Operation perimAddition = new Operation(mulLarg, mulLong, Operateur.PLUS);
         // Instructions 2
         Affectation perimAffectation = new Affectation(p.variable, perimAddition);
         Return retourPerim = new Return(p.variable);
@@ -53,7 +53,7 @@ public class TestArbreUnDebut {
         Instanciation valeur = new Instanciation(Type.INTEGER);
 
         // Noeuds chiants
-        TestEgal choixegal1 = new TestEgal(choix.variable, _1);
+        Operation choixegal1 = new Operation(choix.variable, _1, Operateur.EGAL);
         AppelFonction perimetreAppel = new AppelFonction(perimetreRectangle, new Constante[] {_2, _3});
         AppelFonction aireAppel = new AppelFonction(aireRectangle, new Constante[] {_2, _3});
 

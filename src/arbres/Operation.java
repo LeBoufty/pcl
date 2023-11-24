@@ -1,0 +1,39 @@
+package arbres;
+
+import outils.Logger;
+
+public class Operation extends Evaluable {
+    public Evaluable gauche;
+    public Evaluable droite;
+    public Operateur operateur;
+    public Operation(Evaluable g, Evaluable d, Operateur o) {
+        this.gauche = g; this.droite = d; this.operateur = o;
+        if (g.type != d.type) {
+            Logger.warn("Opération "+ this.toString() +" : types différents");
+            // Un peu moche : si les types ne correspondent pas on prend NULL.
+            this.type = Type.NULLTYPE;
+        }
+        // On prend le type de sortie de l'opérateur.
+        else this.type = operateur.getType();
+    }
+    public boolean valide() {
+        boolean sortie = true;
+        if (this.gauche == null) {
+            Logger.error("Opération "+ this.hashCode() +" invalide : membre gauche null");
+            sortie = false;
+        } else if (this.droite == null) {
+            Logger.error("Opération "+ this.hashCode() +" invalide : membre droit null");
+            sortie = false;
+        } else {
+            sortie = this.gauche.valide() && this.droite.valide();
+            if (this.gauche.type != this.droite.type) {
+                Logger.error("Opération "+ this.toString() +" invalide : types différents");
+                sortie = false;
+            }
+        }
+        return sortie;
+    }
+    public String toString() {
+        return this.gauche.toString() +" "+ this.operateur.toString() +" "+ this.droite.toString();
+    }
+}
