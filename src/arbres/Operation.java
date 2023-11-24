@@ -5,7 +5,7 @@ import outils.Logger;
 public class Operation extends Evaluable {
     public Evaluable gauche;
     public Evaluable droite;
-    public Operateur operateur;
+    private Operateur operateur;
     public Operation(Evaluable g, Evaluable d, Operateur o) {
         this.gauche = g; this.droite = d; this.operateur = o;
         if (g.type != d.type) {
@@ -15,6 +15,13 @@ public class Operation extends Evaluable {
         }
         // On prend le type de sortie de l'opérateur.
         else this.type = operateur.getType();
+    }
+    public Operateur getOperateur() {
+        return this.operateur;
+    }
+    public void setOperateur(Operateur o) {
+        this.operateur = o;
+        this.type = o.getType();
     }
     public boolean valide() {
         boolean sortie = true;
