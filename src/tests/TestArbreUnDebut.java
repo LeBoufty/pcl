@@ -8,10 +8,10 @@ public class TestArbreUnDebut {
     public static void main(String[] args) {
         // aireRectangle :
         // Paramètres de aireRectangle
-        Instanciation aireLarg = new Instanciation(Type.INTEGER);
-        Instanciation aireLong = new Instanciation(Type.INTEGER);
+        Instanciation aireLarg = new Instanciation(Type.INTEGER, "larg");
+        Instanciation aireLong = new Instanciation(Type.INTEGER, "long");
         // Déclarations de aireRectangle
-        Instanciation aire = new Instanciation(Type.INTEGER);
+        Instanciation aire = new Instanciation(Type.INTEGER, "aire");
         // Instructions de aireRectangle : préparatifs
         Operation aireMultiplication = new Operation(aireLarg.variable, aireLong.variable, Operateur.FOIS);
         // Instructions de aireRectangle
@@ -25,10 +25,10 @@ public class TestArbreUnDebut {
 
         // perimetreRectangle :
         // Paramètres
-        Instanciation periLarg = new Instanciation(Type.INTEGER);
-        Instanciation periLong = new Instanciation(Type.INTEGER);
+        Instanciation periLarg = new Instanciation(Type.INTEGER, "larg");
+        Instanciation periLong = new Instanciation(Type.INTEGER, "long");
         // Déclarations
-        Instanciation p = new Instanciation(Type.INTEGER);
+        Instanciation p = new Instanciation(Type.INTEGER, "perimetre");
         // Instructions 1
         Constante _2 = new Constante(2);
         Operation mulLarg = new Operation(periLarg.variable, _2, Operateur.FOIS);
@@ -44,14 +44,14 @@ public class TestArbreUnDebut {
         Fonction perimetreRectangle = new Fonction("perimetreRectangle", paramPeri, Type.INTEGER, p, blocInstrP);
 
         // Variables
-        Instanciation choix = new Instanciation(Type.INTEGER);
+        Instanciation choix = new Instanciation(Type.INTEGER, "choix");
 
         // Définitions de constantes
         Constante _1 = new Constante(1);
         Constante _3 = new Constante(3);
 
         // Valeur n'est jamais instancié ?
-        Instanciation valeur = new Instanciation(Type.INTEGER);
+        Instanciation valeur = new Instanciation(Type.INTEGER, "valeur");
 
         // Noeuds chiants
         Operation choixegal1 = new Operation(choix.variable, _1, Operateur.EGAL);
