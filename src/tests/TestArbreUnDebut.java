@@ -1,6 +1,7 @@
 package tests;
 
 import arbres.*;
+import arbres.PlantUML.GenerateurPUML;
 import outils.Logger;
 
 public class TestArbreUnDebut {
@@ -72,5 +73,13 @@ public class TestArbreUnDebut {
 
         // Impression
         if (unDebut.valide()) Logger.info(unDebut.toString());
+
+        // PlantUML
+        try {
+            GenerateurPUML gen = new GenerateurPUML(unDebut, "Programmes/unDebut.pu");
+            gen.generer();
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+        }
     }
 }

@@ -7,7 +7,7 @@ public class Variable extends Evaluable {
     public Variable(Type t) {
         this.identifiant = nbvariables;
         this.type = t;
-        this.nom = this.toString();
+        this.nom = "var"+String.valueOf(identifiant);
         nbvariables++;
     }
     public Variable(Type t, String nom) {
