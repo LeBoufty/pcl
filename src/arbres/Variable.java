@@ -7,7 +7,7 @@ public class Variable extends Evaluable {
     public Variable(Type t) {
         this.identifiant = nbvariables;
         this.type = t;
-        this.nom = Repertoire.createID(this);
+        this.nom = this.toString();
         nbvariables++;
     }
     public Variable(Type t, String nom) {
