@@ -20,6 +20,11 @@ public class Fonction implements Noeud {
             this.params.add(p);
         }
     }
+    public Fonction(String nom, Instanciation[] parametres, Type t) {
+        this(nom, parametres, t, null, null);
+        definitions = new Bloc();
+        instructions = new Bloc();
+    }
     public String toString() {
         String sortie = "function " + this.nom + "(";
         ArrayList<String> paramStrings = new ArrayList<>();
@@ -42,5 +47,23 @@ public class Fonction implements Noeud {
             sortie = false;
         }
         return sortie && definitions.valide() && instructions.valide();
+    }
+    public void ajouterDefinition(Noeud definition) {
+        if (this.definitions instanceof Bloc) {
+            ((Bloc) this.definitions).ajouterInstruction(definition);
+        } else if (this.definitions == null) {
+            this.definitions = definition;
+        } else {
+            this.definitions = new Bloc(new Noeud[] {this.definitions, definition});
+        }
+    }
+    public void ajouterInstruction(Noeud instruction) {
+        if (this.instructions instanceof Bloc) {
+            ((Bloc) this.instructions).ajouterInstruction(instruction);
+        } else if (this.instructions == null) {
+            this.instructions = instruction;
+        } else {
+            this.instructions = new Bloc(new Noeud[] {this.instructions, instruction});
+        }
     }
 }

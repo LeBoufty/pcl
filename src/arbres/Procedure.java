@@ -11,6 +11,11 @@ public class Procedure implements Noeud {
         this.definitions = def;
         this.instructions = inst;
     }
+    public Procedure(String nom) {
+        this(nom, null, null);
+        definitions = new Bloc();
+        instructions = new Bloc();
+    }
     public String toString() {
         return "procedure "+nom+" is "+definitions.toString()+" begin "+instructions.toString()+" end "+nom+";";
     }
@@ -21,5 +26,23 @@ public class Procedure implements Noeud {
             sortie = false;
         }
         return sortie;
+    }
+    public void ajouterDefinition(Noeud definition) {
+        if (this.definitions instanceof Bloc) {
+            ((Bloc) this.definitions).ajouterInstruction(definition);
+        } else if (this.definitions == null) {
+            this.definitions = definition;
+        } else {
+            this.definitions = new Bloc(new Noeud[] {this.definitions, definition});
+        }
+    }
+    public void ajouterInstruction(Noeud instruction) {
+        if (this.instructions instanceof Bloc) {
+            ((Bloc) this.instructions).ajouterInstruction(instruction);
+        } else if (this.instructions == null) {
+            this.instructions = instruction;
+        } else {
+            this.instructions = new Bloc(new Noeud[] {this.instructions, instruction});
+        }
     }
 }
