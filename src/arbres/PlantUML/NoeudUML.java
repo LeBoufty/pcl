@@ -11,11 +11,8 @@ public class NoeudUML {
     private ArrayList<NoeudUML> enfants;
 
     public NoeudUML(String valeur) {
-        while (nomsAttribues.contains(valeur)) {
-            // Si le nom est déjà pris, on ajoute des _ jusqu'à ce qu'il soit unique.
-            valeur = valeur + "_";
-            // C'est absolument dégueulasse, mais j'ai rien de mieux désolé...
-        }
+        // Pour éviter la merdouille dans le diagramme, tous les noms doivent être uniques.
+        valeur = rendreUnique(valeur);
         nomsAttribues.add(valeur);
         this.valeur = valeur;
         enfants = new ArrayList<NoeudUML>();
@@ -49,10 +46,9 @@ public class NoeudUML {
                 break;
             case "Variable":
                 Variable v = (Variable) n;
-                this.valeur = Repertoire.getNewID(v);
+                this.valeur = rendreUnique(v.nom);
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
-                enfants.add(new NoeudUML(v.nom));
                 break;
             case "AppelFonction":
                 AppelFonction af = (AppelFonction) n;
@@ -115,10 +111,9 @@ public class NoeudUML {
                 break;
             case "Constante":
                 Constante c = (Constante) n;
-                this.valeur = Repertoire.getNewID(c);
+                this.valeur = rendreUnique(c.toString());
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
-                enfants.add(new NoeudUML(c.toString()));
                 break;
             case "Operation":
                 Operation o = (Operation) n;
@@ -163,6 +158,14 @@ public class NoeudUML {
                 break;
         }
         Logger.info("Noeud "+this.valeur+" créé");
+    }
+    private String rendreUnique(String nom) {
+        String nomUnique = nom;
+        while (nomsAttribues.contains(nomUnique)) {
+            // On ajoute un underscore tant que le nom n'est pas unique.
+            nomUnique += "_";
+        }
+        return nomUnique;
     }
     // Une bande de getters et de setters au cas où.
     public String getValeur() {
