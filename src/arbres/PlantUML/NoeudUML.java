@@ -11,7 +11,9 @@ public class NoeudUML {
 
     public NoeudUML(String valeur) {
         while (nomsAttribues.contains(valeur)) {
+            // Si le nom est déjà pris, on ajoute des _ jusqu'à ce qu'il soit unique.
             valeur = valeur + "_";
+            // C'est absolument dégueulasse, mais j'ai rien de mieux désolé...
         }
         nomsAttribues.add(valeur);
         this.valeur = valeur;
@@ -19,12 +21,19 @@ public class NoeudUML {
     }
 
     public NoeudUML(Noeud n) {
+        // Chaque noeud est unique, on doit tout gérer individuellement.
+        // Je vais aller dans les grandes lignes.
         switch (n.getClass().getSimpleName()) {
-            case "Affectation":
+            case "Affectation": // Si c'est une affectation...
+                // On récupère l'objet Affectation
                 Affectation a = (Affectation) n;
+                // On lui attribue un nom unique
                 this.valeur = Repertoire.getNewID(a);
                 nomsAttribues.add(this.valeur);
+                // On crée une liste d'enfants
                 enfants = new ArrayList<NoeudUML>();
+                // On génère les noeuds des enfants.
+                // (C'est récursif)
                 enfants.add(new NoeudUML(a.gauche));
                 enfants.add(new NoeudUML(a.droite));
                 break;
@@ -115,6 +124,7 @@ public class NoeudUML {
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(o.gauche));
+                // On prend le nom de l'opérateur parce que = fout la merde.
                 enfants.add(new NoeudUML(o.getOperateur().name()));
                 enfants.add(new NoeudUML(o.droite));
                 break;
@@ -143,37 +153,34 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(r.valeur));
                 break;
             default:
+                // Cas par défaut, on sait jamais.
                 this.valeur = Repertoire.getNewID(n);
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 break;
         }
     }
-
+    // Une bande de getters et de setters au cas où.
     public String getValeur() {
         return valeur;
     }
-
     public void setValeur(String valeur) {
         this.valeur = valeur;
     }
-
     public void ajouterEnfant(NoeudUML enfant) {
         enfants.add(enfant);
     }
-
     public void ajouterEnfants(ArrayList<NoeudUML> enfants) {
         this.enfants.addAll(enfants);
     }
-
     public ArrayList<NoeudUML> getEnfants() {
         return enfants;
     }
-
+    // La définition en PlantUML du noeud.
     public String definition() {
         return "object "+this.valeur+"\n";
     }
-
+    // Les relations en PlantUML du noeud.
     public String relations() {
         String sortie = "";
         for (NoeudUML noeudUML : enfants) {
