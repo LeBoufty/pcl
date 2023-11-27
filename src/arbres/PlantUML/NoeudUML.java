@@ -3,6 +3,7 @@ package arbres.PlantUML;
 import java.util.ArrayList;
 
 import arbres.*;
+import outils.Logger;
 
 public class NoeudUML {
     private static ArrayList<String> nomsAttribues = new ArrayList<String>();
@@ -18,6 +19,7 @@ public class NoeudUML {
         nomsAttribues.add(valeur);
         this.valeur = valeur;
         enfants = new ArrayList<NoeudUML>();
+        Logger.info("Noeud "+this.valeur+" créé");
     }
 
     public NoeudUML(Noeud n) {
@@ -156,9 +158,11 @@ public class NoeudUML {
                 // Cas par défaut, on sait jamais.
                 this.valeur = Repertoire.getNewID(n);
                 nomsAttribues.add(this.valeur);
+                Logger.warn("Noeud "+this.valeur+" : non reconnu");
                 enfants = new ArrayList<NoeudUML>();
                 break;
         }
+        Logger.info("Noeud "+this.valeur+" créé");
     }
     // Une bande de getters et de setters au cas où.
     public String getValeur() {
