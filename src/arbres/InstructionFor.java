@@ -13,6 +13,10 @@ public class InstructionFor implements Noeud {
         this.borneSup = borneSup;
         this.corps = corps;
     }
+    public InstructionFor() {
+        this.reverse = false;
+        this.corps = new Bloc();
+    }
     public String toString() {
         String sortie = "for " + this.iterateur.toString() + " in ";
         if (this.reverse) {
@@ -24,6 +28,18 @@ public class InstructionFor implements Noeud {
         return sortie;
     }
     public boolean valide() {
+        if (this.iterateur == null || this.borneInf == null || this.borneSup == null || this.corps == null) {
+            return false;
+        }
         return this.iterateur.valide() && this.borneInf.valide() && this.borneSup.valide() && this.corps.valide();
+    }
+    public void ajouterInstruction(Noeud instruction) {
+        if (this.corps instanceof Bloc) {
+            ((Bloc) this.corps).ajouterInstruction(instruction);
+        } else if (this.corps == null) {
+            this.corps = instruction;
+        } else {
+            this.corps = new Bloc(new Noeud[] {this.corps, instruction});
+        }
     }
 }

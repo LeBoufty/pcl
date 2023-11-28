@@ -7,6 +7,9 @@ public class InstructionWhile implements Noeud {
         this.condition = cond;
         this.corps = corps;
     }
+    public InstructionWhile() {
+        this.corps = new Bloc();
+    }
     public String toString() {
         String sortie = "while " + condition.toString() + " loop ";
         sortie += corps.toString();
@@ -15,5 +18,14 @@ public class InstructionWhile implements Noeud {
     }
     public boolean valide() {
         return condition.valide() && corps.valide();
+    }
+    public void ajouterInstruction(Noeud instruction) {
+        if (this.corps instanceof Bloc) {
+            ((Bloc) this.corps).ajouterInstruction(instruction);
+        } else if (this.corps == null) {
+            this.corps = instruction;
+        } else {
+            this.corps = new Bloc(new Noeud[] {this.corps, instruction});
+        }
     }
 }
