@@ -110,6 +110,71 @@ public class Table_Danalyse {
         Table[15][59] = 31;
         Table[15][60] = 31;
 
+        //INSTR
+        Table[16][9] = 33;
+        Table[16][11] = 34;
+        Table[16][16] = 37;
+        Table[16][24] = 33;
+        Table[16][28] = 35;
+        Table[16][31] = 36;
+        Table[16][33] = 38;
+        Table[16][48] = 33;
+        Table[16][52] = 33;
+        Table[16][53] = 33;
+        Table[16][56] = 33;
+        Table[16][57] = 33;
+        Table[16][58] = 33;
+        Table[16][59] = 33;
+        Table[16][60] = 33;
+
+        //REVERSEInterro
+        Table[17][9] = 40;
+        Table[17][24] = 40;
+        Table[17][34] = 39;
+        Table[17][48] = 40;
+        Table[17][52] = 40;
+        Table[17][53] = 40;
+        Table[17][56] = 40;
+        Table[17][57] = 40;
+        Table[17][58] = 40;
+        Table[17][59] = 40;
+        Table[17][60] = 40;
+
+        //ELSEINSTRInterro
+        Table[18][12] = 42;
+        Table[18][35] = 41;
+
+        //ELSIFEtoile
+        Table[19][12] = 44;
+        Table[19][35] = 44;
+        Table[19][36] = 43;
+
+        //ACCESSInterro
+        Table[20][9] = 46;
+        Table[20][19] = 45;
+
+        //OR
+        Table[21][9] = 47;
+        Table[21][24] = 47;
+        Table[21][48] = 47;
+        Table[21][52] = 47;
+        Table[21][53] = 47;
+        Table[21][56] = 47;
+        Table[21][57] = 47;
+        Table[21][58] = 47;
+        Table[21][59] = 47;
+        Table[21][60] = 47;
+
+        //ORPrime
+        Table[22][6] = 50;
+        Table[22][18] = 50;
+        Table[22][22] = 50;
+        Table[22][25] = 50;
+        Table[22][29] = 50;
+        Table[22][30] = 50;
+        Table[22][32] = 50;
+        Table[22][37] = 48;
+        Table[22][38] = 49;
     }
 
     public int obtenirValeur(int ligne, int colonne) {
