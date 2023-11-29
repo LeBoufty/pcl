@@ -10,6 +10,10 @@ public class OperationUnaire extends Evaluable {
         // On prend le type de sortie de l'opérateur.
         this.type = operateur.getType();
     }
+    public OperationUnaire() {
+        this.droite = null; this.operateur = OperateurUnaire.NONE;
+        this.type = Type.NULLTYPE;
+    }
     public OperateurUnaire getOperateur() {
         return this.operateur;
     }

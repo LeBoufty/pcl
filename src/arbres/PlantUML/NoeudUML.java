@@ -8,10 +8,12 @@ import outils.Logger;
 public class NoeudUML {
     private static ArrayList<String> nomsAttribues = new ArrayList<String>();
     private String valeur;
+    private String titre;
     private ArrayList<NoeudUML> enfants;
 
     public NoeudUML(String valeur) {
         // Pour éviter la merdouille dans le diagramme, tous les noms doivent être uniques.
+        this.titre = valeur;
         valeur = rendreUnique(valeur);
         nomsAttribues.add(valeur);
         this.valeur = valeur;
@@ -24,6 +26,8 @@ public class NoeudUML {
         // Je vais aller dans les grandes lignes.
         switch (n.getClass().getSimpleName()) {
             case "Affectation": // Si c'est une affectation...
+                // On donne un joli titre !!
+                this.titre = "Affectation";
                 // On récupère l'objet Affectation
                 Affectation a = (Affectation) n;
                 // On lui attribue un nom unique
@@ -37,6 +41,7 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(a.droite));
                 break;
             case "Instanciation":
+                this.titre = "Instanciation";
                 Instanciation i = (Instanciation) n;
                 this.valeur = Repertoire.getNewID(i);
                 nomsAttribues.add(this.valeur);
@@ -47,10 +52,12 @@ public class NoeudUML {
             case "Variable":
                 Variable v = (Variable) n;
                 this.valeur = rendreUnique(v.nom);
+                this.titre = v.nom;
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 break;
             case "AppelFonction":
+                this.titre = "Appel Fonction";
                 AppelFonction af = (AppelFonction) n;
                 this.valeur = Repertoire.getNewID(af);
                 nomsAttribues.add(this.valeur);
@@ -61,6 +68,7 @@ public class NoeudUML {
                 }
                 break;
             case "Fonction":
+                this.titre = "Fonction";
                 Fonction f = (Fonction) n;
                 this.valeur = Repertoire.getNewID(f);
                 nomsAttribues.add(this.valeur);
@@ -74,6 +82,7 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(f.instructions));
                 break;
             case "Bloc":
+                this.titre = "Bloc";
                 Bloc b = (Bloc) n;
                 this.valeur = Repertoire.getNewID(b);
                 nomsAttribues.add(this.valeur);
@@ -83,6 +92,7 @@ public class NoeudUML {
                 }
                 break;
             case "InstructionIf":
+                this.titre = "If";
                 InstructionIf iif = (InstructionIf) n;
                 this.valeur = Repertoire.getNewID(iif);
                 nomsAttribues.add(this.valeur);
@@ -92,6 +102,7 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(iif.sinon));
                 break;
             case "InstructionWhile":
+                this.titre = "While";
                 InstructionWhile iw = (InstructionWhile) n;
                 this.valeur = Repertoire.getNewID(iw);
                 nomsAttribues.add(this.valeur);
@@ -100,6 +111,7 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(iw.corps));
                 break;
             case "InstructionFor":
+                this.titre = "For";
                 InstructionFor iff = (InstructionFor) n;
                 this.valeur = Repertoire.getNewID(iff);
                 nomsAttribues.add(this.valeur);
@@ -112,10 +124,12 @@ public class NoeudUML {
             case "Constante":
                 Constante c = (Constante) n;
                 this.valeur = rendreUnique(c.toString());
+                this.titre = c.toString();
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 break;
             case "Operation":
+                this.titre = "Operation";
                 Operation o = (Operation) n;
                 this.valeur = Repertoire.getNewID(o);
                 nomsAttribues.add(this.valeur);
@@ -126,6 +140,7 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(o.droite));
                 break;
             case "OperationUnaire":
+                this.titre = "Operation Unaire";
                 OperationUnaire ou = (OperationUnaire) n;
                 this.valeur = Repertoire.getNewID(ou);
                 nomsAttribues.add(this.valeur);
@@ -134,6 +149,7 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(ou.droite));
                 break;
             case "Procedure":
+                this.titre = "Procedure";
                 Procedure p = (Procedure) n;
                 this.valeur = Repertoire.getNewID(p);
                 nomsAttribues.add(this.valeur);
@@ -143,6 +159,7 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(p.instructions));
                 break;
             case "Return":
+                this.titre = "Return";
                 Return r = (Return) n;
                 this.valeur = Repertoire.getNewID(r);
                 nomsAttribues.add(this.valeur);
@@ -185,7 +202,7 @@ public class NoeudUML {
     }
     // La définition en PlantUML du noeud.
     public String definition() {
-        return "object "+this.valeur+"\n";
+        return "object \""+this.titre+"\" as "+this.valeur+"\n";
     }
     // Les relations en PlantUML du noeud.
     public String relations() {

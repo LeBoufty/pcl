@@ -15,6 +15,14 @@ public class AppelFonction extends Evaluable {
         }
         this.type = fonction.type;
     }
+    public AppelFonction(Fonction fonction) {
+        this.fonction = fonction;
+        this.params = new ArrayList<>();
+        this.type = fonction.type;
+    }
+    public void ajouterParametre(Evaluable parametre) {
+        this.params.add(parametre);
+    }
     public String toString() {
         String sortie = this.fonction.nom + "(";
         ArrayList<String> parStrings = new ArrayList<>();

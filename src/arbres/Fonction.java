@@ -21,9 +21,10 @@ public class Fonction implements Noeud {
         }
     }
     public Fonction(String nom, Instanciation[] parametres, Type t) {
-        this(nom, parametres, t, null, null);
-        definitions = new Bloc();
-        instructions = new Bloc();
+        this(nom, parametres, t, new Bloc(), new Bloc());
+    }
+    public Fonction(String nom) {
+        this(nom, new Instanciation[] {}, Type.NULLTYPE, new Bloc(), new Bloc());
     }
     public String toString() {
         String sortie = "function " + this.nom + "(";

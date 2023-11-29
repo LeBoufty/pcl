@@ -12,9 +12,7 @@ public class Procedure implements Noeud {
         this.instructions = inst;
     }
     public Procedure(String nom) {
-        this(nom, null, null);
-        definitions = new Bloc();
-        instructions = new Bloc();
+        this(nom, new Bloc(), new Bloc());
     }
     public String toString() {
         return "procedure "+nom+" is "+definitions.toString()+" begin "+instructions.toString()+" end "+nom+";";
