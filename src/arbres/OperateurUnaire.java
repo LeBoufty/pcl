@@ -1,6 +1,8 @@
 package arbres;
 
 public enum OperateurUnaire {
+    // Placeholder pour quand on crée l'opération
+    NONE("", Type.NULLTYPE),
     // Opérateurs sur les entiers
     MOINS("-", Type.INTEGER),
     // Opérateurs sur les booléens

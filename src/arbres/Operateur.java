@@ -1,6 +1,8 @@
 package arbres;
 
 public enum Operateur {
+    // Placeholder pour quand on crée l'opération
+    NONE("", Type.NULLTYPE),
     // Opérations sur entiers
     PLUS("+", Type.INTEGER), MOINS("-", Type.INTEGER),
     FOIS("*", Type.INTEGER), DIV("/", Type.INTEGER),
@@ -11,7 +13,6 @@ public enum Operateur {
     DIFFERENT("/=", Type.BOOLEAN), EGAL("=", Type.BOOLEAN),
     // Portes logiques
     AND("and", Type.BOOLEAN), OR("or", Type.BOOLEAN),
-    NOT("not", Type.BOOLEAN),
     AND_THEN("and then", Type.BOOLEAN), OR_ELSE("or else", Type.BOOLEAN);
 
     // "symbole" sert pour l'affichage.

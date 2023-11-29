@@ -16,6 +16,10 @@ public class Operation extends Evaluable {
         // On prend le type de sortie de l'opérateur.
         else this.type = operateur.getType();
     }
+    public Operation() {
+        this.gauche = null; this.droite = null; this.operateur = Operateur.NONE;
+        this.type = Type.NULLTYPE;
+    }
     public Operateur getOperateur() {
         return this.operateur;
     }

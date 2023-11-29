@@ -9,6 +9,9 @@ public class Affectation implements Noeud {
         this.gauche = g; this.droite = d;
         if (g.type != d.type) Logger.warn("Affectation "+ this.toString() +" : types différents");
     }
+    public Affectation() {
+        this.gauche = null; this.droite = null;
+    }
     public String toString() {
         return this.gauche.toString() + ":=" + this.droite.toString() + ";";
     }
