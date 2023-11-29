@@ -212,6 +212,48 @@ public class Table_Danalyse {
         Table[25][58] = 55;
         Table[25][59] = 55;
         Table[25][60] = 55;
+
+        //NOTPrime
+        Table[26][6] = 57;
+        Table[26][18] = 57;
+        Table[26][21] = 57;
+        Table[26][22] = 57;
+        Table[26][25] = 57;
+        Table[26][29] = 57;
+        Table[26][30] = 57;
+        Table[26][32] = 57;
+        Table[26][37] = 57;
+        Table[26][38] = 57;
+        Table[26][39] = 57;
+        Table[26][40] = 56;
+
+        //EQUALS
+        Table[27][9] = 58;
+        Table[27][24] = 58;
+        Table[27][48] = 58;
+        Table[27][52] = 58;
+        Table[27][53] = 58;
+        Table[27][56] = 58;
+        Table[27][57] = 58;
+        Table[27][58] = 58;
+        Table[27][59] = 58;
+        Table[27][60] = 58;
+
+        //EQUALSPrime
+        Table[28][6] = 61;
+        Table[28][18] = 61;
+        Table[28][21] = 61;
+        Table[28][22] = 61;
+        Table[28][25] = 61;
+        Table[28][29] = 61;
+        Table[28][30] = 61;
+        Table[28][32] = 61;
+        Table[28][37] = 61;
+        Table[28][38] = 61;
+        Table[28][39] = 61;
+        Table[28][40] = 61;
+        Table[28][41] = 59;
+        Table[28][42] = 60;
     }
 
     public int obtenirValeur(int ligne, int colonne) {
