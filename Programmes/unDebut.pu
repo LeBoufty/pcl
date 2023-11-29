@@ -1,79 +1,79 @@
 @startuml ArbreSyntaxique
-object Procedure
-object unDebut
-object Bloc
-object Bloc3
-object Fonction
-object Fonction1
-object Instanciation6
-object Affectation2
-object InstructionIf
-object aireRectangle
-object Instanciation
-object Instanciation1
-object INTEGER__
-object Instanciation2
-object Bloc1
-object perimetreRectangle
-object Instanciation3
-object Instanciation4
-object INTEGER______
-object Instanciation5
-object Bloc2
-object choix
-object INTEGER________
-object choix_
-object 2__
-object Operation4
-object Affectation3
-object Affectation4
-object larg
-object INTEGER
-object long
-object INTEGER_
-object aire
-object INTEGER___
-object Affectation
-object Return
-object larg__
-object INTEGER____
-object long__
-object INTEGER_____
-object perimetre
-object INTEGER_______
-object Affectation1
-object Return1
-object choix__
-object EGAL
-object 1
-object valeur
-object AppelFonction
-object valeur_
-object AppelFonction1
-object aire_
-object Operation
-object aire__
-object perimetre_
-object Operation1
-object perimetre__
-object perimetreRectangle_
-object 2___
-object 3
-object aireRectangle_
-object 2____
-object 3_
-object larg_
-object FOIS
-object long_
-object Operation2
-object PLUS
-object Operation3
-object larg___
-object FOIS_
-object 2
-object long___
-object FOIS__
-object 2_
+object "Procedure" as Procedure
+object "unDebut" as unDebut
+object "Bloc" as Bloc
+object "Bloc" as Bloc3
+object "Fonction" as Fonction
+object "Fonction" as Fonction1
+object "Instanciation" as Instanciation6
+object "Affectation" as Affectation2
+object "If" as InstructionIf
+object "aireRectangle" as aireRectangle
+object "Instanciation" as Instanciation
+object "Instanciation" as Instanciation1
+object "INTEGER" as INTEGER__
+object "Instanciation" as Instanciation2
+object "Bloc" as Bloc1
+object "perimetreRectangle" as perimetreRectangle
+object "Instanciation" as Instanciation3
+object "Instanciation" as Instanciation4
+object "INTEGER" as INTEGER______
+object "Instanciation" as Instanciation5
+object "Bloc" as Bloc2
+object "choix" as choix
+object "INTEGER" as INTEGER________
+object "choix" as choix_
+object "2" as 2__
+object "Operation" as Operation4
+object "Affectation" as Affectation3
+object "Affectation" as Affectation4
+object "larg" as larg
+object "INTEGER" as INTEGER
+object "long" as long
+object "INTEGER" as INTEGER_
+object "aire" as aire
+object "INTEGER" as INTEGER___
+object "Affectation" as Affectation
+object "Return" as Return
+object "larg" as larg__
+object "INTEGER" as INTEGER____
+object "long" as long__
+object "INTEGER" as INTEGER_____
+object "perimetre" as perimetre
+object "INTEGER" as INTEGER_______
+object "Affectation" as Affectation1
+object "Return" as Return1
+object "choix" as choix__
+object "EGAL" as EGAL
+object "1" as 1
+object "valeur" as valeur
+object "Appel Fonction" as AppelFonction
+object "valeur" as valeur_
+object "Appel Fonction" as AppelFonction1
+object "aire" as aire_
+object "Operation" as Operation
+object "aire" as aire__
+object "perimetre" as perimetre_
+object "Operation" as Operation1
+object "perimetre" as perimetre__
+object "perimetreRectangle" as perimetreRectangle_
+object "2" as 2___
+object "3" as 3
+object "aireRectangle" as aireRectangle_
+object "2" as 2____
+object "3" as 3_
+object "larg" as larg_
+object "FOIS" as FOIS
+object "long" as long_
+object "Operation" as Operation2
+object "PLUS" as PLUS
+object "Operation" as Operation3
+object "larg" as larg___
+object "FOIS" as FOIS_
+object "2" as 2
+object "long" as long___
+object "FOIS" as FOIS__
+object "2" as 2_
 Procedure -down-> unDebut
 Procedure -down-> Bloc
 Procedure -down-> Bloc3
