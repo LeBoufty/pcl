@@ -63,8 +63,32 @@ public class Table_Danalyse {
         Table[10][6] = 21;
         Table[10][25] = 22;
 
+        //MODEInterro
+        Table[11][9] = 24;
+        Table[11][19] = 24;
+        Table[11][26] = 23;
 
+        //OUTInterro
+        Table[12][9] = 26;
+        Table[12][19] = 26;
+        Table[12][27] = 25;
 
+        //OREtoile
+        Table[13][22] = 27;
+        Table[13][25] = 28;
+
+        //ORInterro
+        Table[14][6] = 30;
+        Table[14][9] = 29;
+        Table[14][24] = 29;
+        Table[14][48] = 29;
+        Table[14][52] = 29;
+        Table[14][53] = 29;
+        Table[14][56] = 29;
+        Table[14][57] = 29;
+        Table[14][58] = 29;
+        Table[14][59] = 29;
+        Table[14][60] = 29;
     }
 
     public int obtenirValeur(int ligne, int colonne) {
