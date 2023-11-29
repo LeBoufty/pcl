@@ -175,6 +175,43 @@ public class Table_Danalyse {
         Table[22][32] = 50;
         Table[22][37] = 48;
         Table[22][38] = 49;
+
+        //AND
+        Table[23][9] = 51;
+        Table[23][24] = 51;
+        Table[23][48] = 51;
+        Table[23][52] = 51;
+        Table[23][53] = 51;
+        Table[23][56] = 51;
+        Table[23][57] = 51;
+        Table[23][58] = 51;
+        Table[23][59] = 51;
+        Table[23][60] = 51;
+
+        //ANDPrime
+        Table[24][6] = 54;
+        Table[24][18] = 54;
+        Table[24][21] = 52;
+        Table[24][22] = 54;
+        Table[24][25] = 54;
+        Table[24][29] = 54;
+        Table[24][30] = 54;
+        Table[24][32] = 54;
+        Table[24][37] = 54;
+        Table[24][38] = 54;
+        Table[24][39] = 53;
+
+        //NOT
+        Table[25][9] = 55;
+        Table[25][24] = 55;
+        Table[25][48] = 55;
+        Table[25][52] = 55;
+        Table[25][53] = 55;
+        Table[25][56] = 55;
+        Table[25][57] = 55;
+        Table[25][58] = 55;
+        Table[25][59] = 55;
+        Table[25][60] = 55;
     }
 
     public int obtenirValeur(int ligne, int colonne) {
