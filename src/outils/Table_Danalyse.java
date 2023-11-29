@@ -89,6 +89,27 @@ public class Table_Danalyse {
         Table[14][58] = 29;
         Table[14][59] = 29;
         Table[14][60] = 29;
+
+        //INSTREtoile
+        Table[15][9] = 31;
+        Table[15][11] = 31;
+        Table[15][12] = 32;
+        Table[15][16] = 31;
+        Table[15][24] = 31;
+        Table[15][28] = 31;
+        Table[15][31] = 31;
+        Table[15][33] = 31;
+        Table[15][35] = 32;
+        Table[15][36] = 32;
+        Table[15][48] = 31;
+        Table[15][52] = 31;
+        Table[15][53] = 31;
+        Table[15][56] = 31;
+        Table[15][57] = 31;
+        Table[15][58] = 31;
+        Table[15][59] = 31;
+        Table[15][60] = 31;
+
     }
 
     public int obtenirValeur(int ligne, int colonne) {
