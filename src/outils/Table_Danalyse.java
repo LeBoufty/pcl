@@ -5,7 +5,7 @@ public class Table_Danalyse {
     private final int[][] Table;
 
     private Table_Danalyse() {
-        Table = new int[39][56];
+        Table = new int[39][61];
 
         for (int i = 0; i < 39; i++) {
             for (int j = 0; j < 56; j++) {
@@ -254,6 +254,162 @@ public class Table_Danalyse {
         Table[28][40] = 61;
         Table[28][41] = 59;
         Table[28][42] = 60;
+
+        //COMPARATORS
+        Table[29][9] = 62;
+        Table[29][24] = 62;
+        Table[29][48] = 62;
+        Table[29][52] = 62;
+        Table[29][53] = 62;
+        Table[29][56] = 62;
+        Table[29][57] = 62;
+        Table[29][58] = 62;
+        Table[29][59] = 62;
+        Table[29][60] = 62;
+
+        //COMPARATORSPrime
+        Table[30][6] = 67;
+        Table[30][18] = 67;
+        Table[30][21] = 67;
+        Table[30][22] = 67;
+        Table[30][25] = 67;
+        Table[30][29] = 67;
+        Table[30][30] = 67;
+        Table[30][32] = 67;
+        Table[30][37] = 67;
+        Table[30][38] = 67;
+        Table[30][39] = 67;
+        Table[30][40] = 67;
+        Table[30][41] = 67;
+        Table[30][42] = 67;
+        Table[30][43] = 63;
+        Table[30][44] = 64;
+        Table[30][45] = 65;
+        Table[30][46] = 66;
+
+        //ADD
+        Table[31][9] = 68;
+        Table[31][24] = 68;
+        Table[31][48] = 68;
+        Table[31][52] = 68;
+        Table[31][53] = 68;
+        Table[31][56] = 68;
+        Table[31][57] = 68;
+        Table[31][58] = 68;
+        Table[31][59] = 68;
+        Table[31][60] = 68;
+
+        //ADDPrime
+        Table[32][6] = 71;
+        Table[32][18] = 71;
+        Table[32][21] = 71;
+        Table[32][22] = 71;
+        Table[32][25] = 71;
+        Table[32][29] = 71;
+        Table[32][30] = 71;
+        Table[32][32] = 71;
+        Table[32][37] = 71;
+        Table[32][38] = 71;
+        Table[32][39] = 71;
+        Table[32][40] = 71;
+        Table[32][41] = 71;
+        Table[32][42] = 71;
+        Table[32][43] = 71;
+        Table[32][44] = 71;
+        Table[32][45] = 71;
+        Table[32][46] = 71;
+        Table[32][47] = 69;
+        Table[32][48] = 70;
+
+        //MULT
+        Table[33][9] = 72;
+        Table[33][24] = 72;
+        Table[33][48] = 72;
+        Table[33][52] = 72;
+        Table[33][53] = 72;
+        Table[33][56] = 72;
+        Table[33][57] = 72;
+        Table[33][58] = 72;
+        Table[33][59] = 72;
+        Table[33][60] = 72;
+
+        //MULTPrime
+        Table[34][6] = 76;
+        Table[34][18] = 76;
+        Table[34][21] = 76;
+        Table[34][22] = 76;
+        Table[34][25] = 76;
+        Table[34][29] = 76;
+        Table[34][30] = 76;
+        Table[34][32] = 76;
+        Table[34][37] = 76;
+        Table[34][38] = 76;
+        Table[34][39] = 76;
+        Table[34][40] = 76;
+        Table[34][41] = 76;
+        Table[34][42] = 76;
+        Table[34][43] = 76;
+        Table[34][44] = 76;
+        Table[34][45] = 76;
+        Table[34][46] = 76;
+        Table[34][47] = 76;
+        Table[34][48] = 76;
+        Table[34][49] = 73;
+        Table[34][50] = 74;
+        Table[34][51] = 75;
+
+        //MOINSUnaire
+        Table[35][9] = 78;
+        Table[35][24] = 78;
+        Table[35][48] = 77;
+        Table[35][52] = 78;
+        Table[35][53] = 78;
+        Table[35][56] = 78;
+        Table[35][57] = 78;
+        Table[35][58] = 78;
+        Table[35][59] = 78;
+        Table[35][60] = 78;
+
+        //EXPRESSION
+        Table[36][9] = 87;
+        Table[36][24] = 79;
+        Table[36][52] = 80;
+        Table[36][53] = 81;
+        Table[36][56] = 82;
+        Table[36][57] = 83;
+        Table[36][58] = 84;
+        Table[36][59] = 85;
+        Table[36][60] = 86;
+
+        //LVALUE
+        Table[37][9] = 88;
+
+        //LVALUEList
+        Table[38][2] = 89;
+        Table[38][6] = 91;
+        Table[38][18] = 91;
+        Table[38][21] = 91;
+        Table[38][22] = 91;
+        Table[38][24] = 90;
+        Table[38][25] = 91;
+        Table[38][29] = 91;
+        Table[38][30] = 91;
+        Table[38][32] = 91;
+        Table[38][37] = 91;
+        Table[38][38] = 91;
+        Table[38][39] = 91;
+        Table[38][40] = 91;
+        Table[38][41] = 91;
+        Table[38][42] = 91;
+        Table[38][43] = 91;
+        Table[38][44] = 91;
+        Table[38][45] = 91;
+        Table[38][46] = 91;
+        Table[38][47] = 91;
+        Table[38][48] = 91;
+        Table[38][49] = 91;
+        Table[38][50] = 91;
+        Table[38][51] = 91;
     }
 
     public int obtenirValeur(int ligne, int colonne) {
