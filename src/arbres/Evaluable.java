@@ -1,10 +1,10 @@
 package arbres;
 
 public abstract class Evaluable implements Noeud {
-    protected Type type;
+    protected IType type;
     public Evaluable() {
     }
-    public Type getType() {
+    public IType getType() {
         return this.type;
     }
 }

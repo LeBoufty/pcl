@@ -6,11 +6,11 @@ import outils.Logger;
 
 public class Fonction implements Noeud {
     public String nom;
-    public Type type;
+    public IType type;
     public ArrayList<Instanciation> params;
     public Noeud definitions;
     public Noeud instructions;
-    public Fonction(String nom, Instanciation[] parametres, Type t, Noeud def, Noeud inst) {
+    public Fonction(String nom, Instanciation[] parametres, IType t, Noeud def, Noeud inst) {
         this.nom = nom;
         this.type = t;
         this.definitions = def;
@@ -20,7 +20,7 @@ public class Fonction implements Noeud {
             this.params.add(p);
         }
     }
-    public Fonction(String nom, Instanciation[] parametres, Type t) {
+    public Fonction(String nom, Instanciation[] parametres, IType t) {
         this(nom, parametres, t, new Bloc(), new Bloc());
     }
     public Fonction(String nom) {

@@ -1,5 +1,14 @@
 package arbres;
 
-public enum Type {
+import outils.Logger;
+
+public enum Type implements IType {
     INTEGER, CHARACTER, BOOLEAN, NULLTYPE;
+    public boolean valide() {
+        return true;
+    }
+    public IType getChamp(String nom) {
+        Logger.error("Tentative d'accès à un champ d'un type non structuré");
+        return NULLTYPE;
+    }
 }

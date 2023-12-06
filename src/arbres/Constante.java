@@ -21,7 +21,7 @@ public class Constante extends Evaluable {
         this.type = Type.NULLTYPE;
     }
     public String toString() {
-        switch (type) {
+        switch ((Type) type) {
             case INTEGER:
                 return String.valueOf(valeur);
             case CHARACTER:

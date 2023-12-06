@@ -166,6 +166,29 @@ public class NoeudUML {
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(r.valeur));
                 break;
+            case "Acces":
+                Acces ac = (Acces) n;
+                this.titre = ac.toString();
+                this.valeur = Repertoire.getNewID(ac);
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                break;
+            case "Struct":
+                this.titre = "Struct";
+                Struct s = (Struct) n;
+                this.valeur = Repertoire.getNewID(s);
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(s.nom));
+                for (int k = 0; k < s.champs.size(); k++) {
+                    enfants.add(new NoeudUML(s.champs.get(k)));
+                    if (s.types.get(k) instanceof Struct) {
+                        enfants.add(new NoeudUML(((Struct) s.types.get(k)).nom));
+                    } else {
+                        enfants.add(new NoeudUML(s.types.get(k).toString()));
+                    }
+                }
+                break;
             default:
                 // Cas par défaut, on sait jamais.
                 this.valeur = Repertoire.getNewID(n);
