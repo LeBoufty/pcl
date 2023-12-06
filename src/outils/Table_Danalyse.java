@@ -4,6 +4,8 @@ public class Table_Danalyse {
 
     private final int[][] Table;
 
+    public static final int OFFSET = 1000;
+
     private Table_Danalyse() {
         Table = new int[39][61];
 
@@ -413,7 +415,7 @@ public class Table_Danalyse {
     }
 
     public int obtenirValeur(int ligne, int colonne) {
-        return Table[ligne][colonne];
+        return Table[ligne][colonne-OFFSET];
     }
 
     public static Table_Danalyse creerTable() {
