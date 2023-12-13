@@ -28,12 +28,7 @@ public class Struct implements Noeud, IType {
         }
     }
     public String toString() {
-        String sortie = "type" + this.nom + "is record ";
-        for (int i = 0; i < this.champs.size(); i++) {
-            sortie += this.champs.get(i) + " : " + this.types.get(i).toString() + "; ";
-        }
-        sortie += "end record";
-        return sortie;
+        return this.nom;
     }
     public boolean valide() {
         boolean sortie = true;

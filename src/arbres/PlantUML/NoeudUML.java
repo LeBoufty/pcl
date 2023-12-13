@@ -173,8 +173,8 @@ public class NoeudUML {
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 break;
-            case "Struct":
-                this.titre = "Struct";
+            case "Record":
+                this.titre = "Record";
                 Struct s = (Struct) n;
                 this.valeur = Repertoire.getNewID(s);
                 nomsAttribues.add(this.valeur);
@@ -188,6 +188,13 @@ public class NoeudUML {
                         enfants.add(new NoeudUML(s.types.get(k).toString()));
                     }
                 }
+                break;
+            case "Struct":
+                Struct st = (Struct) n;
+                this.valeur = rendreUnique(st.toString());
+                this.titre = st.toString();
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
                 break;
             default:
                 // Cas par défaut, on sait jamais.
