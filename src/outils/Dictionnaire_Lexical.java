@@ -75,7 +75,9 @@ public class Dictionnaire_Lexical {
         this.dico.put("..", 52);
         this.dico.put("character'val", 53);
         this.dico.put("EOF", 54);
-        
+        this.dico.put("ada",55);
+        this.dico.put("text_io",56);
+
 
     }
 

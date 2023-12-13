@@ -2,9 +2,9 @@ nomT,numéro
 "with",1
 "Ada",2
 ".",3
-"Text",4
-"_",5
-"IO",6
+"Text_IO",4
+"_",5 (donne rien)
+"IO",6 (donne rien)
 ";",7
 "use",8
 "procedure",9

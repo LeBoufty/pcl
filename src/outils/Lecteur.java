@@ -1,7 +1,7 @@
 package outils;
 
-import java.io.FileReader;
 import java.io.File;
+import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 //import outils.Logger;
 
@@ -120,3 +120,4 @@ public class Lecteur {
     }
 
 }
+  
