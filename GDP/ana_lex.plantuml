@@ -1,0 +1,8 @@
+@startuml
+
+participant "Etat Initial" as 1
+participant "Symbole" as 2
+
+
+
+@enduml
