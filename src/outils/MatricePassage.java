@@ -450,9 +450,35 @@ public class MatricePassage {
         {
             mot[0]=53;
         }
-        //j'ai arrete ici parce que ça sert à que dalle.
-
-
+        if(motdebase == 55)
+        {
+            mot[0]=0;
+        }
+        if(motdebase == 56)
+        {
+            mot[0]=0;
+        }
+        if(motdebase == 57)
+        {
+            mot[0]=44;
+        }
+        if(motdebase == 58)
+        {
+            mot[0]=33;
+        }
+        if(motdebase == 59)
+        {
+            mot[0]=36;
+        }
+        if(motdebase == 60)
+        {
+            mot[0]=34;
+        }
+        if(motdebase == 61)
+        {
+            mot[0]=32;
+        }
+        
         return mot;
     }
 }

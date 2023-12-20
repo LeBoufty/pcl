@@ -1,0 +1,163 @@
+@startuml ArbreSyntaxique
+object "Procedure" as Procedure
+object "unDebut" as unDebut
+object "Bloc" as Bloc
+object "Bloc" as Bloc5
+object "Fonction" as Fonction
+object "Fonction" as Fonction1
+object "Instanciation" as Instanciation6
+object "Instanciation" as Instanciation7
+object "Affectation" as Affectation2
+object "If" as InstructionIf
+object "aireRectangle" as aireRectangle
+object "Instanciation" as Instanciation
+object "Instanciation" as Instanciation1
+object "INTEGER" as INTEGER__
+object "Bloc" as Bloc1
+object "Bloc" as Bloc2
+object "perimetreRectangle" as perimetreRectangle
+object "Instanciation" as Instanciation3
+object "Instanciation" as Instanciation4
+object "INTEGER" as INTEGER______
+object "Bloc" as Bloc3
+object "Bloc" as Bloc4
+object "choix" as choix
+object "INTEGER" as INTEGER________
+object "valeur" as valeur
+object "INTEGER" as INTEGER_________
+object "choix" as choix_
+object "1" as 1
+object "Operation" as Operation4
+object "Bloc" as Bloc6
+object "Affectation" as Affectation4
+object "larg" as larg
+object "INTEGER" as INTEGER
+object "long" as long
+object "INTEGER" as INTEGER_
+object "Instanciation" as Instanciation2
+object "Affectation" as Affectation
+object "Return" as Return
+object "larg" as larg__
+object "INTEGER" as INTEGER____
+object "long" as long__
+object "INTEGER" as INTEGER_____
+object "Instanciation" as Instanciation5
+object "Affectation" as Affectation1
+object "Return" as Return1
+object "choix" as choix__
+object "EGAL" as EGAL
+object "1" as 1_
+object "Affectation" as Affectation3
+object "valeur" as valeur__
+object "Appel Fonction" as AppelFonction1
+object "aire" as aire
+object "INTEGER" as INTEGER___
+object "aire" as aire_
+object "Operation" as Operation
+object "aire" as aire__
+object "perimetre" as perimetre
+object "INTEGER" as INTEGER_______
+object "perimetre" as perimetre_
+object "Operation" as Operation1
+object "perimetre" as perimetre__
+object "valeur" as valeur_
+object "Appel Fonction" as AppelFonction
+object "aireRectangle" as aireRectangle_
+object "2" as 2___
+object "3" as 3_
+object "larg" as larg_
+object "FOIS" as FOIS
+object "long" as long_
+object "Operation" as Operation2
+object "PLUS" as PLUS
+object "Operation" as Operation3
+object "perimetreRectangle" as perimetreRectangle_
+object "2" as 2__
+object "3" as 3
+object "larg" as larg___
+object "FOIS" as FOIS_
+object "2" as 2
+object "long" as long___
+object "FOIS" as FOIS__
+object "2" as 2_
+Procedure -down-> unDebut
+Procedure -down-> Bloc
+Procedure -down-> Bloc5
+Bloc -down-> Fonction
+Bloc -down-> Fonction1
+Bloc -down-> Instanciation6
+Bloc -down-> Instanciation7
+Bloc5 -down-> Affectation2
+Bloc5 -down-> InstructionIf
+Fonction -down-> aireRectangle
+Fonction -down-> Instanciation
+Fonction -down-> Instanciation1
+Fonction -down-> INTEGER__
+Fonction -down-> Bloc1
+Fonction -down-> Bloc2
+Fonction1 -down-> perimetreRectangle
+Fonction1 -down-> Instanciation3
+Fonction1 -down-> Instanciation4
+Fonction1 -down-> INTEGER______
+Fonction1 -down-> Bloc3
+Fonction1 -down-> Bloc4
+Instanciation6 -down-> choix
+Instanciation6 -down-> INTEGER________
+Instanciation7 -down-> valeur
+Instanciation7 -down-> INTEGER_________
+Affectation2 -down-> choix_
+Affectation2 -down-> 1
+InstructionIf -down-> Operation4
+InstructionIf -down-> Bloc6
+InstructionIf -down-> Affectation4
+Instanciation -down-> larg
+Instanciation -down-> INTEGER
+Instanciation1 -down-> long
+Instanciation1 -down-> INTEGER_
+Bloc1 -down-> Instanciation2
+Bloc2 -down-> Affectation
+Bloc2 -down-> Return
+Instanciation3 -down-> larg__
+Instanciation3 -down-> INTEGER____
+Instanciation4 -down-> long__
+Instanciation4 -down-> INTEGER_____
+Bloc3 -down-> Instanciation5
+Bloc4 -down-> Affectation1
+Bloc4 -down-> Return1
+Operation4 -down-> choix__
+Operation4 -down-> EGAL
+Operation4 -down-> 1_
+Bloc6 -down-> Affectation3
+Affectation4 -down-> valeur__
+Affectation4 -down-> AppelFonction1
+Instanciation2 -down-> aire
+Instanciation2 -down-> INTEGER___
+Affectation -down-> aire_
+Affectation -down-> Operation
+Return -down-> aire__
+Instanciation5 -down-> perimetre
+Instanciation5 -down-> INTEGER_______
+Affectation1 -down-> perimetre_
+Affectation1 -down-> Operation1
+Return1 -down-> perimetre__
+Affectation3 -down-> valeur_
+Affectation3 -down-> AppelFonction
+AppelFonction1 -down-> aireRectangle_
+AppelFonction1 -down-> 2___
+AppelFonction1 -down-> 3_
+Operation -down-> larg_
+Operation -down-> FOIS
+Operation -down-> long_
+Operation1 -down-> Operation2
+Operation1 -down-> PLUS
+Operation1 -down-> Operation3
+AppelFonction -down-> perimetreRectangle_
+AppelFonction -down-> 2__
+AppelFonction -down-> 3
+Operation2 -down-> larg___
+Operation2 -down-> FOIS_
+Operation2 -down-> 2
+Operation3 -down-> long___
+Operation3 -down-> FOIS__
+Operation3 -down-> 2_
+@enduml
