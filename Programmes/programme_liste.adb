@@ -2,21 +2,21 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Programme_Liste is
 
-   -- Déclaration d'un type enregistrement pour les éléments de la liste
+   type Element;
+   type Ptr_Element is access Element;
+
    type Element is record
       Valeur : Integer;
-      Suivant : access Element;
+      Suivant : Ptr_Element := null;
    end record;
-
-   -- Déclaration du type pointeur pour l'enregistrement
-   type Ptr_Element is access Element;
 
    -- Fonction pour afficher les éléments de la liste
    procedure Afficher_Liste(L : Ptr_Element) is
+   Temp : Ptr_Element := L;
    begin
-      while L /= null loop
-         Put(L.Valeur'Image & " ");
-         L := L.Suivant;
+      while Temp /= null loop
+         Put(Temp.Valeur'Image & " ");
+         Temp := Temp.Suivant;
       end loop;
       New_Line;
    end Afficher_Liste;
@@ -34,10 +34,11 @@ procedure Programme_Liste is
    -- Fonction pour calculer la somme des éléments de la liste
    function Somme_Liste(L : Ptr_Element) return Integer is
       Total : Integer := 0;
+      Temp : Ptr_Element := L;
    begin
-      while L /= null loop
-         Total := Total + L.Valeur;
-         L := L.Suivant;
+      while Temp /= null loop
+         Total := Total + Temp.Valeur;
+         Temp := Temp.Suivant;
       end loop;
       return Total;
    end Somme_Liste;
