@@ -1,4 +1,6 @@
-with Ada.Text_IO; use Ada.Text_IO;
+-- Missing use
+
+with Ada.Text_IO;
 
 procedure InOutExample is
    -- Procedure with in out parameter

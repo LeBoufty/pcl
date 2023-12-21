@@ -1,3 +1,5 @@
+-- missing name for a parameter
+
 with Ada.Text_IO ; use Ada.Text_IO ;
 
 procedure unDebut is
@@ -9,7 +11,7 @@ procedure unDebut is
     return aire ;
     end aireRectangle ;
 
-    function perimetreRectangle(larg : integer; long : integer) return integer is
+    function perimetreRectangle(integer; long : integer) return integer is
     p : integer;
     begin
         p := larg*2 + long*2 ;

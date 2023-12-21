@@ -1,9 +1,11 @@
+-- missing "then"
+
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Fibonacci is
     function Fib(n: Natural) return Natural is
     begin
-        if n = 0 then
+        if n = 0
             return 0;
         elsif n = 1 then
             return 1;

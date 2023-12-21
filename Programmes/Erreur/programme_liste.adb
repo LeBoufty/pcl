@@ -1,3 +1,5 @@
+-- Too much parameter passing
+
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Programme_Liste is
@@ -53,7 +55,7 @@ begin
    Afficher_Liste(Liste);
 
    --Put_Line("Liste multipliée par " & Facteur'Image & " :");
-   Multiplier_Liste(Liste, Facteur);
+   Multiplier_Liste(Liste, Facteur, 4);
    Afficher_Liste(Liste);
 
    Total := Somme_Liste(Liste);

@@ -1,3 +1,5 @@
+-- ";" missing in a if statement 
+
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Ada_Link_List is
@@ -35,7 +37,7 @@ procedure Ada_Link_List is
         end loop;
         --Ada.Text_IO.Put("Adding Next node");
         --Ada.Text_IO.New_Line;
-        Temp.Next := new Node'(Id, Value, null);
+        Temp.Next := new Node'(Id, Value, null)
     end if;
   end Append_Node;
 
