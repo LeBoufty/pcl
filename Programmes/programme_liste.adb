@@ -15,10 +15,10 @@ procedure Programme_Liste is
    Temp : Ptr_Element := L;
    begin
       while Temp /= null loop
-         Put(Temp.Valeur'Image & " ");
+         --Put(Temp.Valeur'Image & " ");
          Temp := Temp.Suivant;
       end loop;
-      New_Line;
+      --New_Line;
    end Afficher_Liste;
 
    -- Procédure pour multiplier chaque élément de la liste par un facteur
@@ -49,13 +49,13 @@ procedure Programme_Liste is
    Total : Integer;
 
 begin
-   Put_Line("Liste originale :");
+   --Put_Line("Liste originale :");
    Afficher_Liste(Liste);
 
-   Put_Line("Liste multipliée par " & Facteur'Image & " :");
+   --Put_Line("Liste multipliée par " & Facteur'Image & " :");
    Multiplier_Liste(Liste, Facteur);
    Afficher_Liste(Liste);
 
    Total := Somme_Liste(Liste);
-   Put_Line("Somme des éléments de la liste : " & Total'Image);
+   --Put_Line("Somme des éléments de la liste : " & Total'Image);
 end Programme_Liste;
