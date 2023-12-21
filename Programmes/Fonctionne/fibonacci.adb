@@ -1,15 +1,14 @@
 with Ada.Text_IO; use Ada.Text_IO;
-'A'
-'a'
+
 procedure Fibonacci is
     function Fib(n: Natural) return Natural is
     begin
         if n = 0 then
             return 0;
         elsif n = 1 then
-            return 1;& 
+            return 1;
         else
-            return Fib(n - 1) Fib(n - 2) dadada
+            return Fib(n - 1) + Fib(n - 2);
         end if;
     end Fib;
 
