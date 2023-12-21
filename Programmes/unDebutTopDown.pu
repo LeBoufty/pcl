@@ -29,7 +29,7 @@ object "choix" as choix_
 object "1" as 1
 object "Operation" as Operation4
 object "Bloc" as Bloc6
-object "Affectation" as Affectation4
+object "Bloc" as Bloc7
 object "larg" as larg
 object "INTEGER" as INTEGER
 object "long" as long
@@ -48,8 +48,9 @@ object "choix" as choix__
 object "EGAL" as EGAL
 object "1" as 1_
 object "Affectation" as Affectation3
-object "valeur" as valeur__
 object "Appel Fonction" as AppelFonction1
+object "Affectation" as Affectation4
+object "Appel Fonction" as AppelFonction3
 object "aire" as aire
 object "INTEGER" as INTEGER___
 object "aire" as aire_
@@ -62,9 +63,12 @@ object "Operation" as Operation1
 object "perimetre" as perimetre__
 object "valeur" as valeur_
 object "Appel Fonction" as AppelFonction
-object "aireRectangle" as aireRectangle_
-object "2" as 2___
-object "3" as 3_
+object "put" as put
+object "valeur" as valeur__
+object "valeur" as valeur___
+object "Appel Fonction" as AppelFonction2
+object "put" as put_
+object "valeur" as valeur____
 object "larg" as larg_
 object "FOIS" as FOIS
 object "long" as long_
@@ -74,6 +78,9 @@ object "Operation" as Operation3
 object "perimetreRectangle" as perimetreRectangle_
 object "2" as 2__
 object "3" as 3
+object "aireRectangle" as aireRectangle_
+object "2" as 2___
+object "3" as 3_
 object "larg" as larg___
 object "FOIS" as FOIS_
 object "2" as 2
@@ -109,7 +116,7 @@ Affectation2 -down-> choix_
 Affectation2 -down-> 1
 InstructionIf -down-> Operation4
 InstructionIf -down-> Bloc6
-InstructionIf -down-> Affectation4
+InstructionIf -down-> Bloc7
 Instanciation -down-> larg
 Instanciation -down-> INTEGER
 Instanciation1 -down-> long
@@ -128,8 +135,9 @@ Operation4 -down-> choix__
 Operation4 -down-> EGAL
 Operation4 -down-> 1_
 Bloc6 -down-> Affectation3
-Affectation4 -down-> valeur__
-Affectation4 -down-> AppelFonction1
+Bloc6 -down-> AppelFonction1
+Bloc7 -down-> Affectation4
+Bloc7 -down-> AppelFonction3
 Instanciation2 -down-> aire
 Instanciation2 -down-> INTEGER___
 Affectation -down-> aire_
@@ -142,9 +150,12 @@ Affectation1 -down-> Operation1
 Return1 -down-> perimetre__
 Affectation3 -down-> valeur_
 Affectation3 -down-> AppelFonction
-AppelFonction1 -down-> aireRectangle_
-AppelFonction1 -down-> 2___
-AppelFonction1 -down-> 3_
+AppelFonction1 -down-> put
+AppelFonction1 -down-> valeur__
+Affectation4 -down-> valeur___
+Affectation4 -down-> AppelFonction2
+AppelFonction3 -down-> put_
+AppelFonction3 -down-> valeur____
 Operation -down-> larg_
 Operation -down-> FOIS
 Operation -down-> long_
@@ -154,6 +165,9 @@ Operation1 -down-> Operation3
 AppelFonction -down-> perimetreRectangle_
 AppelFonction -down-> 2__
 AppelFonction -down-> 3
+AppelFonction2 -down-> aireRectangle_
+AppelFonction2 -down-> 2___
+AppelFonction2 -down-> 3_
 Operation2 -down-> larg___
 Operation2 -down-> FOIS_
 Operation2 -down-> 2
