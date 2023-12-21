@@ -49,13 +49,13 @@ procedure Programme_Liste is
    Total : Integer;
 
 begin
-   put_Line("Liste originale :");
+   put("Liste originale :");
    Afficher_Liste(Liste);
 
-   put_Line("Liste multipliée par " & Facteur'Image & " :");
+   put("Liste multipliée par " & Facteur'Image & " :");
    Multiplier_Liste(Liste, Facteur);
    Afficher_Liste(Liste);
 
    Total := Somme_Liste(Liste);
-   put_Line("Somme des éléments de la liste : " & Total'Image);
+   put("Somme des éléments de la liste : " & Total'Image);
 end Programme_Liste;

@@ -19,6 +19,6 @@ begin
       end loop;
    end;
 
-   put_Line("Somme avec boucle for : " & Integer'Image(Sum_For));
-   put_Line("Somme avec boucle while : " & Integer'Image(Sum_While));
+   put("Somme avec boucle for : " & Integer'Image(Sum_For));
+   put("Somme avec boucle while : " & Integer'Image(Sum_While));
 end williamfaure;
