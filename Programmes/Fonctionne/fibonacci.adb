@@ -19,7 +19,7 @@ res : Natural := 0;
     --Main
 begin
     res := Fib(n);
-    --Ada.Text_IO.Put("Fibonacci de " & n'Image);
-    --Ada.Text_IO.Put(" est :" & res'Image);
+    put("Fibonacci de " & n'Image);
+    put(" est :" & res'Image);
 end Fibonacci;
 

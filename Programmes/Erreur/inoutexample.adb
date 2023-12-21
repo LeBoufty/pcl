@@ -13,13 +13,13 @@ procedure InOutExample is
    Number : Integer := 10;
 
 begin
-   --Put("Original number: ");
-   --Put(Number'Image);
+   put("Original number: ");
+   put(Number'Image);
    --New_Line;
 
    ModifyNumber(Number);  -- Calling the procedure with in out parameter
 
-   --Put("Modified number: ");
-   --Put(Number'Image);
+   put("Modified number: ");
+   put(Number'Image);
    --New_Line;
 end InOutExample;

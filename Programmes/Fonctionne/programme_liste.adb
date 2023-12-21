@@ -15,7 +15,7 @@ procedure Programme_Liste is
    Temp : Ptr_Element := L;
    begin
       while Temp /= null loop
-         --Put(Temp.Valeur'Image & " ");
+         put(Temp.Valeur'Image & " ");
          Temp := Temp.Suivant;
       end loop;
       --New_Line;
@@ -49,13 +49,13 @@ procedure Programme_Liste is
    Total : Integer;
 
 begin
-   --Put_Line("Liste originale :");
+   put_Line("Liste originale :");
    Afficher_Liste(Liste);
 
-   --Put_Line("Liste multipliée par " & Facteur'Image & " :");
+   put_Line("Liste multipliée par " & Facteur'Image & " :");
    Multiplier_Liste(Liste, Facteur);
    Afficher_Liste(Liste);
 
    Total := Somme_Liste(Liste);
-   --Put_Line("Somme des éléments de la liste : " & Total'Image);
+   put_Line("Somme des éléments de la liste : " & Total'Image);
 end Programme_Liste;
