@@ -1,9 +1,11 @@
-package outils;
+package outils.Syntaxe;
 
 import java.io.FileReader;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
+
+// Classe pour la lecture d'un fichier donné par le lexeur pour l'analyseur syntaxique
 public class Lecteur_S {
     
     public static final int OFFSET_LEXEUR = 200;

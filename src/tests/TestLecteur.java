@@ -2,9 +2,9 @@ package tests;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import outils.OLD_Lecteur;
 import outils.Logger;
 import outils.Nettoyeur;
+import outils.OLD.OLD_Lecteur;
 
 public class TestLecteur {
     public static void main(String[] args) throws FileNotFoundException, IOException{

@@ -1,4 +1,4 @@
-package outils.Syntax_OLD;
+package outils.OLD.Syntax_OLD;
 
 public class Grammar_Hardcode {
     

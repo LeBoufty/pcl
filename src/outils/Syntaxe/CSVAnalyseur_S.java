@@ -1,12 +1,16 @@
-package outils;
+package outils.Syntaxe;
 
 import java.util.Stack;
+
+import outils.Logger;
+
 import java.util.List;
 
 // Obligation CSV : Le premier non-terminal engendrant la grammaire doit être le premier non terminal dans le CSV. Le dernier terminal engendrant la grammaire doit être le dernier terminal dans le CSV. Les index associés aux IDF ou constantes doivent être mis dans la liste associée
 
 // Information : les non-terminaux sont négatifs, les terminaux sont positifs
 
+// Classe pour l'analyseur syntaxique
 public class CSVAnalyseur_S {
     
     private Stack<Integer> pile;
@@ -42,6 +46,7 @@ public class CSVAnalyseur_S {
                 }
                 else { // si c'est pas le terminal attendu
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
+                    Logger.error("Erreur : terminal attendu : " + element + " - terminal lu : " + tete);
                     return false;
                 }
             }
@@ -51,6 +56,7 @@ public class CSVAnalyseur_S {
                 List<Integer> regles = rules.get(num_ligne).get(num_colonne).get(0);
                 if (regles == null) { // si la règle est vide
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
+                    Logger.error("Erreur : règle vide : " + num_ligne + " - " + num_colonne);
                     return false;
                 }
                 else {

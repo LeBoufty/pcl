@@ -1,9 +1,10 @@
 package tests;
 
 import java.util.List;
-import java.util.HashMap;
 
-import outils.CSVParser;
+import outils.Syntaxe.CSVParser;
+
+import java.util.HashMap;
 
 public class TestCSVParser {
     

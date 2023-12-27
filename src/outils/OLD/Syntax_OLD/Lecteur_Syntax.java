@@ -1,4 +1,4 @@
-package outils.Syntax_OLD;
+package outils.OLD.Syntax_OLD;
 
 import java.io.FileReader;
 import java.io.File;

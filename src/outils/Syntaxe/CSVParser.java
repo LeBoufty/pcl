@@ -1,4 +1,4 @@
-package outils;
+package outils.Syntaxe;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 // Il ne doit pas y avoir d'espaces dans le fichier CSV.
 
+// Classe pour parser un fichier CSV d'une grammaire
 public class CSVParser {
     
     public static final String COMMA_DELIMITER = ",";
