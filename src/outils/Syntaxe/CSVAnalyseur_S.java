@@ -31,17 +31,18 @@ public class CSVAnalyseur_S {
     }
 
     public boolean analyse() throws Exception {
-        pile.push(records.get(0).size() - 1); // empile le terminal de fin de grammaire
+        pile.push(records.get(0).size() - 1); // empile le terminal de fin de grammaire $
         pile.push(-1); // empile le premier non-terminal de la grammaire
 
         int tete = lect.lire();
 
         while (!pile.empty()) {
-            int element = pile.pop();
+            int element = pile.pop(); // TODO Déplacement dans l'AST
 
             if (element > 0) { // si c'est un terminal
                 if (element == tete) { // si c'est le terminal attendu
                     // TODO Récupérer la valeur du terminal et l'ajouter à l'AST
+
                     tete = lect.lire();
                 }
                 else { // si c'est pas le terminal attendu
@@ -60,7 +61,7 @@ public class CSVAnalyseur_S {
                     return false;
                 }
                 else {
-                    // TODO Récupérer la valeur du non-terminal et l'ajouter à l'AST (si besoin)
+                    // TODO Récupérer la valeur du non-terminal et l'ajouter à l'AST (si besoin) + Déplacement dans l'AST
                     push_rule(regles);
                 }
             }
