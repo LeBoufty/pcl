@@ -9,7 +9,6 @@ def extract_tables_from_html(html_file):
 
 def clean_text(cell):
     text = cell.get_text(strip=False)
-    text = text.replace(' ', '&')
     text = text.replace(',', 'virgule')
     text = text.replace('ε', '€')
 
@@ -18,6 +17,8 @@ def clean_text(cell):
 
     if not text:
         text = '§'
+
+    text = ' '.join('&'.join(word.strip() for word in text.split()) for text in text.split('&'))
 
     return text
 
