@@ -39,11 +39,11 @@ def convert_table_to_csv(table, csv_file):
             csv_writer.writerow([clean_text(col, header_row) for col in row.find_all(['th', 'td'])])
 
 def main():
-    html_file = 'src/grammaire/Grammophone.html'
+    html_file = 'src/LL_table/Grammophone.html'
     tables = extract_tables_from_html(html_file)
 
     for i, table in enumerate(tables):
-        csv_file = f'src/grammaire/Tableau_LL.csv'
+        csv_file = f'src/LL_table/Tableau_LL.csv'
         convert_table_to_csv(table, csv_file)
         print(f'{i + 1} tableau converti en {csv_file}')
 
