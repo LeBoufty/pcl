@@ -7,14 +7,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.HashMap;
 
+// Obligation : Le premier élément du fichier CSV n'est pas pris en compte. Les cases ne doivent pas être vides. La première colonne correspond aux non-terminaux. La première ligne correspond aux terminaux. Chaque case correspond à une liste de règles. Une règle vide est sumbolysé par RULE_EMPTY. S'il y a plusieurs règles dans une même case, les règles sont séparés par RULE_DELIMITER. Les terminaux sont symbolysés par leur propre nom. Les non-terminaux sont symbolysés par NON_TERMINAL + leur nom. Les terminaux et non-terminaux sont séparés par WORD_DELIMITER. Epsilon est symbolysé par EPSILON.
+
+// Il ne doit pas y avoir d'espaces dans le fichier CSV.
+
 public class CSVParser {
     
-    private static final String COMMA_DELIMITER = ",";
-    private static final String WORD_DELIMITER = "&";
-    private static final String RULE_DELIMITER = "\\|"; // Car | est un opérateur regex
-    private static final String EPSILON = "€";
-    private static final String RULE_EMPTY = "§";
-    private static final char NON_TERMINAL = '£';
+    public static final String COMMA_DELIMITER = ",";
+    public static final String WORD_DELIMITER = "&";
+    public static final String RULE_DELIMITER = "\\|"; // Car | est un opérateur regex, en fait ne sert à rien
+    public static final String EPSILON = "€";
+    public static final String RULE_EMPTY = "§";
+    public static final char NON_TERMINAL = '£';
 
     // Retourne une liste de liste de String, chaque liste de String correspond à une ligne du fichier CSV.
     public static List<List<String>> parse(String filename) throws Exception {
@@ -57,6 +61,7 @@ public class CSVParser {
         List<List<List<List<Integer>>>> rules = new ArrayList<List<List<List<Integer>>>>();
         for (int i = 1; i < records.size(); i++) {
             List<List<List<Integer>>> ligne = new ArrayList<List<List<Integer>>>();
+
             for (int j = 1; j < records.get(i).size(); j++) {
                 List<List<Integer>> casee = new ArrayList<List<Integer>>();
                 if (records.get(i).get(j).equals(RULE_EMPTY)) {
@@ -65,23 +70,8 @@ public class CSVParser {
                 else {
                     String rule_str = records.get(i).get(j);
                     String[] rules_str = rule_str.split(RULE_DELIMITER);
-                    for (int k = 0; k < rules_str.length; k++) {
-                        List<Integer> rule = new ArrayList<Integer>();
-                        String[] elements = rules_str[k].split(WORD_DELIMITER);
-                        for (int l = 0; l < elements.length; l++) {
-                            System.out.println();
-                            if (elements[l].equals(EPSILON)) {
-                                rule.add(0);
-                            }
-                            else if (elements[l].charAt(0) == NON_TERMINAL) {
-                                rule.add(-colonnes.get(elements[l]));
-                            }
-                            else {
-                                rule.add(lignes.get(elements[l]));
-                            }
-                        }
-                        casee.add(rule);
-                    }
+
+                    addRule(rules_str, casee, colonnes, lignes);
                 }
                 ligne.add(casee);
             }
@@ -89,11 +79,26 @@ public class CSVParser {
         }
 
         return rules;
-
-        
     }
 
+    private static void addRule(String[] rules_str, List<List<Integer>> casee, HashMap<String, Integer> colonnes, HashMap<String, Integer> lignes) {
+        for (int k = 0; k < rules_str.length; k++) {
+            List<Integer> rule = new ArrayList<Integer>();
+            String[] elements = rules_str[k].split(WORD_DELIMITER);
+            for (int l = 0; l < elements.length; l++) {
+                if (elements[l].equals(EPSILON)) {
+                    rule.add(0);
+                }
+                else if (elements[l].charAt(0) == NON_TERMINAL) {
+                    rule.add(-colonnes.get(elements[l]));
+                }
+                else {
+                    rule.add(lignes.get(elements[l]));
+                }
+            }
+            casee.add(rule);
+        }
 
+    }
 
-    
 }
