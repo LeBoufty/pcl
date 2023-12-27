@@ -35,7 +35,7 @@ def main():
     for i, table in enumerate(tables):
         csv_file = f'src/grammaire/grammaire{i}.csv'
         convert_table_to_csv(table, csv_file)
-        print(f'Tableau {i + 1} converti en {csv_file}')
+        print(f'{i + 1} tableau converti en {csv_file}')
 
 if __name__ == "__main__":
     main()
