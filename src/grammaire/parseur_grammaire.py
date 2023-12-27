@@ -11,7 +11,7 @@ def clean_text(text):
     text = text.replace(',', 'virgule')
     text = text.replace('ε', '€')
     if not text.strip():
-        text = '£'
+        text = '§'
     if '→' in text:
         text = text.split('→')[1].strip()
     return text
@@ -27,7 +27,7 @@ def main():
     tables = extract_tables_from_html(html_file)
 
     for i, table in enumerate(tables):
-        csv_file = f'tableau_{i + 1}.csv'
+        csv_file = f'src/grammaire/grammaire{i}.csv'
         convert_table_to_csv(table, csv_file)
         print(f'Tableau {i + 1} converti en {csv_file}')
 
