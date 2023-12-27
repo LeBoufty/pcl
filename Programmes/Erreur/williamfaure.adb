@@ -1,3 +1,5 @@
+-- begin;
+
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure williamfaure is
@@ -10,13 +12,13 @@ begin
 
    declare
       J : Integer := 1;
-   begin
+   begin;
       while J <= 10 loop
          Sum_While := Sum_While + J;
          J := J + 1;
       end loop;
    end;
 
-   --Ada.Text_IO.Put_Line("Somme avec boucle for : " & Integer'Image(Sum_For));
-   --Ada.Text_IO.Put_Line("Somme avec boucle while : " & Integer'Image(Sum_While));
+   put("Somme avec boucle for : " & Integer'Image(Sum_For));
+   put("Somme avec boucle while : " & Integer'Image(Sum_While));
 end williamfaure;
