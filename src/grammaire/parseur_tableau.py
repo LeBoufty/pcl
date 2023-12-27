@@ -43,7 +43,7 @@ def main():
     tables = extract_tables_from_html(html_file)
 
     for i, table in enumerate(tables):
-        csv_file = f'src/grammaire/grammaire{i}.csv'
+        csv_file = f'src/grammaire/Tableau_LL.csv'
         convert_table_to_csv(table, csv_file)
         print(f'{i + 1} tableau converti en {csv_file}')
 
