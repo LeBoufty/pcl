@@ -78,7 +78,6 @@ public class CSVAnalyseur_S {
                 }
                 else {
                     // TODO Récupérer la valeur du non-terminal et l'ajouter à l'AST (si besoin) + Déplacement dans l'AST
-                    Logger.debug("caca");
                     push_rule(regles);
                 }
             }
