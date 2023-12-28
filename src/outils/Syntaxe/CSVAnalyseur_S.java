@@ -33,11 +33,13 @@ public class CSVAnalyseur_S {
     public boolean analyse() throws Exception {
         pile.push(records.get(0).size() - 1); // empile le terminal de fin de grammaire $
         pile.push(-1); // empile le premier non-terminal de la grammaire
-
+        
         int tete = lect.lire();
 
         while (!pile.empty()) {
             int element = pile.pop(); // TODO Déplacement dans l'AST
+            Logger.debug("Element : " + element);
+            Logger.debug("Tete : " + tete);
 
             if (element > 0) { // si c'est un terminal
                 if (element == tete) { // si c'est le terminal attendu
@@ -54,7 +56,7 @@ public class CSVAnalyseur_S {
             else { // si c'est un non-terminal - parmis les règles, on prend la première règle qui match
                 int num_ligne = -element;
                 int num_colonne = tete;
-                List<Integer> regles = rules.get(num_ligne).get(num_colonne).get(0);
+                List<Integer> regles = rules.get(num_ligne - 1).get(num_colonne - 1).get(0);
                 if (regles == null) { // si la règle est vide
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
                     Logger.error("Erreur : règle vide : " + num_ligne + " - " + num_colonne);
@@ -72,7 +74,10 @@ public class CSVAnalyseur_S {
 
     private void push_rule(List<Integer> rules) {
         for (int i = rules.size() - 1; i >= 0; i--) {
-            pile.push(rules.get(i));
+            // On ne push pas les règles avec epsilon
+            if (rules.get(i) != 0) {
+                pile.push(rules.get(i));
+            }
         }
     }
 

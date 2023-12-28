@@ -4,12 +4,18 @@ import java.io.FileReader;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
+import outils.Logger;
+
 
 // Classe pour la lecture d'un fichier donné par le lexeur pour l'analyseur syntaxique
 public class Lecteur_S {
     
     public static final int OFFSET_LEXEUR = 200;
     public static final int NEW_LINE = '&';
+    public static final int IDF = 2;
+    public static final int CAR = 48;
+    public static final int ENTIER = 52;
+    public static final int DOLLAR = 57;
 
     private FileReader filereader;
     private int num_ligne_en_lecture;
@@ -30,15 +36,20 @@ public class Lecteur_S {
     public int lire() throws Exception {
         this.tete_precedente = this.tete;
         int nextChar = this.filereader.read() - OFFSET_LEXEUR;
-
-        if (nextChar == -1) { // si on est a la fin du fichier
-            this.tete = -1;
-            return -1;
+        
+        if (nextChar + OFFSET_LEXEUR == -1) { // si on est a la fin du fichier
+            this.tete = DOLLAR;
+            return this.tete;
         }
 
-        if (nextChar == NEW_LINE) { // si on est a la fin de la ligne
+        if (nextChar + OFFSET_LEXEUR == NEW_LINE) { // si on est a la fin de la ligne
             this.num_ligne_en_lecture++;
+            
             return this.lire();
+        }
+
+        if (nextChar == IDF || nextChar == CAR || nextChar == ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
+            this.filereader.read(); // on lit le caractère suivant pour le jeter
         }
 
         this.tete = nextChar;

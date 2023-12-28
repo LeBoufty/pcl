@@ -1,6 +1,6 @@
-'a' with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
 
-procedure Fibonacci is fiBonacci
+procedure Fibonacci is
     function Fib(n: Natural) return Natural is
     begin
         if n = 0 then 
@@ -20,5 +20,5 @@ res : Natural := 0;
 begin
     res := Fib(n);
     --put("Fibonacci de " & n'Image);
-    put(" est :" & res'Image); 'aB'
-end Fibonacci; 'a'
+    --put(" est :" & res'Image); 'aB'
+end Fibonacci;
