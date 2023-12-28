@@ -46,8 +46,8 @@ public class CSVAnalyseur_S {
 
         while (!pile.empty()) {
             int element = pile.pop(); // TODO Déplacement dans l'AST
-            if (element == -1) {
-                Logger.debug("Element Pile Non-Termina : " + dico_non_terminaux.get(element) + " code : " + element);
+            if (element < 0) {
+                Logger.debug("Element Pile Non-Terminal : " + dico_non_terminaux.get(-element) + " code : " + element);
             }
             else {
                 Logger.debug("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
