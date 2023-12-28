@@ -7,7 +7,7 @@ procedure Ada_Link_List is
   type Node is record
     Id: Integer;
     Value: Integer;
-    Next: Node_Ptr := null;
+    Next,a: Node_Ptr;
   end record;
 
   procedure Print_List(Node: in Node_Ptr) is
