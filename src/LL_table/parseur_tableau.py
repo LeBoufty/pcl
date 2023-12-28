@@ -7,7 +7,7 @@ def extract_tables_from_html(html_file):
         tables = soup.find_all('table')
         return tables
 
-def clean_text(cell, header_row,header=False):
+def clean_text(cell, header_row, header=False):
     text = cell.get_text(strip=False)
     text = text.replace(',', 'virgule')
 
@@ -18,6 +18,8 @@ def clean_text(cell, header_row,header=False):
         return '€'
 
     if not text:
+        if header:
+            return 'LLtable'
         return '§'
 
     if not header:
