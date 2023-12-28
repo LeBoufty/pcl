@@ -47,12 +47,12 @@ public class CSVAnalyseur_S {
         while (!pile.empty()) {
             int element = pile.pop(); // TODO Déplacement dans l'AST
             if (element == -1) {
-                Logger.debug("Element Pile Non-Termina : " + dico_non_terminaux.get(element));
+                Logger.debug("Element Pile Non-Termina : " + dico_non_terminaux.get(element) + " code : " + element);
             }
             else {
-                Logger.debug("Element Pile Terminal : " + dico_terminaux.get(element));
+                Logger.debug("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
             }
-            Logger.debug("Tete : " + dico_terminaux.get(tete));
+            Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
 
             if (element > 0) { // si c'est un terminal
                 if (element == tete) { // si c'est le terminal attendu
@@ -62,7 +62,7 @@ public class CSVAnalyseur_S {
                 }
                 else { // si c'est pas le terminal attendu
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
-                    Logger.error("Erreur : terminal attendu : " + dico_terminaux.get(element) + " - terminal lu : " + dico_terminaux.get(tete) + " - ligne : " + lect.getNum_ligne_en_lecture());
+                    Logger.error("Erreur : terminal attendu : " + dico_terminaux.get(element) + " avec le code " + element + " - terminal lu : " + dico_terminaux.get(tete) + " avec le code " + tete + " - ligne : " + lect.getNum_ligne_en_lecture());
                     return false;
                 }
             }
