@@ -1,3 +1,4 @@
+,with,IDF,.,;,use,procedure,is,begin,end,EOF,type,function,return,:,:=,access,record,and,",",(,),in,out,for,..,loop,if,then,while,reverse,else,elsif,or,or⬚else,and⬚then,not,=,/=,<,<=,>,>=,+,-,*,/,rem,caractere,charactere,',val,entier,false,new,null,true,$
 £FICHIER,with&IDF&.&IDF&;&use&IDF&.&IDF&;&procedure&IDF&is&£DECLEtoile&begin&£INSTR&£INSTREtoile&end&£IDFInterro&;&EOF,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £IDFInterro,§,IDF,§,€,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £DECLEtoile,§,£DECL&£DECLEtoile,§,§,§,£DECL&£DECLEtoile,§,€,§,§,£DECL&£DECLEtoile,£DECL&£DECLEtoile,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§

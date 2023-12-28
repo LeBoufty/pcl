@@ -35,6 +35,7 @@ def convert_table_to_csv(table, csv_file):
     with open(csv_file, 'w', newline='', encoding='utf-8') as csvfile:
         csv_writer = csv.writer(csvfile)
         header_row = [col.get_text(strip=True) for col in table.find('tr').find_all(['th', 'td'])]
+        csv_writer.writerow(header_row)
         for row in table.find_all('tr')[1:]:
             csv_writer.writerow([clean_text(col, header_row) for col in row.find_all(['th', 'td'])])
 
