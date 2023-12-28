@@ -13,7 +13,8 @@ public class TestParserLexeur {
         List<List<List<List<Integer>>>> rules = CSVParser.parseRules(records);
         System.out.println(rules.get(0).get(0).get(0));
 
-        String programme = "Programmes/Fonctionne/fibonaccii.adb";
+        String programme = "Programmes/Fonctionne/ada_link_list.adb";
+        programme = "Programmes/Fonctionne/fibonaccii.adb";
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
 

@@ -14,8 +14,8 @@ procedure Ada_Link_List is
   Temp : Node_Ptr := Node;
   begin
     while Temp /= null loop
-      put("Id: " & Temp.Id'Image);
-      put(", Value: " & Temp.Value'Image);
+      --put("Id: " & Temp.Id'Image);
+      --put(", Value: " & Temp.Value'Image);
       --Ada.Text_IO.New_Line;
 
       Temp := Temp.Next;
@@ -27,13 +27,13 @@ procedure Ada_Link_List is
   begin
     if Temp = null then
         New_Node := new Node'(Id, Value, null);
-        put("Adding Head node");
+        --put("Adding Head node");
         --Ada.Text_IO.New_Line;
     else
         while Temp.Next /= null loop
           Temp := Temp.Next;
         end loop;
-        put("Adding Next node");
+        --put("Adding Next node");
         --Ada.Text_IO.New_Line;
         Temp.Next := new Node'(Id, Value, null);
     end if;
