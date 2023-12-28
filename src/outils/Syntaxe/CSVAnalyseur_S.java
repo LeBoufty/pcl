@@ -56,6 +56,19 @@ public class CSVAnalyseur_S {
             else { // si c'est un non-terminal - parmis les règles, on prend la première règle qui match
                 int num_ligne = -element;
                 int num_colonne = tete;
+                
+                // Test si on ne dépasse pas la taille de la grammaire
+                if (num_ligne > rules.size() || num_ligne < 1) {
+                    en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
+                    Logger.error("Erreur : dépassement de la taille de la grammaire : " + num_ligne + " - " + num_colonne);
+                    return false;
+                }
+                if (num_colonne > rules.get(num_ligne - 1).size() || num_colonne < 1) {
+                    en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
+                    Logger.error("Erreur : dépassement de la taille de la grammaire : " + num_ligne + " - " + num_colonne);
+                    return false;
+                }
+
                 List<Integer> regles = rules.get(num_ligne - 1).get(num_colonne - 1).get(0);
                 if (regles == null) { // si la règle est vide
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur

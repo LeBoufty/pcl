@@ -17,6 +17,7 @@ public class Lecteur_S {
     public static final int ENTIER = 52;
     public static final int DOLLAR = 57;
 
+    private boolean first_dollar;
     private FileReader filereader;
     private int num_ligne_en_lecture;
     private int tete;
@@ -31,6 +32,7 @@ public class Lecteur_S {
 
         this.tete = 0;
         this.tete_precedente = 0;
+        this.first_dollar = true;
     }
 
     public int lire() throws Exception {
@@ -38,7 +40,11 @@ public class Lecteur_S {
         int nextChar = this.filereader.read() - OFFSET_LEXEUR;
         
         if (nextChar + OFFSET_LEXEUR == -1) { // si on est a la fin du fichier
-            this.tete = DOLLAR;
+            if (this.first_dollar) {
+                this.first_dollar = false;
+                return DOLLAR;
+            }
+            this.tete = -1;
             return this.tete;
         }
 
