@@ -79,12 +79,12 @@ public class Dico_L {
         CODE_CARACTERE = 48;
         this.dico_terminaux.put("charactere", 49);
         this.dico_terminaux.put("'", 50);
-        CODE_ENTIER = 51;
-        this.dico_terminaux.put("false", 52);
-        this.dico_terminaux.put("new", 53);
-        this.dico_terminaux.put("null", 54);
-        this.dico_terminaux.put("true", 55);
-
+        this.dico_terminaux.put("val", 51);
+        CODE_ENTIER = 52;
+        this.dico_terminaux.put("false", 53);
+        this.dico_terminaux.put("new", 54);
+        this.dico_terminaux.put("null", 55);
+        this.dico_terminaux.put("true", 56);
 
     }
 
