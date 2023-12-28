@@ -1,4 +1,4 @@
-package outils;
+package outils.OLD;
 
 public class Mot_Lexical {
     public String mot;

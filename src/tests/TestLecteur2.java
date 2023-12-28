@@ -1,15 +1,12 @@
 package tests;
 
-import outils.Analyseur_Lexical;
+import outils.Lexeur.Analyseur_L;;
 
 public class TestLecteur2 {
     public static void main(String[] args) throws Exception {
-        //Analyseur_Lexical al = new Analyseur_Lexical("Programmes/fibonacci.adb");
+        Analyseur_L al = new Analyseur_L("Programmes/fibonaccii.adb");
         
-        //al.analyse();
-        Integer[] toto = {0, 2, 0, 1};
-        for (int i = 0; i < toto.length; i++) {
-            System.out.println(toto[i]);
-        }
+        al.analyse_l();
+        
     }
 }

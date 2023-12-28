@@ -1,4 +1,4 @@
-package outils;
+package outils.OLD;
 //Madpad4lyfe
 public class MatricePassage {
     //fonction qui prend en entrée l'entier indentificateur du dico lexi vers l'autre. Il sort un Array[]

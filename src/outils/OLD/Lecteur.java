@@ -1,9 +1,11 @@
-package outils;
+package outils.OLD;
 
 import java.io.File;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 //import outils.Logger;
+
+import outils.Logger;
 
 
 public class Lecteur {

@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import outils.Logger;
-import outils.Nettoyeur;
+import outils.OLD.Nettoyeur;
 import outils.OLD.OLD_Lecteur;
 
 public class TestLecteur {

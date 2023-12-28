@@ -1,4 +1,6 @@
-package outils;
+package outils.OLD;
+
+import outils.Logger;
 
 // import outils.Lecteur;
 // import outils.Logger;

@@ -1,8 +1,8 @@
-package outils;
+package outils.OLD;
 import java.io.FileWriter;
 import java.nio.charset.Charset;
 
-import outils.OLD.OLD_Lecteur;
+import outils.Logger;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package outils.Lexeur;
 
-// Classe permettant de savoir le type d'un caractère
+// Classe permettant de savoir le type d'un caractère ou d'un mot
 public class is_Char {
 
     public static boolean is_ASCII(char c) {
@@ -38,5 +38,79 @@ public class is_Char {
         return c <= 32;
     }
 
+    public static boolean is_symbol(char c) {
+        return c == '.' || c == ',' || c == ';' || c == ':' || c == '=' || c == ',' || c == '(' || c == ')' || c == '/' || c == '<' || c == '>' || c == '+' || c == '-' || c == '*' || c == '\'';
+    }
 
+    public static boolean is_symbol_2(char c) {
+        return c == '=' || c == '.' || c == '-';
+    }
+
+    public static boolean is_idf(String mot) {
+        // Test si le mot est un identificateur [a-z][a-z0-9]*
+        if (mot.length() == 0) {
+            return false;
+        }
+
+        if (!is_letter(mot.charAt(0))) {
+            return false;
+        }
+
+        for (int i = 1; i < mot.length(); i++) {
+            if (!is_alpha(mot.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;        
+    }
+
+    public static boolean is_constante_int(String mot) {
+        // un entier avec [0-9]+
+        if (mot.length() == 0) {
+            return false;
+        }
+
+        for (int i = 0; i < mot.length(); i++) {
+            if (!is_digit(mot.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean is_constante_char(String mot) {
+        // un caractère avec 'a' a étant un des 95 caractères ASCII imprimables
+        if (mot.length() != 3) {
+            return false;
+        }
+
+        if (mot.charAt(0) != '\'') {
+            return false;
+        }
+
+        if (mot.charAt(2) != '\'') {
+            return false;
+        }
+
+        if (mot.charAt(1) < 32 || mot.charAt(1) > 126) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean is_char(String mot) {
+        // un caractère avec 'a' a étant un des 95 caractères ASCII imprimables
+        if (mot.length() != 1) {
+            return false;
+        }
+
+        if (mot.charAt(0) < 32 || mot.charAt(0) > 126) {
+            return false;
+        }
+
+        return true;
+    }
 }
