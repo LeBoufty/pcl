@@ -7,7 +7,7 @@ def extract_tables_from_html(html_file):
         tables = soup.find_all('table')
         return tables
 
-def clean_text(cell, header_row):
+def clean_text(cell, header_row,header=False):
     text = cell.get_text(strip=False)
     text = text.replace(',', 'virgule')
 
@@ -20,12 +20,13 @@ def clean_text(cell, header_row):
     if not text:
         return '§'
 
-    words = text.split()
-    for i, word in enumerate(words):
-        if word not in header_row:
-            words[i] = f'£{word}'
+    if not header:
+        words = text.split()
+        for i, word in enumerate(words):
+            if word not in header_row:
+                words[i] = f'£{word}'
 
-    text = ' '.join(words)
+        text = ' '.join(words)
 
     text = ' '.join('&'.join(word.strip() for word in text.split()) for text in text.split('&'))
 
@@ -34,7 +35,7 @@ def clean_text(cell, header_row):
 def convert_table_to_csv(table, csv_file):
     with open(csv_file, 'w', newline='', encoding='utf-8') as csvfile:
         csv_writer = csv.writer(csvfile)
-        header_row = [col.get_text(strip=True) for col in table.find('tr').find_all(['th', 'td'])]
+        header_row = [clean_text(col, [],True) for col in table.find('tr').find_all(['th', 'td'])]
         csv_writer.writerow(header_row)
         for row in table.find_all('tr')[1:]:
             csv_writer.writerow([clean_text(col, header_row) for col in row.find_all(['th', 'td'])])
