@@ -57,6 +57,24 @@ public class CSVParser {
         return lignes;
     }
 
+
+    // Retourne les fonctions getFirstLigne et getFirstColonne inversées
+    public static HashMap<Integer, String> getFirstLigne_Inverse(List<List<String>> records) {
+        HashMap<Integer, String> colonnes = new HashMap<Integer, String>();
+        for (int i = 1; i < records.get(0).size(); i++) {
+            colonnes.put(i, records.get(0).get(i));
+        }
+        return colonnes;
+    }
+
+    public static HashMap<Integer, String> getFirstColonne_Inverse(List<List<String>> records) {
+        HashMap<Integer, String> lignes = new HashMap<Integer, String>();
+        for (int i = 1; i < records.size(); i++) {
+            lignes.put(i, records.get(i).get(0));
+        }
+        return lignes;
+    }
+
     // Retourne une liste de liste de Liste d'entiers, les deux premières listes sont le tableau des règles sans la première ligne et la première colonne. La troisième liste est la liste des règles dans une même case du tableau. La quatrième liste est une règle. Une règle est une liste d'entiers des index des terminaux et non-terminaux. Négatif pour les terminaux, positif pour les non-terminaux. EPSILON pour epsilon donnant 0. null pour les cases vides symbolysé par RULE_EMPTY. WORD_DELIMITER est le délimiteur entre terminaux et non-terminaux. RULE_DELIMITER est le délimiteur entre les règles d'une même case.
     public static List<List<List<List<Integer>>>> parseRules(List<List<String>> records) throws Exception {
         HashMap<String, Integer> colonnes = getFirstColonne(records);

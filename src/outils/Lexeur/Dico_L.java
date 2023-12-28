@@ -27,7 +27,7 @@ public class Dico_L {
     }
 
     public void set_dico_default() {
-        // with,IDF,.,;,use,procedure,is,begin,end,EOF,type,function,return,:,:=,access,record,and,",",(,),in,out,for,..,loop,if,then,while,reverse,else,elsif,or,or⬚else,and⬚then,not,=,/=,<,<=,>,>=,+,-,*,/,rem,caractere,charactere,',val,entier,false,new,null,true
+        // with,IDF,.,;,use,procedure,is,begin,end,EOF,type,function,return,:,:=,access,record,virgule,(,),in,out,for,..,loop,if,then,while,reverse,else,elsif,or,or⬚else,and,and⬚then,not,=,/=,<,<=,>,>=,+,-,*,/,rem,caractere,charactere,',val,entier,false,new,null,true,$
         this.dico_terminaux.put("with", 1);
         CODE_IDF = 2;
         this.dico_terminaux.put(".", 3);
@@ -46,23 +46,23 @@ public class Dico_L {
         this.dico_terminaux.put(":=", 15);
         this.dico_terminaux.put("access", 16);
         this.dico_terminaux.put("record", 17);
-        this.dico_terminaux.put("and", 18);
-        this.dico_terminaux.put(",", 19);
-        this.dico_terminaux.put("(", 20);
-        this.dico_terminaux.put(")", 21);
-        this.dico_terminaux.put("in", 22);
-        this.dico_terminaux.put("out", 23);
-        this.dico_terminaux.put("for", 24);
-        this.dico_terminaux.put("..", 25);
-        this.dico_terminaux.put("loop", 26);
-        this.dico_terminaux.put("if", 27);
-        this.dico_terminaux.put("then", 28);
-        this.dico_terminaux.put("while", 29);
-        this.dico_terminaux.put("reverse", 30);
-        this.dico_terminaux.put("else", 31);
-        this.dico_terminaux.put("elsif", 32);
-        this.dico_terminaux.put("or", 33);
-        this.dico_terminaux.put("or else", 34);
+        this.dico_terminaux.put(",", 18);
+        this.dico_terminaux.put("(", 19);
+        this.dico_terminaux.put(")", 20);
+        this.dico_terminaux.put("in", 21);
+        this.dico_terminaux.put("out", 22);
+        this.dico_terminaux.put("for", 23);
+        this.dico_terminaux.put("..", 24);
+        this.dico_terminaux.put("loop", 25);
+        this.dico_terminaux.put("if", 26);
+        this.dico_terminaux.put("then", 27);
+        this.dico_terminaux.put("while", 28);
+        this.dico_terminaux.put("reverse", 29);
+        this.dico_terminaux.put("else", 30);
+        this.dico_terminaux.put("elsif", 31);
+        this.dico_terminaux.put("or", 32);
+        this.dico_terminaux.put("or else", 33);
+        this.dico_terminaux.put("and", 34);
         this.dico_terminaux.put("and then", 35);
         this.dico_terminaux.put("not", 36);
         this.dico_terminaux.put("=", 37);
@@ -79,12 +79,12 @@ public class Dico_L {
         CODE_CARACTERE = 48;
         this.dico_terminaux.put("charactere", 49);
         this.dico_terminaux.put("'", 50);
-        this.dico_terminaux.put("val", 51);
-        CODE_ENTIER = 52;
-        this.dico_terminaux.put("false", 53);
-        this.dico_terminaux.put("new", 54);
-        this.dico_terminaux.put("null", 55);
-        this.dico_terminaux.put("true", 56);
+        CODE_ENTIER = 51;
+        this.dico_terminaux.put("false", 52);
+        this.dico_terminaux.put("new", 53);
+        this.dico_terminaux.put("null", 54);
+        this.dico_terminaux.put("true", 55);
+
 
     }
 

@@ -6,8 +6,8 @@ procedure Ada_Link_List is
   type Node_Ptr is access Node;
   type Node is record
     Id: Integer;
-    Value: Integer;
-    Next,a: Node_Ptr;
+    Value,bva: Integer;
+    Next: Node_Ptr;
   end record;
 
   procedure Print_List(Node: in Node_Ptr) is

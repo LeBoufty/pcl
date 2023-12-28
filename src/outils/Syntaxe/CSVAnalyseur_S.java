@@ -6,6 +6,8 @@ import outils.Logger;
 
 import java.util.List;
 
+import java.util.HashMap;
+
 // Obligation CSV : Le premier non-terminal engendrant la grammaire doit être le premier non terminal dans le CSV. Le dernier terminal engendrant la grammaire doit être le dernier terminal dans le CSV. Les index associés aux IDF ou constantes doivent être mis dans la liste associée
 
 // Information : les non-terminaux sont négatifs, les terminaux sont positifs
@@ -20,6 +22,9 @@ public class CSVAnalyseur_S {
     private List<List<String>> records;
     private List<List<List<List<Integer>>>> rules;
 
+    private HashMap<Integer, String> dico_terminaux;
+    private HashMap<Integer, String> dico_non_terminaux;
+
 
     public CSVAnalyseur_S(String code_filename, String CSV_Grammar_filename) throws Exception {
         pile = new Stack<Integer>();
@@ -28,6 +33,9 @@ public class CSVAnalyseur_S {
         lect = new Lecteur_S(code_filename);
         records = CSVParser.parse(CSV_Grammar_filename);
         rules = CSVParser.parseRules(records);
+
+        dico_terminaux = CSVParser.getFirstLigne_Inverse(records);
+        dico_non_terminaux = CSVParser.getFirstColonne_Inverse(records);
     }
 
     public boolean analyse() throws Exception {
@@ -38,8 +46,13 @@ public class CSVAnalyseur_S {
 
         while (!pile.empty()) {
             int element = pile.pop(); // TODO Déplacement dans l'AST
-            Logger.debug("Element : " + element);
-            Logger.debug("Tete : " + tete);
+            if (element == -1) {
+                Logger.debug("Element Pile Non-Termina : " + dico_non_terminaux.get(element));
+            }
+            else {
+                Logger.debug("Element Pile Terminal : " + dico_terminaux.get(element));
+            }
+            Logger.debug("Tete : " + dico_terminaux.get(tete));
 
             if (element > 0) { // si c'est un terminal
                 if (element == tete) { // si c'est le terminal attendu
@@ -49,7 +62,7 @@ public class CSVAnalyseur_S {
                 }
                 else { // si c'est pas le terminal attendu
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
-                    Logger.error("Erreur : terminal attendu : " + element + " - terminal lu : " + tete + " - ligne : " + lect.getNum_ligne_en_lecture());
+                    Logger.error("Erreur : terminal attendu : " + dico_terminaux.get(element) + " - terminal lu : " + dico_terminaux.get(tete) + " - ligne : " + lect.getNum_ligne_en_lecture());
                     return false;
                 }
             }
