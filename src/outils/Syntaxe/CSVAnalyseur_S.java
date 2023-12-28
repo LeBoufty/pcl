@@ -49,7 +49,7 @@ public class CSVAnalyseur_S {
                 }
                 else { // si c'est pas le terminal attendu
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
-                    Logger.error("Erreur : terminal attendu : " + element + " - terminal lu : " + tete);
+                    Logger.error("Erreur : terminal attendu : " + element + " - terminal lu : " + tete + " - ligne : " + lect.getNum_ligne_en_lecture());
                     return false;
                 }
             }
@@ -69,11 +69,11 @@ public class CSVAnalyseur_S {
                     return false;
                 }
 
-                Logger.debug("Règle : " + rules.get(num_ligne - 1).get(num_colonne - 1).get(0));
+                //Logger.debug("Règle : " + rules.get(num_ligne - 1).get(num_colonne - 1).get(0));
                 List<Integer> regles = rules.get(num_ligne - 1).get(num_colonne - 1).get(0);
                 if (regles == null) { // si la règle est vide
                     en_erreur = true; // TODO afficher l'erreur et la ligne + Créer une gestion d'erreur
-                    Logger.error("Erreur : règle vide : " + num_ligne + " - " + num_colonne);
+                    Logger.error("Erreur : règle vide : " + num_ligne + " - " + num_colonne + " - ligne : " + lect.getNum_ligne_en_lecture());
                     return false;
                 }
                 else {
@@ -90,7 +90,7 @@ public class CSVAnalyseur_S {
         for (int i = rules.size() - 1; i >= 0; i--) {
             // On ne push pas les règles avec epsilon
             if (rules.get(i) != 0) {
-                Logger.debug("Push : " + rules.get(i));
+                //Logger.debug("Push : " + rules.get(i));
                 pile.push(rules.get(i));
             }
         }
