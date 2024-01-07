@@ -2,10 +2,10 @@ package outils.Arbre_Syntaxique;
 
 import java.util.ArrayList;
 
-public class Noeud_Non_Terminal extends Noeud {
+public class Noeud_Non_Terminal extends Noeud_A {
 
     private int code_non_terminal;
-    private ArrayList<Noeud> enfants;
+    private ArrayList<Noeud_A> enfants;
     
     public Noeud_Non_Terminal(int code_non_terminal) {
         super();
@@ -17,12 +17,12 @@ public class Noeud_Non_Terminal extends Noeud {
         return this.code_non_terminal;
     }
 
-    public void ajouterEnfant(Noeud enfant) {
+    public void ajouterEnfant(Noeud_A enfant) {
         this.enfants.add(enfant);
         enfant.setParent(this);
     }
 
-    public ArrayList<Noeud> getEnfants() {
+    public ArrayList<Noeud_A> getEnfants() {
         return this.enfants;
     }
     

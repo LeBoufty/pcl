@@ -1,6 +1,6 @@
 package outils.Arbre_Syntaxique;
 
-public class Noeud_Terminal extends Noeud {
+public class Noeud_Terminal extends Noeud_A {
     
     private int code_terminal;
     private int code_idf;

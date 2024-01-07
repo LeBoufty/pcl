@@ -4,7 +4,8 @@ import java.io.FileReader;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
-//import outils.Logger;
+
+import outils.Logger;
 
 
 // Classe pour la lecture d'un fichier donné par le lexeur pour l'analyseur syntaxique
@@ -57,7 +58,7 @@ public class Lecteur_S {
 
         if (nextChar == IDF || nextChar == CAR || nextChar == ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
             // this.filereader.read(); // on lit le caractère suivant pour le jeter
-            this.code_idf = this.filereader.read() - OFFSET_LEXEUR; // on lit le code de l'IDF ou du CAR ou de l'ENTIER            
+            this.code_idf = this.filereader.read() - OFFSET_LEXEUR; // on lit le code de l'IDF ou du CAR ou de l'ENTIER
         }
 
         this.tete = nextChar;

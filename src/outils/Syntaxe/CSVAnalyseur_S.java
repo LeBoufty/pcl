@@ -75,10 +75,15 @@ public class CSVAnalyseur_S {
 
 
                 if (element == tete) { // si c'est le terminal attendu
+
+                    Noeud_Terminal noeud_terminal;
                     
-                    if (element == Lecteur_S.IDF || element == Lecteur_S.CAR || element == Lecteur_S.ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
-                        Noeud_Terminal noeud_terminal = pile_AST_Terminal.pop();
-                        noeud_terminal.setCodeIdf(lect.getCode_idf());
+                    if (element != Lecteur_S.DOLLAR) { // si c'est pas le terminal de fin de grammaire
+                        noeud_terminal = pile_AST_Terminal.pop();
+
+                        if (element == Lecteur_S.IDF || element == Lecteur_S.CAR || element == Lecteur_S.ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
+                            noeud_terminal.setCodeIdf(lect.getCode_idf());
+                        }
                     }
 
                     tete = lect.lire();

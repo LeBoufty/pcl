@@ -10,13 +10,13 @@ import outils.Syntaxe.Lecteur_S;
 public class Generator_UML {
     
     private FileWriter fichier;
-    private Noeud Arbre_Syntaxique;
+    private Noeud_A Arbre_Syntaxique;
     private int num_noeud;
 
     private HashMap<Integer, String> dico_non_terminal;
     private HashMap<Integer, String> dico_terminal;
 
-    public Generator_UML(String chemin_fichier, Noeud Arbre_Syntaxique, HashMap<Integer, String> dico_non_terminal, HashMap<Integer, String> dico_terminal) throws Exception {
+    public Generator_UML(String chemin_fichier, Noeud_A Arbre_Syntaxique, HashMap<Integer, String> dico_non_terminal, HashMap<Integer, String> dico_terminal) throws Exception {
         this.fichier = new FileWriter(chemin_fichier);
         this.Arbre_Syntaxique = Arbre_Syntaxique;
         this.num_noeud = 0;
@@ -38,11 +38,11 @@ public class Generator_UML {
         // Parcours en largeur de l'arbre syntaxique pour écrire les définitions des noeuds, utilisation d'une file d'attente
         // exemple : object "true" as 1 
         
-        Queue<Noeud> file = new LinkedList<Noeud>();
+        Queue<Noeud_A> file = new LinkedList<Noeud_A>();
         file.add(this.Arbre_Syntaxique);
 
         while (!file.isEmpty()) {
-            Noeud noeud = file.remove();
+            Noeud_A noeud = file.remove();
             this.num_noeud++;
             noeud.UML_id = this.num_noeud;
 
@@ -69,11 +69,11 @@ public class Generator_UML {
         // Parcours en largeur de l'arbre syntaxique pour écrire les relations entre les noeuds, utilisation d'une file d'attente
         // exemple : 1 -down-> 2
 
-        Queue<Noeud> file = new LinkedList<Noeud>();
+        Queue<Noeud_A> file = new LinkedList<Noeud_A>();
         file.add(this.Arbre_Syntaxique);
 
         while (!file.isEmpty()) {
-            Noeud noeud = file.remove();
+            Noeud_A noeud = file.remove();
             
             if (noeud instanceof Noeud_Non_Terminal) {
                 Noeud_Non_Terminal noeudbis = (Noeud_Non_Terminal) noeud;
