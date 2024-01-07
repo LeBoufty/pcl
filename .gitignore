@@ -1,5 +1,6 @@
 *.idf
 *.lex
+*.puml
 
 *.ali
 *.o
