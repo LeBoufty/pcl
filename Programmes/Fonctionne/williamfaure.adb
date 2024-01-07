@@ -14,6 +14,6 @@ begin
       J := J + 1;
    end loop;
 
-   --put("Somme avec boucle for : " & Integer'Image(Sum_For));
-   --put("Somme avec boucle while : " & Integer'Image(Sum_While));
+   put(Sum_For);
+   put(Sum_While);
 end williamfaure;
