@@ -22,6 +22,7 @@ public class Lecteur_S {
     private int num_ligne_en_lecture;
     private int tete;
     private int tete_precedente;
+    private int code_idf;
     //private boolean en_erreur;
 
     public Lecteur_S(String chemin_fichier) throws Exception {
@@ -55,7 +56,8 @@ public class Lecteur_S {
         }
 
         if (nextChar == IDF || nextChar == CAR || nextChar == ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
-            this.filereader.read(); // on lit le caractère suivant pour le jeter
+            // this.filereader.read(); // on lit le caractère suivant pour le jeter
+            this.code_idf = this.filereader.read() - OFFSET_LEXEUR; // on lit le code de l'IDF ou du CAR ou de l'ENTIER            
         }
 
         this.tete = nextChar;
@@ -75,5 +77,9 @@ public class Lecteur_S {
 
     public int getTete_precedente() {
         return tete_precedente;
+    }
+
+    public int getCode_idf() {
+        return code_idf;
     }
 }
