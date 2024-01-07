@@ -5,7 +5,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 
-import outils.Logger;
+//import outils.Logger;
 
 
 // Classe pour la lecture d'un fichier donné par le lexeur pour l'analyseur syntaxique

@@ -57,7 +57,7 @@ public class Generator_UML {
                 this.fichier.write("object \"" + this.dico_terminal.get(noeudbis.getCode()) + "\" as " + num_noeud + "\n");
 
                 if (noeudbis.getCode() == Lecteur_S.IDF || noeudbis.getCode() == Lecteur_S.CAR || noeudbis.getCode() == Lecteur_S.ENTIER) {
-                    this.fichier.write(num_noeud + " : " + noeudbis.getCodeIdf() + "\n");
+                    this.fichier.write(num_noeud + " : " + noeudbis.getValeurIdf() + "\n");
                 }
             }
 

@@ -22,6 +22,7 @@ public class CSVAnalyseur_S {
     private Stack<Noeud_Terminal> pile_AST_Terminal;
     private Stack<Noeud_Non_Terminal> pile_AST_Non_Terminal;
     private Lecteur_S lect;
+    private Lecteur_IDF lect_idf;
     private boolean en_erreur;
 
     private Noeud_Non_Terminal AST;
@@ -33,11 +34,12 @@ public class CSVAnalyseur_S {
     private HashMap<Integer, String> dico_non_terminaux;
 
 
-    public CSVAnalyseur_S(String code_filename, String CSV_Grammar_filename) throws Exception {
+    public CSVAnalyseur_S(String code_filename, String CSV_Grammar_filename, String idf_filename) throws Exception {
         pile = new Stack<Integer>();
         en_erreur = false;
         
         lect = new Lecteur_S(code_filename);
+        lect_idf = new Lecteur_IDF(idf_filename);
         records = CSVParser.parse(CSV_Grammar_filename);
         rules = CSVParser.parseRules(records);
 
@@ -61,6 +63,9 @@ public class CSVAnalyseur_S {
         
         int tete = lect.lire();
 
+        lect_idf.lire();
+        List<String> liste_idf = lect_idf.getListe_idf();
+
         while (!pile.empty()) {
             int element = pile.pop();
             if (element < 0) {
@@ -83,6 +88,18 @@ public class CSVAnalyseur_S {
 
                         if (element == Lecteur_S.IDF || element == Lecteur_S.CAR || element == Lecteur_S.ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
                             noeud_terminal.setCodeIdf(lect.getCode_idf());
+
+                            if (element == Lecteur_S.IDF) {
+                                noeud_terminal.setValeurIdf(liste_idf.get(lect.getCode_idf() - 1));
+                            }
+                            
+                            if (element == Lecteur_S.ENTIER) {
+                                noeud_terminal.setValeurIdf(Integer.toString(lect.getCode_idf()));
+                            }
+
+                            if (element == Lecteur_S.CAR) {
+                                noeud_terminal.setValeurIdf(Character.toString((char) lect.getCode_idf()));
+                            }
                         }
                     }
 
