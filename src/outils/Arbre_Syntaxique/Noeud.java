@@ -3,6 +3,7 @@ package outils.Arbre_Syntaxique;
 public abstract class Noeud {
 
     private Noeud parent;
+    public int UML_id = -1;
 
     public Noeud() {
         this.parent = null;

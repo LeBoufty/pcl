@@ -1,0 +1,139 @@
+@startuml Arbre_Syntaxique
+object "£FICHIER" as 1
+object "with" as 2
+object "IDF" as 3
+3 : 2
+object "." as 4
+object "IDF" as 5
+5 : 2
+object ";" as 6
+object "use" as 7
+object "IDF" as 8
+8 : -1
+object "." as 9
+object "IDF" as 10
+10 : -1
+object ";" as 11
+object "procedure" as 12
+object "IDF" as 13
+13 : -1
+object "is" as 14
+object "£DECLEtoile" as 15
+object "begin" as 16
+object "£INSTR" as 17
+object "£INSTREtoile" as 18
+object "end" as 19
+object "£IDFInterro" as 20
+object ";" as 21
+object "EOF" as 22
+object "£OR" as 23
+object "£DEFORInterro" as 24
+object ";" as 25
+object "IDF" as 26
+26 : 3
+object "£AND" as 27
+object "£ORPrime" as 28
+object "£NOT" as 29
+object "£ANDPrime" as 30
+object "£EQUALS" as 31
+object "£NOTPrime" as 32
+object "£COMPARATORS" as 33
+object "£EQUALSPrime" as 34
+object "£ADD" as 35
+object "£COMPARATORSPrime" as 36
+object "£MULT" as 37
+object "£ADDPrime" as 38
+object "£MOINSUnaire" as 39
+object "£MULTPrime" as 40
+object "£EXPRESSION" as 41
+object "£LVALUE" as 42
+object "IDF" as 43
+43 : 4
+object "£LVALUEList" as 44
+object "(" as 45
+object "£OR" as 46
+object "£OREtoile" as 47
+object ")" as 48
+object "£LVALUEList" as 49
+object "£AND" as 50
+object "£ORPrime" as 51
+object "£NOT" as 52
+object "£ANDPrime" as 53
+object "£EQUALS" as 54
+object "£NOTPrime" as 55
+object "£COMPARATORS" as 56
+object "£EQUALSPrime" as 57
+object "£ADD" as 58
+object "£COMPARATORSPrime" as 59
+object "£MULT" as 60
+object "£ADDPrime" as 61
+object "£MOINSUnaire" as 62
+object "£MULTPrime" as 63
+object "£EXPRESSION" as 64
+object "caractere" as 65
+65 : 65
+1 -down-> 2
+1 -down-> 3
+1 -down-> 4
+1 -down-> 5
+1 -down-> 6
+1 -down-> 7
+1 -down-> 8
+1 -down-> 9
+1 -down-> 10
+1 -down-> 11
+1 -down-> 12
+1 -down-> 13
+1 -down-> 14
+1 -down-> 15
+1 -down-> 16
+1 -down-> 17
+1 -down-> 18
+1 -down-> 19
+1 -down-> 20
+1 -down-> 21
+1 -down-> 22
+17 -down-> 23
+17 -down-> 24
+17 -down-> 25
+20 -down-> 26
+23 -down-> 27
+23 -down-> 28
+27 -down-> 29
+27 -down-> 30
+29 -down-> 31
+29 -down-> 32
+31 -down-> 33
+31 -down-> 34
+33 -down-> 35
+33 -down-> 36
+35 -down-> 37
+35 -down-> 38
+37 -down-> 39
+37 -down-> 40
+39 -down-> 41
+41 -down-> 42
+42 -down-> 43
+42 -down-> 44
+44 -down-> 45
+44 -down-> 46
+44 -down-> 47
+44 -down-> 48
+44 -down-> 49
+46 -down-> 50
+46 -down-> 51
+50 -down-> 52
+50 -down-> 53
+52 -down-> 54
+52 -down-> 55
+54 -down-> 56
+54 -down-> 57
+56 -down-> 58
+56 -down-> 59
+58 -down-> 60
+58 -down-> 61
+60 -down-> 62
+60 -down-> 63
+62 -down-> 64
+64 -down-> 65
+@enduml

@@ -6,8 +6,9 @@ import outils.Logger;
 import outils.Arbre_Syntaxique.Noeud_Non_Terminal;
 import outils.Arbre_Syntaxique.Noeud_Terminal;
 
-import java.util.List;
+import outils.Arbre_Syntaxique.Generator_UML;
 
+import java.util.List;
 import java.util.HashMap;
 
 // Obligation CSV : Le premier non-terminal engendrant la grammaire doit être le premier non terminal dans le CSV. Le dernier terminal engendrant la grammaire doit être le dernier terminal dans le CSV. Les index associés aux IDF ou constantes doivent être mis dans la liste associée
@@ -42,6 +43,11 @@ public class CSVAnalyseur_S {
 
         dico_terminaux = CSVParser.getFirstLigne_Inverse(records);
         dico_non_terminaux = CSVParser.getFirstColonne_Inverse(records);
+    }
+
+    public void affiche_UML(String chemin_fichier) throws Exception {
+        Generator_UML generator = new Generator_UML(chemin_fichier, AST, dico_non_terminaux, dico_terminaux);
+        generator.generer();
     }
 
     public boolean analyse() throws Exception {

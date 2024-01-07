@@ -4,10 +4,18 @@ import arbres.*;
 import arbres.PlantUML.GenerateurPUML;
 import outils.Logger;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TestArbrePierre {
     
     public static void main(String[] args) {
-        Procedure testPierre = new Procedure("testPierre");
-        Fonction testPierreFonction = new Fonction("testPierreFonction");
+        Queue<Integer> file = new LinkedList<Integer>();
+        file.add(1);
+        file.add(2);
+        file.add(3);
+
+        Logger.debug(file.toString());
+        Logger.debug(file.remove().toString());
     }
 }

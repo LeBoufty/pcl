@@ -21,5 +21,9 @@ public class Noeud_Non_Terminal extends Noeud {
         this.enfants.add(enfant);
         enfant.setParent(this);
     }
+
+    public ArrayList<Noeud> getEnfants() {
+        return this.enfants;
+    }
     
 }
