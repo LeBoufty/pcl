@@ -2,6 +2,7 @@ package tests;
 
 import java.util.List;
 
+import outils.Arbre_Syntaxique.Elagueur;
 import outils.Lexeur.Analyseur_L;
 import outils.Syntaxe.CSVAnalyseur_S;
 import outils.Syntaxe.CSVParser;
@@ -20,6 +21,7 @@ public class TestParserLexeur {
 
         CSVAnalyseur_S analyseur = new CSVAnalyseur_S(programme + ".lex", "src/tests/Tableau_LL.csv", programme + ".idf");
         analyseur.analyse();
+        analyseur.elaguer();
         analyseur.affiche_UML(programme + ".puml");
     }
 }

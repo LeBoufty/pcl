@@ -26,4 +26,20 @@ public class Noeud_Non_Terminal extends Noeud_A {
         return this.enfants;
     }
     
+    public void seSacrifier() {
+        if (this.enfants.size() == 1) {
+            int index = this.getParent().getEnfants().indexOf(this);
+            this.getParent().getEnfants().set(index, this.enfants.get(0));
+            this.enfants.get(0).setParent(this.getParent());
+            this.enfants.get(0).seSacrifier();
+            return;
+        }
+        for (Noeud_A noeud_A : enfants) {
+            noeud_A.seSacrifier();
+        }
+    }
+
+    public boolean sansEnfant() {
+        return this.enfants.isEmpty();
+    }
 }

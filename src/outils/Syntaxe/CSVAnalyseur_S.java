@@ -5,7 +5,7 @@ import java.util.Stack;
 import outils.Logger;
 import outils.Arbre_Syntaxique.Noeud_Non_Terminal;
 import outils.Arbre_Syntaxique.Noeud_Terminal;
-
+import outils.Arbre_Syntaxique.Elagueur;
 import outils.Arbre_Syntaxique.Generator_UML;
 
 import java.util.List;
@@ -180,4 +180,9 @@ public class CSVAnalyseur_S {
         return AST;
     }
 
+    public Noeud_Non_Terminal elaguer() {
+        Elagueur elagueur = new Elagueur(getAST());
+        elagueur.elaguer();
+        return elagueur.getArbre_Syntaxique();
+    }
 }
