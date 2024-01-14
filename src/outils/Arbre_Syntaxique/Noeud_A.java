@@ -2,18 +2,18 @@ package outils.Arbre_Syntaxique;
 
 public abstract class Noeud_A {
 
-    private Noeud_A parent;
+    private Noeud_Non_Terminal parent;
     public int UML_id = -1;
 
     public Noeud_A() {
         this.parent = null;
     }
 
-    public void setParent(Noeud_A parent) {
+    public void setParent(Noeud_Non_Terminal parent) {
         this.parent = parent;
     }
 
-    public Noeud_A getParent() {
+    public Noeud_Non_Terminal getParent() {
         return this.parent;
     }
 }
