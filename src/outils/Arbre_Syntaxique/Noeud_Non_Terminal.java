@@ -42,8 +42,4 @@ public class Noeud_Non_Terminal extends Noeud_A {
     public boolean sansEnfant() {
         return this.enfants.isEmpty();
     }
-
-    public void supprimer() {
-        this.getParent().getEnfants().remove(this);
-    }
 }
