@@ -39,8 +39,4 @@ public class Noeud_Terminal extends Noeud_A {
 
     public void seSacrifier() {
     }
-
-    public void supprimer() {
-        this.getParent().getEnfants().remove(this);
-    }
 }
