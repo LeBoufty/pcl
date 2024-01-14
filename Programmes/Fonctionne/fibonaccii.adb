@@ -3,7 +3,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 procedure Fibonacci is
     function Fib(n: Natural) return Natural is
     begin
-        if n = 0 then 
+        if n.o = -0 then 
             return 0;
         elsif n = 1 then
             return 1;
@@ -19,6 +19,7 @@ res : Natural := 0;
     --Main
 begin
     res := Fib(n);
+    lol := 1;
     --put("Fibonacci de " & n'Image);
     --put(" est :" & res'Image); 'aB'
 end Fibonacci;
