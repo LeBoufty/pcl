@@ -1,5 +1,7 @@
 package outils.Arbre_Syntaxique;
 
+import outils.Logger;
+
 import java.util.ArrayList;
 
 public class Noeud_Non_Terminal extends Noeud_A {
@@ -26,4 +28,29 @@ public class Noeud_Non_Terminal extends Noeud_A {
         return this.enfants;
     }
     
+    public void seSacrifier() {
+        if (this.code_non_terminal >= 22 && this.enfants.size() == 2) {
+            if (this.enfants.get(0).sansEnfant()
+            && this.enfants.get(1) instanceof Noeud_Non_Terminal) {
+                int index = this.getParent().getEnfants().indexOf(this);
+                this.getParent().getEnfants().set(index, this.enfants.get(1));
+                this.enfants.get(1).setParent(this.getParent());
+                this.enfants.get(1).seSacrifier();
+                return;
+            }
+        } else if (this.enfants.size() == 1) {
+            int index = this.getParent().getEnfants().indexOf(this);
+            this.getParent().getEnfants().set(index, this.enfants.get(0));
+            this.enfants.get(0).setParent(this.getParent());
+            this.enfants.get(0).seSacrifier();
+            return;
+        }
+        for (Noeud_A noeud_A : enfants) {
+            noeud_A.seSacrifier();
+        }
+    }
+
+    public boolean sansEnfant() {
+        return this.enfants.isEmpty();
+    }
 }

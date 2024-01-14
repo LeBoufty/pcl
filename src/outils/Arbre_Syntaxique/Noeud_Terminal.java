@@ -33,4 +33,10 @@ public class Noeud_Terminal extends Noeud_A {
         this.valeur_idf = valeur_idf;
     }
 
+    public boolean sansEnfant() {
+        return true;
+    }
+
+    public void seSacrifier() {
+    }
 }

@@ -16,4 +16,7 @@ public abstract class Noeud_A {
     public Noeud_Non_Terminal getParent() {
         return this.parent;
     }
+
+    public abstract boolean sansEnfant();
+    public abstract void seSacrifier();
 }

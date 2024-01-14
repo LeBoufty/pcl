@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.nio.charset.StandardCharsets;
 
 import outils.Syntaxe.Lecteur_S;
 
@@ -17,7 +18,7 @@ public class Generator_UML {
     private HashMap<Integer, String> dico_terminal;
 
     public Generator_UML(String chemin_fichier, Noeud_A Arbre_Syntaxique, HashMap<Integer, String> dico_non_terminal, HashMap<Integer, String> dico_terminal) throws Exception {
-        this.fichier = new FileWriter(chemin_fichier);
+        this.fichier = new FileWriter(chemin_fichier, StandardCharsets.UTF_8);
         this.Arbre_Syntaxique = Arbre_Syntaxique;
         this.num_noeud = 0;
 
