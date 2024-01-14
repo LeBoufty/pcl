@@ -15,6 +15,7 @@ public class Elagueur {
         for ( Noeud_Non_Terminal nnt : trouverNoeudsVides()) {
             nnt.supprimer();
         }
+        this.Arbre_Syntaxique.seSacrifier();
     }
 
     private ArrayList<Noeud_Non_Terminal> trouverNoeudsVides() {
