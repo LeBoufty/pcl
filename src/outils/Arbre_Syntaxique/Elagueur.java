@@ -62,7 +62,7 @@ public class Elagueur {
             }
         }
         for (Noeud_Non_Terminal nnt : tag) {
-            if (estEtoile(nnt.getParent())) {
+            if (nnt.getParent().getCode() == nnt.getCode()) {
                 nnt.getParent().getEnfants().remove(nnt);
                 for (Noeud_A enfant : nnt.getEnfants()) {
                     nnt.getParent().ajouterEnfant(enfant);
