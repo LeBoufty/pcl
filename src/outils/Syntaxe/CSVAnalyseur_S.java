@@ -180,4 +180,9 @@ public class CSVAnalyseur_S {
         return AST;
     }
 
+    public Noeud_Non_Terminal sacrifierAST() {
+        AST.seSacrifier();
+        return AST;
+    }
+
 }
