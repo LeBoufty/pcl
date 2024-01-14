@@ -7,12 +7,14 @@ public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static int[] nt_etoile = {3, 8, 14, 16, 21};
     private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
+    private static int[] t_inutile = {4, 14, 19, 20, 37};
 
     public Elagueur(Noeud_Non_Terminal Arbre_Syntaxique) {
         this.Arbre_Syntaxique = Arbre_Syntaxique;
     }
 
     public void elaguer() {
+        supprimerInutiles();
         this.Arbre_Syntaxique.seSacrifier();
         for ( Noeud_Non_Terminal nnt : trouverNoeudsVides()) {
             nnt.supprimer();
@@ -75,6 +77,32 @@ public class Elagueur {
         for (Noeud_Non_Terminal nnt : tag) {
             nnt.getParent().getEnfants().remove(nnt);
             nnt.getParent().ajouterEnfant(nnt.getEnfants().get(0));
+        }
+    }
+
+    private boolean estInutile(Noeud_Terminal noeud) {
+        for (int i : t_inutile) {
+            if (noeud.getCode() == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void supprimerInutiles() {
+        Stack<Noeud_A> pile = new Stack<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Terminal) {
+                if (estInutile((Noeud_Terminal)noeud)) {
+                    noeud.supprimer();
+                }
+            } else if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+            }
         }
     }
 

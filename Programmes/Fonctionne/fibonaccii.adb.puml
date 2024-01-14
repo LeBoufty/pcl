@@ -6,139 +6,128 @@ object "IDF" as 3
 object "." as 4
 object "IDF" as 5
 5 : text_io
-object ";" as 6
-object "use" as 7
-object "IDF" as 8
-8 : ada
-object "." as 9
-object "IDF" as 10
-10 : text_io
-object ";" as 11
-object "procedure" as 12
-object "IDF" as 13
-13 : fibonacci
-object "is" as 14
-object "£DECLEtoile" as 15
-object "begin" as 16
-object "£INSTR" as 17
-object "end" as 18
-object "IDF" as 19
-19 : fibonacci
-object ";" as 20
-object "EOF" as 21
+object "use" as 6
+object "IDF" as 7
+7 : ada
+object "." as 8
+object "IDF" as 9
+9 : text_io
+object "procedure" as 10
+object "IDF" as 11
+11 : fibonacci
+object "is" as 12
+object "£DECLEtoile" as 13
+object "begin" as 14
+object "£INSTR" as 15
+object "£INSTR" as 16
+object "end" as 17
+object "IDF" as 18
+18 : fibonacci
+object "EOF" as 19
+object "£DECL" as 20
+object "£DECL" as 21
 object "£DECL" as 22
-object "£DECL" as 23
-object "£DECL" as 24
+object "IDF" as 23
+23 : res
+object "£DEFORInterro" as 24
 object "IDF" as 25
-25 : res
+25 : lol
 object "£DEFORInterro" as 26
-object ";" as 27
+object "IDF" as 27
+27 : n
 object "IDF" as 28
-28 : n
-object ":" as 29
+28 : natural
+object "£DEFORInterro" as 29
 object "IDF" as 30
-30 : natural
-object "£DEFORInterro" as 31
-object ";" as 32
-object "IDF" as 33
-33 : res
-object ":" as 34
-object "IDF" as 35
-35 : natural
-object "£DEFORInterro" as 36
-object ";" as 37
-object "function" as 38
-object "IDF" as 39
-39 : fib
-object "£PARENTHESE" as 40
-object "return" as 41
+30 : res
+object "IDF" as 31
+31 : natural
+object "£DEFORInterro" as 32
+object "function" as 33
+object "IDF" as 34
+34 : fib
+object "£PARENTHESE" as 35
+object "return" as 36
+object "IDF" as 37
+37 : natural
+object "is" as 38
+object "begin" as 39
+object "£INSTR" as 40
+object "end" as 41
 object "IDF" as 42
-42 : natural
-object "is" as 43
-object "begin" as 44
-object "£INSTR" as 45
-object "end" as 46
-object "IDF" as 47
-47 : fib
-object ";" as 48
+42 : fib
+object ":=" as 43
+object "£LVALUE" as 44
+object ":=" as 45
+object "entier" as 46
+46 : 1
+object ":=" as 47
+object "entier" as 48
+48 : 10
 object ":=" as 49
-object "£LVALUE" as 50
-object ":=" as 51
-object "entier" as 52
-52 : 10
-object ":=" as 53
-object "entier" as 54
-54 : 0
-object "(" as 55
-object "IDF" as 56
-56 : n
-object ":" as 57
-object "IDF" as 58
-58 : natural
-object ")" as 59
+object "entier" as 50
+50 : 0
+object "IDF" as 51
+51 : n
+object "IDF" as 52
+52 : natural
+object "if" as 53
+object "£EQUALS" as 54
+object "then" as 55
+object "£INSTR" as 56
+object "£ELSIFEtoile" as 57
+object "£ELSEINSTRInterro" as 58
+object "end" as 59
 object "if" as 60
-object "£EQUALS" as 61
-object "then" as 62
-object "£INSTR" as 63
-object "£ELSIFEtoile" as 64
-object "£ELSEINSTRInterro" as 65
-object "end" as 66
-object "if" as 67
-object ";" as 68
-object "IDF" as 69
-69 : fib
-object "£LVALUEList" as 70
-object "entier" as 71
-71 : 0
-object "IDF" as 72
-72 : n
-object "return" as 73
-object "entier" as 74
-74 : 0
-object ";" as 75
-object "elsif" as 76
-object "£EQUALS" as 77
-object "then" as 78
-object "£INSTR" as 79
-object "else" as 80
-object "£INSTR" as 81
-object "(" as 82
-object "IDF" as 83
-83 : n
-object ")" as 84
-object "entier" as 85
-85 : 1
-object "IDF" as 86
-86 : n
-object "return" as 87
-object "entier" as 88
-88 : 1
-object ";" as 89
-object "return" as 90
-object "£ADD" as 91
-object ";" as 92
-object "£LVALUE" as 93
-object "£LVALUE" as 94
-object "IDF" as 95
-95 : fib
-object "£LVALUEList" as 96
-object "IDF" as 97
-97 : fib
-object "£LVALUEList" as 98
-object "(" as 99
-object "£ADD" as 100
-object ")" as 101
-object "(" as 102
-object "£ADD" as 103
-object ")" as 104
-object "entier" as 105
-105 : 2
-object "IDF" as 106
-106 : n
-object "entier" as 107
-107 : 1
-object "IDF" as 108
-108 : n
+object "IDF" as 61
+61 : fib
+object "IDF" as 62
+62 : n
+object "£LVALUE" as 63
+object "£MOINSUnaire" as 64
+object "return" as 65
+object "entier" as 66
+66 : 0
+object "elsif" as 67
+object "£EQUALS" as 68
+object "then" as 69
+object "£INSTR" as 70
+object "else" as 71
+object "£INSTR" as 72
+object "IDF" as 73
+73 : n
+object "£LVALUEList" as 74
+object "-" as 75
+object "entier" as 76
+76 : 0
+object "IDF" as 77
+77 : n
+object "entier" as 78
+78 : 1
+object "return" as 79
+object "entier" as 80
+80 : 1
+object "return" as 81
+object "£ADD" as 82
+object "." as 83
+object "IDF" as 84
+84 : o
+object "£LVALUE" as 85
+object "£LVALUE" as 86
+object "IDF" as 87
+87 : fib
+object "£ADD" as 88
+object "IDF" as 89
+89 : fib
+object "£ADD" as 90
+object "entier" as 91
+91 : 2
+object "IDF" as 92
+92 : n
+object "entier" as 93
+93 : 1
+object "IDF" as 94
+94 : n
 1 -down-> 2
 1 -down-> 3
 1 -down-> 4
@@ -157,93 +146,79 @@ object "IDF" as 108
 1 -down-> 17
 1 -down-> 18
 1 -down-> 19
-1 -down-> 20
-1 -down-> 21
-15 -down-> 22
+13 -down-> 20
+13 -down-> 21
+13 -down-> 22
 15 -down-> 23
 15 -down-> 24
-17 -down-> 25
-17 -down-> 26
-17 -down-> 27
-22 -down-> 28
-22 -down-> 29
-22 -down-> 30
-22 -down-> 31
-22 -down-> 32
-23 -down-> 33
-23 -down-> 34
-23 -down-> 35
-23 -down-> 36
-23 -down-> 37
-24 -down-> 38
-24 -down-> 39
-24 -down-> 40
-24 -down-> 41
-24 -down-> 42
+16 -down-> 25
+16 -down-> 26
+20 -down-> 27
+20 -down-> 28
+20 -down-> 29
+21 -down-> 30
+21 -down-> 31
+21 -down-> 32
+22 -down-> 33
+22 -down-> 34
+22 -down-> 35
+22 -down-> 36
+22 -down-> 37
+22 -down-> 38
+22 -down-> 39
+22 -down-> 40
+22 -down-> 41
+22 -down-> 42
 24 -down-> 43
 24 -down-> 44
-24 -down-> 45
-24 -down-> 46
-24 -down-> 47
-24 -down-> 48
-26 -down-> 49
-26 -down-> 50
-31 -down-> 51
-31 -down-> 52
-36 -down-> 53
-36 -down-> 54
+26 -down-> 45
+26 -down-> 46
+29 -down-> 47
+29 -down-> 48
+32 -down-> 49
+32 -down-> 50
+35 -down-> 51
+35 -down-> 52
+40 -down-> 53
+40 -down-> 54
 40 -down-> 55
 40 -down-> 56
 40 -down-> 57
 40 -down-> 58
 40 -down-> 59
-45 -down-> 60
-45 -down-> 61
-45 -down-> 62
-45 -down-> 63
-45 -down-> 64
-45 -down-> 65
-45 -down-> 66
-45 -down-> 67
-45 -down-> 68
-50 -down-> 69
-50 -down-> 70
-61 -down-> 71
-61 -down-> 72
+40 -down-> 60
+44 -down-> 61
+44 -down-> 62
+54 -down-> 63
+54 -down-> 64
+56 -down-> 65
+56 -down-> 66
+57 -down-> 67
+57 -down-> 68
+57 -down-> 69
+57 -down-> 70
+58 -down-> 71
+58 -down-> 72
 63 -down-> 73
 63 -down-> 74
-63 -down-> 75
+64 -down-> 75
 64 -down-> 76
-64 -down-> 77
-64 -down-> 78
-64 -down-> 79
-65 -down-> 80
-65 -down-> 81
-70 -down-> 82
-70 -down-> 83
-70 -down-> 84
-77 -down-> 85
-77 -down-> 86
-79 -down-> 87
-79 -down-> 88
-79 -down-> 89
-81 -down-> 90
-81 -down-> 91
-81 -down-> 92
-91 -down-> 93
-91 -down-> 94
-93 -down-> 95
-93 -down-> 96
-94 -down-> 97
-94 -down-> 98
-96 -down-> 99
-96 -down-> 100
-96 -down-> 101
-98 -down-> 102
-98 -down-> 103
-98 -down-> 104
-100 -down-> 105
-100 -down-> 106
-103 -down-> 107
-103 -down-> 108
+68 -down-> 77
+68 -down-> 78
+70 -down-> 79
+70 -down-> 80
+72 -down-> 81
+72 -down-> 82
+74 -down-> 83
+74 -down-> 84
+82 -down-> 85
+82 -down-> 86
+85 -down-> 87
+85 -down-> 88
+86 -down-> 89
+86 -down-> 90
+88 -down-> 91
+88 -down-> 92
+90 -down-> 93
+90 -down-> 94
 @enduml
