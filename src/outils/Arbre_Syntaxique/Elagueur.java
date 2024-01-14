@@ -76,6 +76,7 @@ public class Elagueur {
         }
         for (Noeud_Non_Terminal nnt : tag) {
             nnt.getParent().getEnfants().remove(nnt);
+            nnt.getParent().ajouterEnfant(nnt.getEnfants().get(1));
             nnt.getParent().ajouterEnfant(nnt.getEnfants().get(0));
         }
     }
