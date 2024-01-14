@@ -1,7 +1,5 @@
 package outils.Arbre_Syntaxique;
 
-import outils.Logger;
-
 import java.util.ArrayList;
 
 public class Noeud_Non_Terminal extends Noeud_A {
@@ -52,5 +50,9 @@ public class Noeud_Non_Terminal extends Noeud_A {
 
     public boolean sansEnfant() {
         return this.enfants.isEmpty();
+    }
+
+    public void supprimer() {
+        this.getParent().getEnfants().remove(this);
     }
 }

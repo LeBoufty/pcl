@@ -19,4 +19,5 @@ public abstract class Noeud_A {
 
     public abstract boolean sansEnfant();
     public abstract void seSacrifier();
+    public abstract void supprimer();
 }
