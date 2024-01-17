@@ -1,15 +1,14 @@
 package outils.Syntaxe;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 import outils.Logger;
-import outils.Arbre_Syntaxique.Noeud_Non_Terminal;
-import outils.Arbre_Syntaxique.Noeud_Terminal;
 import outils.Arbre_Syntaxique.Elagueur;
 import outils.Arbre_Syntaxique.Generator_UML;
-
-import java.util.List;
-import java.util.HashMap;
+import outils.Arbre_Syntaxique.Noeud_Non_Terminal;
+import outils.Arbre_Syntaxique.Noeud_Terminal;
 
 // Obligation CSV : Le premier non-terminal engendrant la grammaire doit être le premier non terminal dans le CSV. Le dernier terminal engendrant la grammaire doit être le dernier terminal dans le CSV. Les index associés aux IDF ou constantes doivent être mis dans la liste associée
 
@@ -69,12 +68,12 @@ public class CSVAnalyseur_S {
         while (!pile.empty()) {
             int element = pile.pop();
             if (element < 0) {
-                Logger.debug("Element Pile Non-Terminal : " + dico_non_terminaux.get(-element) + " code : " + element);
+                //Logger.debug("Element Pile Non-Terminal : " + dico_non_terminaux.get(-element) + " code : " + element);
             }
             else {
-                Logger.debug("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
+                //Logger.debug("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
             }
-            Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+            //Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
 
             if (element > 0) { // si c'est un terminal
 

@@ -1,6 +1,18 @@
 package tests;
 
-import arbres.*;
+import arbres.Affectation;
+import arbres.AppelFonction;
+import arbres.Bloc;
+import arbres.Constante;
+import arbres.Fonction;
+import arbres.Instanciation;
+import arbres.InstructionIf;
+import arbres.Noeud;
+import arbres.Operateur;
+import arbres.Operation;
+import arbres.Procedure;
+import arbres.Return;
+import arbres.Type;
 import arbres.PlantUML.GenerateurPUML;
 import outils.Logger;
 
@@ -72,7 +84,7 @@ public class TestArbreUnDebut {
         Procedure unDebut = new Procedure("unDebut", defBloc, instrBloc);
 
         // Impression
-        if (unDebut.valide()) Logger.debug(unDebut.toString());
+        //if (unDebut.valide()) Logger.debug(unDebut.toString());
 
         // PlantUML
         try {

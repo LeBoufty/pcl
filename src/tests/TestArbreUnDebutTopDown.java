@@ -1,6 +1,16 @@
 package tests;
 
-import arbres.*;
+import arbres.Affectation;
+import arbres.AppelFonction;
+import arbres.Constante;
+import arbres.Fonction;
+import arbres.Instanciation;
+import arbres.InstructionIf;
+import arbres.Operateur;
+import arbres.Operation;
+import arbres.Procedure;
+import arbres.Return;
+import arbres.Type;
 import arbres.PlantUML.GenerateurPUML;
 import outils.Logger;
 
@@ -99,7 +109,7 @@ public class TestArbreUnDebutTopDown {
         unDebut.ajouterInstruction(choixegal1);
 
         // Impression
-        if (unDebut.valide()) Logger.debug(unDebut.toString());
+        //if (unDebut.valide()) Logger.debug(unDebut.toString());
 
         // PlantUML
         try {

@@ -113,21 +113,24 @@ object "." as 83
 object "IDF" as 84
 84 : o
 object "£LVALUE" as 85
-object "£LVALUE" as 86
-object "IDF" as 87
-87 : fib
-object "£ADD" as 88
-object "IDF" as 89
-89 : fib
-object "£ADD" as 90
-object "entier" as 91
-91 : 2
-object "IDF" as 92
-92 : n
-object "entier" as 93
-93 : 1
+object "+" as 86
+object "£LVALUE" as 87
+object "IDF" as 88
+88 : fib
+object "£ADD" as 89
+object "IDF" as 90
+90 : fib
+object "£ADD" as 91
+object "entier" as 92
+92 : 2
+object "-" as 93
 object "IDF" as 94
 94 : n
+object "entier" as 95
+95 : 1
+object "-" as 96
+object "IDF" as 97
+97 : n
 1 -down-> 2
 1 -down-> 3
 1 -down-> 4
@@ -213,12 +216,15 @@ object "IDF" as 94
 74 -down-> 84
 82 -down-> 85
 82 -down-> 86
-85 -down-> 87
+82 -down-> 87
 85 -down-> 88
-86 -down-> 89
-86 -down-> 90
-88 -down-> 91
-88 -down-> 92
-90 -down-> 93
-90 -down-> 94
+85 -down-> 89
+87 -down-> 90
+87 -down-> 91
+89 -down-> 92
+89 -down-> 93
+89 -down-> 94
+91 -down-> 95
+91 -down-> 96
+91 -down-> 97
 @enduml

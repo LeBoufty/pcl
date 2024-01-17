@@ -22,6 +22,6 @@ public class TestLecteur {
         Logger.info("Un message d'information");
         Logger.warn("Un message d'avertissement");
         Logger.error("Un message d'erreur");
-        Logger.debug("Un message de débug qui ne sera pas vu par l'utilisateur");
+        //Logger.debug("Un message de débug qui ne sera pas vu par l'utilisateur");
     }
 }

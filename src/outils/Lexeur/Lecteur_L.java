@@ -47,7 +47,7 @@ public class Lecteur_L {
         }
         
         if (DEBUG) {
-            Logger.debug("Lecteur_L.lire() : " + this.tete_de_lecture);
+            //Logger.debug("Lecteur_L.lire() : " + this.tete_de_lecture);
         }
 
         return this.tete_de_lecture;
