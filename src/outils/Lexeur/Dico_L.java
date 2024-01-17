@@ -77,7 +77,7 @@ public class Dico_L {
         this.dico_terminaux.put("/", 46);
         this.dico_terminaux.put("rem", 47);
         CODE_CARACTERE = 48;
-        this.dico_terminaux.put("charactere", 49);
+        this.dico_terminaux.put("character", 49);
         this.dico_terminaux.put("'", 50);
         this.dico_terminaux.put("val", 51);
         CODE_ENTIER = 52;
