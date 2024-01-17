@@ -221,7 +221,7 @@ public class Analyseur_L {
     private void ecrire_lex(Mot_L mot_lexical) throws Exception {
         ecrivain_code.ecrire_code(mot_lexical.code_mot);
         if (DEBUG) {
-            Logger.debug("Mot écrit : " + mot_preprecedent.mot + " - code : " + mot_preprecedent.code_mot);
+            //Logger.debug("Mot écrit : " + mot_preprecedent.mot + " - code : " + mot_preprecedent.code_mot);
         }
         if (mot_lexical.code_idf != -1) {
             ecrivain_code.ecrire_code(mot_lexical.code_idf);

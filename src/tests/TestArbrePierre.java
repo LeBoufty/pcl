@@ -1,9 +1,5 @@
 package tests;
 
-import arbres.*;
-import arbres.PlantUML.GenerateurPUML;
-import outils.Logger;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,7 +11,7 @@ public class TestArbrePierre {
         file.add(2);
         file.add(3);
 
-        Logger.debug(file.toString());
-        Logger.debug(file.remove().toString());
+        //Logger.debug(file.toString());
+        //Logger.debug(file.remove().toString());
     }
 }

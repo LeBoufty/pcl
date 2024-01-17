@@ -5,10 +5,8 @@ import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.HashMap;
-
-import outils.Logger;
+import java.util.List;
 
 // Obligation : Le premier élément du fichier CSV n'est pas pris en compte. Les cases ne doivent pas être vides. La première colonne correspond aux non-terminaux. La première ligne correspond aux terminaux. Chaque case correspond à une liste de règles. Une règle vide est sumbolysé par RULE_EMPTY. S'il y a plusieurs règles dans une même case, les règles sont séparés par RULE_DELIMITER. Les terminaux sont symbolysés par leur propre nom. Les non-terminaux sont symbolysés par NON_TERMINAL + leur nom. Les terminaux et non-terminaux sont séparés par WORD_DELIMITER. Epsilon est symbolysé par EPSILON.
 
@@ -92,7 +90,7 @@ public class CSVParser {
                 else {
                     String rule_str = records.get(i).get(j);
                     String[] rules_str = rule_str.split(RULE_DELIMITER);
-                    Logger.debug("rules_str : " + Arrays.toString(rules_str));
+                    //Logger.debug("rules_str : " + Arrays.toString(rules_str));
                     addRule(rules_str, casee, colonnes, lignes);
                 }
                 ligne.add(casee);
@@ -112,8 +110,8 @@ public class CSVParser {
                     rule.add(0);
                 }
                 else if (elements[l].charAt(0) == NON_TERMINAL) {
-                    Logger.debug("elements[l] : " + elements[l]);
-                    Logger.debug("colonnes.get(elements[l]) : " + colonnes.get(elements[l]));
+                    //Logger.debug("elements[l] : " + elements[l]);
+                    //Logger.debug("colonnes.get(elements[l]) : " + colonnes.get(elements[l]));
                     rule.add(-colonnes.get(elements[l]));
                 }
                 else {
