@@ -21,7 +21,7 @@ res : Natural := 0;
     --Main
 begin
     res := Fib(n);
-    put("Fibonacci de " & n'Image);
-    put(" est :" & res'Image);
+    --put("Fibonacci de " & n'Image);
+    --put(" est :" & res'Image);
 end Fibonacci;
 
