@@ -14,7 +14,7 @@ public class TestParserLexeur {
         //System.out.println(rules.get(0).get(0).get(0));
 
         String programme = "Programmes/Fonctionne/hello_world.adb";
-        //programme = "Programmes/Fonctionne/fibonaccii.adb";
+        programme = "Programmes/Fonctionne/fibonaccii.adb";
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
 

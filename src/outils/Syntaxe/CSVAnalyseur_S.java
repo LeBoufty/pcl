@@ -68,12 +68,12 @@ public class CSVAnalyseur_S {
         while (!pile.empty()) {
             int element = pile.pop();
             if (element < 0) {
-                //Logger.debug("Element Pile Non-Terminal : " + dico_non_terminaux.get(-element) + " code : " + element);
+                Logger.info("Element Pile Non-Terminal : " + dico_non_terminaux.get(-element) + " code : " + element);
             }
             else {
-                //Logger.debug("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
+                Logger.info("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
             }
-            //Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+            Logger.info("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
 
             if (element > 0) { // si c'est un terminal
 
