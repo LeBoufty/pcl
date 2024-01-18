@@ -22,6 +22,11 @@ public class Noeud_Non_Terminal extends Noeud_A {
         enfant.setParent(this);
     }
 
+    public void ajouterFirstEnfant(Noeud_A enfant) {
+        this.enfants.add(0, enfant);
+        enfant.setParent(this);
+    }
+
     public ArrayList<Noeud_A> getEnfants() {
         return this.enfants;
     }

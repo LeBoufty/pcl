@@ -32,29 +32,29 @@ object "IDF" as 23
 object "£DEFORInterro" as 24
 object "£INSTR" as 25
 object "£INSTR" as 26
-object "IDF" as 27
-27 : n
+object "function" as 27
 object "IDF" as 28
-28 : natural
-object "£DEFORInterro" as 29
-object "IDF" as 30
-30 : res
+28 : fib
+object "£PARENTHESE" as 29
+object "return" as 30
 object "IDF" as 31
 31 : natural
-object "£DEFORInterro" as 32
-object "function" as 33
-object "IDF" as 34
-34 : fib
-object "£PARENTHESE" as 35
-object "return" as 36
+object "is" as 32
+object "begin" as 33
+object "£INSTR" as 34
+object "end" as 35
+object "IDF" as 36
+36 : fib
 object "IDF" as 37
-37 : natural
-object "is" as 38
-object "begin" as 39
-object "£INSTR" as 40
-object "end" as 41
-object "IDF" as 42
-42 : fib
+37 : res
+object "IDF" as 38
+38 : natural
+object "£DEFORInterro" as 39
+object "IDF" as 40
+40 : n
+object "IDF" as 41
+41 : natural
+object "£DEFORInterro" as 42
 object ":=" as 43
 object "£LVALUE" as 44
 object "IDF" as 45
@@ -63,24 +63,24 @@ object "£DEFORInterro" as 46
 object "IDF" as 47
 47 : ar
 object "£DEFORInterro" as 48
-object ":=" as 49
-object "entier" as 50
-50 : 10
-object ":=" as 51
-object "entier" as 52
-52 : 0
-object "IDF" as 53
-53 : n
-object "IDF" as 54
-54 : natural
-object "if" as 55
-object "£EQUALS" as 56
-object "then" as 57
-object "£INSTR" as 58
-object "£ELSIFEtoile" as 59
-object "£ELSEINSTRInterro" as 60
-object "end" as 61
-object "if" as 62
+object "IDF" as 49
+49 : n
+object "IDF" as 50
+50 : natural
+object "if" as 51
+object "£EQUALS" as 52
+object "then" as 53
+object "£INSTR" as 54
+object "£ELSIFEtoile" as 55
+object "£ELSEINSTRInterro" as 56
+object "end" as 57
+object "if" as 58
+object ":=" as 59
+object "entier" as 60
+60 : 0
+object ":=" as 61
+object "entier" as 62
+62 : 10
 object "IDF" as 63
 63 : fib
 object "IDF" as 64
@@ -167,16 +167,16 @@ object "IDF" as 103
 20 -down-> 27
 20 -down-> 28
 20 -down-> 29
-21 -down-> 30
-21 -down-> 31
-21 -down-> 32
-22 -down-> 33
-22 -down-> 34
-22 -down-> 35
-22 -down-> 36
-22 -down-> 37
-22 -down-> 38
-22 -down-> 39
+20 -down-> 30
+20 -down-> 31
+20 -down-> 32
+20 -down-> 33
+20 -down-> 34
+20 -down-> 35
+20 -down-> 36
+21 -down-> 37
+21 -down-> 38
+21 -down-> 39
 22 -down-> 40
 22 -down-> 41
 22 -down-> 42
@@ -188,34 +188,34 @@ object "IDF" as 103
 26 -down-> 48
 29 -down-> 49
 29 -down-> 50
-32 -down-> 51
-32 -down-> 52
-35 -down-> 53
-35 -down-> 54
-40 -down-> 55
-40 -down-> 56
-40 -down-> 57
-40 -down-> 58
-40 -down-> 59
-40 -down-> 60
-40 -down-> 61
-40 -down-> 62
+34 -down-> 51
+34 -down-> 52
+34 -down-> 53
+34 -down-> 54
+34 -down-> 55
+34 -down-> 56
+34 -down-> 57
+34 -down-> 58
+39 -down-> 59
+39 -down-> 60
+42 -down-> 61
+42 -down-> 62
 44 -down-> 63
 44 -down-> 64
 46 -down-> 65
 46 -down-> 66
 48 -down-> 67
 48 -down-> 68
-56 -down-> 69
-56 -down-> 70
-58 -down-> 71
-58 -down-> 72
-59 -down-> 73
-59 -down-> 74
-59 -down-> 75
-59 -down-> 76
-60 -down-> 77
-60 -down-> 78
+52 -down-> 69
+52 -down-> 70
+54 -down-> 71
+54 -down-> 72
+55 -down-> 73
+55 -down-> 74
+55 -down-> 75
+55 -down-> 76
+56 -down-> 77
+56 -down-> 78
 69 -down-> 79
 69 -down-> 80
 70 -down-> 81

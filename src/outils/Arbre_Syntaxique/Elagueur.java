@@ -126,7 +126,7 @@ public class Elagueur {
             if (nnt.getParent().getCode() == nnt.getCode()) {
                 nnt.getParent().getEnfants().remove(nnt);
                 for (Noeud_A enfant : nnt.getEnfants()) {
-                    nnt.getParent().ajouterEnfant(enfant);
+                    nnt.getParent().ajouterFirstEnfant(enfant);
                 }
             }
         }
