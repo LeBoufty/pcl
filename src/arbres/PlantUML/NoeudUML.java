@@ -210,6 +210,14 @@ public class NoeudUML {
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 break;
+            case "Pointeur":
+                Pointeur p2 = (Pointeur) n;
+                this.valeur = rendreUnique(p2.toString());
+                this.titre = p2.toString();
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(p2.type.toString()));
+                break;
             default:
                 // Cas par défaut, on sait jamais.
                 this.valeur = Repertoire.getNewID(n);
