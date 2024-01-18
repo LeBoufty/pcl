@@ -122,11 +122,11 @@ public class Elagueur {
                 }
             }
         }
-        for (Noeud_Non_Terminal nnt : tag) {
+        for (Noeud_Non_Terminal nnt : (tag)) {
             if (nnt.getParent().getCode() == nnt.getCode()) {
                 nnt.getParent().getEnfants().remove(nnt);
                 for (Noeud_A enfant : nnt.getEnfants()) {
-                    nnt.getParent().ajouterEnfant(enfant);
+                    nnt.getParent().ajouterFirstEnfant(enfant);
                 }
             }
         }
@@ -134,5 +134,21 @@ public class Elagueur {
 
     public Noeud_Non_Terminal getArbre_Syntaxique() {
         return this.Arbre_Syntaxique;
+    }
+
+    public ArrayList<Noeud_A> ArrayInverse(ArrayList<Noeud_A> array) {
+        ArrayList<Noeud_A> inverse = new ArrayList<>();
+        for (int i = array.size() - 1; i >= 0; i--) {
+            inverse.add(array.get(i));
+        }
+        return inverse;
+    }
+
+    public ArrayList<Noeud_Non_Terminal> ArrayInverseNT(ArrayList<Noeud_Non_Terminal> array) {
+        ArrayList<Noeud_Non_Terminal> inverse = new ArrayList<>();
+        for (int i = array.size() - 1; i >= 0; i--) {
+            inverse.add(array.get(i));
+        }
+        return inverse;
     }
 }

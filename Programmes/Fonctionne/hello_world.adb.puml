@@ -25,15 +25,19 @@ object "IDF" as 18
 18 : hello_world
 object ";" as 19
 object "EOF" as 20
-object "£LVALUE" as 21
-object ";" as 22
-object "IDF" as 23
-23 : put
-object "£LVALUEList" as 24
-object "(" as 25
-object "caractere" as 26
-26 : A
-object ")" as 27
+object "IDF" as 21
+21 : caca
+object "£DEFORInterro" as 22
+object ";" as 23
+object ":=" as 24
+object "£EXPRESSION" as 25
+object "charactere" as 26
+object "'" as 27
+object "val" as 28
+object "(" as 29
+object "entier" as 30
+30 : 65
+object ")" as 31
 1 -down-> 2
 1 -down-> 3
 1 -down-> 4
@@ -55,9 +59,13 @@ object ")" as 27
 1 -down-> 20
 16 -down-> 21
 16 -down-> 22
-21 -down-> 23
-21 -down-> 24
-24 -down-> 25
-24 -down-> 26
-24 -down-> 27
+16 -down-> 23
+22 -down-> 24
+22 -down-> 25
+25 -down-> 26
+25 -down-> 27
+25 -down-> 28
+25 -down-> 29
+25 -down-> 30
+25 -down-> 31
 @enduml

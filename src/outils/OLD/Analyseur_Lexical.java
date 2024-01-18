@@ -1,9 +1,7 @@
 package outils.OLD;
 
-import outils.Logger;
-
 // import outils.Lecteur;
-// import outils.Logger;
+import outils.Logger;
 // import outils.Mot_Lexical;
 // import outils.Dictionnaire_Lexical;
 // import outils.Ecrivain_Lexical;
@@ -163,7 +161,7 @@ public class Analyseur_Lexical {
                 ecrivain.sauter_ligne();
             }
 
-            Logger.debug("Ecriture du mot : " + this.mot_precedent.mot + " à la ligne " + this.mot_precedent.num_ligne_mot + " et au caractère " + this.mot_precedent.num_char_mot + " avec le code " + this.mot_precedent.code_mot);
+            Logger.info("Ecriture du mot : " + this.mot_precedent.mot + " à la ligne " + this.mot_precedent.num_ligne_mot + " et au caractère " + this.mot_precedent.num_char_mot + " avec le code " + this.mot_precedent.code_mot);
 
             if (this.mot_precedent.code_mot == 43) {
                 ecrivain.ecrire_idf(this.mot_precedent.code_mot, this.mot_precedent.code_idf);
