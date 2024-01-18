@@ -6,8 +6,8 @@ procedure andthenorelse is
 
 begin
    -- Prompt the user for input
-   Put("Enter your age: ");
-   Get(Item => Age);
+   put('A');
+   --Get(Item => Age);
 
    -- Check if the entered age is within a valid range using "and then"
    if Age >= 18 and then Age <= 65 then
