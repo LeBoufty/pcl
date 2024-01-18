@@ -53,6 +53,7 @@ public class CSVAnalyseur_S {
     }
 
     public boolean analyse() throws Exception {
+        Logger.milestone("Début de l'analyse syntaxique de " + lect.getNomFichier() + " avec la grammaire " + records.get(0).get(0));
         pile.push(records.get(0).size() - 1); // empile le terminal de fin de grammaire $
         pile.push(-1); // empile le premier non-terminal de la grammaire
 
@@ -142,6 +143,7 @@ public class CSVAnalyseur_S {
             }
                 
         }
+        Logger.milestone("Analyse syntaxique terminée avec succès");
         return true;
     }
 
