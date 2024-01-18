@@ -4,10 +4,11 @@ import arbres.Affectation;
 import arbres.AppelFonction;
 import arbres.Constante;
 import arbres.Fonction;
-import arbres.Instanciation;
+import arbres.Declaration;
 import arbres.InstructionIf;
 import arbres.Operateur;
 import arbres.Operation;
+import arbres.Parametre;
 import arbres.Procedure;
 import arbres.Return;
 import arbres.Type;
@@ -18,8 +19,8 @@ public class TestArbreUnDebutTopDown {
     public static void main(String[] args) {
         ////////////////////////////////
         // Sera réalisé à l'initalisation de l'analyseur syntaxique
-        Instanciation nToPut = new Instanciation(Type.INTEGER, "n");
-        Instanciation cToPut = new Instanciation(Type.CHARACTER, "c");
+        Parametre nToPut = new Parametre(Type.INTEGER, "n");
+        Parametre cToPut = new Parametre(Type.CHARACTER, "c");
         Fonction putInt = new Fonction("put");
         putInt.params.add(nToPut);
         putInt.type = Type.NULLTYPE;
@@ -31,12 +32,12 @@ public class TestArbreUnDebutTopDown {
         Procedure unDebut = new Procedure("unDebut");
         // aireRectangle :
         Fonction aireRectangle = new Fonction("aireRectangle");
-        Instanciation aireLarg = new Instanciation(Type.INTEGER, "larg");
-        Instanciation aireLong = new Instanciation(Type.INTEGER, "long");
+        Parametre aireLarg = new Parametre(Type.INTEGER, "larg");
+        Parametre aireLong = new Parametre(Type.INTEGER, "long");
         aireRectangle.params.add(aireLarg);
         aireRectangle.params.add(aireLong);
         aireRectangle.type = Type.INTEGER;
-        Instanciation aire = new Instanciation(Type.INTEGER, "aire");
+        Declaration aire = new Declaration(Type.INTEGER, "aire");
         aireRectangle.ajouterDefinition(aire);
         Affectation aireAffectation = new Affectation();
         aireAffectation.gauche = aire.variable;
@@ -51,12 +52,12 @@ public class TestArbreUnDebutTopDown {
         unDebut.ajouterDefinition(aireRectangle);
         // perimetreRectangle :
         Fonction perimetreRectangle = new Fonction("perimetreRectangle");
-        Instanciation periLarg = new Instanciation(Type.INTEGER, "larg");
-        Instanciation periLong = new Instanciation(Type.INTEGER, "long");
+        Parametre periLarg = new Parametre(Type.INTEGER, "larg");
+        Parametre periLong = new Parametre(Type.INTEGER, "long");
         perimetreRectangle.params.add(periLarg);
         perimetreRectangle.params.add(periLong);
         perimetreRectangle.type = Type.INTEGER;
-        Instanciation p = new Instanciation(Type.INTEGER, "perimetre");
+        Declaration p = new Declaration(Type.INTEGER, "perimetre");
         perimetreRectangle.ajouterDefinition(p);
         Affectation perimAffectation = new Affectation();
         perimAffectation.gauche = p.variable;
@@ -76,10 +77,10 @@ public class TestArbreUnDebutTopDown {
         perimetreRectangle.ajouterInstruction(retourPerim);
         unDebut.ajouterDefinition(perimetreRectangle);
         // Variables
-        Instanciation choix = new Instanciation(Type.INTEGER, "choix");
+        Declaration choix = new Declaration(Type.INTEGER, "choix");
         unDebut.ajouterDefinition(choix);
         // (Pas dans le programme mais nécessaire, je pense que c'est une erreur du sujet)
-        Instanciation valeur = new Instanciation(Type.INTEGER, "valeur");
+        Declaration valeur = new Declaration(Type.INTEGER, "valeur");
         unDebut.ajouterDefinition(valeur);
         // Procédure principale
         unDebut.ajouterInstruction(new Affectation(choix.variable, new Constante(1)));

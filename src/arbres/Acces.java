@@ -1,5 +1,7 @@
 package arbres;
 
+import java.util.ArrayList;
+
 public class Acces extends Evaluable {
     public Variable variable;
     public String champ;
@@ -15,7 +17,14 @@ public class Acces extends Evaluable {
         boolean sortie = true;
         if (type instanceof Struct) {
             Struct s = (Struct) type;
-            sortie = sortie && s.champs.contains(champ);
+            ArrayList<Champ> champs = s.champs;
+            boolean drapo = false;
+            for (Champ c : champs) {
+                if (c.nom.equals(champ)) {
+                    drapo = true;
+                }
+            }
+            sortie = sortie && drapo;
         }
         return sortie && variable.valide() && type.valide();
     }

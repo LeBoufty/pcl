@@ -7,29 +7,29 @@ import outils.Logger;
 public class Fonction implements Noeud {
     public String nom;
     public IType type;
-    public ArrayList<Instanciation> params;
+    public ArrayList<Parametre> params;
     public Noeud definitions;
     public Noeud instructions;
-    public Fonction(String nom, Instanciation[] parametres, IType t, Noeud def, Noeud inst) {
+    public Fonction(String nom, Parametre[] parametres, IType t, Noeud def, Noeud inst) {
         this.nom = nom;
         this.type = t;
         this.definitions = def;
         this.instructions = inst;
         this.params = new ArrayList<>();
-        for (Instanciation p : parametres) {
+        for (Parametre p : parametres) {
             this.params.add(p);
         }
     }
-    public Fonction(String nom, Instanciation[] parametres, IType t) {
+    public Fonction(String nom, Parametre[] parametres, IType t) {
         this(nom, parametres, t, new Bloc(), new Bloc());
     }
     public Fonction(String nom) {
-        this(nom, new Instanciation[] {}, Type.NULLTYPE, new Bloc(), new Bloc());
+        this(nom, new Parametre[] {}, Type.NULLTYPE, new Bloc(), new Bloc());
     }
     public String toString() {
         String sortie = "function " + this.nom + "(";
         ArrayList<String> paramStrings = new ArrayList<>();
-        for (Instanciation p : params) {
+        for (Parametre p : params) {
             paramStrings.add(p.toString());
         }
         sortie += String.join(" ", paramStrings);

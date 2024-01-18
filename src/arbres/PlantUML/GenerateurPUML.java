@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import outils.Logger;
 
 import arbres.Noeud;
+import java.nio.charset.StandardCharsets;
 
 public class GenerateurPUML {
     private FileWriter fichier;
@@ -12,8 +13,9 @@ public class GenerateurPUML {
     public GenerateurPUML(Noeud racine, String nomFichier) throws Exception {
         Logger.info("Traduction de l'arbre...");
         this.racineUML = new NoeudUML(racine);
+        Logger.milestone("Arbre UML généré");
         Logger.info("Ouverture du fichier "+ nomFichier);
-        fichier = new FileWriter(nomFichier);
+        fichier = new FileWriter(nomFichier, StandardCharsets.UTF_8);
     }
     private void commencer() throws Exception {
         fichier.write("@startuml ArbreSyntaxique\n");
@@ -30,7 +32,7 @@ public class GenerateurPUML {
         Logger.info("Génération des relations...");
         genererRelations();
         terminer();
-        Logger.info("Fichier "+ fichier.toString() +" terminé");
+        Logger.milestone("Fichier "+ fichier.toString() +" terminé");
     }
     private void genererDefinitions() throws Exception {
         int nbnoeuds = 0;

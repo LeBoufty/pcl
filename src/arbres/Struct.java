@@ -6,36 +6,32 @@ import outils.Logger;
 
 public class Struct implements Noeud, IType {
     public String nom;
-    public ArrayList<String> champs;
-    public ArrayList<IType> types;
-    public Struct(String nom, ArrayList<String> champs, ArrayList<IType> types) {
+    public ArrayList<Champ> champs;
+    public Struct(String nom, ArrayList<Champ> champs) {
         this.nom = nom;
         this.champs = champs;
-        this.types = types;
     }
     public Struct() {
         this.nom = "";
-        this.champs = new ArrayList<String>();
-        this.types = new ArrayList<IType>();
+        this.champs = new ArrayList<Champ>();
     }
     public IType getChamp(String nom) {
-        int i = this.champs.indexOf(nom);
-        if (i == -1) {
-            Logger.error(nom+" n'est pas un champ de "+this.nom);
-            return Type.NULLTYPE;
-        } else {
-            return this.types.get(i);
+        for (Champ c : champs) {
+            if (c.nom.equals(nom)) {
+                return c.type;
+            }
         }
+        Logger.error("Le champ " + nom + " n'existe pas dans la structure " + this.nom);
+        return Type.NULLTYPE;
     }
     public String toString() {
         return this.nom;
     }
     public boolean valide() {
         boolean sortie = true;
-        for (IType t : types) {
+        for (Champ t : champs) {
             sortie = sortie && t.valide();
         }
-        sortie = sortie && champs.size() == types.size();
         return sortie;
     }
 }
