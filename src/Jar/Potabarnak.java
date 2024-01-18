@@ -1,7 +1,5 @@
 package Jar;
 
-import java.util.List;
-
 import outils.Logger;
 import outils.Lexeur.Analyseur_L;
 
@@ -12,9 +10,9 @@ public class Potabarnak {
         // Le but est de pouvoir lancer le projet en ligne de commande en donnant en argument le chemin du fichier à analyser et le chemin du fichier .csv contenant la grammaire
 
         // Debug
-        // args = new String[2];
-        // args[0] = "Programmes/Fonctionne/hello_world.adb";
-        // args[1] = "src/tests/Tableau_LL.csv";
+        args = new String[2];
+        args[0] = "Programmes/Fonctionne/hello_world.adb";
+        args[1] = "src/tests/Tableau_LL.csv";
 
         // On vérifie que l'utilisateur a bien donné deux arguments
         if (args.length != 2) {
@@ -78,8 +76,6 @@ public class Potabarnak {
 
         // On ouvre la grammaire
         Logger.info("Lecture de la grammaire " + args[1]);
-        List<List<String>> records = outils.Syntaxe.CSVParser.parse(args[1]);
-        List<List<List<List<Integer>>>> rules = outils.Syntaxe.CSVParser.parseRules(records);
 
         // On analyse le fichier .lex
         Logger.info("Analyse du fichier " + args[0] + ".lex");
