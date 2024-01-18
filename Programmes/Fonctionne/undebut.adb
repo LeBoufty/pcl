@@ -27,9 +27,9 @@ begin
     if choix = 1 or
      else choix = 2 
         then valeur := perimetreRectangle(2, 3) ;
-            put("Le perimetre du rectangle est : " & valeur'Image) ;
+            put(valeur) ;
         else valeur := aireRectangle(2, 3) ;
-            put("L'aire du rectangle est : " & valeur'Image) ;
+            put(valeur) ;
     end if;
 end unDebut ;
 
