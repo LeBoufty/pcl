@@ -5,19 +5,19 @@ object "Bloc" as Bloc
 object "Bloc" as Bloc5
 object "Fonction" as Fonction
 object "Fonction" as Fonction1
-object "Instanciation" as Instanciation6
-object "Instanciation" as Instanciation7
+object "Déclaration" as Declaration2
+object "Déclaration" as Declaration3
 object "Affectation" as Affectation2
 object "If" as InstructionIf
 object "aireRectangle" as aireRectangle
-object "Instanciation" as Instanciation
-object "Instanciation" as Instanciation1
+object "Paramètre" as Parametre
+object "Paramètre" as Parametre1
 object "INTEGER" as INTEGER__
 object "Bloc" as Bloc1
 object "Bloc" as Bloc2
 object "perimetreRectangle" as perimetreRectangle
-object "Instanciation" as Instanciation3
-object "Instanciation" as Instanciation4
+object "Paramètre" as Parametre2
+object "Paramètre" as Parametre3
 object "INTEGER" as INTEGER______
 object "Bloc" as Bloc3
 object "Bloc" as Bloc4
@@ -34,14 +34,14 @@ object "larg" as larg
 object "INTEGER" as INTEGER
 object "long" as long
 object "INTEGER" as INTEGER_
-object "Instanciation" as Instanciation2
+object "Déclaration" as Declaration
 object "Affectation" as Affectation
 object "Return" as Return
 object "larg" as larg__
 object "INTEGER" as INTEGER____
 object "long" as long__
 object "INTEGER" as INTEGER_____
-object "Instanciation" as Instanciation5
+object "Déclaration" as Declaration1
 object "Affectation" as Affectation1
 object "Return" as Return1
 object "choix" as choix__
@@ -92,43 +92,43 @@ Procedure -down-> Bloc
 Procedure -down-> Bloc5
 Bloc -down-> Fonction
 Bloc -down-> Fonction1
-Bloc -down-> Instanciation6
-Bloc -down-> Instanciation7
+Bloc -down-> Declaration2
+Bloc -down-> Declaration3
 Bloc5 -down-> Affectation2
 Bloc5 -down-> InstructionIf
 Fonction -down-> aireRectangle
-Fonction -down-> Instanciation
-Fonction -down-> Instanciation1
+Fonction -down-> Parametre
+Fonction -down-> Parametre1
 Fonction -down-> INTEGER__
 Fonction -down-> Bloc1
 Fonction -down-> Bloc2
 Fonction1 -down-> perimetreRectangle
-Fonction1 -down-> Instanciation3
-Fonction1 -down-> Instanciation4
+Fonction1 -down-> Parametre2
+Fonction1 -down-> Parametre3
 Fonction1 -down-> INTEGER______
 Fonction1 -down-> Bloc3
 Fonction1 -down-> Bloc4
-Instanciation6 -down-> choix
-Instanciation6 -down-> INTEGER________
-Instanciation7 -down-> valeur
-Instanciation7 -down-> INTEGER_________
+Declaration2 -down-> choix
+Declaration2 -down-> INTEGER________
+Declaration3 -down-> valeur
+Declaration3 -down-> INTEGER_________
 Affectation2 -down-> choix_
 Affectation2 -down-> 1
 InstructionIf -down-> Operation4
 InstructionIf -down-> Bloc6
 InstructionIf -down-> Bloc7
-Instanciation -down-> larg
-Instanciation -down-> INTEGER
-Instanciation1 -down-> long
-Instanciation1 -down-> INTEGER_
-Bloc1 -down-> Instanciation2
+Parametre -down-> larg
+Parametre -down-> INTEGER
+Parametre1 -down-> long
+Parametre1 -down-> INTEGER_
+Bloc1 -down-> Declaration
 Bloc2 -down-> Affectation
 Bloc2 -down-> Return
-Instanciation3 -down-> larg__
-Instanciation3 -down-> INTEGER____
-Instanciation4 -down-> long__
-Instanciation4 -down-> INTEGER_____
-Bloc3 -down-> Instanciation5
+Parametre2 -down-> larg__
+Parametre2 -down-> INTEGER____
+Parametre3 -down-> long__
+Parametre3 -down-> INTEGER_____
+Bloc3 -down-> Declaration1
 Bloc4 -down-> Affectation1
 Bloc4 -down-> Return1
 Operation4 -down-> choix__
@@ -138,13 +138,13 @@ Bloc6 -down-> Affectation3
 Bloc6 -down-> AppelFonction1
 Bloc7 -down-> Affectation4
 Bloc7 -down-> AppelFonction3
-Instanciation2 -down-> aire
-Instanciation2 -down-> INTEGER___
+Declaration -down-> aire
+Declaration -down-> INTEGER___
 Affectation -down-> aire_
 Affectation -down-> Operation
 Return -down-> aire__
-Instanciation5 -down-> perimetre
-Instanciation5 -down-> INTEGER_______
+Declaration1 -down-> perimetre
+Declaration1 -down-> INTEGER_______
 Affectation1 -down-> perimetre_
 Affectation1 -down-> Operation1
 Return1 -down-> perimetre__

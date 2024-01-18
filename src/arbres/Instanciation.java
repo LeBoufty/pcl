@@ -1,6 +1,6 @@
 package arbres;
 
-public class Instanciation implements Noeud {
+public abstract class Instanciation implements Noeud {
     public IType type;
     public Variable variable;
     public String nom;

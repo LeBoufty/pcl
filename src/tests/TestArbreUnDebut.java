@@ -5,11 +5,12 @@ import arbres.AppelFonction;
 import arbres.Bloc;
 import arbres.Constante;
 import arbres.Fonction;
-import arbres.Instanciation;
+import arbres.Declaration;
 import arbres.InstructionIf;
 import arbres.Noeud;
 import arbres.Operateur;
 import arbres.Operation;
+import arbres.Parametre;
 import arbres.Procedure;
 import arbres.Return;
 import arbres.Type;
@@ -20,10 +21,10 @@ public class TestArbreUnDebut {
     public static void main(String[] args) {
         // aireRectangle :
         // Paramètres de aireRectangle
-        Instanciation aireLarg = new Instanciation(Type.INTEGER, "larg");
-        Instanciation aireLong = new Instanciation(Type.INTEGER, "long");
+        Parametre aireLarg = new Parametre(Type.INTEGER, "larg");
+        Parametre aireLong = new Parametre(Type.INTEGER, "long");
         // Déclarations de aireRectangle
-        Instanciation aire = new Instanciation(Type.INTEGER, "aire");
+        Declaration aire = new Declaration(Type.INTEGER, "aire");
         // Instructions de aireRectangle : préparatifs
         Operation aireMultiplication = new Operation(aireLarg.variable, aireLong.variable, Operateur.FOIS);
         // Instructions de aireRectangle
@@ -32,15 +33,15 @@ public class TestArbreUnDebut {
         // Construction de aireRectangle
         Noeud[] instrAire = new Noeud[] {aireAffectation, retourAire};
         Bloc blocInstrA = new Bloc(instrAire);
-        Instanciation[] paramAire = new Instanciation[] {aireLarg, aireLong};
+        Parametre[] paramAire = new Parametre[] {aireLarg, aireLong};
         Fonction aireRectangle = new Fonction("aireRectangle", paramAire, Type.INTEGER, aire, blocInstrA);
 
         // perimetreRectangle :
         // Paramètres
-        Instanciation periLarg = new Instanciation(Type.INTEGER, "larg");
-        Instanciation periLong = new Instanciation(Type.INTEGER, "long");
+        Parametre periLarg = new Parametre(Type.INTEGER, "larg");
+        Parametre periLong = new Parametre(Type.INTEGER, "long");
         // Déclarations
-        Instanciation p = new Instanciation(Type.INTEGER, "perimetre");
+        Declaration p = new Declaration(Type.INTEGER, "perimetre");
         // Instructions 1
         Constante _2 = new Constante(2);
         Operation mulLarg = new Operation(periLarg.variable, _2, Operateur.FOIS);
@@ -52,18 +53,18 @@ public class TestArbreUnDebut {
         // Construction
         Noeud[] instrPerim = new Noeud[] {perimAffectation, retourPerim};
         Bloc blocInstrP = new Bloc(instrPerim);
-        Instanciation[] paramPeri = new Instanciation[] {periLarg, periLong};
+        Parametre[] paramPeri = new Parametre[] {periLarg, periLong};
         Fonction perimetreRectangle = new Fonction("perimetreRectangle", paramPeri, Type.INTEGER, p, blocInstrP);
 
         // Variables
-        Instanciation choix = new Instanciation(Type.INTEGER, "choix");
+        Declaration choix = new Declaration(Type.INTEGER, "choix");
 
         // Définitions de constantes
         Constante _1 = new Constante(1);
         Constante _3 = new Constante(3);
 
         // Valeur n'est jamais instancié ?
-        Instanciation valeur = new Instanciation(Type.INTEGER, "valeur");
+        Declaration valeur = new Declaration(Type.INTEGER, "valeur");
 
         // Noeuds chiants
         Operation choixegal1 = new Operation(choix.variable, _1, Operateur.EGAL);

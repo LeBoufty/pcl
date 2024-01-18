@@ -40,14 +40,32 @@ public class NoeudUML {
                 enfants.add(new NoeudUML(a.gauche));
                 enfants.add(new NoeudUML(a.droite));
                 break;
-            case "Instanciation":
-                this.titre = "Instanciation";
-                Instanciation i = (Instanciation) n;
+            case "Declaration":
+                this.titre = "Déclaration";
+                Declaration i = (Declaration) n;
                 this.valeur = Repertoire.getNewID(i);
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(i.variable));
                 enfants.add(new NoeudUML(i.type.toString()));
+                break;
+            case "Parametre":
+                this.titre = "Paramètre";
+                Parametre p = (Parametre) n;
+                this.valeur = Repertoire.getNewID(p);
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(p.variable));
+                enfants.add(new NoeudUML(p.type.toString()));
+                break;
+            case "Champ":
+                this.titre = "Champ";
+                Champ ch = (Champ) n;
+                this.valeur = Repertoire.getNewID(ch);
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(ch.variable));
+                enfants.add(new NoeudUML(ch.type.toString()));
                 break;
             case "Variable":
                 Variable v = (Variable) n;
@@ -150,13 +168,13 @@ public class NoeudUML {
                 break;
             case "Procedure":
                 this.titre = "Procedure";
-                Procedure p = (Procedure) n;
-                this.valeur = Repertoire.getNewID(p);
+                Procedure pr = (Procedure) n;
+                this.valeur = Repertoire.getNewID(pr);
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
-                enfants.add(new NoeudUML(p.nom));
-                enfants.add(new NoeudUML(p.definitions));
-                enfants.add(new NoeudUML(p.instructions));
+                enfants.add(new NoeudUML(pr.nom));
+                enfants.add(new NoeudUML(pr.definitions));
+                enfants.add(new NoeudUML(pr.instructions));
                 break;
             case "Return":
                 this.titre = "Return";
@@ -180,13 +198,9 @@ public class NoeudUML {
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(s.nom));
-                for (int k = 0; k < s.champs.size(); k++) {
-                    enfants.add(new NoeudUML(s.champs.get(k)));
-                    if (s.types.get(k) instanceof Struct) {
-                        enfants.add(new NoeudUML(((Struct) s.types.get(k)).nom));
-                    } else {
-                        enfants.add(new NoeudUML(s.types.get(k).toString()));
-                    }
+                for (Champ champ : s.champs) {
+                    enfants.add(new NoeudUML(champ));
+                    enfants.add(new NoeudUML(champ.type.toString()));
                 }
                 break;
             case "Struct":
