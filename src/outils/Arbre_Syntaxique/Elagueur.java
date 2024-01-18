@@ -3,6 +3,8 @@ package outils.Arbre_Syntaxique;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import outils.Logger;
+
 public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static int[] nt_etoile = {3, 8, 14, 16, 21};
@@ -14,14 +16,22 @@ public class Elagueur {
     }
 
     public void elaguer() {
+        Logger.milestone("Début de l'élagage");
         supprimerInutiles();
+        Logger.info("Terminaux inutiles supprimés");
         this.Arbre_Syntaxique.seSacrifier();
+        Logger.info("Première vague de sacrifices effectuée");
         for ( Noeud_Non_Terminal nnt : trouverNoeudsVides()) {
             nnt.supprimer();
         }
+        Logger.info("Non-terminaux vides supprimés");
         this.Arbre_Syntaxique.seSacrifier();
+        Logger.info("Deuxième vague de sacrifices effectuée");
         comprimerEtoiles();
+        Logger.info("Etoiles compressées");
         remonterPrimes();
+        Logger.info("Opérations simplifiées");
+        Logger.milestone("Fin de l'élagage");
     }
 
     private ArrayList<Noeud_Non_Terminal> trouverNoeudsVides() {

@@ -83,8 +83,4 @@ public class Lecteur_S {
     public int getCode_idf() {
         return code_idf;
     }
-
-    public String getNomFichier() {
-        return this.filereader.toString();
-    }
 }

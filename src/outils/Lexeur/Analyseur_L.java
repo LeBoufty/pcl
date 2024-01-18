@@ -132,7 +132,7 @@ public class Analyseur_L {
 
 
     public void analyse_l() throws Exception { // Vérifie les mots lus et les transforme en int
-
+        Logger.milestone("Début de l'analyse lexicale");
         while (!(mot_preprecedent.code_mot == dico.get_CODE_EOF())) {
 
             if (mot_preprecedent.code_mot != -1) {
@@ -174,7 +174,7 @@ public class Analyseur_L {
 
         ecrivain_code.fermer();
 
-        
+        Logger.milestone("Fin de l'analyse lexicale");
     }
 
 
