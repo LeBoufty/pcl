@@ -21,6 +21,9 @@ public class CSVParser {
     public static final String EPSILON = "€";
     public static final String RULE_EMPTY = "§";
     public static final char NON_TERMINAL = '£';
+    public static int IDF;
+    public static int CAR;
+    public static int ENTIER;
 
     // Retourne une liste de liste de String, chaque liste de String correspond à une ligne du fichier CSV.
     public static List<List<String>> parse(String filename) throws Exception {
@@ -35,6 +38,14 @@ public class CSVParser {
             }
         }
         return records;
+    }
+
+    // Set les constantes IDF, CAR et ENTIER
+    public static void setConstantes(List<List<String>> records) {
+        HashMap<String, Integer> ligne = getFirstLigne(records);
+        IDF = ligne.get("IDF");
+        CAR = ligne.get("caractere");
+        ENTIER = ligne.get("entier");
     }
 
     // Retourne une hashmap de la première ligne du fichier CSV vers leur index dans le fichier CSV. Le premier élément n'est pas pris en compte.

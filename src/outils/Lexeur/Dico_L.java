@@ -11,6 +11,12 @@ public class Dico_L {
     private int CODE_CARACTERE;
     private int CODE_ENTIER;
     private int CODE_EOF;
+    public static final int OFFSET_LEXEUR = 200;
+    public static final int NEW_LINE = '&';
+    public static final int IDF = 2;
+    public static final int CAR = 48;
+    public static final int ENTIER = 52;
+    public static final int DOLLAR = 57;
 
 
     public Dico_L() {
@@ -29,7 +35,7 @@ public class Dico_L {
     public void set_dico_default() {
         // with,IDF,.,;,use,procedure,is,begin,end,EOF,type,function,return,:,:=,access,record,virgule,(,),in,out,for,..,loop,if,then,while,reverse,else,elsif,or,or⬚else,and,and⬚then,not,=,/=,<,<=,>,>=,+,-,*,/,rem,caractere,charactere,',val,entier,false,new,null,true,$
         this.dico_terminaux.put("with", 1);
-        CODE_IDF = 2;
+        CODE_IDF = IDF;
         this.dico_terminaux.put(".", 3);
         this.dico_terminaux.put(";", 4);
         this.dico_terminaux.put("use", 5);
@@ -76,16 +82,24 @@ public class Dico_L {
         this.dico_terminaux.put("*", 45);
         this.dico_terminaux.put("/", 46);
         this.dico_terminaux.put("rem", 47);
-        CODE_CARACTERE = 48;
+        CODE_CARACTERE = CAR;
         this.dico_terminaux.put("character", 49);
         this.dico_terminaux.put("'", 50);
         this.dico_terminaux.put("val", 51);
-        CODE_ENTIER = 52;
+        CODE_ENTIER = ENTIER;
         this.dico_terminaux.put("false", 53);
         this.dico_terminaux.put("new", 54);
         this.dico_terminaux.put("null", 55);
         this.dico_terminaux.put("true", 56);
 
+    }
+
+    public void set_dico_default_CSV(){
+        this.dico_terminaux.put("IDF", CODE_IDF);
+        this.dico_terminaux.put("EOF", CODE_EOF);
+        this.dico_terminaux.put("caractere", CODE_CARACTERE);
+        this.dico_terminaux.put("entier", CODE_ENTIER);
+        this.dico_terminaux.put("$", DOLLAR);
     }
 
     // Ajoute un mot au dico idf et retourne son code
@@ -145,6 +159,10 @@ public class Dico_L {
 
     public int get_CODE_EOF() {
         return this.CODE_EOF;
+    }
+
+    public HashMap<String, Integer> get_dico_terminaux() {
+        return this.dico_terminaux;
     }
 
 }

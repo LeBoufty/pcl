@@ -32,6 +32,7 @@ public class CSVAnalyseur_S {
     private HashMap<Integer, String> dico_terminaux;
     private HashMap<Integer, String> dico_non_terminaux;
 
+    private Vecteur_Passage_CSV vecteur_passage;
 
     public CSVAnalyseur_S(String code_filename, String CSV_Grammar_filename, String idf_filename) throws Exception {
         pile = new Stack<Integer>();
@@ -40,10 +41,14 @@ public class CSVAnalyseur_S {
         lect = new Lecteur_S(code_filename);
         lect_idf = new Lecteur_IDF(idf_filename);
         records = CSVParser.parse(CSV_Grammar_filename);
+        CSVParser.setConstantes(records);
+        lect.setConstantes(CSVParser.IDF, CSVParser.CAR, CSVParser.ENTIER);
         rules = CSVParser.parseRules(records);
 
         dico_terminaux = CSVParser.getFirstLigne_Inverse(records);
         dico_non_terminaux = CSVParser.getFirstColonne_Inverse(records);
+
+        vecteur_passage = new Vecteur_Passage_CSV(CSVParser.getFirstLigne(records));
     }
 
     public void affiche_UML(String chemin_fichier) throws Exception {
@@ -62,6 +67,9 @@ public class CSVAnalyseur_S {
         pile_AST_Non_Terminal.push(AST);
         
         int tete = lect.lire();
+        Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+        tete = vecteur_passage.get_vecteur_passage_Lexeur_CSV(tete);
+        Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
 
         lect_idf.lire();
         List<String> liste_idf = lect_idf.getListe_idf();
@@ -86,24 +94,27 @@ public class CSVAnalyseur_S {
                     if (element != Lecteur_S.DOLLAR) { // si c'est pas le terminal de fin de grammaire
                         noeud_terminal = pile_AST_Terminal.pop();
 
-                        if (element == Lecteur_S.IDF || element == Lecteur_S.CAR || element == Lecteur_S.ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
+                        if (element == CSVParser.IDF || element == CSVParser.CAR || element == CSVParser.ENTIER) { // si c'est un IDF ou un CAR ou un ENTIER
                             noeud_terminal.setCodeIdf(lect.getCode_idf());
 
-                            if (element == Lecteur_S.IDF) {
+                            if (element == CSVParser.IDF) {
                                 noeud_terminal.setValeurIdf(liste_idf.get(lect.getCode_idf() - 1));
                             }
                             
-                            if (element == Lecteur_S.ENTIER) {
+                            if (element == CSVParser.ENTIER) {
                                 noeud_terminal.setValeurIdf(Integer.toString(lect.getCode_idf()));
                             }
 
-                            if (element == Lecteur_S.CAR) {
+                            if (element == CSVParser.CAR) {
                                 noeud_terminal.setValeurIdf(Character.toString((char) lect.getCode_idf()));
                             }
                         }
                     }
 
                     tete = lect.lire();
+                    Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+                    tete = vecteur_passage.get_vecteur_passage_Lexeur_CSV(tete);
+                    Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
                 }
 
                 else { // si c'est pas le terminal attendu

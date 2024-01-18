@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
+import outils.Lexeur.Dico_L;
+
 
 //import outils.Logger;
 
@@ -11,12 +13,12 @@ import java.nio.charset.StandardCharsets;
 // Classe pour la lecture d'un fichier donné par le lexeur pour l'analyseur syntaxique
 public class Lecteur_S {
     
-    public static final int OFFSET_LEXEUR = 200;
-    public static final int NEW_LINE = '&';
-    public static final int IDF = 2;
-    public static final int CAR = 48;
-    public static final int ENTIER = 52;
-    public static final int DOLLAR = 57;
+    public static final int OFFSET_LEXEUR = Dico_L.OFFSET_LEXEUR;
+    public static final int NEW_LINE = Dico_L.NEW_LINE;
+    public static final int DOLLAR = Dico_L.DOLLAR;
+    public int IDF ;
+    public int CAR ;
+    public int ENTIER ;
 
     private boolean first_dollar;
     private FileReader filereader;
@@ -35,6 +37,12 @@ public class Lecteur_S {
         this.tete = 0;
         this.tete_precedente = 0;
         this.first_dollar = true;
+    }
+
+    public void setConstantes(int IDF, int CAR, int ENTIER) {
+        this.IDF = IDF;
+        this.CAR = CAR;
+        this.ENTIER = ENTIER;
     }
 
     public int lire() throws Exception {

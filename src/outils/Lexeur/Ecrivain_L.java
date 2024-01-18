@@ -6,8 +6,8 @@ import java.nio.charset.StandardCharsets;
 public class Ecrivain_L {
     
     private FileWriter filewriter;
-    private static final int OFFSET = 200;
-    private static final char SAUT_DE_LIGNE = '&';
+    private static final int OFFSET = Dico_L.OFFSET_LEXEUR;
+    private static final char SAUT_DE_LIGNE = Dico_L.NEW_LINE;
 
     public Ecrivain_L(String nom_fichier) throws Exception {
         this.filewriter = new FileWriter(nom_fichier, StandardCharsets.UTF_8);

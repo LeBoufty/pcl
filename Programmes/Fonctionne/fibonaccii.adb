@@ -18,10 +18,7 @@ res : Natural := 0;
 
     --Main
 begin
-    res := Fib(n);
-    lol := 1;
-    ar := 2;
-    bobo := 3;
+    res := 1 - 2 + 3;
     --put("Fibonacci de " & n'Image);
     --put(" est :" & res'Image); 'aB'
 end Fibonacci;

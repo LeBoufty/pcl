@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.nio.charset.StandardCharsets;
 
+import outils.Syntaxe.CSVParser;
 import outils.Syntaxe.Lecteur_S;
 
 public class Generator_UML {
@@ -57,7 +58,7 @@ public class Generator_UML {
                 Noeud_Terminal noeudbis = (Noeud_Terminal) noeud;
                 this.fichier.write("object \"" + this.dico_terminal.get(noeudbis.getCode()) + "\" as " + num_noeud + "\n");
 
-                if (noeudbis.getCode() == Lecteur_S.IDF || noeudbis.getCode() == Lecteur_S.CAR || noeudbis.getCode() == Lecteur_S.ENTIER) {
+                if (noeudbis.getCode() == CSVParser.IDF || noeudbis.getCode() == CSVParser.CAR || noeudbis.getCode() == CSVParser.ENTIER) {
                     this.fichier.write(num_noeud + " : " + noeudbis.getValeurIdf() + "\n");
                 }
             }
