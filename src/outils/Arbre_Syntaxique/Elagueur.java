@@ -238,7 +238,7 @@ public class Elagueur {
                     if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode())
                     {
                         nnt.getParent().ajouterEnfant(enfant);
-                        ((Noeud_Non_Terminal) enfant).ajouterEnfant(idfenfant);
+                        ((Noeud_Non_Terminal) enfant).ajouterFirstEnfant(idfenfant);
                         enfant.setParent(nnt.getParent());
                     }
                 }
@@ -268,9 +268,9 @@ public class Elagueur {
             if(estPlus(nnt.getParent()))
             {
                 ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
-                Collections.reverse(listeenfant);
+                //Collections.reverse(listeenfant);
                 for (Noeud_A enfant : listeenfant) {
-                    nnt.getParent().ajouterFirstEnfant(enfant);
+                    nnt.getParent().ajouterEnfant(enfant);
                     enfant.setParent(nnt.getParent());
                 }
                 nnt.supprimer();

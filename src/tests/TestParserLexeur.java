@@ -14,13 +14,13 @@ public class TestParserLexeur {
         //System.out.println(rules.get(0).get(0).get(0));
 
         String programme = "Programmes/Fonctionne/hello_world.adb";
-        
         programme = "Programmes/Fonctionne/fibonaccii.adb";
         programme = "Programmes/Fonctionne/quelquesinstructions.adb";
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/andthenorelse.adb";
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/fibonaccii.adb";
         //programme = "Programmes/Fonctionne/quelquesinstructions.adb";
         programme = "Programmes/Fonctionne/undebut.adb";
+        programme = "Programmes/Fonctionne/quelquesinstructions.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
