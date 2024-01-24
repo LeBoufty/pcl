@@ -1,6 +1,7 @@
 package outils.Arbre_Syntaxique;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
@@ -156,7 +157,9 @@ public class Elagueur {
         for (Noeud_Non_Terminal nnt : (tag)) {
             if (nnt.getParent().getCode() == nnt.getCode()) {
                 nnt.getParent().getEnfants().remove(nnt);
-                for (Noeud_A enfant : nnt.getEnfants()) {
+                ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
+                Collections.reverse(listeenfant);
+                for (Noeud_A enfant : listeenfant) {
                     nnt.getParent().ajouterFirstEnfant(enfant);
                 }
             }
