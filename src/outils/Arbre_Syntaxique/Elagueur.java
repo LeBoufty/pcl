@@ -38,8 +38,8 @@ public class Elagueur {
         Logger.info("Etoiles compressées");
         transmettreetoileauplus();
         Logger.info("enfants des etoiles transmis aux plus");
-        mettreassertiondansdecl();
-        Logger.info("assertions mis dans les declarations");
+        //mettreassertiondansdecl();
+        //Logger.info("assertions mis dans les declarations");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
