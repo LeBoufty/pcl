@@ -343,6 +343,18 @@ public class Elagueur {
                 return new Return((Evaluable) traduire(noeud.getEnfants().get(0)));
             case "£IF":
                 return new InstructionIf((Evaluable) traduire(noeud.getEnfants().get(0)), traduire(noeud.getEnfants().get(1)));
+            case "£ADDITION":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.PLUS);
+            case "£SUBSTRACTION":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.MOINS);
+            case "£MULTIPLY":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.FOIS);
+            case "£DIVIDE":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.DIV);
+            case "£REM":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.REM);
+            case "£ASSERTION":
+                return new Affectation((Variable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)));
             
         }
         return null;
