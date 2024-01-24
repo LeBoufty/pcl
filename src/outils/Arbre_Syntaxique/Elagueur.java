@@ -200,7 +200,9 @@ public class Elagueur {
         for (Noeud_Non_Terminal nnt : (tag)) {
             if(estPlus(nnt.getParent()))
             {
-                for (Noeud_A enfant : nnt.getEnfants()) {
+                ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
+                Collections.reverse(listeenfant);
+                for (Noeud_A enfant : listeenfant) {
                     nnt.getParent().ajouterFirstEnfant(enfant);
                     enfant.setParent(nnt.getParent());
                 }
