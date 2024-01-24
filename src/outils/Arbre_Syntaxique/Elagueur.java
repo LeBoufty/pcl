@@ -44,8 +44,8 @@ public class Elagueur {
         Logger.info("Etoiles compressées");
         transmettreetoileauplus();
         Logger.info("enfants des etoiles transmis aux plus");
-        //mettreassertiondansdecl();
-        //Logger.info("assertions mis dans les declarations");
+        mettreassertiondansdecl();
+        Logger.info("assertions mis dans les declarations");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
@@ -224,11 +224,20 @@ public class Elagueur {
                         listeenfant.remove(i);
                     }
                 }
+                else
+                {
+                    if(nonterminaux.get("£LVALUE")==((Noeud_Non_Terminal)listeenfant.get(i)).getCode() )
+                    {
+                        idfenfant=listeenfant.get(i);
+                        listeenfant.remove(i);
+                    }
+                }
+                
             }
             for (Noeud_A enfant : listeenfant) {
                 if(enfant instanceof Noeud_Non_Terminal)
                 {
-                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() && idfenfant!=null)
+                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode())
                     {
                         nnt.getParent().ajouterEnfant(enfant);
                         ((Noeud_Non_Terminal) enfant).ajouterEnfant(idfenfant);
