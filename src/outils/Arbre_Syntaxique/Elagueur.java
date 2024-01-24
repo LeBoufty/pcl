@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
+import arbres.*;
 import outils.Logger;
 import outils.Syntaxe.CSVParser;
 
@@ -17,6 +18,7 @@ public class Elagueur {
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
     private static HashMap<String, Integer> terminaux;
+    private Noeud racine;
 
     public Elagueur(Noeud_Non_Terminal Arbre_Syntaxique, List<List<String>> records) {
         this.Arbre_Syntaxique = Arbre_Syntaxique;
@@ -230,5 +232,69 @@ public class Elagueur {
             inverse.add(array.get(i));
         }
         return inverse;
+    }
+
+    public String getNomNT(int code) {
+        for (String s : nonterminaux.keySet()) {
+            if (nonterminaux.get(s) == code) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public String getNomT(int code) {
+        for (String s : terminaux.keySet()) {
+            if (terminaux.get(s) == code) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public Noeud traduire(Noeud_A noeud) {
+        if (noeud instanceof Noeud_Non_Terminal) {
+            return traduire((Noeud_Non_Terminal) noeud);
+        } else if (noeud instanceof Noeud_Terminal) {
+            return traduire((Noeud_Terminal) noeud);
+        }
+        return null;
+    }
+
+    public Noeud traduire(Noeud_Non_Terminal noeud) {
+        String nom = getNomNT(noeud.getCode());
+        switch (nom) {
+            case "£FICHIER":
+            case "£DECLEtoile":
+            case "£CHAMPEtoile":
+            case "£INSTRPlus":
+            case "£INSTREtoile":
+                Bloc bloc = new Bloc();
+                for (Noeud_A enfant : noeud.getEnfants()) {
+                    bloc.ajouterInstruction(traduire(enfant));
+                }
+                return bloc;
+            case "£RETURN":
+                return new Return((Evaluable) traduire(noeud.getEnfants().get(0)));
+            
+        }
+        return null;
+    }
+
+    public Noeud traduire(Noeud_Terminal noeud) {
+        String nom = getNomT(noeud.getCode());
+        switch (nom) {
+            case "entier":
+                return new Constante(noeud.getCodeIdf());
+            case "caractere":
+                return new Constante((char)noeud.getCodeIdf());
+            case "true":
+                return new Constante(true);
+            case "false":
+                return new Constante(false);
+            case "null":
+                return new Constante();
+        }
+        return null;
     }
 }
