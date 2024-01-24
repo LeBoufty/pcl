@@ -20,6 +20,7 @@ public class TestParserLexeur {
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/andthenorelse.adb";
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/fibonaccii.adb";
         //programme = "Programmes/Fonctionne/quelquesinstructions.adb";
+        programme = "Programmes/Fonctionne/undebut.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();

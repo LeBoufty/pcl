@@ -18,7 +18,6 @@ public class Elagueur {
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
     private static HashMap<String, Integer> terminaux;
-    private Noeud racine;
 
     public Elagueur(Noeud_Non_Terminal Arbre_Syntaxique, List<List<String>> records) {
         this.Arbre_Syntaxique = Arbre_Syntaxique;
@@ -336,6 +335,8 @@ public class Elagueur {
                 return bloc;
             case "£RETURN":
                 return new Return((Evaluable) traduire(noeud.getEnfants().get(0)));
+            case "£IF":
+                return new InstructionIf((Evaluable) traduire(noeud.getEnfants().get(0)), traduire(noeud.getEnfants().get(1)));
             
         }
         return null;
