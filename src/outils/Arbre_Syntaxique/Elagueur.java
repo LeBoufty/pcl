@@ -186,6 +186,7 @@ public class Elagueur {
                 Collections.reverse(listeenfant);
                 for (Noeud_A enfant : listeenfant) {
                     nnt.getParent().ajouterFirstEnfant(enfant);
+                    enfant.setParent(nnt.getParent());
                 }
             }
         }
