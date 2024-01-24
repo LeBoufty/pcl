@@ -198,16 +198,13 @@ public class Elagueur {
             }
         }
         for (Noeud_Non_Terminal nnt : (tag)) {
-            if(estPlus(nnt))
+            if(estPlus(nnt.getParent()))
             {
-                if (nnt.getParent().getCode() == nnt.getCode()) {
-                    nnt.getParent().getEnfants().remove(nnt);
-                    ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
-                    Collections.reverse(listeenfant);
-                    for (Noeud_A enfant : listeenfant) {
-                        nnt.getParent().ajouterFirstEnfant(enfant);
-                    }
+                for (Noeud_A enfant : nnt.getEnfants()) {
+                    nnt.getParent().ajouterEnfant(enfant);
+                    enfant.setParent(nnt.getParent());
                 }
+                nnt.supprimer();
             }
             
         }
