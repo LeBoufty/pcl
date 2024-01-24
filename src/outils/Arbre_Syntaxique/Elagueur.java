@@ -169,4 +169,9 @@ public class Elagueur {
         }
         return inverse;
     }
+
+    public void associativite_gauche_prime(){
+        // Le but est de trouver les noeuds de type
+    }
+
 }

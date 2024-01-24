@@ -14,6 +14,7 @@ public class TestParserLexeur {
         //System.out.println(rules.get(0).get(0).get(0));
 
         String programme = "Programmes/Fonctionne/hello_world.adb";
+        
         programme = "Programmes/Fonctionne/fibonaccii.adb";
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/andthenorelse.adb";
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/fibonaccii.adb";
@@ -24,7 +25,7 @@ public class TestParserLexeur {
 
         CSVAnalyseur_S analyseur = new CSVAnalyseur_S(programme + ".lex", "src/tests/Tableau_LL.csv", programme + ".idf");
         analyseur.analyse();
-        analyseur.elaguer();
+        //analyseur.elaguer();
         analyseur.affiche_UML(programme + ".puml");
     }
 }
