@@ -6,3 +6,6 @@
 *.o
 
 env/
+venv/
+
+*/Grammophone_files/
