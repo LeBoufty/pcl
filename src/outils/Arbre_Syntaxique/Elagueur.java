@@ -12,12 +12,8 @@ import outils.Syntaxe.CSVParser;
 public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static String[] nt_etoile_nom={"£DECLEtoile","£CHAMPEtoile","£PARAMEtoile","£OPERATEUREtoile","£INSTREtoile","£ELSIFEtoile"};
-<<<<<<< HEAD
     private static String[] nt_prime_nom = {"£ORPrime","£ANDPrime","£NOTPrime","£EQUALSPrime","£COMPARATORSPrime","£ADDPrime", "£MULTPrime"};
-=======
     private static String[] nt_plus_nom={"£CHAMPPlus","£PARAMPlus","£INSTRPlus"};
-    private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
->>>>>>> 16e6b900901fce12390919c1613c2b0fb4a527eb
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
     private static HashMap<String, Integer> terminaux;
