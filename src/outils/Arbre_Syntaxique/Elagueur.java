@@ -217,7 +217,7 @@ public class Elagueur {
             for (Noeud_A enfant : listeenfant) {
                 if(enfant instanceof Noeud_Non_Terminal)
                 {
-                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() )
+                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() && idfenfant!=null)
                     {
                         nnt.getParent().ajouterFirstEnfant(enfant);
                         ((Noeud_Non_Terminal) enfant).ajouterFirstEnfant(idfenfant);
