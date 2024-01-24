@@ -201,7 +201,7 @@ public class Elagueur {
             if(estPlus(nnt.getParent()))
             {
                 for (Noeud_A enfant : nnt.getEnfants()) {
-                    nnt.getParent().ajouterEnfant(enfant);
+                    nnt.getParent().ajouterFirstEnfant(enfant);
                     enfant.setParent(nnt.getParent());
                 }
                 nnt.supprimer();
