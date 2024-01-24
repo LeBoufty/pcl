@@ -18,7 +18,7 @@ begin
     b := 1*2+3*(4+5);
     b := (1-1+1*2*(1+(1*2)));
     e.c := 1;
-    f := a>=b=c;
+    e.f := a>=b=e.c;
     if b > 0 then
         sortie := true;
     else
