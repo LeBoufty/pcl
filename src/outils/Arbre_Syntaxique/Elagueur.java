@@ -203,17 +203,28 @@ public class Elagueur {
             ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
             //Collections.reverse(listeenfant);
             Noeud_A idfenfant=null;
+            for(int i=listeenfant.size()-1;i>=0;i--)
+            {
+                if(listeenfant.get(i) instanceof Noeud_Terminal)
+                {
+                    if(terminaux.get("IDF")==((Noeud_Terminal)listeenfant.get(i)).getCode() )
+                    {
+                        idfenfant=listeenfant.get(i);
+                        listeenfant.remove(i);
+                    }
+                }
+            }
             for (Noeud_A enfant : listeenfant) {
-                if(terminaux.get("IDF")==((Noeud_Terminal)enfant).getCode() )
+                if(enfant instanceof Noeud_Non_Terminal)
                 {
-                    idfenfant=enfant;
+                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() )
+                    {
+                        nnt.getParent().ajouterFirstEnfant(enfant);
+                        ((Noeud_Non_Terminal) enfant).ajouterFirstEnfant(idfenfant);
+                        enfant.setParent(nnt.getParent());
+                    }
                 }
-                if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() )
-                {
-                    nnt.getParent().ajouterFirstEnfant(enfant);
-                    ((Noeud_Non_Terminal) enfant).ajouterFirstEnfant(idfenfant);
-                    enfant.setParent(nnt.getParent());
-                }
+                
             }
             nnt.supprimer();
         }
