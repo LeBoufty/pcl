@@ -1,6 +1,7 @@
 package outils.Arbre_Syntaxique;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
@@ -145,9 +146,14 @@ public class Elagueur {
         while (!pile.isEmpty()) {
             Noeud_A noeud = pile.pop();
             if (noeud instanceof Noeud_Non_Terminal) {
-                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
-                    pile.push(enfant);
+                List<Noeud_A> enfants = ((Noeud_Non_Terminal) noeud).getEnfants();
+                Collections.reverse(enfants);
+                for (Noeud_A enfant : enfants) {
+                pile.push(enfant);
                 }
+                // for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                //     pile.push(enfant);
+                // }
                 if (estEtoile((Noeud_Non_Terminal)noeud)) {
                     tag.add((Noeud_Non_Terminal)noeud);
                 }
