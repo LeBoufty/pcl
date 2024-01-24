@@ -12,6 +12,7 @@ import outils.Syntaxe.CSVParser;
 public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static String[] nt_etoile_nom={"£DECLEtoile","£CHAMPEtoile","£PARAMEtoile","£OPERATEUREtoile","£INSTREtoile","£ELSIFEtoile"};
+    private static String[] nt_plus_nom={"£CHAMPPlus","£PARAMPlus","£INSTRPlus"};
     private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
@@ -35,6 +36,8 @@ public class Elagueur {
         Logger.info("Sacrifices effectués");
         comprimerEtoiles();
         Logger.info("Etoiles compressées");
+        transmettreetoileauplus();
+        Logger.info("enfants des etoiles transmis aux plus");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
@@ -74,6 +77,19 @@ public class Elagueur {
             nt_etoile[i] = nonterminaux.get(nt_etoile_nom[i]);
         }
         for (int i : nt_etoile) {
+            if (noeud.getCode() == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean estPlus(Noeud_Non_Terminal noeud) {
+        int[] nt_plus = new int[nt_plus_nom.length];
+        for (int i=0 ; i<nt_plus_nom.length ; i++){
+            nt_plus[i] = nonterminaux.get(nt_plus_nom[i]);
+        }
+        for (int i : nt_plus) {
             if (noeud.getCode() == i) {
                 return true;
             }
@@ -138,7 +154,6 @@ public class Elagueur {
         }
     }
 
-    // TODO : réécrire
     private void comprimerEtoiles() {
         Stack<Noeud_A> pile = new Stack<>();
         ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
@@ -163,6 +178,38 @@ public class Elagueur {
                     nnt.getParent().ajouterFirstEnfant(enfant);
                 }
             }
+        }
+    }
+
+    private void transmettreetoileauplus()
+    {
+        Stack<Noeud_A> pile = new Stack<>();
+        ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (estEtoile((Noeud_Non_Terminal)noeud)) {
+                    tag.add((Noeud_Non_Terminal)noeud);
+                }
+            }
+        }
+        for (Noeud_Non_Terminal nnt : (tag)) {
+            if(estPlus(nnt))
+            {
+                if (nnt.getParent().getCode() == nnt.getCode()) {
+                    nnt.getParent().getEnfants().remove(nnt);
+                    ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
+                    Collections.reverse(listeenfant);
+                    for (Noeud_A enfant : listeenfant) {
+                        nnt.getParent().ajouterFirstEnfant(enfant);
+                    }
+                }
+            }
+            
         }
     }
 
