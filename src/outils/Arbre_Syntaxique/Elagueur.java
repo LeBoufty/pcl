@@ -13,7 +13,7 @@ public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static String[] nt_etoile_nom={"£DECLEtoile","£CHAMPEtoile","£PARAMEtoile","£OPERATEUREtoile","£INSTREtoile","£ELSIFEtoile"};
     private static String[] nt_prime_nom = {"£ORPrime","£ANDPrime","£NOTPrime","£EQUALSPrime","£COMPARATORSPrime","£ADDPrime", "£MULTPrime"};
-    private static String[] nt_operation_nom = {"£OR2","£ORELSE", "£AND2", "£ANDTHEN", "£EQUAL","£NOTEQUAL","£INFERIORStrict", "£INFERIOR", "£SUPERIOR", "SUPERIORStrict","£ADDITION", "£SUBSTRACTION", "£MULTIPLY", "£DIVIDE", "£REM"};
+    private static String[] nt_operation_nom = {"£OR", "£AND", "£EQUALS","£COMPARATORS", "£ADD", "£MULT"};
     private static String[] nt_plus_nom={"£CHAMPPlus","£PARAMPlus","£INSTRPlus"};
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
@@ -42,11 +42,12 @@ public class Elagueur {
         Logger.info("Etoiles compressées");
         transmettreetoileauplus();
         Logger.info("enfants des etoiles transmis aux plus");
-        mettreassertiondansdecl();
+        // mettreassertiondansdecl();
         Logger.info("assertions mis dans les declarations");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
-        supprimerInutiles();
+        // supprimerInutiles();
+        remonte_operation_elague();
         Logger.info("Terminaux inutiles supprimés");
         Logger.milestone("Fin de l'élagage");
     }
@@ -118,27 +119,27 @@ public class Elagueur {
     }
 
     // TODO : réécrire
-    private void remonterPrimes() {
-        Stack<Noeud_A> pile = new Stack<>();
-        ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
-        pile.push(this.Arbre_Syntaxique);
-        while (!pile.isEmpty()) {
-            Noeud_A noeud = pile.pop();
-            if (noeud instanceof Noeud_Non_Terminal) {
-                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
-                    pile.push(enfant);
-                }
-                if (estPrime((Noeud_Non_Terminal)noeud)) {
-                    tag.add((Noeud_Non_Terminal)noeud);
-                }
-            }
-        }
-        for (Noeud_Non_Terminal nnt : tag) {
-            nnt.getParent().getEnfants().remove(nnt);
-            nnt.getParent().ajouterEnfant(nnt.getEnfants().get(1));
-            nnt.getParent().ajouterEnfant(nnt.getEnfants().get(0));
-        }
-    }
+    // private void remonterPrimes() {
+    //     Stack<Noeud_A> pile = new Stack<>();
+    //     ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
+    //     pile.push(this.Arbre_Syntaxique);
+    //     while (!pile.isEmpty()) {
+    //         Noeud_A noeud = pile.pop();
+    //         if (noeud instanceof Noeud_Non_Terminal) {
+    //             for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+    //                 pile.push(enfant);
+    //             }
+    //             if (estPrime((Noeud_Non_Terminal)noeud)) {
+    //                 tag.add((Noeud_Non_Terminal)noeud);
+    //             }
+    //         }
+    //     }
+    //     for (Noeud_Non_Terminal nnt : tag) {
+    //         nnt.getParent().getEnfants().remove(nnt);
+    //         nnt.getParent().ajouterEnfant(nnt.getEnfants().get(1));
+    //         nnt.getParent().ajouterEnfant(nnt.getEnfants().get(0));
+    //     }
+    // }
 
     private boolean estInutile(Noeud_Terminal noeud) {
         for(String s : t_utile) {
@@ -241,6 +242,7 @@ public class Elagueur {
                         nnt.getParent().ajouterEnfant(enfant);
                         ((Noeud_Non_Terminal) enfant).ajouterEnfant(idfenfant);
                         enfant.setParent(nnt.getParent());
+                        idfenfant.setParent((Noeud_Non_Terminal) enfant);
                     }
                 }
                 
@@ -377,6 +379,7 @@ public class Elagueur {
     public boolean estOperation(Noeud_Non_Terminal noeud) {
         int[] nt_operation = new int[nt_operation_nom.length];
         for (int i=0 ; i<nt_operation_nom.length ; i++){
+            // System.out.println(nt_operation_nom[i]);
             nt_operation[i] = nonterminaux.get(nt_operation_nom[i]);
         }
         for (int i : nt_operation) {
@@ -390,15 +393,20 @@ public class Elagueur {
     public void remonte_operation(Noeud_A noeud) {
         // Le but est de remonter le noeud de type opération P2 (par exemple £ADDITION) en tant qu'enfant de P1 (par exemple £ADD)
 
-        Noeud_Non_Terminal P2 = (Noeud_Non_Terminal)noeud;
-        
-        Noeud_Non_Terminal P1 = P2.getParent();
+        Noeud_Non_Terminal P1 = (Noeud_Non_Terminal) noeud;
+        Noeud_Non_Terminal P2_2 = (Noeud_Non_Terminal) P1.getEnfants().get(0);
+        Noeud_A P2_1 = P1.getEnfants().get(1);
+        Noeud_Non_Terminal P0 = P1.getParent();
 
-        Noeud_Non_Terminal N2 = P1.getParent();
+        int index_P1 = P0.getEnfants().indexOf(P1);
+        P0.getEnfants().remove(P1);
+        P0.getEnfants().add(index_P1, P2_2);
+        P2_2.setParent(P0);
 
-        N2.getEnfants().remove(P1);
-        N2.getEnfants().add(P2);
-        P2.setParent(N2);
+        P2_2.ajouterEnfant(P2_1);
+        P2_1.setParent(P2_2);
+
+
     }
 
     public int trouve_et_remonte_operation() {
@@ -423,8 +431,13 @@ public class Elagueur {
 
     public void remonte_operation_elague() {
         // Tant qu'un noeud de type opération (avec un parent de type opération) est trouvé, on le remonte
+        int i = 1;
         while (trouve_et_remonte_operation() == 1) {
             Logger.info("Remonté");
+            i++;
+            if (i > 3) {
+                //break;
+            }
         }
     }
 

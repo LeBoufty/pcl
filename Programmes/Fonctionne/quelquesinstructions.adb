@@ -16,7 +16,7 @@ begin
     b := a + 1;
     b := 1-1+1;
     b := 1*2+3*(4+5);
-    b := (1-1+1*2*(1+(1*2)));
+    b := (1-2+3*4*(5+(6*7)));
     e.c := 1;
     e.f := a>=b=e.c;
     if b and b and then c or a or else 1 > 0 then
