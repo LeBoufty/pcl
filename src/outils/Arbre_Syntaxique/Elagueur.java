@@ -1,16 +1,16 @@
 package outils.Arbre_Syntaxique;
 
 import java.util.ArrayList;
-import java.util.Stack;
-import java.util.List;
 import java.util.HashMap;
-import outils.Syntaxe.CSVParser;
+import java.util.List;
+import java.util.Stack;
 
 import outils.Logger;
+import outils.Syntaxe.CSVParser;
 
 public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
-    private static int[] nt_etoile = {3, 8, 14, 16, 21};
+    private static String[] nt_etoile_nom={"£DECLEtoile","£CHAMPEtoile","£PARAMEtoile","£OPERATEUREtoile","£INSTREtoile","£ELSIFEtoile"};
     private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
@@ -32,8 +32,8 @@ public class Elagueur {
         Logger.info("Non-terminaux vides supprimés");
         this.Arbre_Syntaxique.seSacrifier();
         Logger.info("Sacrifices effectués");
-        //comprimerEtoiles();
-        //Logger.info("Etoiles compressées");
+        comprimerEtoiles();
+        Logger.info("Etoiles compressées");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
@@ -58,7 +58,20 @@ public class Elagueur {
         return tag;
     }
 
+    // private boolean estEtoile(Noeud_Non_Terminal noeud) {
+    //     for (int i : nt_etoile) {
+    //         if (noeud.getCode() == i) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
     private boolean estEtoile(Noeud_Non_Terminal noeud) {
+        int[] nt_etoile = new int[nt_etoile_nom.length];
+        for (int i=0 ; i<nt_etoile_nom.length ; i++){
+            nt_etoile[i] = nonterminaux.get(nt_etoile_nom[i]);
+        }
         for (int i : nt_etoile) {
             if (noeud.getCode() == i) {
                 return true;
