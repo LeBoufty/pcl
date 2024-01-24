@@ -48,7 +48,8 @@ public class Elagueur {
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
         remonte_operation_elague();
-        //descend_appel_fonction_boucle();
+        descend_appel_fonction_boucle();
+        changement_LValue_boucle();
         Logger.info("Terminaux inutiles supprimés");
         Logger.milestone("Fin de l'élagage");
     }
@@ -192,6 +193,38 @@ public class Elagueur {
                     enfant.setParent(nnt.getParent());
                 }
             }
+        }
+    }
+
+    private void changement_LValue(Noeud_Non_Terminal LValue) {
+        Noeud_Non_Terminal Fils = (Noeud_Non_Terminal) LValue.getEnfants().get(0);
+        if (Fils.getCode() == nonterminaux.get("£APPELfonction")) {
+            LValue.setCode(nonterminaux.get("£APPELfonction"));
+            Fils.setCode(nonterminaux.get("£PARAMPlus"));
+        }
+        if (Fils.getCode() == nonterminaux.get("£POINTrecord")) {
+            LValue.setCode(nonterminaux.get("£POINTrecord"));
+            Fils.setCode(nonterminaux.get("£PARAMPlus"));
+        }
+    }
+
+    private void changement_LValue_boucle() {
+        Stack<Noeud_A> pile = new Stack<>();
+        ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (nonterminaux.get("£LVALUE")==((Noeud_Non_Terminal)noeud).getCode() ) {
+                    tag.add((Noeud_Non_Terminal)noeud);
+                }
+            }
+        }
+        for (Noeud_Non_Terminal nnt : (tag)) {
+            changement_LValue(nnt);
         }
     }
 

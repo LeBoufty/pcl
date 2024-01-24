@@ -17,6 +17,10 @@ public class Noeud_Non_Terminal extends Noeud_A {
         return this.code_non_terminal;
     }
 
+    public void setCode(int code_non_terminal) {
+        this.code_non_terminal = code_non_terminal;
+    }
+
     public void ajouterEnfant(Noeud_A enfant) {
         this.enfants.add(enfant);
         enfant.setParent(this);
