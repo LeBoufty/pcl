@@ -2,6 +2,9 @@ package outils.Arbre_Syntaxique;
 
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.List;
+import java.util.HashMap;
+import outils.Syntaxe.CSVParser;
 
 import outils.Logger;
 
@@ -9,28 +12,37 @@ public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static int[] nt_etoile = {3, 8, 14, 16, 21};
     private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
-    private static int[] t_inutile = {4, 14, 19, 20, 37};
+    private static String[] t_inutile = {"with", ";", "use", "procedure", "is",
+    "begin", "end", "EOF", "type", "function", "return", ":", ":=", "access",
+    "record", "virgule", "(", ")", "in", "out", "for", "..", "loop", "if", "then",
+    "while", "else", "elsif", "or", "and", "not", "=",
+    "/=", "<", "<=", ">", ">=", "+", "-", "*", "/", "rem", "caractere",
+    "charactere", "'", "val"};
+    private static HashMap<String, Integer> nonterminaux;
+    private static HashMap<String, Integer> terminaux;
 
-    public Elagueur(Noeud_Non_Terminal Arbre_Syntaxique) {
+    public Elagueur(Noeud_Non_Terminal Arbre_Syntaxique, List<List<String>> records) {
         this.Arbre_Syntaxique = Arbre_Syntaxique;
+        terminaux = CSVParser.getFirstLigne(records);
+        nonterminaux = CSVParser.getFirstColonne(records);
     }
 
     public void elaguer() {
         Logger.milestone("Début de l'élagage");
-        supprimerInutiles();
-        Logger.info("Terminaux inutiles supprimés");
-        this.Arbre_Syntaxique.seSacrifier();
-        Logger.info("Première vague de sacrifices effectuée");
+        //this.Arbre_Syntaxique.seSacrifier();
+        //Logger.info("Première vague de sacrifices effectuée");
         for ( Noeud_Non_Terminal nnt : trouverNoeudsVides()) {
             nnt.supprimer();
         }
         Logger.info("Non-terminaux vides supprimés");
         this.Arbre_Syntaxique.seSacrifier();
-        Logger.info("Deuxième vague de sacrifices effectuée");
-        comprimerEtoiles();
-        Logger.info("Etoiles compressées");
-        remonterPrimes();
-        Logger.info("Opérations simplifiées");
+        Logger.info("Sacrifices effectués");
+        //comprimerEtoiles();
+        //Logger.info("Etoiles compressées");
+        //remonterPrimes();
+        //Logger.info("Opérations simplifiées");
+        supprimerInutiles();
+        Logger.info("Terminaux inutiles supprimés");
         Logger.milestone("Fin de l'élagage");
     }
 
@@ -69,6 +81,7 @@ public class Elagueur {
         return false;
     }
 
+    // TODO : réécrire
     private void remonterPrimes() {
         Stack<Noeud_A> pile = new Stack<>();
         ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
@@ -92,12 +105,11 @@ public class Elagueur {
     }
 
     private boolean estInutile(Noeud_Terminal noeud) {
-        for (int i : t_inutile) {
-            if (noeud.getCode() == i) {
+        for(String s : t_inutile) {
+            if (noeud.getCode() == terminaux.get(s)) {
                 return true;
             }
-        }
-        return false;
+        } return false;
     }
 
     private void supprimerInutiles() {
@@ -117,6 +129,7 @@ public class Elagueur {
         }
     }
 
+    // TODO : réécrire
     private void comprimerEtoiles() {
         Stack<Noeud_A> pile = new Stack<>();
         ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();

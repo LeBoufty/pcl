@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.nio.charset.StandardCharsets;
 
 import outils.Syntaxe.CSVParser;
-import outils.Syntaxe.Lecteur_S;
+//import outils.Syntaxe.Lecteur_S;
 
 public class Generator_UML {
     

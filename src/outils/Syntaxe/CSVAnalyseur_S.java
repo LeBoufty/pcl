@@ -193,7 +193,7 @@ public class CSVAnalyseur_S {
     }
 
     public Noeud_Non_Terminal elaguer() {
-        Elagueur elagueur = new Elagueur(getAST());
+        Elagueur elagueur = new Elagueur(getAST(), records);
         elagueur.elaguer();
         return elagueur.getArbre_Syntaxique();
     }
