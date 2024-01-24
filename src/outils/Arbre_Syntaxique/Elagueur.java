@@ -12,8 +12,8 @@ import outils.Syntaxe.CSVParser;
 public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static String[] nt_etoile_nom={"£DECLEtoile","£CHAMPEtoile","£PARAMEtoile","£OPERATEUREtoile","£INSTREtoile","£ELSIFEtoile"};
+    private static String[] nt_prime_nom = {"£ORPrime","£ANDPrime","£NOTPrime","£EQUALSPrime","£COMPARATORSPrime","£ADDPrime", "£MULTPrime"};
     private static String[] nt_plus_nom={"£CHAMPPlus","£PARAMPlus","£INSTRPlus"};
-    private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
     private static HashMap<String, Integer> terminaux;
@@ -26,11 +26,17 @@ public class Elagueur {
 
     public void elaguer() {
         Logger.milestone("Début de l'élagage");
+        deprime_elague();
+        if (true) {
+            Logger.info("Primes déprimées");
+            return;
+        }
         //this.Arbre_Syntaxique.seSacrifier();
         //Logger.info("Première vague de sacrifices effectuée");
         for ( Noeud_Non_Terminal nnt : trouverNoeudsVides()) {
             nnt.supprimer();
         }
+
         Logger.info("Non-terminaux vides supprimés");
         this.Arbre_Syntaxique.seSacrifier();
         Logger.info("Sacrifices effectués");
@@ -100,6 +106,11 @@ public class Elagueur {
     }
 
     private boolean estPrime(Noeud_Non_Terminal noeud) {
+        int[] nt_prime = new int[nt_prime_nom.length];
+
+        for (int i=0 ; i<nt_prime_nom.length ; i++){
+            nt_prime[i] = nonterminaux.get(nt_prime_nom[i]);
+        }
         for (int i : nt_prime) {
             if (noeud.getCode() == i) {
                 return true;
@@ -280,4 +291,98 @@ public class Elagueur {
         }
         return inverse;
     }
+
+    public void associativite_gauche_prime(Noeud_Non_Terminal noeud) {
+        // Le but est de trouver les noeuds de type prime ayant un parent de type prime, ce type de noeud est nommé P4
+        // Le parent de P2 de type prime est nommé P3
+        // Le parent de P1 est de type non terminal (par exemple £ADD) et est nommé N2
+        // Le parent de N1 est de type non terminal (par exemple £COMPARATOR) et est nommé N0
+        // Le but est de rajouter N1 en tant qu'enfant de N0 et de remplacer N2 en tant qu'enfant de N1
+        // Puis de remplacer P4 en tant qu'enfant de N1
+        // Donne en paramètre le noeud P4
+
+        Noeud_Non_Terminal P4 = noeud;
+        System.out.println("P4 : " + P4.getCode());
+        Noeud_Non_Terminal P3 = P4.getParent();
+        System.out.println("P3 : " + P3.getCode());
+        Noeud_Non_Terminal N2 = P3.getParent();
+        System.out.println("N2 : " + N2.getCode());
+        Noeud_Non_Terminal N0 = N2.getParent();
+        System.out.println("N0 : " + N0.getCode());
+
+        // On supprime P4 de la liste des enfants de P3
+        P3.getEnfants().remove(P4);
+
+        // On duplique N2 en N1
+        Noeud_Non_Terminal N1 = new Noeud_Non_Terminal(N2.getCode());
+
+        // On remplace N2 par N1 dans la liste des enfants de N0
+        N0.getEnfants().remove(N2);
+        N0.getEnfants().add(N1);
+
+        // Change les parents de N1
+        N1.setParent(N0);
+
+        // On remplace P4 par N1 dans la liste des enfants de P3
+        N1.ajouterEnfant(P4);
+        
+        // Change les parents de P4
+        P4.setParent(N1);
+
+        // On rajooute N2 en tant qu'enfant de N1
+        N1.ajouterEnfant(N2);
+
+        // Change les parents de N2
+        N2.setParent(N1);
+    }
+
+    public int trouve_et_deprime() {
+        // Renvoie 1 si un noeud de type prime (avec un parent de type prime) a été trouvé et déprimé, 0 sinon
+
+        Stack<Noeud_A> pile = new Stack<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (estPrime((Noeud_Non_Terminal)noeud) && estPrime(((Noeud_Non_Terminal)noeud).getParent())) {
+                    associativite_gauche_prime((Noeud_Non_Terminal)noeud);
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void deprime_elague() {
+        // Tant qu'un noeud de type prime (avec un parent de type prime) est trouvé, on le déprime
+        retire_prime_sans_enfant();
+
+        while (trouve_et_deprime() == 1) {
+            Logger.info("Déprimé");
+            
+        }
+    }
+
+    public void retire_prime_sans_enfant() {
+        // Le but est de trouver tous les primes sans enfant et de les supprimer
+
+        Stack<Noeud_A> pile = new Stack<>();
+
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (estPrime((Noeud_Non_Terminal)noeud) && noeud.sansEnfant()) {
+                    noeud.supprimer();
+                }
+            }
+        }
+    }
+
 }
