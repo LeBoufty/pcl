@@ -12,12 +12,7 @@ public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static int[] nt_etoile = {3, 8, 14, 16, 21};
     private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
-    private static String[] t_inutile = {"with", ";", "use", "procedure", "is",
-    "begin", "end", "EOF", "type", "function", "return", ":", ":=", "access",
-    "record", "virgule", "(", ")", "in", "out", "for", "..", "loop", "if", "then",
-    "while", "else", "elsif", "or", "and", "not", "=",
-    "/=", "<", "<=", ">", ">=", "+", "-", "*", "/", "rem", "caractere",
-    "charactere", "'", "val"};
+    private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
     private static HashMap<String, Integer> terminaux;
 
@@ -105,11 +100,11 @@ public class Elagueur {
     }
 
     private boolean estInutile(Noeud_Terminal noeud) {
-        for(String s : t_inutile) {
+        for(String s : t_utile) {
             if (noeud.getCode() == terminaux.get(s)) {
-                return true;
+                return false;
             }
-        } return false;
+        } return true;
     }
 
     private void supprimerInutiles() {
