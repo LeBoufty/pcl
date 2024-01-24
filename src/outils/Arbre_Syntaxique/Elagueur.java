@@ -38,6 +38,8 @@ public class Elagueur {
         Logger.info("Etoiles compressées");
         transmettreetoileauplus();
         Logger.info("enfants des etoiles transmis aux plus");
+        mettreassertiondansdecl();
+        Logger.info("assertions mis dans les declarations");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
@@ -178,6 +180,42 @@ public class Elagueur {
                     nnt.getParent().ajouterFirstEnfant(enfant);
                 }
             }
+        }
+    }
+
+    private void mettreassertiondansdecl()
+    {
+        Stack<Noeud_A> pile = new Stack<>();
+        ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (nonterminaux.get("£DECLARATION")==((Noeud_Non_Terminal)noeud).getCode() ) {
+                    tag.add((Noeud_Non_Terminal)noeud);
+                }
+            }
+        }
+        for (Noeud_Non_Terminal nnt : (tag)) {
+            ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
+            //Collections.reverse(listeenfant);
+            Noeud_A idfenfant=null;
+            for (Noeud_A enfant : listeenfant) {
+                if(terminaux.get("IDF")==((Noeud_Terminal)enfant).getCode() )
+                {
+                    idfenfant=enfant;
+                }
+                if(terminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() )
+                {
+                    nnt.getParent().ajouterFirstEnfant(enfant);
+                    ((Noeud_Non_Terminal) enfant).ajouterFirstEnfant(idfenfant);
+                    enfant.setParent(nnt.getParent());
+                }
+            }
+            nnt.supprimer();
         }
     }
 
