@@ -201,7 +201,7 @@ public class Elagueur {
         }
         for (Noeud_Non_Terminal nnt : (tag)) {
             ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
-            Collections.reverse(listeenfant);
+            //Collections.reverse(listeenfant);
             Noeud_A idfenfant=null;
             for(int i=listeenfant.size()-1;i>=0;i--)
             {
