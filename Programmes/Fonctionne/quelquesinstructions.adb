@@ -12,7 +12,8 @@ procedure quelquesinstructions is
     e : recorda;
 begin
     a := -4;
-    a;
+    a := lol(toto(10,2),2,atf(1));
+    b := log(1);
     b := a + 1;
     b := 1-1+1;
     b := 1*2+3*(4+5);

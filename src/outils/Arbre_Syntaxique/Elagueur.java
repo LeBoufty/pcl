@@ -46,8 +46,9 @@ public class Elagueur {
         Logger.info("assertions mis dans les declarations");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
-        // supprimerInutiles();
+        supprimerInutiles();
         remonte_operation_elague();
+        //descend_appel_fonction_boucle();
         Logger.info("Terminaux inutiles supprimés");
         Logger.milestone("Fin de l'élagage");
     }
@@ -194,7 +195,49 @@ public class Elagueur {
         }
     }
 
-    private void mettreassertiondansdecl()
+    private void descend_appel_fonction(Noeud_Non_Terminal noeud) {
+        Noeud_Non_Terminal APPELFonction = noeud;
+
+        if (APPELFonction.getEnfants().size() < 2) {
+            return;
+        }
+
+        Noeud_Non_Terminal OPERATEUREtoile = (Noeud_Non_Terminal) APPELFonction.getEnfants().get(0);
+        Noeud_A FirstParam = APPELFonction.getEnfants().get(1);
+
+        APPELFonction.getEnfants().remove(FirstParam);
+        APPELFonction.getEnfants().remove(OPERATEUREtoile);
+
+        for (Noeud_A enfant : OPERATEUREtoile.getEnfants()) {
+            APPELFonction.ajouterEnfant(enfant);
+            enfant.setParent(APPELFonction);
+        }
+        APPELFonction.ajouterEnfant(FirstParam);
+        FirstParam.setParent(APPELFonction);
+
+    }
+
+    private void descend_appel_fonction_boucle() {
+        Stack<Noeud_A> pile = new Stack<>();
+        ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (nonterminaux.get("£APPELfonction")==((Noeud_Non_Terminal)noeud).getCode() ) {
+                    tag.add((Noeud_Non_Terminal)noeud);
+                }
+            }
+        }
+        for (Noeud_Non_Terminal nnt : (tag)) {
+            descend_appel_fonction(nnt);
+        }
+    }
+
+    private void mettreassertiondansdecl() // Ne pas UTILISER
     {
         Stack<Noeud_A> pile = new Stack<>();
         ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
