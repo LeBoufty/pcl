@@ -267,7 +267,7 @@ public class Elagueur {
             if(estPlus(nnt.getParent()))
             {
                 ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
-                Collections.reverse(listeenfant);
+                //Collections.reverse(listeenfant);
                 for (Noeud_A enfant : listeenfant) {
                     nnt.getParent().ajouterFirstEnfant(enfant);
                     enfant.setParent(nnt.getParent());
