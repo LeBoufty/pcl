@@ -19,6 +19,8 @@ begin
     b := (1-1+1*2*(1+(1*2)));
     e.c := 1;
     e.f := a>=b=e.c;
+    a := a rem b;
+    a:= a * b + (a rem b + 1);
     if b > 0 then
         sortie := true;
     else
