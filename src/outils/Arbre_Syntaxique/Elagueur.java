@@ -208,7 +208,7 @@ public class Elagueur {
                 {
                     idfenfant=enfant;
                 }
-                if(terminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() )
+                if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() )
                 {
                     nnt.getParent().ajouterFirstEnfant(enfant);
                     ((Noeud_Non_Terminal) enfant).ajouterFirstEnfant(idfenfant);
