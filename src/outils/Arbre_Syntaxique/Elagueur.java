@@ -28,10 +28,7 @@ public class Elagueur {
     public void elaguer() {
         Logger.milestone("Début de l'élagage");
         deprime_elague();
-        if (true) {
-            Logger.info("Primes déprimées");
-            return;
-        }
+
         //this.Arbre_Syntaxique.seSacrifier();
         //Logger.info("Première vague de sacrifices effectuée");
         for ( Noeud_Non_Terminal nnt : trouverNoeudsVides()) {
@@ -45,8 +42,8 @@ public class Elagueur {
         Logger.info("Etoiles compressées");
         transmettreetoileauplus();
         Logger.info("enfants des etoiles transmis aux plus");
-        //mettreassertiondansdecl();
-        //Logger.info("assertions mis dans les declarations");
+        mettreassertiondansdecl();
+        Logger.info("assertions mis dans les declarations");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
@@ -225,11 +222,20 @@ public class Elagueur {
                         listeenfant.remove(i);
                     }
                 }
+                else
+                {
+                    if(nonterminaux.get("£LVALUE")==((Noeud_Non_Terminal)listeenfant.get(i)).getCode() )
+                    {
+                        idfenfant=listeenfant.get(i);
+                        listeenfant.remove(i);
+                    }
+                }
+                
             }
             for (Noeud_A enfant : listeenfant) {
                 if(enfant instanceof Noeud_Non_Terminal)
                 {
-                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() && idfenfant!=null)
+                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode())
                     {
                         nnt.getParent().ajouterEnfant(enfant);
                         ((Noeud_Non_Terminal) enfant).ajouterEnfant(idfenfant);
@@ -368,13 +374,13 @@ public class Elagueur {
         // Donne en paramètre le noeud P4
 
         Noeud_Non_Terminal P4 = noeud;
-        System.out.println("P4 : " + P4.getCode());
+        // System.out.println("P4 : " + P4.getCode());
         Noeud_Non_Terminal P3 = P4.getParent();
-        System.out.println("P3 : " + P3.getCode());
+        // System.out.println("P3 : " + P3.getCode());
         Noeud_Non_Terminal N2 = P3.getParent();
-        System.out.println("N2 : " + N2.getCode());
+        // System.out.println("N2 : " + N2.getCode());
         Noeud_Non_Terminal N0 = N2.getParent();
-        System.out.println("N0 : " + N0.getCode());
+        // System.out.println("N0 : " + N0.getCode());
 
         // On supprime P4 de la liste des enfants de P3
         P3.getEnfants().remove(P4);
