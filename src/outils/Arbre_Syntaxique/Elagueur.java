@@ -1,6 +1,7 @@
 package outils.Arbre_Syntaxique;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
@@ -11,7 +12,12 @@ import outils.Syntaxe.CSVParser;
 public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static String[] nt_etoile_nom={"£DECLEtoile","£CHAMPEtoile","£PARAMEtoile","£OPERATEUREtoile","£INSTREtoile","£ELSIFEtoile"};
+<<<<<<< HEAD
     private static String[] nt_prime_nom = {"£ORPrime","£ANDPrime","£NOTPrime","£EQUALSPrime","£COMPARATORSPrime","£ADDPrime", "£MULTPrime"};
+=======
+    private static String[] nt_plus_nom={"£CHAMPPlus","£PARAMPlus","£INSTRPlus"};
+    private static int[] nt_prime = {23, 25, 27, 29, 31, 33, 35};
+>>>>>>> 16e6b900901fce12390919c1613c2b0fb4a527eb
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
     private static HashMap<String, Integer> terminaux;
@@ -40,6 +46,10 @@ public class Elagueur {
         Logger.info("Sacrifices effectués");
         comprimerEtoiles();
         Logger.info("Etoiles compressées");
+        transmettreetoileauplus();
+        Logger.info("enfants des etoiles transmis aux plus");
+        mettreassertiondansdecl();
+        Logger.info("assertions mis dans les declarations");
         //remonterPrimes();
         //Logger.info("Opérations simplifiées");
         supprimerInutiles();
@@ -79,6 +89,19 @@ public class Elagueur {
             nt_etoile[i] = nonterminaux.get(nt_etoile_nom[i]);
         }
         for (int i : nt_etoile) {
+            if (noeud.getCode() == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean estPlus(Noeud_Non_Terminal noeud) {
+        int[] nt_plus = new int[nt_plus_nom.length];
+        for (int i=0 ; i<nt_plus_nom.length ; i++){
+            nt_plus[i] = nonterminaux.get(nt_plus_nom[i]);
+        }
+        for (int i : nt_plus) {
             if (noeud.getCode() == i) {
                 return true;
             }
@@ -148,7 +171,6 @@ public class Elagueur {
         }
     }
 
-    // TODO : réécrire
     private void comprimerEtoiles() {
         Stack<Noeud_A> pile = new Stack<>();
         ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
@@ -167,10 +189,90 @@ public class Elagueur {
         for (Noeud_Non_Terminal nnt : (tag)) {
             if (nnt.getParent().getCode() == nnt.getCode()) {
                 nnt.getParent().getEnfants().remove(nnt);
-                for (Noeud_A enfant : nnt.getEnfants()) {
+                ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
+                Collections.reverse(listeenfant);
+                for (Noeud_A enfant : listeenfant) {
                     nnt.getParent().ajouterFirstEnfant(enfant);
                 }
             }
+        }
+    }
+
+    private void mettreassertiondansdecl()
+    {
+        Stack<Noeud_A> pile = new Stack<>();
+        ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (nonterminaux.get("£DECLARATION")==((Noeud_Non_Terminal)noeud).getCode() ) {
+                    tag.add((Noeud_Non_Terminal)noeud);
+                }
+            }
+        }
+        for (Noeud_Non_Terminal nnt : (tag)) {
+            ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
+            Collections.reverse(listeenfant);
+            Noeud_A idfenfant=null;
+            for(int i=listeenfant.size()-1;i>=0;i--)
+            {
+                if(listeenfant.get(i) instanceof Noeud_Terminal)
+                {
+                    if(terminaux.get("IDF")==((Noeud_Terminal)listeenfant.get(i)).getCode() )
+                    {
+                        idfenfant=listeenfant.get(i);
+                        listeenfant.remove(i);
+                    }
+                }
+            }
+            for (Noeud_A enfant : listeenfant) {
+                if(enfant instanceof Noeud_Non_Terminal)
+                {
+                    if(nonterminaux.get("£ASSERTION")==((Noeud_Non_Terminal)enfant).getCode() && idfenfant!=null)
+                    {
+                        nnt.getParent().ajouterEnfant(enfant);
+                        ((Noeud_Non_Terminal) enfant).ajouterEnfant(idfenfant);
+                        enfant.setParent(nnt.getParent());
+                    }
+                }
+                
+            }
+            nnt.supprimer();
+        }
+    }
+
+    private void transmettreetoileauplus()
+    {
+        Stack<Noeud_A> pile = new Stack<>();
+        ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (estEtoile((Noeud_Non_Terminal)noeud)) {
+                    tag.add((Noeud_Non_Terminal)noeud);
+                }
+            }
+        }
+        for (Noeud_Non_Terminal nnt : (tag)) {
+            if(estPlus(nnt.getParent()))
+            {
+                ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
+                Collections.reverse(listeenfant);
+                for (Noeud_A enfant : listeenfant) {
+                    nnt.getParent().ajouterFirstEnfant(enfant);
+                    enfant.setParent(nnt.getParent());
+                }
+                nnt.supprimer();
+            }
+            
         }
     }
 
