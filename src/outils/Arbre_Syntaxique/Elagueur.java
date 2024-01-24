@@ -208,9 +208,9 @@ public class Elagueur {
                 }
             }
         }
+        Collections.reverse(tag);
         for (Noeud_Non_Terminal nnt : (tag)) {
             ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
-            //Collections.reverse(listeenfant);
             Noeud_A idfenfant=null;
             for(int i=listeenfant.size()-1;i>=0;i--)
             {
@@ -270,7 +270,7 @@ public class Elagueur {
                 ArrayList<Noeud_A> listeenfant=nnt.getEnfants();
                 Collections.reverse(listeenfant);
                 for (Noeud_A enfant : listeenfant) {
-                    nnt.getParent().ajouterEnfant(enfant);
+                    nnt.getParent().ajouterFirstEnfant(enfant);
                     enfant.setParent(nnt.getParent());
                 }
                 nnt.supprimer();
