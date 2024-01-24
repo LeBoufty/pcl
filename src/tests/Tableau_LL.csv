@@ -1,4 +1,4 @@
-LLtable,with,IDF,.,;,use,procedure,is,EOF,type,function,return,:,:=,access,record,end,(,),in,out,virgule,begin,for,..,loop,if,then,while,reverse,else,elsif,or,orelse,and,andthen,not,=,/=,<,<=,>=,>,+,-,*,/,rem,caractere,charactere,',val,entier,false,new,null,true,$
+LLtable,with,IDF,.,;,use,procedure,is,EOF,type,function,return,:,:=,access,record,end,(,),in,out,virgule,begin,for,..,loop,if,then,while,reverse,else,elsif,or,orelse,and,andthen,not,=,/=,<,<=,>=,>,+,-,*,/,rem,caractere,character,',val,entier,false,new,null,true,$
 £FICHIER,with&IDF&.&IDF&;&use&IDF&.&IDF&;&procedure&IDF&is&£DECLEtoile&£BEGIN&£IDFInterro&;&EOF,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £IDFInterro,§,IDF,§,€,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £DECLEtoile,§,£DECL&£DECLEtoile,§,§,§,£DECL&£DECLEtoile,§,§,£DECL&£DECLEtoile,£DECL&£DECLEtoile,§,§,§,§,§,§,§,§,§,§,§,€,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
@@ -73,7 +73,7 @@ LLtable,with,IDF,.,;,use,procedure,is,EOF,type,function,return,:,:=,access,recor
 £MOINSUnairePresent,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,-&£EXPRESSION,§,§,§,§,§,§,§,§,§,§,§,§,§
 £EXPRESSION,§,£LVALUE,§,§,§,§,§,§,§,§,§,§,§,§,§,§,£EXPRESSIONparenthese,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,caractere,£CHARACTERVAL,§,§,entier,false,£IDFNEW,null,true,§
 £EXPRESSIONparenthese,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,(&£OPERATEUR&),§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
-£CHARACTERVAL,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,charactere&'&val&(&£OPERATEUR&),§,§,§,§,§,§,§,§
+£CHARACTERVAL,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,character&'&val&(&£OPERATEUR&),§,§,§,§,§,§,§,§
 £IDFNEW,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,new&IDF,§,§,§
 £LVALUE,§,IDF&£LVALUEList,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £LVALUEList,§,§,£POINTrecord,€,§,§,§,§,§,§,§,§,§,§,§,§,£APPELfonction,€,§,§,€,§,§,€,€,§,€,§,§,§,§,€,€,€,€,€,€,€,€,€,€,€,€,€,€,€,€,§,§,§,§,§,§,§,§,§,§
