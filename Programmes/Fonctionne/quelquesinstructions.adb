@@ -19,7 +19,7 @@ begin
     b := (1-1+1*2*(1+(1*2)));
     e.c := 1;
     e.f := a>=b=e.c;
-    if b > 0 then
+    if b and b and then c or a or else 1 > 0 then
         sortie := true;
     else
         sortie := false;

@@ -13,6 +13,7 @@ public class Elagueur {
     private Noeud_Non_Terminal Arbre_Syntaxique;
     private static String[] nt_etoile_nom={"£DECLEtoile","£CHAMPEtoile","£PARAMEtoile","£OPERATEUREtoile","£INSTREtoile","£ELSIFEtoile"};
     private static String[] nt_prime_nom = {"£ORPrime","£ANDPrime","£NOTPrime","£EQUALSPrime","£COMPARATORSPrime","£ADDPrime", "£MULTPrime"};
+    private static String[] nt_operation_nom = {"£OR2","£ORELSE", "£AND2", "£ANDTHEN", "£EQUAL","£NOTEQUAL","£INFERIORStrict", "£INFERIOR", "£SUPERIOR", "SUPERIORStrict","£ADDITION", "£SUBSTRACTION", "£MULTIPLY", "£DIVIDE", "£REM"};
     private static String[] nt_plus_nom={"£CHAMPPlus","£PARAMPlus","£INSTRPlus"};
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
@@ -369,6 +370,60 @@ public class Elagueur {
         while (trouve_et_deprime() == 1) {
             Logger.info("Déprimé");
             
+        }
+    }
+
+    public boolean estOperation(Noeud_Non_Terminal noeud) {
+        int[] nt_operation = new int[nt_operation_nom.length];
+        for (int i=0 ; i<nt_operation_nom.length ; i++){
+            nt_operation[i] = nonterminaux.get(nt_operation_nom[i]);
+        }
+        for (int i : nt_operation) {
+            if (noeud.getCode() == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void remonte_operation(Noeud_A noeud) {
+        // Le but est de remonter le noeud de type opération P2 (par exemple £ADDITION) en tant qu'enfant de P1 (par exemple £ADD)
+
+        Noeud_Non_Terminal P2 = (Noeud_Non_Terminal)noeud;
+        
+        Noeud_Non_Terminal P1 = P2.getParent();
+
+        Noeud_Non_Terminal N2 = P1.getParent();
+
+        N2.getEnfants().remove(P1);
+        N2.getEnfants().add(P2);
+        P2.setParent(N2);
+    }
+
+    public int trouve_et_remonte_operation() {
+        // Renvoie 1 si un noeud de type opération (avec un parent de type opération) a été trouvé et remonté, 0 sinon
+
+        Stack<Noeud_A> pile = new Stack<>();
+        pile.push(this.Arbre_Syntaxique);
+        while (!pile.isEmpty()) {
+            Noeud_A noeud = pile.pop();
+            if (noeud instanceof Noeud_Non_Terminal) {
+                for (Noeud_A enfant : ((Noeud_Non_Terminal) noeud).getEnfants()) {
+                    pile.push(enfant);
+                }
+                if (estOperation((Noeud_Non_Terminal)noeud)){
+                    remonte_operation(noeud);
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void remonte_operation_elague() {
+        // Tant qu'un noeud de type opération (avec un parent de type opération) est trouvé, on le remonte
+        while (trouve_et_remonte_operation() == 1) {
+            Logger.info("Remonté");
         }
     }
 
