@@ -25,7 +25,7 @@ public class TestParserLexeur {
 
         CSVAnalyseur_S analyseur = new CSVAnalyseur_S(programme + ".lex", "src/tests/Tableau_LL.csv", programme + ".idf");
         analyseur.analyse();
-        //analyseur.elaguer();
+        analyseur.elaguer();
         analyseur.affiche_UML(programme + ".puml");
     }
 }
