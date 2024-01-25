@@ -163,7 +163,7 @@ public class NoeudUML {
                 this.valeur = Repertoire.getNewID(ou);
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
-                enfants.add(new NoeudUML(ou.getOperateur().toString()));
+                enfants.add(new NoeudUML(ou.getOperateur().name()));
                 enfants.add(new NoeudUML(ou.droite));
                 break;
             case "Procedure":

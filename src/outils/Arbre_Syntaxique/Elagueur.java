@@ -19,11 +19,13 @@ public class Elagueur {
     private static String[] t_utile = {"IDF", "caractere", "entier", "false", "true", "null"};
     private static HashMap<String, Integer> nonterminaux;
     private static HashMap<String, Integer> terminaux;
+    private TDS tds;
 
     public Elagueur(Noeud_Non_Terminal Arbre_Syntaxique, List<List<String>> records) {
         this.Arbre_Syntaxique = Arbre_Syntaxique;
         terminaux = CSVParser.getFirstLigne(records);
         nonterminaux = CSVParser.getFirstColonne(records);
+        tds = new TDS();
     }
 
     public void elaguer() {
@@ -310,7 +312,7 @@ public class Elagueur {
         }
     }
 
-    private void mettreassertiondansdecl() // Ne pas UTILISER
+    /*private void mettreassertiondansdecl() // Ne pas UTILISER
     {
         Stack<Noeud_A> pile = new Stack<>();
         ArrayList<Noeud_Non_Terminal> tag = new ArrayList<>();
@@ -365,7 +367,7 @@ public class Elagueur {
             }
             nnt.supprimer();
         }
-    }
+    }*/
 
     private void transmettreetoileauplus()
     {
@@ -436,7 +438,7 @@ public class Elagueur {
         return null;
     }
 
-    public Noeud traduire(Noeud_A noeud) {
+    private Noeud traduire(Noeud_A noeud) {
         if (noeud instanceof Noeud_Non_Terminal) {
             return traduire((Noeud_Non_Terminal) noeud);
         } else if (noeud instanceof Noeud_Terminal) {
@@ -445,42 +447,86 @@ public class Elagueur {
         return null;
     }
 
-    public Noeud traduire(Noeud_Non_Terminal noeud) {
+    private Noeud traduire(Noeud_Non_Terminal noeud) {
         String nom = getNomNT(noeud.getCode());
+        Logger.debug(nom);
         switch (nom) {
             case "£FICHIER":
+                Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+                programme.definitions = traduire(noeud.getEnfants().get(2));
+                programme.instructions = traduire(noeud.getEnfants().get(1));
+                return programme;
             case "£DECLEtoile":
             case "£CHAMPEtoile":
             case "£INSTRPlus":
             case "£INSTREtoile":
                 Bloc bloc = new Bloc();
-                for (Noeud_A enfant : noeud.getEnfants()) {
+                for (Noeud_A enfant : ArrayInverse(noeud.getEnfants())) {
                     bloc.ajouterInstruction(traduire(enfant));
                 }
                 return bloc;
+            case "£BEGIN":
+                return traduire(noeud.getEnfants().get(0));
             case "£RETURN":
                 return new Return((Evaluable) traduire(noeud.getEnfants().get(0)));
             case "£IF":
-                return new InstructionIf((Evaluable) traduire(noeud.getEnfants().get(0)), traduire(noeud.getEnfants().get(1)));
+                return new InstructionIf((Evaluable) traduire(noeud.getEnfants().get(1)), traduire(noeud.getEnfants().get(0)));
             case "£ADDITION":
-                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.PLUS);
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.PLUS);
             case "£SUBSTRACTION":
-                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.MOINS);
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.MOINS);
             case "£MULTIPLY":
-                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.FOIS);
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.FOIS);
             case "£DIVIDE":
-                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.DIV);
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.DIV);
             case "£REM":
-                return new Operation((Evaluable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)), Operateur.REM);
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.REM);
             case "£ASSERTION":
-                return new Affectation((Variable) traduire(noeud.getEnfants().get(0)), (Evaluable) traduire(noeud.getEnfants().get(1)));
-            
-        }
+                return new Affectation((Variable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)));
+            case "£ACCESSDECL":
+                String type = ((Noeud_Terminal) noeud.getEnfants().get(0)).getValeurIdf();
+                String nom_variable = ((Noeud_Terminal) noeud.getEnfants().get(1)).getValeurIdf();
+                Declaration declaration = new Declaration(getType(type), nom_variable);
+                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf(), declaration.variable);
+                return declaration;
+            case "£MOINSUnairePresent":
+                return new OperationUnaire((Evaluable)traduire(noeud.getEnfants().get(0)), OperateurUnaire.MOINS);
+            case "£APPELfonction":
+                Fonction fonction = tds.getFonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf());
+                AppelFonction appel = new AppelFonction(fonction);
+                for (Noeud_A enfant : ((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants()) {
+                    appel.ajouterParametre((Evaluable) traduire(enfant));
+                }
+                return appel;
+            case "£DECLARATION":
+                return traduire(noeud.getEnfants().get(0));
+            case "£FUNCTIONDECL":
+                Fonction fonc = new Fonction(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+                Noeud_Non_Terminal returnfonction = (Noeud_Non_Terminal) noeud.getEnfants().get(2);
+                fonc.type = getType(((Noeud_Terminal)returnfonction.getEnfants().get(1)).getValeurIdf());
+                fonc.definitions = traduire(returnfonction.getEnfants().get(0));
+                Noeud_Non_Terminal name = ((Noeud_Non_Terminal)noeud.getEnfants().get(3));
+                Noeud_Non_Terminal parenthese = ((Noeud_Non_Terminal)name.getEnfants().get(0));
+                Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)parenthese.getEnfants().get(0));
+                for (Noeud_A na : paramplus.getEnfants()) {
+                    fonc.params.add((Parametre)traduire(na));
+                }
+                fonc.instructions = traduire(noeud.getEnfants().get(1));
+                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(0)).getCodeIdf(), fonc);
+                return fonc;
+            case "£PARAMUnique":
+                IType paratype = getType(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+                String paranom = ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf();
+                Parametre param = new Parametre(paratype, paranom);
+                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf(), param.variable);
+                return param;
+        }   
         return null;
     }
 
-    public Noeud traduire(Noeud_Terminal noeud) {
+    private Noeud traduire(Noeud_Terminal noeud) {
         String nom = getNomT(noeud.getCode());
+        Logger.debug(nom);
         switch (nom) {
             case "entier":
                 return new Constante(noeud.getCodeIdf());
@@ -492,9 +538,28 @@ public class Elagueur {
                 return new Constante(false);
             case "null":
                 return new Constante();
+            case "IDF":
+                return tds.get(noeud.getCodeIdf());
         }
         return null;
     }
+
+    public Noeud traduire() {
+        return traduire(this.Arbre_Syntaxique);
+    }
+
+    private IType getType(String type) {
+        switch (type) {
+            case "integer":
+                return Type.INTEGER;
+            case "boolean":
+                return Type.BOOLEAN;
+            case "character":
+                return Type.CHARACTER;
+        }
+        return null;
+    }
+
     public void associativite_gauche_prime(Noeud_Non_Terminal noeud) {
         // Le but est de trouver les noeuds de type prime ayant un parent de type prime, ce type de noeud est nommé P4
         // Le parent de P2 de type prime est nommé P3

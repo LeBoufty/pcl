@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
+import arbres.Noeud;
 import outils.Logger;
 import outils.Arbre_Syntaxique.Elagueur;
 import outils.Arbre_Syntaxique.Generator_UML;
@@ -192,9 +193,9 @@ public class CSVAnalyseur_S {
         return AST;
     }
 
-    public Noeud_Non_Terminal elaguer() {
+    public Noeud elaguer() {
         Elagueur elagueur = new Elagueur(getAST(), records);
         elagueur.elaguer();
-        return elagueur.getArbre_Syntaxique();
+        return elagueur.traduire();
     }
 }
