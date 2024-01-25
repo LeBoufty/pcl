@@ -31,12 +31,13 @@ LLtable,with,IDF,.,;,use,procedure,is,EOF,type,function,return,:,:=,access,recor
 £BEGIN,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,begin&£INSTRPlus&end,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £INSTRPlus,§,£INSTR&£INSTREtoile,§,§,§,§,§,§,§,§,£INSTR&£INSTREtoile,§,§,§,§,§,§,§,§,§,§,£INSTR&£INSTREtoile,£INSTR&£INSTREtoile,§,§,£INSTR&£INSTREtoile,§,£INSTR&£INSTREtoile,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £FOR,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,for&IDF&in&£REVERSEInterro&£OPERATEUR&..&£OPERATEUR&loop&£INSTRPlus&end&loop&;,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
-£IF,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,if&£OPERATEUR&then&£INSTRPlus&£ELSIFEtoile&£ELSEINSTRInterro&end&if&;,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
+£IF,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,if&£CONDITION&then&£INSTRPlus&£ELSIFEtoile&£ELSEINSTRInterro&end&if&;,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
+£CONDITION,§,£OPERATEUR,§,§,§,§,§,§,§,§,§,§,§,§,§,§,£OPERATEUR,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,£OPERATEUR,§,§,§,£OPERATEUR,£OPERATEUR,§,§,£OPERATEUR,£OPERATEUR,£OPERATEUR,£OPERATEUR,£OPERATEUR,§
 £RETURN,§,§,§,§,§,§,§,§,§,§,return&£OPERATEURInterro&;,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
-£WHILE,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,while&£OPERATEUR&loop&£INSTRPlus&end&loop&;,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
+£WHILE,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,while&£CONDITION&loop&£INSTRPlus&end&loop&;,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £REVERSEInterro,§,€,§,§,§,§,§,§,§,§,§,§,§,§,§,§,€,§,§,§,§,§,§,§,§,§,§,§,reverse,§,§,§,§,§,§,§,§,§,§,§,§,§,§,€,§,§,§,€,€,§,§,€,€,€,€,€,§
 £ELSEINSTRInterro,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,€,§,§,§,§,§,§,§,§,§,§,§,§,§,else&£INSTRPlus,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
-£ELSIFEtoile,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,€,§,§,§,§,§,§,§,§,§,§,§,§,§,€,elsif&£OPERATEUR&then&£INSTRPlus&£ELSIFEtoile,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
+£ELSIFEtoile,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,€,§,§,§,§,§,§,§,§,§,§,§,§,§,€,elsif&£CONDITION&then&£INSTRPlus&£ELSIFEtoile,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £ACCESSInterro,§,€,§,§,§,§,§,§,§,§,§,§,§,access,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§
 £OPERATEUR,§,£OR,§,§,§,§,§,§,§,§,§,§,§,§,§,§,£OR,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,£OR,§,§,§,£OR,£OR,§,§,£OR,£OR,£OR,£OR,£OR,§
 £OR,§,£AND&£ORPrime,§,§,§,§,§,§,§,§,§,§,§,§,§,§,£AND&£ORPrime,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,§,£AND&£ORPrime,§,§,§,£AND&£ORPrime,£AND&£ORPrime,§,§,£AND&£ORPrime,£AND&£ORPrime,£AND&£ORPrime,£AND&£ORPrime,£AND&£ORPrime,§
