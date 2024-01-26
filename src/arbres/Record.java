@@ -9,7 +9,7 @@ public class Record implements Noeud {
         this.type = new Struct();
     }
     public String toString() {
-        String sortie = "type" + type.nom + "is record ";
+        String sortie = "type " + type.nom + " is record ";
         for (int i = 0; i < type.champs.size(); i++) {
             sortie += type.champs.get(i).variable.nom + " : " + type.champs.get(i).type.toString() + "; ";
         }

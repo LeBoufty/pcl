@@ -4,9 +4,13 @@ with Ada.Text_IO; use Ada.Text_IO;
 procedure recordiii is
    -- Define a record type
    type Person_Record is record
-      Name    : String;
+      Name    : Caractere;
       Age     : Integer;
-      Address : String;
+      Address : Caractere;
+   end record;
+
+   type AgePersonne is record
+      Ageenquestion : Integer;
    end record;
 
    -- Declare variables of the record type
@@ -15,8 +19,10 @@ procedure recordiii is
 begin
    -- Initialize values for Person1
    Person1.Name := 'J';
-   Person1.Age := 30;
+   Person1.Age := -30 - 5 + 4;
    Person1.Address := 'e';
+   Person1.Age := Person1.Age rem 2;
+
 
    -- Display information about Person1
    --Put_Line('Person 1:');

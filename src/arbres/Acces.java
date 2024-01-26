@@ -2,16 +2,18 @@ package arbres;
 
 import java.util.ArrayList;
 
-public class Acces extends Evaluable {
+public class Acces extends Variable {
     public Variable variable;
     public String champ;
+
     public Acces(Variable v, String champ) {
+        super(v.type.getChamp(champ),v.nom+"."+champ);
         this.variable = v;
         this.type = v.type.getChamp(champ);
         this.champ = champ;
     }
     public String toString() {
-        return variable.toString() + "." + champ;
+        return variable.nom + "." + champ;
     }
     public boolean valide() {
         boolean sortie = true;

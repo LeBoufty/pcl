@@ -144,7 +144,7 @@ public class NoeudUML {
                 break;
             case "Constante":
                 Constante c = (Constante) n;
-                this.valeur = rendreUnique(c.toString());
+                this.valeur = rendreUnique(c.toString()).replace("'", "");
                 this.titre = c.toString();
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
@@ -196,14 +196,13 @@ public class NoeudUML {
                 break;
             case "Record":
                 this.titre = "Record";
-                Struct s = (Struct) n;
+                Struct s = ((arbres.Record)n).type;
                 this.valeur = Repertoire.getNewID(s);
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(s.nom));
                 for (Champ champ : s.champs) {
                     enfants.add(new NoeudUML(champ));
-                    enfants.add(new NoeudUML(champ.type.toString()));
                 }
                 break;
             case "Struct":

@@ -602,6 +602,32 @@ public class Elagueur {
                 forinstr.borneSup = (Evaluable) traduire(noeud.getEnfants().get(noeud.getEnfants().size()-3));
                 forinstr.corps = traduire(noeud.getEnfants().get(noeud.getEnfants().size()-4));
                 return forinstr;
+            case "£TYPEDECL":
+                arbres.Record record = new arbres.Record();
+                Struct struct = record.type;
+                struct.nom = ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf();
+                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf(), record.type);
+                Noeud_Non_Terminal champplus = (Noeud_Non_Terminal)noeud.getEnfants().get(0);
+                while (!getNomNT(champplus.getEnfants().get(0).getCode()).equals("£CHAMP")) {
+                    champplus = (Noeud_Non_Terminal) champplus.getEnfants().get(0);
+                }
+                for (Noeud_A na : champplus.getEnfants()) {
+                    struct.champs.add((Champ)traduire(na));
+                }
+                Logger.debug(record.toString());
+                return record;
+            case "£CHAMP":
+                Noeud_Terminal champidf = (Noeud_Terminal)noeud.getEnfants().get(1);
+                IType champtype = getType((Noeud_Terminal)noeud.getEnfants().get(0));
+                Champ champ = new Champ(champtype, champidf.getValeurIdf());
+                tds.ajouter(champidf.getCodeIdf(), champ.variable);
+                return champ;
+            case "£POINTrecord":
+                Variable recordvar = (Variable) traduire(noeud.getEnfants().get(1));
+                Noeud_Non_Terminal paramplusacces = (Noeud_Non_Terminal)noeud.getEnfants().get(0);
+                String champnom = ((Noeud_Terminal)paramplusacces.getEnfants().get(0)).getValeurIdf();
+                Acces acces = new Acces(recordvar, champnom);
+                return acces;
         }   
         return null;
     }
@@ -632,6 +658,7 @@ public class Elagueur {
 
     private IType getType(Noeud_Terminal nt) {
         String nom = nt.getValeurIdf();
+        Logger.debug(nom);
         switch (nom) {
             case "integer":
                 return Type.INTEGER;
@@ -639,6 +666,10 @@ public class Elagueur {
                 return Type.CHARACTER;
             case "boolean":
                 return Type.BOOLEAN;
+            case "caractere":
+                return Type.CHARACTER;
+            case "entier":
+                return Type.INTEGER;
             default:
                 return tds.getType(nt.getCodeIdf());
         }
