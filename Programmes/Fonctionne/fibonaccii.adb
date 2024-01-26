@@ -1,9 +1,9 @@
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Fibonacci is
-    function Fib(n: Natural) return Natural is
+    function Fib(n: Integer) return Integer is
     begin
-        if n.o = -0 then 
+        if n = 0 then 
             return 0;
         elsif n = 1 then
             return 1;
@@ -13,13 +13,12 @@ procedure Fibonacci is
     end Fib;
 
     --Variables
-n : Natural := 10;
-res : Natural := 0;
+m : Integer := 10;
+res : Integer := 0;
 
     --Main
 begin
     res := - 1 - 2 + 3 + 4 - 5;
-    lol := 'a';
     --put("Fibonacci de " & n'Image);
     --put(" est :" & res'Image); 'aB'
 end Fibonacci;

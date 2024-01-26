@@ -19,6 +19,7 @@ public abstract class Noeud_A {
 
     public abstract boolean sansEnfant();
     public abstract void seSacrifier();
+    public abstract int getCode();
     public void supprimer() {
         this.getParent().getEnfants().remove(this);
     }

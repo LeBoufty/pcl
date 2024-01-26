@@ -14,6 +14,6 @@ begin
       J := J + 1;
    end loop;
 
-   put(Sum_For);
-   put(Sum_While);
+   --put(Sum_For);
+   --put(Sum_While);
 end williamfaure;
