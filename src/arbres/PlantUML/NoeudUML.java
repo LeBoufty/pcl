@@ -48,6 +48,8 @@ public class NoeudUML {
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(i.variable));
                 enfants.add(new NoeudUML(i.type.toString()));
+                if (i.valeur != null)
+                    enfants.add(new NoeudUML(i.valeur));
                 break;
             case "Parametre":
                 this.titre = "Paramètre";
@@ -148,14 +150,14 @@ public class NoeudUML {
                 enfants = new ArrayList<NoeudUML>();
                 break;
             case "Operation":
-                this.titre = "Operation";
                 Operation o = (Operation) n;
+                this.titre = o.getOperateur().name();
                 this.valeur = Repertoire.getNewID(o);
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(o.gauche));
                 // On prend le nom de l'opérateur parce que = fout la merde.
-                enfants.add(new NoeudUML(o.getOperateur().name()));
+                //enfants.add(new NoeudUML(o.getOperateur().name()));
                 enfants.add(new NoeudUML(o.droite));
                 break;
             case "OperationUnaire":

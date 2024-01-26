@@ -20,4 +20,8 @@ public class Repertoire {
     public static String getNewID(Noeud n) {
         return get(n.getClass().getSimpleName());
     }
+
+    public static String getNewID(String nom) {
+        return get(nom);
+    }
 }
