@@ -480,12 +480,19 @@ public class Elagueur {
             case "£REM":
                 return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.REM);
             case "£ASSERTION":
+                if (noeud.getEnfants().size()==1) return traduire(noeud.getEnfants().get(0));
                 return new Affectation((Variable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)));
             case "£ACCESSDECL":
-                String type = ((Noeud_Terminal) noeud.getEnfants().get(0)).getValeurIdf();
-                String nom_variable = ((Noeud_Terminal) noeud.getEnfants().get(1)).getValeurIdf();
-                Declaration declaration = new Declaration(getType(type), nom_variable);
-                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf(), declaration.variable);
+                Declaration declaration;
+                String type = ((Noeud_Terminal) noeud.getEnfants().get(noeud.getEnfants().size()-2)).getValeurIdf();
+                String nom_variable = ((Noeud_Terminal) noeud.getEnfants().get(noeud.getEnfants().size()-1)).getValeurIdf();
+                if (noeud.getEnfants().size()==3) {
+                    Noeud valeur = traduire(noeud.getEnfants().get(0));
+                    declaration = new Declaration(getType(type), nom_variable, (Evaluable) valeur);
+                } else {
+                    declaration = new Declaration(getType(type), nom_variable);
+                }
+                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(noeud.getEnfants().size()-1)).getCodeIdf(), declaration.variable);
                 return declaration;
             case "£MOINSUnairePresent":
                 return new OperationUnaire((Evaluable)traduire(noeud.getEnfants().get(0)), OperateurUnaire.MOINS);
@@ -498,19 +505,23 @@ public class Elagueur {
                 return appel;
             case "£DECLARATION":
                 return traduire(noeud.getEnfants().get(0));
+            case "£IDFInterro":
+                return traduire(noeud.getEnfants().get(0));
             case "£FUNCTIONDECL":
                 Fonction fonc = new Fonction(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(0)).getCodeIdf(), fonc);
                 Noeud_Non_Terminal returnfonction = (Noeud_Non_Terminal) noeud.getEnfants().get(2);
-                fonc.type = getType(((Noeud_Terminal)returnfonction.getEnfants().get(1)).getValeurIdf());
+                fonc.type = getType(((Noeud_Terminal)returnfonction.getEnfants().get(returnfonction.getEnfants().size()-1)).getValeurIdf());
+                if (returnfonction.getEnfants().size() > 1)
                 fonc.definitions = traduire(returnfonction.getEnfants().get(0));
-                Noeud_Non_Terminal name = ((Noeud_Non_Terminal)noeud.getEnfants().get(3));
-                Noeud_Non_Terminal parenthese = ((Noeud_Non_Terminal)name.getEnfants().get(0));
-                Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)parenthese.getEnfants().get(0));
+                Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)noeud.getEnfants().get(noeud.getEnfants().size()-1));
+                while (!getNomNT(paramplus.getEnfants().get(0).getCode()).equals("£PARAMUnique")) {
+                    paramplus = (Noeud_Non_Terminal) paramplus.getEnfants().get(0);
+                }
                 for (Noeud_A na : paramplus.getEnfants()) {
                     fonc.params.add((Parametre)traduire(na));
                 }
                 fonc.instructions = traduire(noeud.getEnfants().get(1));
-                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(0)).getCodeIdf(), fonc);
                 return fonc;
             case "£PARAMUnique":
                 IType paratype = getType(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());

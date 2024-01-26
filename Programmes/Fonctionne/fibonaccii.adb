@@ -13,13 +13,12 @@ procedure Fibonacci is
     end Fib;
 
     --Variables
-n : Integer := 10;
+m : Integer := 10;
 res : Integer := 0;
 
     --Main
 begin
     res := - 1 - 2 + 3 + 4 - 5;
-    lol := 'a';
     --put("Fibonacci de " & n'Image);
     --put(" est :" & res'Image); 'aB'
 end Fibonacci;
