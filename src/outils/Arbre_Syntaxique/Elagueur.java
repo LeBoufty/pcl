@@ -588,6 +588,19 @@ public class Elagueur {
                 return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.OR);
             case "£ANDTHEN":
                 return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.AND);
+            case "£WHILE":
+                InstructionWhile whileinstr = new InstructionWhile();
+                whileinstr.condition = (Evaluable) traduire(noeud.getEnfants().get(noeud.getEnfants().size()-1));
+                whileinstr.corps = traduire(noeud.getEnfants().get(noeud.getEnfants().size()-2));
+                return whileinstr;
+            case "£FOR":
+                InstructionFor forinstr = new InstructionFor();
+                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(noeud.getEnfants().size()-1)).getCodeIdf(), new Variable(Type.INTEGER, ((Noeud_Terminal)noeud.getEnfants().get(noeud.getEnfants().size()-1)).getValeurIdf()));
+                forinstr.iterateur = (Variable) traduire(noeud.getEnfants().get(noeud.getEnfants().size()-1));
+                forinstr.borneInf = (Evaluable) traduire(noeud.getEnfants().get(noeud.getEnfants().size()-2));
+                forinstr.borneSup = (Evaluable) traduire(noeud.getEnfants().get(noeud.getEnfants().size()-3));
+                forinstr.corps = traduire(noeud.getEnfants().get(noeud.getEnfants().size()-4));
+                return forinstr;
         }   
         return null;
     }

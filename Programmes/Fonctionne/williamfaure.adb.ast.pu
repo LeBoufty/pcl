@@ -1,0 +1,83 @@
+@startuml ArbreSyntaxique
+object "Procedure" as Procedure
+object "williamfaure" as williamfaure
+object "Bloc" as Bloc
+object "Bloc" as Bloc1
+object "Déclaration" as Declaration
+object "Déclaration" as Declaration1
+object "Déclaration" as Declaration2
+object "For" as InstructionFor
+object "While" as InstructionWhile
+object "sum_for" as sum_for
+object "INTEGER" as INTEGER
+object "sum_while" as sum_while
+object "INTEGER" as INTEGER_
+object "j" as j
+object "INTEGER" as INTEGER__
+object "i" as i
+object "1" as 1
+object "10" as 10
+object "Affectation" as Affectation
+object "Operation" as Operation1
+object "Bloc" as Bloc2
+object "sum_for" as sum_for_
+object "Operation" as Operation
+object "j" as j_
+object "INFERIEUR_EGAL" as INFERIEUR_EGAL
+object "10" as 10_
+object "Affectation" as Affectation1
+object "Affectation" as Affectation2
+object "sum_for" as sum_for__
+object "PLUS" as PLUS
+object "i" as i_
+object "sum_while" as sum_while_
+object "Operation" as Operation2
+object "j" as j___
+object "Operation" as Operation3
+object "sum_while" as sum_while__
+object "PLUS" as PLUS_
+object "j" as j__
+object "j" as j____
+object "PLUS" as PLUS__
+object "1" as 1_
+Procedure -down-> williamfaure
+Procedure -down-> Bloc
+Procedure -down-> Bloc1
+Bloc -down-> Declaration
+Bloc -down-> Declaration1
+Bloc -down-> Declaration2
+Bloc1 -down-> InstructionFor
+Bloc1 -down-> InstructionWhile
+Declaration -down-> sum_for
+Declaration -down-> INTEGER
+Declaration1 -down-> sum_while
+Declaration1 -down-> INTEGER_
+Declaration2 -down-> j
+Declaration2 -down-> INTEGER__
+InstructionFor -down-> i
+InstructionFor -down-> 1
+InstructionFor -down-> 10
+InstructionFor -down-> Affectation
+InstructionWhile -down-> Operation1
+InstructionWhile -down-> Bloc2
+Affectation -down-> sum_for_
+Affectation -down-> Operation
+Operation1 -down-> j_
+Operation1 -down-> INFERIEUR_EGAL
+Operation1 -down-> 10_
+Bloc2 -down-> Affectation1
+Bloc2 -down-> Affectation2
+Operation -down-> sum_for__
+Operation -down-> PLUS
+Operation -down-> i_
+Affectation1 -down-> sum_while_
+Affectation1 -down-> Operation2
+Affectation2 -down-> j___
+Affectation2 -down-> Operation3
+Operation2 -down-> sum_while__
+Operation2 -down-> PLUS_
+Operation2 -down-> j__
+Operation3 -down-> j____
+Operation3 -down-> PLUS__
+Operation3 -down-> 1_
+@enduml
