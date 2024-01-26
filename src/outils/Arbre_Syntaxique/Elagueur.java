@@ -469,8 +469,6 @@ public class Elagueur {
                 return traduire(noeud.getEnfants().get(0));
             case "£RETURN":
                 return new Return((Evaluable) traduire(noeud.getEnfants().get(0)));
-            case "£IF":
-                return new InstructionIf((Evaluable) traduire(noeud.getEnfants().get(1)), traduire(noeud.getEnfants().get(0)));
             case "£ADDITION":
                 return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.PLUS);
             case "£SUBSTRACTION":
@@ -520,6 +518,65 @@ public class Elagueur {
                 Parametre param = new Parametre(paratype, paranom);
                 tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf(), param.variable);
                 return param;
+            case "£ELSIFEtoile":
+                InstructionIf premier = new InstructionIf();
+                InstructionIf courant = premier;
+                ArrayList<Noeud> liste = new ArrayList<>();
+                for (Noeud_A na : noeud.getEnfants()) {
+                    liste.add(traduire(na));
+                }
+                for (int i = 0; i < liste.size(); i++) {
+                    if (i%2 == 1) {
+                        courant.condition = (Evaluable) liste.get(i);
+                        if (i < liste.size() - 2) {
+                            courant.sinon = new InstructionIf();
+                            courant = (InstructionIf) courant.sinon;
+                        }
+                    } else {
+                        courant.alors = liste.get(i);
+                    }
+                } 
+                return premier;
+            case "£ELSEINSTRInterro":
+                return traduire(noeud.getEnfants().get(0));
+            case "£IF":
+                InstructionIf ifinstr = new InstructionIf();
+                ifinstr.condition = (Evaluable) traduire(noeud.getEnfants().get(noeud.getEnfants().size()-1));
+                ifinstr.alors = traduire(noeud.getEnfants().get(noeud.getEnfants().size()-2));
+                if (noeud.getEnfants().size() > 2) {
+                    ifinstr.sinon = traduire(noeud.getEnfants().get(noeud.getEnfants().size()-3));
+                }
+                if (noeud.getEnfants().size() > 3) {
+                    Noeud elseinstr = traduire(noeud.getEnfants().get(0));
+                    InstructionIf courant2 = (InstructionIf)ifinstr.sinon;
+                    while (courant2.sinon != null) {
+                        courant2 = (InstructionIf)courant2.sinon;
+                    }
+                    courant2.sinon = elseinstr;
+                }
+                return ifinstr;
+            case "£EQUAL":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.EGAL);
+            case "£NOTEQUAL":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.DIFFERENT);
+            case "£INFERIOR":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.INFERIEUR_EGAL);
+            case "£SUPERIOR":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.SUPERIEUR_EGAL);
+            case "£INFERIORStrict":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.INFERIEUR);
+            case "£SUPERIORStrict":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.SUPERIEUR);
+            case "£OR2":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.OR);
+            case "£AND2":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.AND);
+            case "£NOT":
+                return new OperationUnaire((Evaluable) traduire(noeud.getEnfants().get(0)), OperateurUnaire.NOT);
+            case "£ORELSE":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.OR);
+            case "£ANDTHEN":
+                return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.AND);
         }   
         return null;
     }

@@ -117,6 +117,7 @@ public class NoeudUML {
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(iif.condition));
                 enfants.add(new NoeudUML(iif.alors));
+                if (iif.sinon != null)
                 enfants.add(new NoeudUML(iif.sinon));
                 break;
             case "InstructionWhile":

@@ -2,126 +2,134 @@
 object "Procedure" as Procedure
 object "traduisible" as traduisible
 object "Bloc" as Bloc
-object "Bloc" as Bloc3
-object "Fonction" as Fonction
-object "Déclaration" as Declaration2
-object "Déclaration" as Declaration3
-object "Déclaration" as Declaration4
-object "Affectation" as Affectation1
-object "Affectation" as Affectation2
-object "Affectation" as Affectation3
-object "Affectation" as Affectation4
-object "f" as f
-object "Paramètre" as Parametre
-object "Paramètre" as Parametre1
-object "INTEGER" as INTEGER__
 object "Bloc" as Bloc1
-object "Bloc" as Bloc2
-object "a" as a
-object "INTEGER" as INTEGER_____
-object "b" as b
-object "INTEGER" as INTEGER______
-object "c" as c
-object "INTEGER" as INTEGER_______
-object "a" as a_
-object "0" as 0
-object "b" as b_
-object "Operation Unaire" as OperationUnaire1
-object "c" as c_
-object "Operation" as Operation1
-object "b" as b___
-object "Appel Fonction" as AppelFonction
-object "p" as p
-object "INTEGER" as INTEGER
-object "n" as n
-object "INTEGER" as INTEGER_
 object "Déclaration" as Declaration
 object "Déclaration" as Declaration1
+object "If" as InstructionIf
+object "If" as InstructionIf3
+object "a" as a
+object "INTEGER" as INTEGER
+object "b" as b
+object "INTEGER" as INTEGER_
+object "Operation" as Operation
 object "Affectation" as Affectation
-object "Return" as Return
-object "MOINS" as MOINS_
-object "5" as 5
+object "If" as InstructionIf1
+object "Operation" as Operation8
+object "Affectation" as Affectation5
+object "a" as a_
+object "EGAL" as EGAL
+object "b" as b_
+object "b" as b__
+object "Operation" as Operation1
 object "Operation" as Operation2
+object "Bloc" as Bloc2
+object "If" as InstructionIf2
+object "a" as a________
+object "EGAL" as EGAL_
+object "b" as b__________
+object "b" as b___________
+object "Operation" as Operation9
+object "b" as b___
 object "PLUS" as PLUS
 object "1" as 1
-object "f" as f_
-object "c" as c__
-object "a" as a___
-object "salut" as salut
-object "INTEGER" as INTEGER___
-object "bonsoir" as bonsoir
-object "INTEGER" as INTEGER____
-object "salut" as salut_
-object "Operation" as Operation
-object "salut" as salut__
 object "a" as a__
-object "MOINS" as MOINS__
-object "b" as b__
-object "Operation Unaire" as OperationUnaire
-object "FOIS" as FOIS
-object "p" as p_
-object "MOINS" as MOINS
-object "n" as n_
+object "SUPERIEUR" as SUPERIEUR
+object "b" as b____
+object "Affectation" as Affectation1
+object "Affectation" as Affectation2
+object "Operation" as Operation5
+object "Affectation" as Affectation3
+object "Affectation" as Affectation4
+object "b" as b____________
+object "PLUS" as PLUS_____
+object "1" as 1_____
+object "b" as b_____
+object "Operation" as Operation3
+object "b" as b_______
+object "Operation" as Operation4
+object "a" as a___
+object "INFERIEUR" as INFERIEUR
+object "b" as b_________
+object "a" as a____
+object "Operation" as Operation6
+object "a" as a______
+object "Operation" as Operation7
+object "b" as b______
+object "PLUS" as PLUS_
+object "1" as 1_
+object "b" as b________
+object "PLUS" as PLUS__
+object "1" as 1__
+object "a" as a_____
+object "PLUS" as PLUS___
+object "1" as 1___
+object "a" as a_______
+object "PLUS" as PLUS____
+object "1" as 1____
 Procedure -down-> traduisible
 Procedure -down-> Bloc
-Procedure -down-> Bloc3
-Bloc -down-> Fonction
-Bloc -down-> Declaration2
-Bloc -down-> Declaration3
-Bloc -down-> Declaration4
-Bloc3 -down-> Affectation1
-Bloc3 -down-> Affectation2
-Bloc3 -down-> Affectation3
-Bloc3 -down-> Affectation4
-Fonction -down-> f
-Fonction -down-> Parametre
-Fonction -down-> Parametre1
-Fonction -down-> INTEGER__
-Fonction -down-> Bloc1
-Fonction -down-> Bloc2
-Declaration2 -down-> a
-Declaration2 -down-> INTEGER_____
-Declaration3 -down-> b
-Declaration3 -down-> INTEGER______
-Declaration4 -down-> c
-Declaration4 -down-> INTEGER_______
-Affectation1 -down-> a_
-Affectation1 -down-> 0
-Affectation2 -down-> b_
-Affectation2 -down-> OperationUnaire1
-Affectation3 -down-> c_
-Affectation3 -down-> Operation1
-Affectation4 -down-> b___
-Affectation4 -down-> AppelFonction
-Parametre -down-> p
-Parametre -down-> INTEGER
-Parametre1 -down-> n
-Parametre1 -down-> INTEGER_
-Bloc1 -down-> Declaration
-Bloc1 -down-> Declaration1
-Bloc2 -down-> Affectation
-Bloc2 -down-> Return
-OperationUnaire1 -down-> MOINS_
-OperationUnaire1 -down-> 5
-Operation1 -down-> Operation2
+Procedure -down-> Bloc1
+Bloc -down-> Declaration
+Bloc -down-> Declaration1
+Bloc1 -down-> InstructionIf
+Bloc1 -down-> InstructionIf3
+Declaration -down-> a
+Declaration -down-> INTEGER
+Declaration1 -down-> b
+Declaration1 -down-> INTEGER_
+InstructionIf -down-> Operation
+InstructionIf -down-> Affectation
+InstructionIf -down-> InstructionIf1
+InstructionIf3 -down-> Operation8
+InstructionIf3 -down-> Affectation5
+Operation -down-> a_
+Operation -down-> EGAL
+Operation -down-> b_
+Affectation -down-> b__
+Affectation -down-> Operation1
+InstructionIf1 -down-> Operation2
+InstructionIf1 -down-> Bloc2
+InstructionIf1 -down-> InstructionIf2
+Operation8 -down-> a________
+Operation8 -down-> EGAL_
+Operation8 -down-> b__________
+Affectation5 -down-> b___________
+Affectation5 -down-> Operation9
+Operation1 -down-> b___
 Operation1 -down-> PLUS
 Operation1 -down-> 1
-AppelFonction -down-> f_
-AppelFonction -down-> c__
-AppelFonction -down-> a___
-Declaration -down-> salut
-Declaration -down-> INTEGER___
-Declaration1 -down-> bonsoir
-Declaration1 -down-> INTEGER____
-Affectation -down-> salut_
-Affectation -down-> Operation
-Return -down-> salut__
 Operation2 -down-> a__
-Operation2 -down-> MOINS__
-Operation2 -down-> b__
-Operation -down-> OperationUnaire
-Operation -down-> FOIS
-Operation -down-> p_
-OperationUnaire -down-> MOINS
-OperationUnaire -down-> n_
+Operation2 -down-> SUPERIEUR
+Operation2 -down-> b____
+Bloc2 -down-> Affectation1
+Bloc2 -down-> Affectation2
+InstructionIf2 -down-> Operation5
+InstructionIf2 -down-> Affectation3
+InstructionIf2 -down-> Affectation4
+Operation9 -down-> b____________
+Operation9 -down-> PLUS_____
+Operation9 -down-> 1_____
+Affectation1 -down-> b_____
+Affectation1 -down-> Operation3
+Affectation2 -down-> b_______
+Affectation2 -down-> Operation4
+Operation5 -down-> a___
+Operation5 -down-> INFERIEUR
+Operation5 -down-> b_________
+Affectation3 -down-> a____
+Affectation3 -down-> Operation6
+Affectation4 -down-> a______
+Affectation4 -down-> Operation7
+Operation3 -down-> b______
+Operation3 -down-> PLUS_
+Operation3 -down-> 1_
+Operation4 -down-> b________
+Operation4 -down-> PLUS__
+Operation4 -down-> 1__
+Operation6 -down-> a_____
+Operation6 -down-> PLUS___
+Operation6 -down-> 1___
+Operation7 -down-> a_______
+Operation7 -down-> PLUS____
+Operation7 -down-> 1____
 @enduml
