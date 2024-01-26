@@ -54,7 +54,7 @@ public class Elagueur {
         descend_appel_fonction_boucle();
         changement_LValue_boucle();
         changement_assertion_boucle();
-        ajoutCondition_boucle();
+        // ajoutCondition_boucle();
         Logger.info("Terminaux inutiles supprimés");
         Logger.milestone("Fin de l'élagage");
     }

@@ -2,80 +2,230 @@
 object "Procedure" as Procedure
 object "williamfaure" as williamfaure
 object "Bloc" as Bloc
-object "Bloc" as Bloc1
-object "Déclaration" as Declaration
+object "Bloc" as Bloc2
+object "Fonction" as Fonction
 object "Déclaration" as Declaration1
 object "Déclaration" as Declaration2
-object "For" as InstructionFor
+object "Déclaration" as Declaration3
+object "For" as InstructionFor1
 object "While" as InstructionWhile
+object "If" as InstructionIf
+object "factorial" as factorial
+object "Paramètre" as Parametre
+object "Paramètre" as Parametre1
+object "INTEGER" as INTEGER__
+object "Déclaration" as Declaration
+object "Bloc" as Bloc1
 object "sum_for" as sum_for
-object "INTEGER" as INTEGER
+object "INTEGER" as INTEGER____
 object "0" as 0
 object "sum_while" as sum_while
-object "INTEGER" as INTEGER_
+object "INTEGER" as INTEGER_____
 object "0" as 0_
 object "j" as j
-object "INTEGER" as INTEGER__
-object "1" as 1
-object "i" as i
-object "1" as 1_
+object "INTEGER" as INTEGER______
+object "1" as 1__
+object "i" as i__
+object "1" as 1___
 object "10" as 10
-object "Affectation" as Affectation
-object "INFERIEUR_EGAL" as Operation1
-object "Bloc" as Bloc2
+object "Affectation" as Affectation1
+object "INFERIEUR_EGAL" as Operation2
+object "Bloc" as Bloc3
+object "EGAL" as Operation5
+object "Bloc" as Bloc4
+object "If" as InstructionIf1
+object "n" as n
+object "INTEGER" as INTEGER
+object "n" as n_
+object "INTEGER" as INTEGER_
+object "result" as result
+object "INTEGER" as INTEGER___
+object "1" as 1
+object "For" as InstructionFor
+object "Return" as Return
 object "sum_for" as sum_for_
-object "PLUS" as Operation
+object "PLUS" as Operation1
 object "j" as j_
 object "10" as 10_
-object "Affectation" as Affectation1
 object "Affectation" as Affectation2
+object "Affectation" as Affectation3
+object "sum_for" as sum_for___
+object "sum_while" as sum_while___
+object "Affectation" as Affectation4
+object "Affectation" as Affectation5
+object "Affectation" as Affectation6
+object "SUPERIEUR" as Operation11
+object "Affectation" as Affectation7
+object "If" as InstructionIf2
+object "i" as i
+object "1" as 1_
+object "n" as n__
+object "Affectation" as Affectation
+object "result" as result___
 object "sum_for" as sum_for__
-object "i" as i_
+object "i" as i___
 object "sum_while" as sum_while_
-object "PLUS" as Operation2
-object "j" as j___
 object "PLUS" as Operation3
+object "j" as j___
+object "PLUS" as Operation4
+object "sum_while" as sum_while____
+object "PLUS" as Operation6
+object "sum_for" as sum_for____
+object "MOINS" as Operation7
+object "sum_for" as sum_for_____
+object "Appel Fonction" as AppelFonction
+object "sum_for" as sum_for______
+object "sum_while" as sum_while______
+object "sum_while" as sum_while_______
+object "PLUS" as Operation12
+object "SUPERIEUR" as Operation13
+object "Affectation" as Affectation8
+object "Affectation" as Affectation9
+object "result" as result_
+object "FOIS" as Operation
 object "sum_while" as sum_while__
 object "j" as j__
 object "j" as j____
-object "1" as 1__
+object "1" as 1____
+object "sum_while" as sum_while_____
+object "j" as j_____
+object "PLUS" as Operation8
+object "DIV" as Operation9
+object "factorial" as factorial_
+object "4" as 4_
+object "5" as 5_
+object "sum_while" as sum_while________
+object "j" as j______
+object "sum_for" as sum_for_______
+object "sum_while" as sum_while_________
+object "sum_while" as sum_while__________
+object "PLUS" as Operation14
+object "sum_while" as sum_while____________
+object "PLUS" as Operation15
+object "result" as result__
+object "i" as i_
+object "1" as 1_____
+object "2" as 2
+object "FOIS" as Operation10
+object "5" as 5
+object "sum_while" as sum_while___________
+object "j" as j_______
+object "sum_while" as sum_while_____________
+object "j" as j________
+object "3" as 3
+object "4" as 4
 Procedure -down-> williamfaure
 Procedure -down-> Bloc
-Procedure -down-> Bloc1
-Bloc -down-> Declaration
+Procedure -down-> Bloc2
+Bloc -down-> Fonction
 Bloc -down-> Declaration1
 Bloc -down-> Declaration2
+Bloc -down-> Declaration3
+Bloc2 -down-> InstructionFor1
+Bloc2 -down-> InstructionWhile
+Bloc2 -down-> InstructionIf
+Fonction -down-> factorial
+Fonction -down-> Parametre
+Fonction -down-> Parametre1
+Fonction -down-> INTEGER__
+Fonction -down-> Declaration
+Fonction -down-> Bloc1
+Declaration1 -down-> sum_for
+Declaration1 -down-> INTEGER____
+Declaration1 -down-> 0
+Declaration2 -down-> sum_while
+Declaration2 -down-> INTEGER_____
+Declaration2 -down-> 0_
+Declaration3 -down-> j
+Declaration3 -down-> INTEGER______
+Declaration3 -down-> 1__
+InstructionFor1 -down-> i__
+InstructionFor1 -down-> 1___
+InstructionFor1 -down-> 10
+InstructionFor1 -down-> Affectation1
+InstructionWhile -down-> Operation2
+InstructionWhile -down-> Bloc3
+InstructionIf -down-> Operation5
+InstructionIf -down-> Bloc4
+InstructionIf -down-> InstructionIf1
+Parametre -down-> n
+Parametre -down-> INTEGER
+Parametre1 -down-> n_
+Parametre1 -down-> INTEGER_
+Declaration -down-> result
+Declaration -down-> INTEGER___
+Declaration -down-> 1
 Bloc1 -down-> InstructionFor
-Bloc1 -down-> InstructionWhile
-Declaration -down-> sum_for
-Declaration -down-> INTEGER
-Declaration -down-> 0
-Declaration1 -down-> sum_while
-Declaration1 -down-> INTEGER_
-Declaration1 -down-> 0_
-Declaration2 -down-> j
-Declaration2 -down-> INTEGER__
-Declaration2 -down-> 1
+Bloc1 -down-> Return
+Affectation1 -down-> sum_for_
+Affectation1 -down-> Operation1
+Operation2 -down-> j_
+Operation2 -down-> 10_
+Bloc3 -down-> Affectation2
+Bloc3 -down-> Affectation3
+Operation5 -down-> sum_for___
+Operation5 -down-> sum_while___
+Bloc4 -down-> Affectation4
+Bloc4 -down-> Affectation5
+Bloc4 -down-> Affectation6
+InstructionIf1 -down-> Operation11
+InstructionIf1 -down-> Affectation7
+InstructionIf1 -down-> InstructionIf2
 InstructionFor -down-> i
 InstructionFor -down-> 1_
-InstructionFor -down-> 10
+InstructionFor -down-> n__
 InstructionFor -down-> Affectation
-InstructionWhile -down-> Operation1
-InstructionWhile -down-> Bloc2
-Affectation -down-> sum_for_
-Affectation -down-> Operation
-Operation1 -down-> j_
-Operation1 -down-> 10_
-Bloc2 -down-> Affectation1
-Bloc2 -down-> Affectation2
-Operation -down-> sum_for__
-Operation -down-> i_
-Affectation1 -down-> sum_while_
-Affectation1 -down-> Operation2
-Affectation2 -down-> j___
+Return -down-> result___
+Operation1 -down-> sum_for__
+Operation1 -down-> i___
+Affectation2 -down-> sum_while_
 Affectation2 -down-> Operation3
-Operation2 -down-> sum_while__
-Operation2 -down-> j__
-Operation3 -down-> j____
-Operation3 -down-> 1__
+Affectation3 -down-> j___
+Affectation3 -down-> Operation4
+Affectation4 -down-> sum_while____
+Affectation4 -down-> Operation6
+Affectation5 -down-> sum_for____
+Affectation5 -down-> Operation7
+Affectation6 -down-> sum_for_____
+Affectation6 -down-> AppelFonction
+Operation11 -down-> sum_for______
+Operation11 -down-> sum_while______
+Affectation7 -down-> sum_while_______
+Affectation7 -down-> Operation12
+InstructionIf2 -down-> Operation13
+InstructionIf2 -down-> Affectation8
+InstructionIf2 -down-> Affectation9
+Affectation -down-> result_
+Affectation -down-> Operation
+Operation3 -down-> sum_while__
+Operation3 -down-> j__
+Operation4 -down-> j____
+Operation4 -down-> 1____
+Operation6 -down-> sum_while_____
+Operation6 -down-> j_____
+Operation7 -down-> Operation8
+Operation7 -down-> Operation9
+AppelFonction -down-> factorial_
+AppelFonction -down-> 4_
+AppelFonction -down-> 5_
+Operation12 -down-> sum_while________
+Operation12 -down-> j______
+Operation13 -down-> sum_for_______
+Operation13 -down-> sum_while_________
+Affectation8 -down-> sum_while__________
+Affectation8 -down-> Operation14
+Affectation9 -down-> sum_while____________
+Affectation9 -down-> Operation15
+Operation -down-> result__
+Operation -down-> i_
+Operation8 -down-> 1_____
+Operation8 -down-> 2
+Operation9 -down-> Operation10
+Operation9 -down-> 5
+Operation14 -down-> sum_while___________
+Operation14 -down-> j_______
+Operation15 -down-> sum_while_____________
+Operation15 -down-> j________
+Operation10 -down-> 3
+Operation10 -down-> 4
 @enduml
