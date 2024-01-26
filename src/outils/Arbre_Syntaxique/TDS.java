@@ -25,4 +25,8 @@ public class TDS {
     public Fonction getFonction(int id) {
         return (Fonction) this.tds.get(id);
     }
+
+    public Type getType(int id) {
+        return (Type) this.tds.get(id);
+    }
 }

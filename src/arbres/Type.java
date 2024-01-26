@@ -2,7 +2,7 @@ package arbres;
 
 import outils.Logger;
 
-public enum Type implements IType {
+public enum Type implements IType, Noeud {
     INTEGER, CHARACTER, BOOLEAN, NULLTYPE;
     public boolean valide() {
         return true;
