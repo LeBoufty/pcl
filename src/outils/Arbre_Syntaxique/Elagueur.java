@@ -484,7 +484,7 @@ public class Elagueur {
                 return new Affectation((Variable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)));
             case "£ACCESSDECL":
                 Declaration declaration;
-                String type = ((Noeud_Terminal) noeud.getEnfants().get(noeud.getEnfants().size()-2)).getValeurIdf();
+                Noeud_Terminal type = (Noeud_Terminal) noeud.getEnfants().get(noeud.getEnfants().size()-2);
                 String nom_variable = ((Noeud_Terminal) noeud.getEnfants().get(noeud.getEnfants().size()-1)).getValeurIdf();
                 if (noeud.getEnfants().size()==3) {
                     Noeud valeur = traduire(noeud.getEnfants().get(0));
@@ -511,7 +511,7 @@ public class Elagueur {
                 Fonction fonc = new Fonction(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
                 tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(0)).getCodeIdf(), fonc);
                 Noeud_Non_Terminal returnfonction = (Noeud_Non_Terminal) noeud.getEnfants().get(2);
-                fonc.type = getType(((Noeud_Terminal)returnfonction.getEnfants().get(returnfonction.getEnfants().size()-1)).getValeurIdf());
+                fonc.type = getType((Noeud_Terminal)returnfonction.getEnfants().get(returnfonction.getEnfants().size()-1));
                 if (returnfonction.getEnfants().size() > 1)
                 fonc.definitions = traduire(returnfonction.getEnfants().get(0));
                 Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)noeud.getEnfants().get(noeud.getEnfants().size()-1));
@@ -524,7 +524,7 @@ public class Elagueur {
                 fonc.instructions = traduire(noeud.getEnfants().get(1));
                 return fonc;
             case "£PARAMUnique":
-                IType paratype = getType(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+                IType paratype = getType((Noeud_Terminal)noeud.getEnfants().get(0));
                 String paranom = ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf();
                 Parametre param = new Parametre(paratype, paranom);
                 tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf(), param.variable);
@@ -629,16 +629,18 @@ public class Elagueur {
         return traduire(this.Arbre_Syntaxique);
     }
 
-    private IType getType(String type) {
-        switch (type) {
+    private IType getType(Noeud_Terminal nt) {
+        String nom = nt.getValeurIdf();
+        switch (nom) {
             case "integer":
                 return Type.INTEGER;
-            case "boolean":
-                return Type.BOOLEAN;
             case "character":
                 return Type.CHARACTER;
+            case "boolean":
+                return Type.BOOLEAN;
+            default:
+                return tds.getType(nt.getCodeIdf());
         }
-        return null;
     }
 
     public void associativite_gauche_prime(Noeud_Non_Terminal noeud) {
