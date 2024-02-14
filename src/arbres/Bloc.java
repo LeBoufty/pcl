@@ -28,6 +28,10 @@ public class Bloc implements Noeud {
         for (Noeud noeud : instructions) {
             valide = valide && noeud.valide();
         }
+        //ajout de la condition pour que le bloc soit valide si il n'y a pas d'instructions
+        if(instructions.size() == 0) {
+            valide = false;
+        }
         return valide;
     }
 }
