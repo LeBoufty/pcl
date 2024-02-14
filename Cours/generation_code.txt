@@ -1,0 +1,56 @@
+Rappels :
+    CO = PC -> R15
+    LD = R14 -> Adresse de retour
+    SP (Sommet de pile) -> R13
+    "Frame Pointer" = registre de base ->R11
+    Pile "Full descendante" : Le SP pointe sur le dernier octet occupé
+    Branchement à une étiquette : BL F1
+    LDMFD r13!,{PC} dépile l'@ de retour et la met dans le PC
+    STMFD r13!,{r14} empile l'@ de retour
+
+Accès aux variables :
+    -> Locale | non Locale
+    -> chemin statique
+
+    On sait : 
+        Dans la TDS : 
+            - On a calculé 1 déplacement pour chaque variable
+            - On a aussi dans la TDS : n° de région et n° d'imbrication
+
+    On note #Depl le déplacement associé à la (variable|param) à effectuer à partir de la base (r11 est une @) d'un env
+
+Retrouver une variable et la ranger dans r0 :
+    MOV r0,r11
+    ADD r0,r0,#Depl-4
+
+Paramètre passé par adresse : 
+    MOV r0,r11
+    ADD r0,r0,#Depl+8
+    LDR r1,[r0]
+
+Accès à une variable non-Locale : 
+    Cas peu d'imbrications :
+        MOV r10,r11
+        LDR r10,[r10,#-4]
+        LDR r10,[r10,#-4]
+        LDR r10,[r10,#-4]
+        ...
+        LDR r0,[r10,#-4]
+
+    Sinon : 
+        MOV r1,#(Nx-Ny)
+    LOOP ADD r10,r10,#-4
+        LDR r10,[r10]
+        SUBS r1,r1,#1
+        BNE LOOP
+        LDR r0,[r10,#Depl-4]
+
+Code pour les appels de fonctions et de procédure :
+
+Appelé :
+    Hypothèses :
+        - Chemin statique dans l'env
+        - Taille Locale = taille (en octets) de la zone des variables locales
+        - r13 SP, r11 base, r10 contient le chemin statique à empiler
+    
+    Code INC.
