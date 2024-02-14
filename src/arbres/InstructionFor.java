@@ -42,10 +42,6 @@ public class InstructionFor implements Noeud {
             Logger.error("InstructionFor "+ this.toString() +" invalide : pas de borne supérieure");
             return false;
         }
-        if(this.corps == null) {
-            Logger.error("InstructionFor "+ this.toString() +" invalide : pas de corps");
-            return false;
-        }
         return this.iterateur.valide() && this.borneInf.valide() && this.borneSup.valide() && this.corps.valide();
     }
     public void ajouterInstruction(Noeud instruction) {
