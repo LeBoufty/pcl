@@ -36,7 +36,7 @@ zero_case:
 
 _start:
     // Example usage
-    mov x0, #515          // Number to convert and print
+    mov x0, #617          // Number to convert and print
     bl int_to_str            // Convert integer to string; address of string in x0
 
     // Calculate string length for syscall
