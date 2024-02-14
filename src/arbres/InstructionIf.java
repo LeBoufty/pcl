@@ -34,10 +34,6 @@ public class InstructionIf implements Noeud {
             Logger.error("InstructionIf "+ this.toString() +" invalide : pas de condition");
             return false;
         }
-        if(this.alors == null) {
-            Logger.error("InstructionIf "+ this.toString() +" invalide : pas de corps");
-            return false;
-        }
         return condition.valide() && alors.valide() && (sinon == null || sinon.valide());
     }
     public void ajouterInstructionAlors(Noeud instruction) {

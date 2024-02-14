@@ -23,10 +23,6 @@ public class InstructionWhile implements Noeud {
             Logger.error("InstructionWhile "+ this.toString() +" invalide : pas de condition");
             return false;
         }
-        if(this.corps == null) {
-            Logger.error("InstructionWhile "+ this.toString() +" invalide : pas de corps");
-            return false;
-        }
         return condition.valide() && corps.valide();
     }
     public void ajouterInstruction(Noeud instruction) {
