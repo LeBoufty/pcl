@@ -29,6 +29,10 @@ public class OperationUnaire extends Evaluable {
         } else {
             sortie = this.droite.valide();
         }
+        if(this.droite.type!=this.type) {
+            Logger.error("Opération "+ this.hashCode() +" invalide : type de retour de l'opérateur "+ this.operateur.toString() +" incompatible avec le type de la droite");
+            sortie = false;
+        }
         return sortie;
     }
     public String toString() {

@@ -23,6 +23,18 @@ public class Procedure implements Noeud {
             Logger.error("Nom de procédure invalide : "+nom);
             sortie = false;
         }
+        if(nom==null) {
+            Logger.error("procédure invalide : pas de nom");
+            sortie = false;
+        }
+        if(definitions==null) {
+            Logger.error("procédure "+nom+" invalide : pas de définitions");
+            sortie = false;
+        }
+        if(instructions==null) {
+            Logger.error("procédure "+nom+" invalide : pas d'instructions");
+            sortie = false;
+        }
         return sortie;
     }
     public void ajouterDefinition(Noeud definition) {
