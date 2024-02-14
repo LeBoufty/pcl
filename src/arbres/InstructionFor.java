@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.Logger;
+
 public class InstructionFor implements Noeud {
     public Variable iterateur;
     public boolean reverse;
@@ -28,7 +30,20 @@ public class InstructionFor implements Noeud {
         return sortie;
     }
     public boolean valide() {
-        if (this.iterateur == null || this.borneInf == null || this.borneSup == null || this.corps == null) {
+        if(this.iterateur == null) {
+            Logger.error("InstructionFor "+ this.toString() +" invalide : pas d'itérateur");
+            return false;
+        }
+        if(this.borneInf == null) {
+            Logger.error("InstructionFor "+ this.toString() +" invalide : pas de borne inférieure");
+            return false;
+        }
+        if(this.borneSup == null) {
+            Logger.error("InstructionFor "+ this.toString() +" invalide : pas de borne supérieure");
+            return false;
+        }
+        if(this.corps == null) {
+            Logger.error("InstructionFor "+ this.toString() +" invalide : pas de corps");
             return false;
         }
         return this.iterateur.valide() && this.borneInf.valide() && this.borneSup.valide() && this.corps.valide();

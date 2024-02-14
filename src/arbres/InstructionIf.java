@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.Logger;
+
 public class InstructionIf implements Noeud {
     public Evaluable condition;
     public Noeud alors;
@@ -28,6 +30,14 @@ public class InstructionIf implements Noeud {
         return sortie;
     }
     public boolean valide() {
+        if(this.condition == null) {
+            Logger.error("InstructionIf "+ this.toString() +" invalide : pas de condition");
+            return false;
+        }
+        if(this.alors == null) {
+            Logger.error("InstructionIf "+ this.toString() +" invalide : pas de corps");
+            return false;
+        }
         return condition.valide() && alors.valide() && (sinon == null || sinon.valide());
     }
     public void ajouterInstructionAlors(Noeud instruction) {
