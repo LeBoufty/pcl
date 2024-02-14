@@ -54,3 +54,21 @@ Appelé :
         - r13 SP, r11 base, r10 contient le chemin statique à empiler
     
     Code INC.
+
+
+Information sur les registres (internet) :
+Register	Volatility	Role
+x0-x8	Volatile	Parameter/Result scratch registers
+x9-x15	Volatile	Scratch registers
+x16-x17	Volatile	Intra-procedure-call scratch registers
+x18	N/A	Reserved platform register: in kernel mode, points to KPCR for the current processor; In user mode, points to TEB
+x19-x28	Non-volatile	Scratch registers
+x29/fp	Non-volatile	Frame pointer
+x30/lr	Both	Link Register: Callee function must preserve it for its own return, but caller's value will be lost.
+
+Pour executer un programme : 
+    as -o hello.o hello.s
+    ld -o hello hello.o
+    ./hello
+
+Il semblerait que la rapberry pi soit en AArch64 (ARMv8)
