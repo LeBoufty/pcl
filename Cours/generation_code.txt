@@ -72,3 +72,6 @@ Pour executer un programme :
     ./hello
 
 Il semblerait que la rapberry pi soit en AArch64 (ARMv8)
+
+Pour regarder les syscall : 
+    cat /usr/include/asm-generic/unistd.h 
