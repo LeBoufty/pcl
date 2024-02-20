@@ -5,8 +5,8 @@ Rappels :
     "Frame Pointer" = registre de base ->R11
     Pile "Full descendante" : Le SP pointe sur le dernier octet occupé
     Branchement à une étiquette : BL F1
-    LDMFD r13!,{PC} dépile l'@ de retour et la met dans le PC
-    STMFD r13!,{r14} empile l'@ de retour
+    LDMFD R13!,{PC} dépile l'@ de retour et la met dans le PC
+    STMFD R13!,{R14} empile l'@ de retour
 
 Accès aux variables :
     -> Locale | non Locale
@@ -17,33 +17,33 @@ Accès aux variables :
             - On a calculé 1 déplacement pour chaque variable
             - On a aussi dans la TDS : n° de région et n° d'imbrication
 
-    On note #Depl le déplacement associé à la (variable|param) à effectuer à partir de la base (r11 est une @) d'un env
+    On note #Depl le déplacement associé à la (variable|param) à effectuer à partir de la base (R11 est une @) d'un env
 
-Retrouver une variable et la ranger dans r0 :
-    MOV r0,r11
-    ADD r0,r0,#Depl-4
+Retrouver une variable et la ranger dans R0 :
+    MOV R0,R11
+    ADD R0,R0,#Depl-4
 
 Paramètre passé par adresse : 
-    MOV r0,r11
-    ADD r0,r0,#Depl+8
-    LDR r1,[r0]
+    MOV R0,R11
+    ADD R0,R0,#Depl+8
+    LDR R1,[R0]
 
 Accès à une variable non-Locale : 
     Cas peu d'imbrications :
-        MOV r10,r11
-        LDR r10,[r10,#-4]
-        LDR r10,[r10,#-4]
-        LDR r10,[r10,#-4]
+        MOV R10,R11
+        LDR R10,[R10,#-4]
+        LDR R10,[R10,#-4]
+        LDR R10,[R10,#-4]
         ...
-        LDR r0,[r10,#-4]
+        LDR R0,[R10,#-4]
 
     Sinon : 
-        MOV r1,#(Nx-Ny)
-    LOOP ADD r10,r10,#-4
-        LDR r10,[r10]
-        SUBS r1,r1,#1
+        MOV R1,#(Nx-Ny)
+    LOOP ADD R10,R10,#-4
+        LDR R10,[R10]
+        SUBS R1,R1,#1
         BNE LOOP
-        LDR r0,[r10,#Depl-4]
+        LDR R0,[R10,#Depl-4]
 
 Code pour les appels de fonctions et de procédure :
 
@@ -51,9 +51,25 @@ Appelé :
     Hypothèses :
         - Chemin statique dans l'env
         - Taille Locale = taille (en octets) de la zone des variables locales
-        - r13 SP, r11 base, r10 contient le chemin statique à empiler
+        - R13 SP, R11 base, R10 contient le chemin statique à empiler
     
     Code INC.
+
+    STMFD R13!,LR                                       //Empiler l'@ de retour
+    STMFD SP!,R11                                       //Empiler ch. DYN
+    MOV R11,R13                                         
+    STMFD SP!,R10                                       //Empiler ch. statique
+    SUB R13,R13,#taille_locale                          //Réserver de la place pour les variables locales
+    STMFD SP!,{#registre_a_save}                        //Sauvegarder les registres                        
+
+    [PROGRAMME]
+
+    LDMFD SP!,{#registre_a_save}                        //Restauration des registres
+    ADD R13,R13,#taille_locale+4    ou MOV R13,R11      //Dépiler les variables locales + ch. statique
+    LDR R11,[SP,#4]                 ou LDMFD R13!,R11   //Restaurer l'ancienne base
+    LDR PC,[R13,#4]                 ou LDMFD R13!,{PC}  //Retour à l'appelant
+
+Appelant :
 
 
 Information sur les registres (internet) :
@@ -67,7 +83,7 @@ x29/fp	Non-volatile	Frame pointer
 x30/lr	Both	Link Register: Callee function must preserve it for its own return, but caller's value will be lost.
 
 Pour executer un programme : 
-    as -o hello.o hello.s
+    as -o hello.od hello.s
     ld -o hello hello.o
     ./hello
 
