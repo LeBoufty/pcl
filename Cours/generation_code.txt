@@ -58,7 +58,7 @@ Appelé :
     STMFD R13!,LR                                       //Empiler l'@ de retour
     STMFD SP!,R11                                       //Empiler ch. DYN
     MOV R11,R13                                         
-    STMFD SP!,R10                                       //Empiler ch. statique
+    STMFD SP!,R10                                       //Empiler ch. statique (qui est dans R10)
     SUB R13,R13,#taille_locale                          //Réserver de la place pour les variables locales
     STMFD SP!,{#registre_a_save}                        //Sauvegarder les registres                        
 
@@ -70,7 +70,12 @@ Appelé :
     LDR PC,[R13,#4]                 ou LDMFD R13!,{PC}  //Retour à l'appelant
 
 Appelant :
-
+    //Calculer le ch. statique et le mettre dans R10
+    //Empiler les paramètres effectifs
+    //(OPTIONNEL)Réserver de la place pour la valeur de retour
+    //Branche à l'appelé
+    //(OPTIONNEL)Récupérer val retour
+    //Dépiler les paramètres 
 
 Information sur les registres (internet) :
 Register	Volatility	Role
@@ -91,3 +96,4 @@ Il semblerait que la rapberry pi soit en AArch64 (ARMv8)
 
 Pour regarder les syscall : 
     cat /usr/include/asm-generic/unistd.h 
+    Ou : https://arm.syscall.sh/
