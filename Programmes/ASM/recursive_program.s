@@ -62,7 +62,7 @@ power :
     cmp x0, 0 // if x==0
     beq return0 // return 0
     cmp x1, 0 // if y==0
-    beq else1 // return 1
+    bge else1 // return 1
 
 return0 :
     mov x2, 0 // return 0
