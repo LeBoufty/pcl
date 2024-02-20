@@ -61,19 +61,23 @@ power :
 
     cmp x0, 0 // if x==0
     beq return0 // return 0
-    cmp x1, 0 // if y=0
+    cmp x1, 0 // if y==0
     beq else1 // return 1
+
 return0 :
     mov x2, 0 // return 0
     b powerEnd // end of function
 else1 :
+    cmp x1,0
+    bne else2
+return1 : 
     mov x2, 1 // return 1
-    b powerEnd // end of function
+    b powerEnd
 else2 :
     mov x19, x0 // save x in x19
     sub x1, x1, 1 // y=y-1
     bl power // call power(x,y-1)
-    mul x2, x19, x2 // x2=x2*x
+    mul x2, x2, x19 // x2=x2*x
 powerEnd :
     ldr x19, [sp], 16 // restore x19
     ldp fp, lr, [sp], 16 // restore frame pointer and link register
