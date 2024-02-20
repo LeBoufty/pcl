@@ -98,6 +98,10 @@ Pour regarder les syscall :
     cat /usr/include/asm-generic/unistd.h 
     Ou : https://arm64.syscall.sh/
 
+Convention :
+    ARCH	NR	RETURN	ARG0	ARG1	ARG2	ARG3	ARG4	ARG5
+    arm64	x8	x0	    x0	    x1	    x2	    x3	    x4	    x5
+
 Pour avoir une simulation : 
     http://163.238.35.161/~zhangs/arm64simulator/*
     Le site est douteux, mais je vais faire comme d'habitudeet ignorer les problèmes
