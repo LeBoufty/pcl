@@ -1,20 +1,19 @@
-.text
-.global _start
+.global main
+.extern printf
 
-_start:
-    // Write system call (write)
-    mov x0, #1               // file descriptor 1 (stdout)
-    ldr x1, =message         // pointer to the message
-    ldr x2, =len             // message length
-    mov x8, #64              // system call number for 'write' in AArch64 Linux
-    svc 0                    // invoke system call
+.section .data
+message: .asciz "Hello world!\n"
 
-    // Exit system call (exit)
-    mov x0, #0               // exit status 0
-    mov x8, #93              // system call number for 'exit' in AArch64 Linux
-    svc 0                    // invoke system call
+.section .text
+main:
+    ldr x0, =message  // Load the address of the message string
+    bl printf         // Call printf to print the message
 
-.data
-message:
-    .asciz "hello world\n"
-len = . - message           // calculate message length
+    bl exit
+
+exit :
+    mov x0, 0 // return 0
+    mov x8, 93 // syscall number for exit
+    svc 0 // make the syscall
+    ret // return from main
+    
