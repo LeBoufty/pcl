@@ -35,7 +35,8 @@ public class InstructionWhile implements Noeud {
         }
     }
 
-    public String produire() {
-        return ""; // TODO : probablement à mi-chemin entre for et if
+    public void produire() {
+         System.out.println("InstructionWhile");
+// TODO : probablement à mi-chemin entre for et if
     }
 }

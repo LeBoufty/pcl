@@ -23,7 +23,8 @@ public class Variable extends Evaluable {
         return true;
     }
 
-    public String produire() {
-        return ""; // TODO : chercher la variable, c'est dans le cours.
+    public void produire() {
+         System.out.println(nom);
+// TODO : chercher la variable, c'est dans le cours.
     }
 }

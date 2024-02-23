@@ -1,6 +1,8 @@
 package arbres;
 
 import java.util.ArrayList;
+//import outils.GestionFichier;
+
 
 public class Bloc implements Noeud {
     public ArrayList<Noeud> instructions;
@@ -31,11 +33,10 @@ public class Bloc implements Noeud {
         return valide;
     }
 
-    public String produire() {
-        String sortie = "";
+    public void produire() {
+        System.err.println("Bloc");
         for (Noeud noeud : instructions) {
-            sortie += noeud.produire();
+            noeud.produire();
         }
-        return sortie;
     }
 }

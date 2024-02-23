@@ -13,7 +13,8 @@ public abstract class Instanciation implements Noeud {
     public boolean valide() {
         return true;
     }
-    public String produire() {
-        return ""; // TODO : déclaration, je sais pas s'il y a quelque chose à produire précisément, mais en tout cas faut y prendre en compte
+    public void produire() {
+         System.out.println(nom);
+// TODO : déclaration, je sais pas s'il y a quelque chose à produire précisément, mais en tout cas faut y prendre en compte
     }
 }

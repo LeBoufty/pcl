@@ -12,7 +12,8 @@ public enum Type implements IType, Noeud {
         return NULLTYPE;
     }
 
-    public String produire() {
-        return ""; // TODO : probablement rien à produire, c'est sémantique.
+    public void produire() {
+         System.out.println("Type");
+// TODO : probablement rien à produire, c'est sémantique.
     }
 }

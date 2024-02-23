@@ -1,5 +1,6 @@
 package arbres;
 
+import outils.GestionFichier;
 import outils.Logger;
 
 public class Procedure implements Noeud {
@@ -56,7 +57,24 @@ public class Procedure implements Noeud {
         }
     }
 
-    public String produire() {
-        return ""; // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
+    public void produire() {
+        System.out.println("procedure "+nom+" is");
+        System.out.println(nom);
+    // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
     }
+
+    public void produire(String nomFichier) {
+        System.out.println("Main : "+nomFichier);
+        GestionFichier.AddcontenuHeader(".global "+ nomFichier + "\n.extern printf\n.section .data\n");
+        GestionFichier.Addcontenu(".section .text\n"+nomFichier+":\n");
+        GestionFichier.AddcontenuFooter("bl exit\n\nexit:\nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
+
+        for (Noeud noeud : ((Bloc) definitions).instructions) {
+            noeud.produire();
+        }
+
+        for (Noeud noeud : ((Bloc) instructions).instructions) {
+            noeud.produire();
+        }
+    }   
 }

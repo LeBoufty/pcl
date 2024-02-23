@@ -54,7 +54,8 @@ public class InstructionFor implements Noeud {
         }
     }
 
-    public String produire() {
-        return ""; // TODO : apparemment c'est dans le cours ? i foror 💀
+    public void produire() {
+         System.out.println("InstructionFor");
+// TODO : apparemment c'est dans le cours ? i foror 💀
     }
 }

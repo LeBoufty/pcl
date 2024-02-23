@@ -68,7 +68,8 @@ public class Fonction implements Noeud {
         }
     }
 
-    public String produire() {
-        return ""; // TODO : côté appelé (dans le cours)
+    public void produire() {
+         System.out.println(nom);
+// TODO : côté appelé (dans le cours)
     }
 }
