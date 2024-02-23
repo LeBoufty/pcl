@@ -37,4 +37,8 @@ public class Constante extends Evaluable {
     public boolean valide() {
         return true;
     }
+
+    public String produire() {
+        return ""; // TODO : probablement juste retourner la valeur
+    }
 }

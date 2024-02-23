@@ -19,4 +19,8 @@ public class Record implements Noeud {
     public boolean valide() {
         return type.valide();
     }
+
+    public String produire() {
+        return ""; // TODO : à faire en dernier, probablement comme Instanciation.
+    }
 }

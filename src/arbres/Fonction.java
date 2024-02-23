@@ -67,4 +67,8 @@ public class Fonction implements Noeud {
             this.instructions = new Bloc(new Noeud[] {this.instructions, instruction});
         }
     }
+
+    public String produire() {
+        return ""; // TODO : côté appelé (dans le cours)
+    }
 }

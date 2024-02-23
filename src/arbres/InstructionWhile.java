@@ -34,4 +34,8 @@ public class InstructionWhile implements Noeud {
             this.corps = new Bloc(new Noeud[] {this.corps, instruction});
         }
     }
+
+    public String produire() {
+        return ""; // TODO : probablement à mi-chemin entre for et if
+    }
 }

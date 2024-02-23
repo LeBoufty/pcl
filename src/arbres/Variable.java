@@ -22,4 +22,8 @@ public class Variable extends Evaluable {
     public boolean valide() {
         return true;
     }
+
+    public String produire() {
+        return ""; // TODO : chercher la variable, c'est dans le cours.
+    }
 }

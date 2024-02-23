@@ -53,4 +53,8 @@ public class InstructionFor implements Noeud {
             this.corps = new Bloc(new Noeud[] {this.corps, instruction});
         }
     }
+
+    public String produire() {
+        return ""; // TODO : apparemment c'est dans le cours ? i foror 💀
+    }
 }

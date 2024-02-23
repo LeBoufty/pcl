@@ -55,4 +55,8 @@ public class Procedure implements Noeud {
             this.instructions = new Bloc(new Noeud[] {this.instructions, instruction});
         }
     }
+
+    public String produire() {
+        return ""; // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
+    }
 }

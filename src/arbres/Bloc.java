@@ -30,4 +30,12 @@ public class Bloc implements Noeud {
         }
         return valide;
     }
+
+    public String produire() {
+        String sortie = "";
+        for (Noeud noeud : instructions) {
+            sortie += noeud.produire();
+        }
+        return sortie;
+    }
 }

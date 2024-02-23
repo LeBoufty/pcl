@@ -47,4 +47,8 @@ public class Operation extends Evaluable {
     public String toString() {
         return this.gauche.toString() +" "+ this.operateur.toString() +" "+ this.droite.toString();
     }
+
+    public String produire() {
+        return ""; // TODO : switch case à faire sur les classes des opérandes et de l'opérateur. Dans le cours.
+    }
 }

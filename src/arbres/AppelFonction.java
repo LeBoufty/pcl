@@ -49,4 +49,8 @@ public class AppelFonction extends Evaluable {
         }
         return sortie;
     }
+
+    public String produire() {
+        return ""; // TODO : côté appelé (dans le cours)
+    }
 }

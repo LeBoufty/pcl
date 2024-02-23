@@ -32,4 +32,8 @@ public class Affectation implements Noeud {
         }
         return sortie;
     }
+
+    public String produire() {
+        return ""; // TODO : changer la valeur d'une variable
+    }
 }

@@ -54,4 +54,8 @@ public class InstructionIf implements Noeud {
             this.sinon = new Bloc(new Noeud[] {this.sinon, instruction});
         }
     }
+
+    public String produire() {
+        return ""; // TODO : on l'a fait en ASM.
+    }
 }

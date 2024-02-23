@@ -11,4 +11,8 @@ public enum Type implements IType, Noeud {
         Logger.error("Tentative d'accès à un champ d'un type non structuré");
         return NULLTYPE;
     }
+
+    public String produire() {
+        return ""; // TODO : probablement rien à produire, c'est sémantique.
+    }
 }

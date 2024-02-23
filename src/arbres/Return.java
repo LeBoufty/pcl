@@ -21,4 +21,8 @@ public class Return implements Noeud {
     public boolean valide() {
         return this.estVide() || this.valeur.valide();
     }
+
+    public String produire() {
+        return ""; // TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
+    }
 }
