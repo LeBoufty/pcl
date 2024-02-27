@@ -7,4 +7,8 @@ public abstract class Evaluable implements Noeud {
     public IType getType() {
         return this.type;
     }
+
+    public boolean isConstant() {
+        return false;
+    }
 }

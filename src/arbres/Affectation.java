@@ -34,7 +34,12 @@ public class Affectation implements Noeud {
     }
 
     public void produire() {
-        System.out.println("Affectation");
+        System.out.println("Affectation gauche : " + this.gauche);
+        System.out.println("Affectation droite : " + this.droite);
+        
+        this.gauche.produire();
+        this.droite.produire();
+
         // TODO : changer la valeur d'une variable
     }
 }
