@@ -22,8 +22,10 @@ public class Return implements Noeud {
         return this.estVide() || this.valeur.valide();
     }
 
-    public void produire() {
+    public String produire() {
          System.out.println("Return");
+
+         return "";
 // TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
     }
 }

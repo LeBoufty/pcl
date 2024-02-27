@@ -35,8 +35,10 @@ public class Struct implements Noeud, IType {
         return sortie;
     }
 
-    public void produire() {
-         System.out.println(nom);
+    public String produire() {
+        System.out.println(nom);
+
+        return "";
 // TODO : cf Record. Il faudra utiliser des déplacements pour les champs.
     }
 }

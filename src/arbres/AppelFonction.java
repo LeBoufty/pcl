@@ -50,8 +50,9 @@ public class AppelFonction extends Evaluable {
         return sortie;
     }
 
-    public void produire() {
-         System.out.println("Appel de fonction "+ this.fonction.nom);
+    public String produire() {
+        System.out.println("Appel de fonction "+ this.fonction.nom);
+        return "";
     // TODO : côté appelé (dans le cours)
     }
 }

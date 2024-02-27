@@ -33,10 +33,11 @@ public class Bloc implements Noeud {
         return valide;
     }
 
-    public void produire() {
+    public String produire() {
         System.err.println("Bloc");
         for (Noeud noeud : instructions) {
             noeud.produire();
         }
+        return "";
     }
 }

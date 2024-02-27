@@ -39,8 +39,10 @@ public class OperationUnaire extends Evaluable {
         return this.operateur.toString() +" "+ this.droite.toString();
     }
 
-    public void produire() {
-         System.out.println("OperationUnaire");
+    public String produire() {
+        System.out.println("OperationUnaire");
+
+        return "";
 // TODO : je sais pas trop...
     }
 }

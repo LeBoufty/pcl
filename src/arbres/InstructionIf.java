@@ -55,8 +55,10 @@ public class InstructionIf implements Noeud {
         }
     }
 
-    public void produire() {
-         System.out.println("InstructionIf");
+    public String produire() {
+        System.out.println("InstructionIf");
+
+        return "";
 // TODO : on l'a fait en ASM.
     }
 }

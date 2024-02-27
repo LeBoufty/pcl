@@ -69,7 +69,7 @@ public class Fonction implements Noeud {
         }
     }
 
-    public void produire() {
+    public String produire() {
         System.out.println(nom + " fonc :" + type);
         System.out.println(nom + " fonc : " + params);
         System.out.println(nom + " fonc : " + definitions);
@@ -84,5 +84,7 @@ public class Fonction implements Noeud {
         for (Noeud n : ((Bloc) instructions).instructions) {
             n.produire();
         }
+
+        return "";
     }
 }

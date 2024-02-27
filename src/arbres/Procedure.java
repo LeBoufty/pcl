@@ -59,13 +59,15 @@ public class Procedure implements Noeud {
         }
     }
 
-    public void produire() {
+    public String produire() {
         System.out.println("procedure "+nom+" is");
         System.out.println(nom);
     // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
+
+        return "";
     }
 
-    public void produire(String nomFichier) {
+    public String produire(String nomFichier) {
         System.out.println("Main : "+nomFichier);
         GestionFichier.AddcontenuHeader(".global "+ nomFichier + "\n.extern printf\n.section .data\n");
         GestionFichier.Addcontenu(".section .text\n"+nomFichier+":\n");
@@ -80,5 +82,7 @@ public class Procedure implements Noeud {
         for (Noeud noeud : ((Bloc) instructions).instructions) {
             noeud.produire();
         }
+
+        return "";
     }   
 }

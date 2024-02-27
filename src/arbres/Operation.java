@@ -49,7 +49,7 @@ public class Operation extends Evaluable {
         return this.gauche.toString() +" "+ this.operateur.toString() +" "+ this.droite.toString();
     }
 
-    public void produire() {
+    public String produire() {
         System.out.println("Operation gauche : " + this.gauche);
         System.out.println("Operation droite : " + this.droite);
 
@@ -74,6 +74,8 @@ public class Operation extends Evaluable {
             this.droite.produire();
             GestionFichier.Addcontenu(this.operateur.toString()+" x0, x1, x0");
         }
+
+        return "";
 // TODO : switch case à faire sur les classes des opérandes et de l'opérateur. Dans le cours.
     }
 }

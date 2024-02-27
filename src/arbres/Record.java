@@ -20,8 +20,10 @@ public class Record implements Noeud {
         return type.valide();
     }
 
-    public void produire() {
+    public String produire() {
          System.out.println("Record");
+
+        return "";
 // TODO : à faire en dernier, probablement comme Instanciation.
     }
 }
