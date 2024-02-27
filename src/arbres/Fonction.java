@@ -3,6 +3,7 @@ package arbres;
 import java.util.ArrayList;
 
 import outils.Logger;
+import outils.GestionFichier;
 
 public class Fonction implements Noeud {
     public String nom;
@@ -69,7 +70,19 @@ public class Fonction implements Noeud {
     }
 
     public void produire() {
-         System.out.println(nom);
-// TODO : côté appelé (dans le cours)
+        System.out.println(nom + " fonc :" + type);
+        System.out.println(nom + " fonc : " + params);
+        System.out.println(nom + " fonc : " + definitions);
+        System.out.println(nom + " fonc : " + instructions);
+        // Générer la TDS
+
+        // Générer les définitions
+        for (Noeud n : ((Bloc) definitions).instructions) {
+            n.produire();
+        }
+
+        for (Noeud n : ((Bloc) instructions).instructions) {
+            n.produire();
+        }
     }
 }
