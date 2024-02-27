@@ -74,9 +74,16 @@ public class Fonction implements Noeud {
         System.out.println(nom + " fonc : " + params);
         System.out.println(nom + " fonc : " + definitions);
         System.out.println(nom + " fonc : " + instructions);
+        
         // Générer la TDS
 
+
         String res = nom + " :" ;;
+
+        //Code appelé
+        res += "STP LR, X11, [SP, #-16]!";
+        res += "STP X10, XZR, [SP, #-16]!";
+        res += "SUB SP, SP, taille_locale";
 
         // Générer les définitions
         for (Noeud n : ((Bloc) definitions).instructions) {
@@ -86,6 +93,11 @@ public class Fonction implements Noeud {
         for (Noeud n : ((Bloc) instructions).instructions) {
             res += n.produire();
         }
+
+        res += "ADD SP, SP, taille_locale";
+        res += "LDP X10, XZR, [SP], #16";
+        res += "LDP LR, X11, [SP], #16";
+        res += "RET";
 
         GestionFichier.AddcontenuFooter(res);
 
