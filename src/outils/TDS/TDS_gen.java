@@ -3,6 +3,8 @@ package outils.TDS;
 import java.util.ArrayList;
 
 import arbres.Noeud;
+import arbres.Parametre;
+import arbres.IType;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -29,6 +31,25 @@ public class TDS_gen {
         this.num_imbr = num_imbr;
         this.num_reg = num_reg;
         this.nom_fonction = nom_fonction;
+    }
+
+    public TDS_gen(TDS_gen Parent, String nom, IType type, ArrayList<Parametre> params) {
+        this.noeud_associé = null;
+        this.tds_childrens = new ArrayList<TDS_gen>();
+        this.tds_code = new ArrayList<Integer>();
+        this.tds_parent = Parent;
+        this.num_imbr = Parent.num_imbr + 1;
+        this.num_reg = 0;
+        this.nom_fonction = nom;
+        this.nom_variable = new ArrayList<String>();
+        this.deplacement = new ArrayList<Integer>();
+        this.taille = new ArrayList<Integer>();
+        for (Parametre p : params) {
+            this.nom_variable.add(p.nom);
+            this.deplacement.add(this.num_reg); //A regarder si c'est bon
+            this.taille.add(1); //A regarder si c'est bon
+            this.num_reg++;
+        }
     }
 
     public void add_TDS_child(TDS_gen child) {
