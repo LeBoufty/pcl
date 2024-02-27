@@ -38,6 +38,10 @@ public class Constante extends Evaluable {
         return true;
     }
 
+    public boolean isConstant() {
+        return true;
+    }
+
     public void produire() {
          System.out.println("constante");
 // TODO : probablement juste retourner la valeur
