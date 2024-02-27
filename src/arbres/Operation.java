@@ -53,29 +53,31 @@ public class Operation extends Evaluable {
         System.out.println("Operation gauche : " + this.gauche);
         System.out.println("Operation droite : " + this.droite);
 
+        String res = "";
+
         if (this.gauche.isConstant() && this.droite.isConstant()) {
-            GestionFichier.Addcontenu("MOV x0, #"+this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite));
+            return "MOV x0, #"+this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite);
         }
         else if (this.gauche.isConstant()) {
             this.droite.produire();
-            GestionFichier.Addcontenu("MOV x1, x0");
-            GestionFichier.Addcontenu("MOV x0, #"+((Constante) this.gauche).valeur);
-            GestionFichier.Addcontenu(this.operateur.toString()+" x0, x0, x1");
+            res += "MOV x1, x0\n";
+            res += "MOV x0, #"+((Constante) this.gauche).valeur+"\n";
+            res += this.operateur.toString()+" x0, x1, x0\n";
         }
         else if (this.droite.isConstant()) {
             this.gauche.produire();
-            GestionFichier.Addcontenu("MOV x1, x0");
-            GestionFichier.Addcontenu("MOV x0, #"+((Constante) this.droite).valeur);
-            GestionFichier.Addcontenu(this.operateur.toString()+" x0, x1, x0");
+            res += "MOV x1, x0\n";
+            res += "MOV x0, #"+((Constante) this.droite).valeur+"\n";
+            res += this.operateur.toString()+" x0, x1, x0\n";
         }
         else {
             this.gauche.produire();
-            GestionFichier.Addcontenu("MOV x1, x0");
+            res += "MOV x1, x0\n";
             this.droite.produire();
-            GestionFichier.Addcontenu(this.operateur.toString()+" x0, x1, x0");
+            res += this.operateur.toString()+" x0, x1, x0\n";
         }
 
-        return "";
-// TODO : switch case à faire sur les classes des opérandes et de l'opérateur. Dans le cours.
+        return res;
+        //TODO : gestion des registres
     }
 }

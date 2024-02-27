@@ -76,14 +76,18 @@ public class Fonction implements Noeud {
         System.out.println(nom + " fonc : " + instructions);
         // Générer la TDS
 
+        String res = nom + " :" ;;
+
         // Générer les définitions
         for (Noeud n : ((Bloc) definitions).instructions) {
-            n.produire();
+            res += n.produire();
         }
 
         for (Noeud n : ((Bloc) instructions).instructions) {
-            n.produire();
+            res += n.produire();
         }
+
+        GestionFichier.AddcontenuFooter(res);
 
         return "";
     }
