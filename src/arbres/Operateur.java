@@ -4,8 +4,8 @@ public enum Operateur {
     // Placeholder pour quand on crée l'opération
     NONE("", Type.NULLTYPE),
     // Opérations sur entiers
-    PLUS("+", Type.INTEGER), MOINS("-", Type.INTEGER),
-    FOIS("*", Type.INTEGER), DIV("/", Type.INTEGER),
+    PLUS("ADD", Type.INTEGER), MOINS("SUB", Type.INTEGER),
+    FOIS("MUL", Type.INTEGER), DIV("/", Type.INTEGER),
     REM("rem", Type.INTEGER),
     // Tests sur entiers
     SUPERIEUR(">", Type.BOOLEAN), INFERIEUR("<", Type.BOOLEAN),
@@ -33,5 +33,42 @@ public enum Operateur {
 
     public Type getType() {
         return type;
+    }
+
+    public int getvalue(Constante gauche, Constante droite) {
+        switch (this) {
+            case PLUS:
+                return gauche.valeur + droite.valeur;
+            case MOINS:
+                return gauche.valeur - droite.valeur;
+            case FOIS:
+                return gauche.valeur * droite.valeur;
+            case DIV:
+                return gauche.valeur / droite.valeur;
+            case REM:
+                return gauche.valeur % droite.valeur;
+            case SUPERIEUR:
+                return gauche.valeur > droite.valeur ? 1 : 0;
+            case INFERIEUR:
+                return gauche.valeur < droite.valeur ? 1 : 0;
+            case SUPERIEUR_EGAL:
+                return gauche.valeur >= droite.valeur ? 1 : 0;
+            case INFERIEUR_EGAL:
+                return gauche.valeur <= droite.valeur ? 1 : 0;
+            case DIFFERENT:
+                return gauche.valeur != droite.valeur ? 1 : 0;
+            case EGAL:
+                return gauche.valeur == droite.valeur ? 1 : 0;
+            case AND:
+                return gauche.valeur != 0 && droite.valeur != 0 ? 1 : 0;
+            case OR:
+                return gauche.valeur != 0 || droite.valeur != 0 ? 1 : 0;
+            case AND_THEN:
+                return gauche.valeur != 0 && droite.valeur != 0 ? 1 : 0;
+            case OR_ELSE:
+                return gauche.valeur != 0 || droite.valeur != 0 ? 1 : 0;
+            default:
+                return 0;
+        }
     }
 }

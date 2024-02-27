@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+import outils.GestionFichier;
 
 public class Operation extends Evaluable {
     public Evaluable gauche;
@@ -49,7 +50,30 @@ public class Operation extends Evaluable {
     }
 
     public void produire() {
-         System.out.println("Operation");
+        System.out.println("Operation gauche : " + this.gauche);
+        System.out.println("Operation droite : " + this.droite);
+
+        if (this.gauche.isConstant() && this.droite.isConstant()) {
+            GestionFichier.Addcontenu("MOV x0, #"+this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite));
+        }
+        else if (this.gauche.isConstant()) {
+            this.droite.produire();
+            GestionFichier.Addcontenu("MOV x1, x0");
+            GestionFichier.Addcontenu("MOV x0, #"+((Constante) this.gauche).valeur);
+            GestionFichier.Addcontenu(this.operateur.toString()+" x0, x0, x1");
+        }
+        else if (this.droite.isConstant()) {
+            this.gauche.produire();
+            GestionFichier.Addcontenu("MOV x1, x0");
+            GestionFichier.Addcontenu("MOV x0, #"+((Constante) this.droite).valeur);
+            GestionFichier.Addcontenu(this.operateur.toString()+" x0, x1, x0");
+        }
+        else {
+            this.gauche.produire();
+            GestionFichier.Addcontenu("MOV x1, x0");
+            this.droite.produire();
+            GestionFichier.Addcontenu(this.operateur.toString()+" x0, x1, x0");
+        }
 // TODO : switch case à faire sur les classes des opérandes et de l'opérateur. Dans le cours.
     }
 }
