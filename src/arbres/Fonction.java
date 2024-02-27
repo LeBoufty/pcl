@@ -81,9 +81,9 @@ public class Fonction implements Noeud {
         String res = nom + " :" ;;
 
         //Code appelé
-        res += "STP LR, X11, [SP, #-16]!";
-        res += "STP X10, XZR, [SP, #-16]!";
-        res += "SUB SP, SP, taille_locale";
+        res += "STP LR, X11, [SP, #-16]!\n";
+        res += "STP X10, XZR, [SP, #-16]!\n";
+        res += "SUB SP, SP, taille_locale\n";
 
         // Générer les définitions
         for (Noeud n : ((Bloc) definitions).instructions) {
@@ -94,10 +94,10 @@ public class Fonction implements Noeud {
             res += n.produire();
         }
 
-        res += "ADD SP, SP, taille_locale";
-        res += "LDP X10, XZR, [SP], #16";
-        res += "LDP LR, X11, [SP], #16";
-        res += "RET";
+        res += "ADD SP, SP, taille_locale\n";
+        res += "LDP X10, XZR, [SP], #16\n";
+        res += "LDP LR, X11, [SP], #16\n";
+        res += "RET\n";
 
         GestionFichier.AddcontenuFooter(res);
 
