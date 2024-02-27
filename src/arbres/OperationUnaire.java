@@ -42,7 +42,17 @@ public class OperationUnaire extends Evaluable {
     public String produire() {
         System.out.println("OperationUnaire");
 
-        return "";
+        String res = "";
+
+        if (this.droite.isConstant()) {
+            return "MOV x0, #"+this.operateur.getvalue((Constante) this.droite);
+        }
+        else {
+            this.droite.produire();
+            res += "MOV x0, x0\n";
+        }
+
+        return res;
 // TODO : je sais pas trop...
     }
 }

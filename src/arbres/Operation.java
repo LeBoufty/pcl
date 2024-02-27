@@ -1,7 +1,6 @@
 package arbres;
 
 import outils.Logger;
-import outils.GestionFichier;
 
 public class Operation extends Evaluable {
     public Evaluable gauche;

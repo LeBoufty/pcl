@@ -23,4 +23,15 @@ public enum OperateurUnaire {
     public Type getType() {
         return type;
     }
+
+    public int getvalue(Constante droite) {
+        switch (this) {
+            case MOINS:
+                return -droite.valeur;
+            case NOT:
+                return droite.valeur == 0 ? 1 : 0;
+            default:
+                return 0;
+        }
+    }
 }
