@@ -45,6 +45,7 @@ public class TDS_gen {
         this.num_imbr = Parent.num_imbr + 1;
         this.num_reg = 0;
         this.nom_fonction = nom;
+        Parent.add_TDS_child(this);
     }
 
 
