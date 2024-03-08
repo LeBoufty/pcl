@@ -35,10 +35,11 @@ public class TestParserLexeur {
         Noeud AST = analyseur.elaguer();
         analyseur.affiche_UML(programme + ".puml");
 
-        //Logger.debug(AST.toString());
-        AST.TDS_creation(null);
+        AST.valide();
+        Logger.debug(AST.toString());
+        //AST.TDS_creation(null);
         //GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
         //puml.generer();
-        Logger.debug(AST.getTDS().toString());
+        //Logger.debug(AST.getTDS().toString());
     }
 }

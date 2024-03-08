@@ -9,6 +9,7 @@ public class Procedure implements Noeud {
     public Noeud definitions;
     public Noeud instructions;
     public TDS_gen tds = null;
+    public int id_tds = -1;
 
     public Procedure(String nom, Noeud def, Noeud inst) {
         this.nom = nom;
@@ -70,6 +71,8 @@ public class Procedure implements Noeud {
 
     public void TDS_creation(){
         this.tds = new TDS_gen(this, nom);
+        this.id_tds = this.tds.id_tds;
+        
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             noeud.TDS_creation(this.tds);
         }
@@ -85,6 +88,7 @@ public class Procedure implements Noeud {
         }
 
         this.tds = new TDS_gen(this, Parent, nom);
+        this.id_tds = this.tds.id_tds;
     }
 
     public String produire(String nomFichier) {

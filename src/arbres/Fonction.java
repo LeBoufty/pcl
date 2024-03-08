@@ -13,6 +13,7 @@ public class Fonction implements Noeud {
     public Noeud definitions;
     public Noeud instructions;
     public TDS_gen tds = null;
+    public int id_tds = -1;
 
     public Fonction(String nom, Parametre[] parametres, IType t, Noeud def, Noeud inst) {
         this.nom = nom;
@@ -112,6 +113,8 @@ public class Fonction implements Noeud {
     public void TDS_creation(TDS_gen Parent) {
         // Cree une nouvelle TDS pour la fonction
         this.tds = new TDS_gen(this, Parent, nom);
+        this.id_tds = this.tds.id_tds;
+        
         for (Parametre p : params) {
             p.TDS_creation(this.tds);
         }

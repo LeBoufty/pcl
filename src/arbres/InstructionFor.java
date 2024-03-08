@@ -9,7 +9,8 @@ public class InstructionFor implements Noeud {
     public Evaluable borneInf;
     public Evaluable borneSup;
     public Noeud corps;
-    public TDS_gen TDS;
+    public TDS_gen tds = null;
+    public int id_tds = -1;
 
     public InstructionFor(Variable iterateur, boolean reverse, Evaluable borneInf, Evaluable borneSup, Noeud corps) {
         this.iterateur = iterateur;
@@ -65,18 +66,19 @@ public class InstructionFor implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        this.TDS = new TDS_gen(this, Parent, "for");
+        this.tds = new TDS_gen(this, Parent, "for");
+        this.id_tds = this.tds.id_tds;
         
         // Ajouter l'itérateur à la TDS
-        this.TDS.add_variable(iterateur.identifiant, 0, 0);
+        this.tds.add_variable(iterateur.identifiant, 0, 0);
 
         // this.iterateur.TDS_creation(this.TDS);
         // this.borneInf.TDS_creation(this.TDS); // Ne rien faire pour les bornes
         // this.borneSup.TDS_creation(this.TDS); // Ne rien faire pour les bornes
-        this.corps.TDS_creation(this.TDS);
+        this.corps.TDS_creation(this.tds);
     }
 
     public TDS_gen getTDS() {
-        return this.TDS;
+        return this.tds;
     }
 }

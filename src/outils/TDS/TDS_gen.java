@@ -16,6 +16,9 @@ public class TDS_gen {
     public int num_reg;
     public String nom_fonction;
 
+    public int id_tds;
+    public static int id_tds_courant = -1;
+
     public ArrayList<Integer> deplacement;
     public ArrayList<Integer> taille;
 
@@ -31,6 +34,8 @@ public class TDS_gen {
         this.num_imbr = 0;
         this.num_reg = 0;
         this.nom_fonction = nom_fonction;
+
+        this.id_tds = ++id_tds_courant;
     }
 
     public TDS_gen(Noeud noeud_associé, TDS_gen Parent, String nom) {
@@ -44,6 +49,8 @@ public class TDS_gen {
         this.num_reg = 0;
         this.nom_fonction = nom;
         Parent.add_TDS_child(this);
+
+        this.id_tds = ++id_tds_courant;
     }
 
 
