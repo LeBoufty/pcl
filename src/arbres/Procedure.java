@@ -104,4 +104,9 @@ public class Procedure implements Noeud {
 
         this.tds = new TDS_gen(this, Parent, nom);
     }
+
+    public Boolean Is_main() {
+        // Check n° imbrication
+        return false;
+    }
 }
