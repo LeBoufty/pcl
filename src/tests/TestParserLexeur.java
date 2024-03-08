@@ -39,5 +39,6 @@ public class TestParserLexeur {
         AST.TDS_creation(null);
         //GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
         //puml.generer();
+        Logger.debug(AST.getTDS().toString());
     }
 }

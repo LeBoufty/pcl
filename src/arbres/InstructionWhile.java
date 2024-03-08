@@ -47,4 +47,8 @@ public class InstructionWhile implements Noeud {
         // this.condition.TDS_creation(Parent); // Ne rien faire pour la condition
         this.corps.TDS_creation(Parent);
     }
+
+    public TDS_gen getTDS() {
+        return null;
+    }
 }

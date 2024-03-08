@@ -101,13 +101,14 @@ public class TDS_gen {
 
     public String toString() {
         String sortie = "+==================+\n";
-        for(int i = 0; i < this.nom_variable.size(); i++) {
-            sortie += "Nom : " + this.nom_variable.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
+        for(int i = 0; i < this.variable_code.size(); i++) {
+            sortie += "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
         }
-        sortie += "+==================+\n";
+        sortie += tds_childrens.size() + " enfants\n";
         for (TDS_gen tds : this.tds_childrens) {
             sortie += tds.toString();
         }
+        sortie += "+==================+\n";
         return sortie;
     }
 }

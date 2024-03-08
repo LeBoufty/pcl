@@ -63,4 +63,8 @@ public class AppelFonction extends Evaluable {
     public void TDS_creation(TDS_gen Parent) {
         // Ne rien faire
     }
+
+    public TDS_gen getTDS() {
+        return null;
+    }
 }

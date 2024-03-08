@@ -103,5 +103,9 @@ public class Procedure implements Noeud {
         }
 
         return "";
-    }   
+    } 
+
+    public TDS_gen getTDS() {
+        return this.tds;
+    }
 }

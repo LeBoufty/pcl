@@ -33,4 +33,8 @@ public class Record implements Noeud {
     public void TDS_creation(TDS_gen Parent) {
         // TODO : à faire si on a le temps
     }
+
+    public TDS_gen getTDS() {
+        return null;
+    }
 }

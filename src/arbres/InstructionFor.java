@@ -75,4 +75,8 @@ public class InstructionFor implements Noeud {
         // this.borneSup.TDS_creation(this.TDS); // Ne rien faire pour les bornes
         this.corps.TDS_creation(this.TDS);
     }
+
+    public TDS_gen getTDS() {
+        return this.TDS;
+    }
 }
