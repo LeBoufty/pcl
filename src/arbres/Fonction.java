@@ -73,10 +73,10 @@ public class Fonction implements Noeud {
     }
 
     public String produire() {
-        System.out.println(nom + " fonc :" + type);
-        System.out.println(nom + " fonc : " + params);
-        System.out.println(nom + " fonc : " + definitions);
-        System.out.println(nom + " fonc : " + instructions);
+        System.out.println(nom + " fonc type : " + type);
+        System.out.println(nom + " fonc params : " + params);
+        System.out.println(nom + " fonc definition : " + definitions);
+        System.out.println(nom + " fonc instr : " + instructions);
         
         // Générer la TDS
         for (Parametre p : params) {

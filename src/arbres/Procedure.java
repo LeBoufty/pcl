@@ -85,7 +85,7 @@ public class Procedure implements Noeud {
 
         return "";
     }   
-    
+
     public void TDS_creation(){
         this.tds = new TDS_gen(this, nom);
         for (Noeud noeud : ((Bloc) definitions).instructions) {
