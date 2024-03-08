@@ -67,7 +67,7 @@ public class Procedure implements Noeud {
         return "";
     }
 
-    public String produire(String nomFichier) {
+    public String produire(String nomFichier) { //C'est pas beau
         System.out.println("Main : "+nomFichier);
         GestionFichier.AddcontenuHeader(".global "+ nomFichier + "\n.extern printf\n.section .data\n");
         GestionFichier.Addcontenu(".section .text\n"+nomFichier+":\n");
