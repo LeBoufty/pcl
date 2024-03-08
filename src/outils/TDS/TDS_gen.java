@@ -121,6 +121,15 @@ public class TDS_gen {
         return this.nom_fonction;
     }
 
-
-
+    public String toString() {
+        String sortie = "+==================+\n";
+        for(int i = 0; i < this.nom_variable.size(); i++) {
+            sortie += "Nom : " + this.nom_variable.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
+        }
+        sortie += "+==================+\n";
+        for (TDS_gen tds : this.tds_childrens) {
+            sortie += tds.toString();
+        }
+        return sortie;
+    }
 }
