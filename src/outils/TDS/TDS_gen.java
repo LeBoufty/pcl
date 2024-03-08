@@ -3,8 +3,6 @@ package outils.TDS;
 import java.util.ArrayList;
 
 import arbres.Noeud;
-import arbres.Parametre;
-import arbres.IType;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -63,8 +61,19 @@ public class TDS_gen {
 
     public void add_variable(int nom, int deplacement, int taille) {
         this.variable_code.add(nom);
-        this.deplacement.add(deplacement);
         this.taille.add(taille);
+        if(this.deplacement.size() == 0)
+        {
+            this.deplacement.add(taille);
+        }   
+        else if(this.deplacement.size() == 1)
+        {
+            this.deplacement.add(this.deplacement.get(0) + taille);
+        }   
+        else if(this.deplacement.size() > 1)
+        {
+            this.deplacement.add(this.deplacement.get(this.deplacement.size() - 1) + taille);
+        }
     }
 
     public void remove_variable(int nom) {

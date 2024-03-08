@@ -27,7 +27,7 @@ object "valeur" as valeur
 object "INTEGER" as INTEGER_________
 object "choix" as choix_
 object "1" as 1
-object "Operation" as Operation4
+object "EGAL" as Operation4
 object "Bloc" as Bloc6
 object "Bloc" as Bloc7
 object "larg" as larg
@@ -45,7 +45,6 @@ object "Déclaration" as Declaration1
 object "Affectation" as Affectation1
 object "Return" as Return1
 object "choix" as choix__
-object "EGAL" as EGAL
 object "1" as 1_
 object "Affectation" as Affectation3
 object "Appel Fonction" as AppelFonction1
@@ -54,12 +53,12 @@ object "Appel Fonction" as AppelFonction3
 object "aire" as aire
 object "INTEGER" as INTEGER___
 object "aire" as aire_
-object "Operation" as Operation
+object "FOIS" as Operation
 object "aire" as aire__
 object "perimetre" as perimetre
 object "INTEGER" as INTEGER_______
 object "perimetre" as perimetre_
-object "Operation" as Operation1
+object "PLUS" as Operation1
 object "perimetre" as perimetre__
 object "valeur" as valeur_
 object "Appel Fonction" as AppelFonction
@@ -70,11 +69,9 @@ object "Appel Fonction" as AppelFonction2
 object "put" as put_
 object "valeur" as valeur____
 object "larg" as larg_
-object "FOIS" as FOIS
 object "long" as long_
-object "Operation" as Operation2
-object "PLUS" as PLUS
-object "Operation" as Operation3
+object "FOIS" as Operation2
+object "FOIS" as Operation3
 object "perimetreRectangle" as perimetreRectangle_
 object "2" as 2__
 object "3" as 3
@@ -82,10 +79,8 @@ object "aireRectangle" as aireRectangle_
 object "2" as 2___
 object "3" as 3_
 object "larg" as larg___
-object "FOIS" as FOIS_
 object "2" as 2
 object "long" as long___
-object "FOIS" as FOIS__
 object "2" as 2_
 Procedure -down-> unDebut
 Procedure -down-> Bloc
@@ -132,7 +127,6 @@ Bloc3 -down-> Declaration1
 Bloc4 -down-> Affectation1
 Bloc4 -down-> Return1
 Operation4 -down-> choix__
-Operation4 -down-> EGAL
 Operation4 -down-> 1_
 Bloc6 -down-> Affectation3
 Bloc6 -down-> AppelFonction1
@@ -157,10 +151,8 @@ Affectation4 -down-> AppelFonction2
 AppelFonction3 -down-> put_
 AppelFonction3 -down-> valeur____
 Operation -down-> larg_
-Operation -down-> FOIS
 Operation -down-> long_
 Operation1 -down-> Operation2
-Operation1 -down-> PLUS
 Operation1 -down-> Operation3
 AppelFonction -down-> perimetreRectangle_
 AppelFonction -down-> 2__
@@ -169,9 +161,7 @@ AppelFonction2 -down-> aireRectangle_
 AppelFonction2 -down-> 2___
 AppelFonction2 -down-> 3_
 Operation2 -down-> larg___
-Operation2 -down-> FOIS_
 Operation2 -down-> 2
 Operation3 -down-> long___
-Operation3 -down-> FOIS__
 Operation3 -down-> 2_
 @enduml

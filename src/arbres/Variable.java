@@ -35,7 +35,7 @@ public class Variable extends Evaluable {
 
     public void TDS_creation(TDS_gen Parent) {
         // On ajoute la variable à la TDS du parent
-        Parent.add_variable(identifiant, 0, 0);
+        Parent.add_variable(identifiant, 0, 1);
         
     }
 }
