@@ -16,6 +16,7 @@ import arbres.Return;
 import arbres.Type;
 import arbres.PlantUML.GenerateurPUML;
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class TestArbreUnDebut {
     public static void main(String[] args) {
@@ -91,6 +92,7 @@ public class TestArbreUnDebut {
         try {
             GenerateurPUML gen = new GenerateurPUML(unDebut, "Programmes/unDebut.pu");
             gen.generer();
+            unDebut.TDS_creation();
         } catch (Exception e) {
             Logger.error(e.getMessage());
         }
