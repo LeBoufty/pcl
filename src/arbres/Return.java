@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public class Return implements Noeud {
     public Evaluable valeur;
     public Return(Evaluable valeur) {
@@ -27,5 +29,9 @@ public class Return implements Noeud {
 
          return "";
 // TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
     }
 }

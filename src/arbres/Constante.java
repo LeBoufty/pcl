@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class Constante extends Evaluable {
     public int valeur;
@@ -46,5 +47,9 @@ public class Constante extends Evaluable {
         System.out.println("constante");
         return "";
 // TODO : probablement juste retourner la valeur
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
     }
 }

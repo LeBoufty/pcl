@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public class Record implements Noeud {
     public Struct type;
     public Record(Struct type) {
@@ -25,5 +27,10 @@ public class Record implements Noeud {
 
         return "";
 // TODO : à faire en dernier, probablement comme Instanciation.
+    }
+
+
+    public void TDS_creation(TDS_gen Parent) {
+        // TODO : à faire si on a le temps
     }
 }

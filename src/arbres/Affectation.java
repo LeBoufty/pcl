@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class Affectation implements Noeud {
     public Variable gauche;
@@ -49,5 +50,9 @@ public class Affectation implements Noeud {
 
         return res;
         // TODO : Check les registres
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
     }
 }

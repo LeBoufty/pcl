@@ -21,8 +21,8 @@ public class TestParserLexeur {
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/andthenorelse.adb";
         //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/fibonaccii.adb";
         //programme = "Programmes/Fonctionne/quelquesinstructions.adb";
-        //programme = "Programmes/Fonctionne/undebut.adb";
-        programme = "Programmes/Fonctionne/quelquesinstructions.adb";
+        programme = "Programmes/Fonctionne/undebut.adb";
+        //programme = "Programmes/Fonctionne/quelquesinstructions.adb";
         //programme = "Programmes/Fonctionne/traduisible.adb";
         //programme = "Programmes/Fonctionne/williamfaure.adb";
         //programme = "Programmes/Fonctionne/recordiii.adb";
@@ -36,7 +36,8 @@ public class TestParserLexeur {
         analyseur.affiche_UML(programme + ".puml");
 
         Logger.debug(AST.toString());
-        GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
-        puml.generer();
+        AST.TDS_creation(null);
+        //GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
+        //puml.generer();
     }
 }
