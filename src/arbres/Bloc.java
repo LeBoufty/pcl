@@ -47,4 +47,8 @@ public class Bloc implements Noeud {
             noeud.TDS_creation(Parent);
         }
     }
+
+    public TDS_gen getTDS() {
+        return null;
+    }
 }

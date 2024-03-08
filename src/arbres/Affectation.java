@@ -55,4 +55,8 @@ public class Affectation implements Noeud {
     public void TDS_creation(TDS_gen Parent) {
         // Rien à faire
     }
+
+    public TDS_gen getTDS() {
+        return null;
+    }
 }

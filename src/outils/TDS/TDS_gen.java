@@ -3,8 +3,6 @@ package outils.TDS;
 import java.util.ArrayList;
 
 import arbres.Noeud;
-import arbres.Parametre;
-import arbres.IType;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -63,8 +61,19 @@ public class TDS_gen {
 
     public void add_variable(int nom, int deplacement, int taille) {
         this.variable_code.add(nom);
-        this.deplacement.add(deplacement);
         this.taille.add(taille);
+        if(this.deplacement.size() == 0)
+        {
+            this.deplacement.add(taille);
+        }   
+        else if(this.deplacement.size() == 1)
+        {
+            this.deplacement.add(this.deplacement.get(0) + taille);
+        }   
+        else if(this.deplacement.size() > 1)
+        {
+            this.deplacement.add(this.deplacement.get(this.deplacement.size() - 1) + taille);
+        }
     }
 
     public void remove_variable(int nom) {
@@ -102,13 +111,14 @@ public class TDS_gen {
 
     public String toString() {
         String sortie = "+==================+\n";
-        for(int i = 0; i < this.nom_variable.size(); i++) {
-            sortie += "Nom : " + this.nom_variable.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
+        for(int i = 0; i < this.variable_code.size(); i++) {
+            sortie += "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
         }
-        sortie += "+==================+\n";
+        sortie += tds_childrens.size() + " enfants\n";
         for (TDS_gen tds : this.tds_childrens) {
             sortie += tds.toString();
         }
+        sortie += "+==================+\n";
         return sortie;
     }
 }

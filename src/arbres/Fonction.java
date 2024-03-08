@@ -118,4 +118,8 @@ public class Fonction implements Noeud {
         definitions.TDS_creation(this.tds);
         instructions.TDS_creation(this.tds);
     }
+
+    public TDS_gen getTDS() {
+        return this.tds;
+    }
 }

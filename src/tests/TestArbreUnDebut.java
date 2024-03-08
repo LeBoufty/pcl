@@ -92,9 +92,13 @@ public class TestArbreUnDebut {
         try {
             GenerateurPUML gen = new GenerateurPUML(unDebut, "Programmes/unDebut.pu");
             gen.generer();
-            unDebut.TDS_creation();
         } catch (Exception e) {
             Logger.error(e.getMessage());
         }
+
+        // TDS
+        //TDS_gen tds = new TDS_gen(unDebut, "unDebut");
+        unDebut.TDS_creation(null);
+        Logger.debug(unDebut.tds.toString());
     }
 }

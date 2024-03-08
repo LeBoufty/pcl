@@ -70,4 +70,8 @@ public class InstructionIf implements Noeud {
             this.sinon.TDS_creation(Parent);
         }
     }
+
+    public TDS_gen getTDS() {
+        return null;
+    }
 }
