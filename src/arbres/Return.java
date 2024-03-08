@@ -25,7 +25,7 @@ public class Return implements Noeud {
     }
 
     public String produire() {
-         System.out.println("Return");
+         System.out.println("Return : " + valeur);
 
          return "";
 // TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
