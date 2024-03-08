@@ -44,7 +44,7 @@ public class Constante extends Evaluable {
     }
 
     public String produire() {
-        System.out.println("constante");
+        System.out.println("constante " + valeur + " : " + type);
         return "";
 // TODO : probablement juste retourner la valeur
     }

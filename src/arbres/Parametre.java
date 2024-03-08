@@ -6,9 +6,9 @@ public class Parametre extends Instanciation {
     public Parametre(IType t, String nom, Mode mode) {super(t, nom); this.mode = mode;}
 
     public String produire() {
-        System.out.println(nom + " Parametre : " + type);
-        System.out.println(nom + " Parametre : " + variable);
-        System.out.println(nom + " Parametre : " + mode);
+        System.out.println(nom + " Parametre type : " + type);
+        System.out.println(nom + " Parametre variable : " + variable);
+        System.out.println(nom + " Parametre mode : " + mode);
 
         return "";
     }

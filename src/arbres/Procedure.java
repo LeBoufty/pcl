@@ -9,6 +9,7 @@ public class Procedure implements Noeud {
     public Noeud definitions;
     public Noeud instructions;
     public TDS_gen tds = null;
+    public int id_tds = -1;
 
     public Procedure(String nom, Noeud def, Noeud inst) {
         this.nom = nom;
@@ -60,16 +61,10 @@ public class Procedure implements Noeud {
         }
     }
 
-    public String produire() {
-        System.out.println("procedure "+nom+" is");
-        System.out.println(nom);
-    // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
-
-        return "";
-    }
-
     public void TDS_creation(){
         this.tds = new TDS_gen(this, nom);
+        this.id_tds = this.tds.id_tds;
+        
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             noeud.TDS_creation(this.tds);
         }
@@ -85,6 +80,15 @@ public class Procedure implements Noeud {
         }
 
         this.tds = new TDS_gen(this, Parent, nom);
+        this.id_tds = this.tds.id_tds;
+    }
+
+    public String produire() {
+        System.out.println("procedure "+nom+" is");
+        System.out.println(nom);
+        // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
+
+        return "";
     }
 
     public String produire(String nomFichier) {
@@ -107,5 +111,9 @@ public class Procedure implements Noeud {
 
     public TDS_gen getTDS() {
         return this.tds;
+    }
+    public Boolean Is_main() {
+        // Check n° imbrication
+        return false;
     }
 }

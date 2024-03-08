@@ -3,8 +3,6 @@ package outils.TDS;
 import java.util.ArrayList;
 
 import arbres.Noeud;
-import arbres.Parametre;
-import arbres.IType;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -17,6 +15,9 @@ public class TDS_gen {
     public int num_imbr;
     public int num_reg;
     public String nom_fonction;
+
+    public int id_tds;
+    public static int id_tds_courant = -1;
 
     public ArrayList<Integer> deplacement;
     public ArrayList<Integer> taille;
@@ -33,6 +34,8 @@ public class TDS_gen {
         this.num_imbr = 0;
         this.num_reg = 0;
         this.nom_fonction = nom_fonction;
+
+        this.id_tds = ++id_tds_courant;
     }
 
     public TDS_gen(Noeud noeud_associé, TDS_gen Parent, String nom) {
@@ -46,6 +49,8 @@ public class TDS_gen {
         this.num_reg = 0;
         this.nom_fonction = nom;
         Parent.add_TDS_child(this);
+
+        this.id_tds = ++id_tds_courant;
     }
 
 
@@ -63,8 +68,19 @@ public class TDS_gen {
 
     public void add_variable(int nom, int deplacement, int taille) {
         this.variable_code.add(nom);
-        this.deplacement.add(deplacement);
         this.taille.add(taille);
+        if(this.deplacement.size() == 0)
+        {
+            this.deplacement.add(taille);
+        }   
+        else if(this.deplacement.size() == 1)
+        {
+            this.deplacement.add(this.deplacement.get(0) + taille);
+        }   
+        else if(this.deplacement.size() > 1)
+        {
+            this.deplacement.add(this.deplacement.get(this.deplacement.size() - 1) + taille);
+        }
     }
 
     public void remove_variable(int nom) {
