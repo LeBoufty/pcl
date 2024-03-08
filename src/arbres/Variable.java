@@ -26,8 +26,8 @@ public class Variable extends Evaluable {
     }
 
     public String produire() {
-        System.out.println(nom + " var : " + type);
-        System.out.println(nom + " var :" + identifiant); 
+        System.out.println(nom + " var type : " + type);
+        System.out.println(nom + " var id : " + identifiant); 
 
         return "";
 // TODO : chercher la variable, c'est dans le cours.

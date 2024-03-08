@@ -61,14 +61,6 @@ public class Procedure implements Noeud {
         }
     }
 
-    public String produire() {
-        System.out.println("procedure "+nom+" is");
-        System.out.println(nom);
-    // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
-
-        return "";
-    }
-
     public void TDS_creation(){
         this.tds = new TDS_gen(this, nom);
         this.id_tds = this.tds.id_tds;
@@ -91,6 +83,14 @@ public class Procedure implements Noeud {
         this.id_tds = this.tds.id_tds;
     }
 
+    public String produire() {
+        System.out.println("procedure "+nom+" is");
+        System.out.println(nom);
+        // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
+
+        return "";
+    }
+
     public String produire(String nomFichier) {
         System.out.println("Main : "+nomFichier);
         GestionFichier.AddcontenuHeader(".global "+ nomFichier + "\n.extern printf\n.section .data\n");
@@ -111,5 +111,9 @@ public class Procedure implements Noeud {
 
     public TDS_gen getTDS() {
         return this.tds;
+    }
+    public Boolean Is_main() {
+        // Check n° imbrication
+        return false;
     }
 }
