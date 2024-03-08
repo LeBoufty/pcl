@@ -18,7 +18,7 @@ public class NoeudUML {
         nomsAttribues.add(valeur);
         this.valeur = valeur;
         enfants = new ArrayList<NoeudUML>();
-        Logger.info("Noeud "+this.valeur+" créé");
+        //Logger.info("Noeud "+this.valeur+" créé");
     }
 
     public NoeudUML(Noeud n) {
@@ -228,7 +228,7 @@ public class NoeudUML {
                 enfants = new ArrayList<NoeudUML>();
                 break;
         }
-        Logger.info("Noeud "+this.valeur+" créé");
+        //Logger.info("Noeud "+this.valeur+" créé");
     }
     private String rendreUnique(String nom) {
         String nomUnique = nom;
