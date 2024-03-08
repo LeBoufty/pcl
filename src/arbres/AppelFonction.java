@@ -3,6 +3,8 @@ package arbres;
 import java.util.ArrayList;
 
 import outils.Logger;
+import outils.Arbre_Syntaxique.TDS;
+import outils.TDS.TDS_gen;
 
 public class AppelFonction extends Evaluable {
     public Fonction fonction;
@@ -54,5 +56,9 @@ public class AppelFonction extends Evaluable {
         System.out.println("Appel de fonction "+ this.fonction.nom);
         return "";
     // TODO : côté appelé (dans le cours)
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Ne rien faire
     }
 }

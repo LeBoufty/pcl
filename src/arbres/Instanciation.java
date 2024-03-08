@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public abstract class Instanciation implements Noeud {
     public IType type;
     public Variable variable;
@@ -19,5 +21,9 @@ public abstract class Instanciation implements Noeud {
     
     return "";
 // TODO : Mettre dans la tds ou la pile
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        variable.TDS_creation(Parent);
     }
 }

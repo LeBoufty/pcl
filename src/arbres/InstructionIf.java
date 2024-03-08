@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class InstructionIf implements Noeud {
     public Evaluable condition;
@@ -60,5 +61,13 @@ public class InstructionIf implements Noeud {
 
         return "";
 // TODO : on l'a fait en ASM.
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // this.condition.TDS_creation(Parent); // Ne rien faire pour la condition
+        this.alors.TDS_creation(Parent);
+        if (this.sinon != null) {
+            this.sinon.TDS_creation(Parent);
+        }
     }
 }

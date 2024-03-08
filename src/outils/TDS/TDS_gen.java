@@ -17,40 +17,36 @@ public class TDS_gen {
     public int num_imbr;
     public int num_reg;
     public String nom_fonction;
-    public ArrayList<String> nom_variable;
+
     public ArrayList<Integer> deplacement;
     public ArrayList<Integer> taille;
 
-    public ArrayList<Integer> tds_code;
+    public ArrayList<Integer> variable_code;
 
-    public TDS_gen(Noeud noeud_associé, int num_imbr, int num_reg, String nom_fonction) {
+    public TDS_gen(Noeud noeud_associé, String nom_fonction) {
         this.noeud_associé = noeud_associé;
         this.tds_childrens = new ArrayList<TDS_gen>();
-        this.tds_code = new ArrayList<Integer>();
+        this.variable_code = new ArrayList<Integer>();
+        this.deplacement = new ArrayList<Integer>();
+        this.taille = new ArrayList<Integer>();
         this.tds_parent = null;
-        this.num_imbr = num_imbr;
-        this.num_reg = num_reg;
+        this.num_imbr = 0;
+        this.num_reg = 0;
         this.nom_fonction = nom_fonction;
     }
 
-    public TDS_gen(TDS_gen Parent, String nom, IType type, ArrayList<Parametre> params) {
-        this.noeud_associé = null;
+    public TDS_gen(Noeud noeud_associé, TDS_gen Parent, String nom) {
+        this.noeud_associé = noeud_associé;
         this.tds_childrens = new ArrayList<TDS_gen>();
-        this.tds_code = new ArrayList<Integer>();
+        this.variable_code = new ArrayList<Integer>();
+        this.deplacement = new ArrayList<Integer>();
+        this.taille = new ArrayList<Integer>();
         this.tds_parent = Parent;
         this.num_imbr = Parent.num_imbr + 1;
         this.num_reg = 0;
         this.nom_fonction = nom;
-        this.nom_variable = new ArrayList<String>();
-        this.deplacement = new ArrayList<Integer>();
-        this.taille = new ArrayList<Integer>();
-        for (Parametre p : params) {
-            this.nom_variable.add(p.nom);
-            this.deplacement.add(this.num_reg); //A regarder si c'est bon
-            this.taille.add(1); //A regarder si c'est bon
-            this.num_reg++;
-        }
     }
+
 
     public void add_TDS_child(TDS_gen child) {
         this.tds_childrens.add(child);
@@ -64,44 +60,26 @@ public class TDS_gen {
         child.num_imbr = 0;
     }
 
-    public void add_TDS_code(int code) {
-        this.tds_code.add(code);
-    }
-    
-    public void remove_TDS_code(int code) {
-        this.tds_code.remove(code);
-    }
-
-    public void add_variable(String nom, int deplacement, int taille) {
-        this.nom_variable.add(nom);
+    public void add_variable(int nom, int deplacement, int taille) {
+        this.variable_code.add(nom);
         this.deplacement.add(deplacement);
         this.taille.add(taille);
     }
 
-    public void remove_variable(String nom) {
-        int index = this.nom_variable.indexOf(nom);
-        this.nom_variable.remove(index);
+    public void remove_variable(int nom) {
+        int index = this.variable_code.indexOf(nom);
+        this.variable_code.remove(index);
         this.deplacement.remove(index);
         this.taille.remove(index);
     }
 
-    public void set_deplacement(String nom, int deplacement) {
-        int index = this.nom_variable.indexOf(nom);
-        this.deplacement.set(index, deplacement);
-    }
-
-    public void set_taille(String nom, int taille) {
-        int index = this.nom_variable.indexOf(nom);
-        this.taille.set(index, taille);
-    }
-
-    public int get_deplacement(String nom) {
-        int index = this.nom_variable.indexOf(nom);
+    public int get_deplacement(int nom) {
+        int index = this.variable_code.indexOf(nom);
         return this.deplacement.get(index);
     }
 
-    public int get_taille(String nom) {
-        int index = this.nom_variable.indexOf(nom);
+    public int get_taille(int nom) {
+        int index = this.variable_code.indexOf(nom);
         return this.taille.get(index);
     }
 

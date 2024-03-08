@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import outils.Logger;
 import outils.GestionFichier;
+import outils.TDS.TDS_gen;
 
 public class Fonction implements Noeud {
     public String nom;
@@ -11,6 +12,8 @@ public class Fonction implements Noeud {
     public ArrayList<Parametre> params;
     public Noeud definitions;
     public Noeud instructions;
+    public TDS_gen tds = null;
+
     public Fonction(String nom, Parametre[] parametres, IType t, Noeud def, Noeud inst) {
         this.nom = nom;
         this.type = t;
@@ -104,5 +107,15 @@ public class Fonction implements Noeud {
         GestionFichier.AddcontenuFooter(res);
 
         return "";
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Cree une nouvelle TDS pour la fonction
+        this.tds = new TDS_gen(this, Parent, nom);
+        for (Parametre p : params) {
+            p.TDS_creation(this.tds);
+        }
+        definitions.TDS_creation(this.tds);
+        instructions.TDS_creation(this.tds);
     }
 }
