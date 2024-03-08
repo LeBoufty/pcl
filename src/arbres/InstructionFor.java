@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class InstructionFor implements Noeud {
     public Variable iterateur;
@@ -8,6 +9,8 @@ public class InstructionFor implements Noeud {
     public Evaluable borneInf;
     public Evaluable borneSup;
     public Noeud corps;
+    public TDS_gen TDS;
+
     public InstructionFor(Variable iterateur, boolean reverse, Evaluable borneInf, Evaluable borneSup, Noeud corps) {
         this.iterateur = iterateur;
         this.reverse = reverse;
@@ -59,5 +62,17 @@ public class InstructionFor implements Noeud {
 
          return "";
 // TODO : apparemment c'est dans le cours ? i foror 💀
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        this.TDS = new TDS_gen(this, Parent, "for");
+        
+        // Ajouter l'itérateur à la TDS
+        this.TDS.add_variable(iterateur.identifiant, 0, 0);
+
+        // this.iterateur.TDS_creation(this.TDS);
+        // this.borneInf.TDS_creation(this.TDS); // Ne rien faire pour les bornes
+        // this.borneSup.TDS_creation(this.TDS); // Ne rien faire pour les bornes
+        this.corps.TDS_creation(this.TDS);
     }
 }

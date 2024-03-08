@@ -2,6 +2,8 @@ package arbres;
 
 import outils.Logger;
 
+import outils.TDS.TDS_gen;
+
 public enum Type implements IType, Noeud {
     INTEGER, CHARACTER, BOOLEAN, NULLTYPE;
     public boolean valide() {
@@ -17,5 +19,9 @@ public enum Type implements IType, Noeud {
 
         return "";
 // TODO : probablement rien à produire, c'est sémantique.
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
     }
 }

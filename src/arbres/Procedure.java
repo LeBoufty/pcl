@@ -8,7 +8,8 @@ public class Procedure implements Noeud {
     public String nom;
     public Noeud definitions;
     public Noeud instructions;
-    public TDS_gen tds;
+    public TDS_gen tds = null;
+
     public Procedure(String nom, Noeud def, Noeud inst) {
         this.nom = nom;
         this.definitions = def;
@@ -68,12 +69,31 @@ public class Procedure implements Noeud {
     }
 
     public String produire(String nomFichier) { //C'est pas beau
+    public void TDS_creation(){
+        this.tds = new TDS_gen(this, nom);
+        for (Noeud noeud : ((Bloc) definitions).instructions) {
+            noeud.TDS_creation(this.tds);
+        }
+        for (Noeud noeud : ((Bloc) instructions).instructions) {
+            noeud.TDS_creation(this.tds);
+        }
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        if (Parent == null) {
+            this.TDS_creation();
+            return;
+        }
+
+        this.tds = new TDS_gen(this, Parent, nom);
+    }
+
+    public String produire(String nomFichier) {
         System.out.println("Main : "+nomFichier);
         GestionFichier.AddcontenuHeader(".global "+ nomFichier + "\n.extern printf\n.section .data\n");
         GestionFichier.Addcontenu(".section .text\n"+nomFichier+":\n");
         GestionFichier.AddcontenuFooter("bl exit\n\nexit:\nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
 
-        this.tds = new TDS_gen(this, 0, 0, nom);
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             noeud.produire();

@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public class Variable extends Evaluable {
     public int identifiant;
     public static int nbvariables = 0;
@@ -29,5 +31,11 @@ public class Variable extends Evaluable {
 
         return "";
 // TODO : chercher la variable, c'est dans le cours.
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // On ajoute la variable à la TDS du parent
+        Parent.add_variable(identifiant, 0, 0);
+        
     }
 }

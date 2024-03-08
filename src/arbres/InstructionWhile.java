@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class InstructionWhile implements Noeud {
     public Evaluable condition;
@@ -40,5 +41,10 @@ public class InstructionWhile implements Noeud {
 
         return "";
 // TODO : probablement à mi-chemin entre for et if
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // this.condition.TDS_creation(Parent); // Ne rien faire pour la condition
+        this.corps.TDS_creation(Parent);
     }
 }

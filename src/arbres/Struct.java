@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import outils.Logger;
 
+import outils.TDS.TDS_gen;
+
 public class Struct implements Noeud, IType {
     public String nom;
     public ArrayList<Champ> champs;
@@ -40,5 +42,9 @@ public class Struct implements Noeud, IType {
 
         return "";
 // TODO : cf Record. Il faudra utiliser des déplacements pour les champs.
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // TODO : à faire 
     }
 }

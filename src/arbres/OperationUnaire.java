@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class OperationUnaire extends Evaluable {
     public Evaluable droite;
@@ -54,5 +55,9 @@ public class OperationUnaire extends Evaluable {
 
         return res;
 // TODO : je sais pas trop...
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien normalement
     }
 }

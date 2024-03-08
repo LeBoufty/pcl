@@ -1,6 +1,7 @@
 package arbres;
 
 import java.util.ArrayList;
+import outils.TDS.TDS_gen;
 //import outils.GestionFichier;
 
 
@@ -39,5 +40,11 @@ public class Bloc implements Noeud {
             noeud.produire();
         }
         return "";
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        for (Noeud noeud : instructions) {
+            noeud.TDS_creation(Parent);
+        }
     }
 }
