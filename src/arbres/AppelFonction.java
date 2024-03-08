@@ -43,10 +43,12 @@ public class AppelFonction extends Evaluable {
             Logger.error("Appel de fonction "+ this.fonction.nom +" invalide : nombre de paramètres incorrect");
             sortie = false;
         }
-        for (int i = 0; i < params.size(); i++) {
-            if (params.get(i).type != fonction.params.get(i).type) {
-                Logger.error("Appel de fonction "+ this.fonction.nom +" invalide : paramètre "+ i +" de type incorrect");
-                sortie = false;
+        else {
+            for (int i = 0; i < params.size(); i++) {
+                if (params.get(i).type != fonction.params.get(i).type) {
+                    Logger.error("Appel de fonction "+ this.fonction.nom +" invalide : paramètre "+ i +" de type incorrect");
+                    sortie = false;
+                }
             }
         }
         return sortie;
