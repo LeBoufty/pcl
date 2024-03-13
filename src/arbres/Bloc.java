@@ -7,6 +7,8 @@ import outils.TDS.TDS_gen;
 
 public class Bloc implements Noeud {
     public ArrayList<Noeud> instructions;
+    public TDS_gen tds_parent = null;
+
     public void ajouterInstruction(Noeud instr) {
         instructions.add(instr);
     }
@@ -43,6 +45,7 @@ public class Bloc implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
+        this.tds_parent = Parent;
         for (Noeud noeud : instructions) {
             noeud.TDS_creation(Parent);
         }

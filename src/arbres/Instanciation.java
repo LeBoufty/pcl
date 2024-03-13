@@ -6,6 +6,8 @@ public abstract class Instanciation implements Noeud {
     public IType type;
     public Variable variable;
     public String nom;
+    public TDS_gen tds_parent = null;
+
     public Instanciation(IType t) {type = t; variable = new Variable(t);}
     public Instanciation(IType t, String nom) {type = t; variable = new Variable(t, nom); this.nom = nom;}
     public Instanciation() {type = Type.NULLTYPE; variable = new Variable(Type.NULLTYPE);}
@@ -24,6 +26,7 @@ public abstract class Instanciation implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
+        this.tds_parent = Parent;
         variable.TDS_creation(Parent);
     }
 

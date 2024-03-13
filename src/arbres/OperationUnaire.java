@@ -6,6 +6,8 @@ import outils.TDS.TDS_gen;
 public class OperationUnaire extends Evaluable {
     public Evaluable droite;
     private OperateurUnaire operateur;
+    public TDS_gen tds_parent = null;
+
     public OperationUnaire(Evaluable d, OperateurUnaire o) {
         this.droite = d; this.operateur = o;
         // On prend le type de sortie de l'opérateur.
@@ -58,6 +60,8 @@ public class OperationUnaire extends Evaluable {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // Rien normalement
+        this.tds_parent = Parent;
+        
+        this.droite.TDS_creation(Parent);
     }
 }

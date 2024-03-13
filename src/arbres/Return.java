@@ -4,6 +4,8 @@ import outils.TDS.TDS_gen;
 
 public class Return implements Noeud {
     public Evaluable valeur;
+    public TDS_gen tds_parent = null;
+
     public Return(Evaluable valeur) {
         this.valeur = valeur;
     }
@@ -32,7 +34,10 @@ public class Return implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // Rien à faire
+        this.tds_parent = Parent;
+        if (!this.estVide()) {
+            this.valeur.TDS_creation(Parent);
+        }
     }
 
     public TDS_gen getTDS() {

@@ -6,6 +6,8 @@ import outils.TDS.TDS_gen;
 public class InstructionWhile implements Noeud {
     public Evaluable condition;
     public Noeud corps;
+    public TDS_gen tds_parent = null;
+
     public InstructionWhile(Evaluable cond, Noeud corps) {
         this.condition = cond;
         this.corps = corps;
@@ -44,7 +46,8 @@ public class InstructionWhile implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // this.condition.TDS_creation(Parent); // Ne rien faire pour la condition
+        this.tds_parent = Parent;
+        this.condition.TDS_creation(Parent);
         this.corps.TDS_creation(Parent);
     }
 

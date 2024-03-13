@@ -6,6 +6,8 @@ import outils.TDS.TDS_gen;
 public class Affectation implements Noeud {
     public Variable gauche;
     public Evaluable droite;
+    public TDS_gen tds_parent = null;
+
     public Affectation(Variable g, Evaluable d) {
         this.gauche = g; this.droite = d;
         if (g.type != d.type) Logger.warn("Affectation "+ this.toString() +" : types différents");
@@ -53,7 +55,10 @@ public class Affectation implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // Rien à faire
+        this.tds_parent = Parent;
+        
+        this.gauche.TDS_creation(Parent);
+        this.droite.TDS_creation(Parent);
     }
 
     public TDS_gen getTDS() {

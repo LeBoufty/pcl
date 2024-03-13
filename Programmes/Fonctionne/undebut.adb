@@ -9,7 +9,7 @@ procedure unDebut is
     return aire ;
     end aireRectangle ;
 
-    function perimetreRectangle(x : string; larg : integer; long : integer) return integer is
+    function perimetreRectangle(larg : integer; long : integer) return integer is
     aire : integer;
     begin
         aire := larg*2 + long*2;
@@ -25,6 +25,9 @@ test : integer ;
 begin
     choix := 2;
     for i in 1..2 loop
+        for j in 1..2 loop
+            valeur := aireRectangle(j, 2);
+        end loop;
         perimetreRectangle(i, 2);
     end loop;
 

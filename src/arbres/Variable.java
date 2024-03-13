@@ -6,6 +6,8 @@ public class Variable extends Evaluable {
     public int identifiant;
     public static int nbvariables = 0;
     public String nom;
+    public TDS_gen tds_parent = null;
+
     public Variable(IType t) {
         this.identifiant = nbvariables;
         this.type = t;
@@ -34,6 +36,7 @@ public class Variable extends Evaluable {
     }
 
     public void TDS_creation(TDS_gen Parent) {
+        this.tds_parent = Parent;
         // On ajoute la variable à la TDS du parent
         //INTEGER, CHARACTER, BOOLEAN, NULLTYPE;
         int taille=0;

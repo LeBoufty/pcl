@@ -7,6 +7,8 @@ public class Operation extends Evaluable {
     public Evaluable gauche;
     public Evaluable droite;
     private Operateur operateur;
+    public TDS_gen tds_parent = null;
+
     public Operation(Evaluable g, Evaluable d, Operateur o) {
         this.gauche = g; this.droite = d; this.operateur = o;
         if (g.type != d.type) {
@@ -82,6 +84,9 @@ public class Operation extends Evaluable {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // Rien normalement
+        this.tds_parent = Parent;
+        
+        this.gauche.TDS_creation(Parent);
+        this.droite.TDS_creation(Parent);
     }
 }

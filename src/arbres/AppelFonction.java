@@ -8,6 +8,8 @@ import outils.TDS.TDS_gen;
 public class AppelFonction extends Evaluable {
     public Fonction fonction;
     public ArrayList<Evaluable> params;
+    public TDS_gen tds_parent = null;
+
     public AppelFonction(Fonction fonction, Evaluable[] parametres) {
         this.fonction = fonction;
         this.params = new ArrayList<>();
@@ -60,7 +62,10 @@ public class AppelFonction extends Evaluable {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // Ne rien faire
+        this.tds_parent = Parent;
+        for (Evaluable p : params) {
+            p.TDS_creation(Parent);
+        }
     }
 
     public TDS_gen getTDS() {

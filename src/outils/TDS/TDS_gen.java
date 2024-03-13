@@ -16,9 +16,6 @@ public class TDS_gen {
     public int num_reg;
     public String nom_fonction;
 
-    public int id_tds;
-    public static int id_tds_courant = -1;
-
     public ArrayList<Integer> deplacement;
     public ArrayList<Integer> taille;
 
@@ -34,8 +31,6 @@ public class TDS_gen {
         this.num_imbr = 0;
         this.num_reg = 0;
         this.nom_fonction = nom_fonction;
-
-        this.id_tds = ++id_tds_courant;
     }
 
     public TDS_gen(Noeud noeud_associé, TDS_gen Parent, String nom) {
@@ -49,8 +44,6 @@ public class TDS_gen {
         this.num_reg = 0;
         this.nom_fonction = nom;
         Parent.add_TDS_child(this);
-
-        this.id_tds = ++id_tds_courant;
     }
 
 
@@ -67,6 +60,11 @@ public class TDS_gen {
     }
 
     public void add_variable(int nom, int deplacement, int taille) {
+        // Check if the variable is already in the TDS with contains_variable
+        if (this.contains_variable(nom)) {
+            return;
+        }
+
         this.variable_code.add(nom);
         this.taille.add(taille);
         if(this.deplacement.size() == 0)
@@ -88,6 +86,18 @@ public class TDS_gen {
         this.variable_code.remove(index);
         this.deplacement.remove(index);
         this.taille.remove(index);
+    }
+
+    public boolean contains_variable(int nom) {
+        // Check if the variable is in the TDS
+        if (this.variable_code.contains(nom)) {
+            return true;
+        }
+        // Check if the variable is in the parent TDS
+        else if (this.tds_parent != null) {
+            return this.tds_parent.contains_variable(nom);
+        }
+        return false;
     }
 
     public int get_deplacement(int nom) {

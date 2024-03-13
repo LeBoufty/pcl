@@ -5,6 +5,8 @@ import outils.TDS.TDS_gen;
 
 public class Constante extends Evaluable {
     public int valeur;
+    public TDS_gen tds_parent = null;
+
     public Constante(int c) {
         this.valeur = c;
         this.type = Type.INTEGER;
@@ -50,6 +52,6 @@ public class Constante extends Evaluable {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // Rien à faire
+        this.tds_parent = Parent;
     }
 }

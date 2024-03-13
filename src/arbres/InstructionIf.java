@@ -7,6 +7,8 @@ public class InstructionIf implements Noeud {
     public Evaluable condition;
     public Noeud alors;
     public Noeud sinon;
+    public TDS_gen tds_parent = null;
+
     public InstructionIf(Evaluable cond, Noeud alors) {
         this.condition = cond;
         this.alors = alors;
@@ -64,7 +66,8 @@ public class InstructionIf implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // this.condition.TDS_creation(Parent); // Ne rien faire pour la condition
+        this.tds_parent = Parent;
+        this.condition.TDS_creation(Parent);
         this.alors.TDS_creation(Parent);
         if (this.sinon != null) {
             this.sinon.TDS_creation(Parent);
