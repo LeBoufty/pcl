@@ -450,7 +450,7 @@ public class Elagueur {
 
     private Noeud traduire(Noeud_Non_Terminal noeud) {
         String nom = getNomNT(noeud.getCode());
-        Logger.debug(nom);
+        //Logger.debug(nom);
         switch (nom) {
             case "£FICHIER":
                 Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
@@ -614,7 +614,7 @@ public class Elagueur {
                 for (Noeud_A na : champplus.getEnfants()) {
                     struct.champs.add((Champ)traduire(na));
                 }
-                Logger.debug(record.toString());
+                //Logger.debug(record.toString());
                 return record;
             case "£CHAMP":
                 Noeud_Terminal champidf = (Noeud_Terminal)noeud.getEnfants().get(1);
@@ -634,7 +634,7 @@ public class Elagueur {
 
     private Noeud traduire(Noeud_Terminal noeud) {
         String nom = getNomT(noeud.getCode());
-        Logger.debug(nom);
+        //Logger.debug(nom);
         switch (nom) {
             case "entier":
                 return new Constante(noeud.getCodeIdf());
@@ -647,7 +647,11 @@ public class Elagueur {
             case "null":
                 return new Constante();
             case "IDF":
-                return tds.get(noeud.getCodeIdf());
+                if (tds.get(noeud.getCodeIdf()) != null) {
+                    return tds.get(noeud.getCodeIdf());
+                }
+                Logger.warn("Variable "+noeud.getValeurIdf()+" non initialisée");
+                return new Variable(Type.INTEGER, noeud.getValeurIdf());
         }
         return null;
     }
@@ -658,7 +662,7 @@ public class Elagueur {
 
     private IType getType(Noeud_Terminal nt) {
         String nom = nt.getValeurIdf();
-        Logger.debug(nom);
+        //Logger.debug(nom);
         switch (nom) {
             case "integer":
                 return Type.INTEGER;
@@ -806,7 +810,7 @@ public class Elagueur {
         // Tant qu'un noeud de type opération (avec un parent de type opération) est trouvé, on le remonte
         int i = 1;
         while (trouve_et_remonte_operation() == 1) {
-            Logger.info("Remonté");
+            //Logger.info("Remonté");
             i++;
             if (i > 3) {
                 //break;
