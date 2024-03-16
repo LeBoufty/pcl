@@ -21,6 +21,8 @@ public class TDS_gen {
 
     public ArrayList<Integer> variable_code;
 
+    public static int num_reg_global = 0;
+
     public TDS_gen(Noeud noeud_associé, String nom_fonction) {
         this.noeud_associé = noeud_associé;
         this.tds_childrens = new ArrayList<TDS_gen>();
@@ -29,7 +31,10 @@ public class TDS_gen {
         this.taille = new ArrayList<Integer>();
         this.tds_parent = null;
         this.num_imbr = 0;
-        this.num_reg = 0;
+
+        TDS_gen.num_reg_global++;
+        this.num_reg = TDS_gen.num_reg_global;
+
         this.nom_fonction = nom_fonction;
     }
 
@@ -41,7 +46,9 @@ public class TDS_gen {
         this.taille = new ArrayList<Integer>();
         this.tds_parent = Parent;
         this.num_imbr = Parent.num_imbr + 1;
-        this.num_reg = 0;
+
+        TDS_gen.num_reg_global++;
+        this.num_reg = TDS_gen.num_reg_global;
         this.nom_fonction = nom;
         Parent.add_TDS_child(this);
     }
