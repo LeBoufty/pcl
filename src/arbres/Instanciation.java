@@ -29,7 +29,12 @@ public abstract class Instanciation implements Noeud {
         variable.TDS_creation(Parent);
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        variable.TDS_link(Parent);
+    }
+
     public TDS_gen getTDS() {
-        return null;
+        return this.tds_parent;
     }
 }

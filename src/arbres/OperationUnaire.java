@@ -60,9 +60,16 @@ public class OperationUnaire extends Evaluable {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // this.tds_parent = Parent;
-        
-        // this.droite.TDS_creation(Parent);
         // Ne fait rien
     }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.droite.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS(){
+        return this.tds_parent;
+    }
+    
 }

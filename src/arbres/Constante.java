@@ -54,4 +54,12 @@ public class Constante extends Evaluable {
     public void TDS_creation(TDS_gen Parent) {
         // Rien à faire
     }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
+    }
 }

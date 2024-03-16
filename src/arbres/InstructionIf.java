@@ -72,7 +72,16 @@ public class InstructionIf implements Noeud {
         }
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.condition.TDS_link(Parent);
+        this.alors.TDS_link(Parent);
+        if (this.sinon != null) {
+            this.sinon.TDS_link(Parent);
+        }
+    }
+
     public TDS_gen getTDS() {
-        return null;
+        return this.tds_parent;
     }
 }

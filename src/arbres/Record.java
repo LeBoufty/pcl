@@ -34,7 +34,11 @@ public class Record implements Noeud {
         // TODO : à faire si on a le temps
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        this.type.TDS_link(Parent);
+    }
+
     public TDS_gen getTDS() {
-        return null;
+        return this.type.getTDS();
     }
 }

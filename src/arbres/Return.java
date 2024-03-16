@@ -34,14 +34,17 @@ public class Return implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // this.tds_parent = Parent;
-        // if (!this.estVide()) {
-        //     this.valeur.TDS_creation(Parent);
-        // }
         // Ne fait rien
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        if (!this.estVide()) {
+            this.valeur.TDS_link(Parent);
+        }
+    }
+    
     public TDS_gen getTDS() {
-        return null;
+        return this.tds_parent;
     }
 }

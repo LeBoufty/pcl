@@ -76,6 +76,13 @@ public class InstructionFor implements Noeud {
         this.corps.TDS_creation(this.tds);
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        this.iterateur.TDS_link(this.tds);
+        this.borneInf.TDS_link(this.tds);
+        this.borneSup.TDS_link(this.tds);
+        this.corps.TDS_link(this.tds);
+    }
+
     public TDS_gen getTDS() {
         return this.tds;
     }

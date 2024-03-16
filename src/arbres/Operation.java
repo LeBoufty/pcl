@@ -84,10 +84,16 @@ public class Operation extends Evaluable {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // this.tds_parent = Parent;
-        
-        // this.gauche.TDS_creation(Parent);
-        // this.droite.TDS_creation(Parent);
         // Ne fait rien
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.gauche.TDS_link(Parent);
+        this.droite.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS(){
+        return this.tds_parent;
     }
 }

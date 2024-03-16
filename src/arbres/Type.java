@@ -25,7 +25,12 @@ public enum Type implements IType, Noeud {
         // Rien à faire
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        // Rien à faire - Mais je suis pas sûr que ça soit correct
+    }
+
     public TDS_gen getTDS() {
+        // Rien à faire - Mais je suis pas sûr que ça soit correct
         return null;
     }
 }

@@ -14,7 +14,4 @@ public abstract class Evaluable implements Noeud {
         return false;
     }
 
-    public TDS_gen getTDS() {
-        return null;
-    }
 }

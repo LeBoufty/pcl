@@ -58,7 +58,13 @@ public class Affectation implements Noeud {
         // Rien à faire
     }
 
-    public TDS_gen getTDS() {
-        return null;
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.gauche.TDS_link(Parent);
+        this.droite.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS(){
+        return this.tds_parent;
     }
 }

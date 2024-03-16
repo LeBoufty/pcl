@@ -46,11 +46,16 @@ public class InstructionWhile implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        // this.condition.TDS_creation(Parent); // Ne fait rien
         this.corps.TDS_creation(Parent);
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.condition.TDS_link(Parent);
+        this.corps.TDS_link(Parent);
+    }
+
     public TDS_gen getTDS() {
-        return null;
+        return this.tds_parent;
     }
 }

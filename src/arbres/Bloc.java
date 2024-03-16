@@ -50,7 +50,14 @@ public class Bloc implements Noeud {
         }
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        for (Noeud noeud : instructions) {
+            noeud.TDS_link(Parent);
+        }
+    }
+
     public TDS_gen getTDS() {
-        return null;
+        return this.tds_parent;
     }
 }

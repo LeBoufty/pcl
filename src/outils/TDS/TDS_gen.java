@@ -1,8 +1,10 @@
 package outils.TDS;
 
 import java.util.ArrayList;
+import outils.Logger;
 
 import arbres.Noeud;
+import outils.Arbre_Syntaxique.TDS;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -39,6 +41,10 @@ public class TDS_gen {
     }
 
     public TDS_gen(Noeud noeud_associé, TDS_gen Parent, String nom) {
+        if (Parent == null) {
+            Logger.error("TDS_gen : Parent is null");
+        }
+
         this.noeud_associé = noeud_associé;
         this.tds_childrens = new ArrayList<TDS_gen>();
         this.variable_code = new ArrayList<Integer>();

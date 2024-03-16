@@ -48,7 +48,12 @@ public class Struct implements Noeud, IType {
         // TODO : à faire 
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        // TODO : à faire
+    }
+
     public TDS_gen getTDS() {
+        // TODO : à faire
         return null;
     }
 }

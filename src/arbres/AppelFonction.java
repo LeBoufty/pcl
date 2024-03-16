@@ -65,7 +65,15 @@ public class AppelFonction extends Evaluable {
         // Rien à faire
     }
 
-    public TDS_gen getTDS() {
-        return null;
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        for (Evaluable p : params) {
+            p.TDS_link(Parent);
+        }
     }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
+    }
+
 }

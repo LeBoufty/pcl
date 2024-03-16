@@ -62,4 +62,12 @@ public class Variable extends Evaluable {
         Parent.add_variable(identifiant, 0, taille);
         
     }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
+    }
 }

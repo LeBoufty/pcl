@@ -60,24 +60,25 @@ public class Procedure implements Noeud {
         }
     }
 
-    public void TDS_creation(){
-        this.tds = new TDS_gen(this, nom);
-        
+
+    public void TDS_creation(TDS_gen Parent) {
+        if (Parent == null) {
+            this.tds = new TDS_gen(this, nom);
+        }
+        else {
+            this.tds = new TDS_gen(this, Parent, nom);
+        }
+
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             noeud.TDS_creation(this.tds);
         }
         for (Noeud noeud : ((Bloc) instructions).instructions) {
             noeud.TDS_creation(this.tds);
         }
-    }
 
-    public void TDS_creation(TDS_gen Parent) {
         if (Parent == null) {
-            this.TDS_creation();
-            return;
+            this.TDS_link(null);
         }
-
-        this.tds = new TDS_gen(this, Parent, nom);
     }
 
     public String produire() {
@@ -106,11 +107,25 @@ public class Procedure implements Noeud {
         return "";
     } 
 
+    public void TDS_link(TDS_gen Parent) {
+
+        for (Noeud noeud : ((Bloc) definitions).instructions) {
+            noeud.TDS_link(this.tds);
+        }
+        for (Noeud noeud : ((Bloc) instructions).instructions) {
+            noeud.TDS_link(this.tds);
+        }
+    }
+
     public TDS_gen getTDS() {
         return this.tds;
     }
+
     public Boolean Is_main() {
         // Check n° imbrication
+        if (this.tds.num_imbr == 0) {
+            return true;
+        }
         return false;
     }
 }

@@ -120,6 +120,14 @@ public class Fonction implements Noeud {
         instructions.TDS_creation(this.tds);
     }
 
+    public void TDS_link(TDS_gen Parent) {
+        for (Parametre p : params) {
+            p.TDS_link(this.tds);
+        }
+        definitions.TDS_link(this.tds);
+        instructions.TDS_link(this.tds);
+    }
+
     public TDS_gen getTDS() {
         return this.tds;
     }
