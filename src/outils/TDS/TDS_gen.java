@@ -141,18 +141,24 @@ public class TDS_gen {
     }
 
     public String toString() {
-        String sortie = "+==================+\n";
-        sortie += "Nom de la fonction : " + this.nom_fonction + "\n";
-        sortie += "Numéro d'imbrication : " + this.num_imbr + "\n";
-        sortie += "Numéro de region : " + this.num_reg + "\n";
-        for(int i = 0; i < this.variable_code.size(); i++) {
-            sortie += "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
+        // Donne un nombre de tabulation égal à l'imbrication
+        String tab = "";
+        for (int i = 0; i < this.num_imbr; i++) {
+            tab += "\t";
         }
-        sortie += "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
+        String sortie = "\n";
+        sortie += tab + "+========= DÉBUT TDS N." + this.num_reg + " =========+\n";
+        sortie += tab + "Nom de la fonction : " + this.nom_fonction + "\n";
+        sortie += tab + "Numéro d'imbrication : " + this.num_imbr + "\n";
+        sortie += tab + "Numéro de region : " + this.num_reg + "\n";
+        for(int i = 0; i < this.variable_code.size(); i++) {
+            sortie += tab + "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
+        }
+        sortie += tab + "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
         for (TDS_gen tds : this.tds_childrens) {
             sortie += tds.toString();
         }
-        sortie += "+==================+\n";
+        sortie += tab + "+========= FIN TDS N." + this.num_reg + " =========+\n";
         return sortie;
     }
 }
