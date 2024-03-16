@@ -8,8 +8,7 @@ import outils.TDS.TDS_gen;
 
 public class Fonction implements Noeud {
     
-    public static int nbFonctions = 0;
-    public int id = nbFonctions++;
+    public int id;
 
     public String nom;
     public IType type;
@@ -116,6 +115,7 @@ public class Fonction implements Noeud {
     public void TDS_creation(TDS_gen Parent) {
         // Cree une nouvelle TDS pour la fonction
         this.tds = new TDS_gen(this, Parent, nom);
+        this.id = this.tds.num_reg;
         
         for (Parametre p : params) {
             p.TDS_creation(this.tds);

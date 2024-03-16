@@ -4,6 +4,9 @@ import outils.Logger;
 import outils.TDS.TDS_gen;
 
 public class InstructionFor implements Noeud {
+
+    public int id;
+
     public Variable iterateur;
     public boolean reverse;
     public Evaluable borneInf;
@@ -66,6 +69,7 @@ public class InstructionFor implements Noeud {
 
     public void TDS_creation(TDS_gen Parent) {
         this.tds = new TDS_gen(this, Parent, "for");
+        this.id = this.tds.get_num_reg();
         
         // Ajouter l'itérateur à la TDS
         this.tds.add_variable(iterateur.identifiant, 0, 0);

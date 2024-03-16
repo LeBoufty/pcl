@@ -5,6 +5,9 @@ import outils.Logger;
 import outils.TDS.TDS_gen;
 
 public class Procedure implements Noeud {
+
+    public int id;
+
     public String nom;
     public Noeud definitions;
     public Noeud instructions;
@@ -68,6 +71,8 @@ public class Procedure implements Noeud {
         else {
             this.tds = new TDS_gen(this, Parent, nom);
         }
+
+        this.id = this.tds.num_reg;
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             noeud.TDS_creation(this.tds);

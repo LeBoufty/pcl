@@ -1,6 +1,6 @@
 package arbres;
 
-import outils.TDS.TDS_gen;
+// import outils.TDS.TDS_gen;
 
 public abstract class Evaluable implements Noeud {
     protected IType type;
