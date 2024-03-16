@@ -34,8 +34,8 @@ public class TDS_gen {
         this.tds_parent = null;
         this.num_imbr = 0;
 
-        TDS_gen.num_reg_global++;
         this.num_reg = TDS_gen.num_reg_global;
+        TDS_gen.num_reg_global++;
 
         this.nom_fonction = nom_fonction;
     }
@@ -53,8 +53,8 @@ public class TDS_gen {
         this.tds_parent = Parent;
         this.num_imbr = Parent.num_imbr + 1;
 
-        TDS_gen.num_reg_global++;
         this.num_reg = TDS_gen.num_reg_global;
+        TDS_gen.num_reg_global++;
         
         this.nom_fonction = nom;
         Parent.add_TDS_child(this);

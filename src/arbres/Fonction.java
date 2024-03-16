@@ -7,6 +7,10 @@ import outils.GestionFichier;
 import outils.TDS.TDS_gen;
 
 public class Fonction implements Noeud {
+    
+    public static int nbFonctions = 0;
+    public int id = nbFonctions++;
+
     public String nom;
     public IType type;
     public ArrayList<Parametre> params;
