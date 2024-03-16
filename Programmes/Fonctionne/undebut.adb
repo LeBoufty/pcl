@@ -24,12 +24,13 @@ test : integer ;
 -- PROCEDURE PRINCIPALE
 begin
     choix := 2;
-    for i in 1..2 loop
+    for choix in 1..2 loop
         for j in 1..2 loop
             valeur := aireRectangle(j, 2);
         end loop;
-        perimetreRectangle(i, 2);
+        perimetreRectangle(choix, 2);
     end loop;
+    choix := 1;
 
     if choix = 1 or
      else choix = 2 

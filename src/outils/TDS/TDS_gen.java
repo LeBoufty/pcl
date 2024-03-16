@@ -49,6 +49,7 @@ public class TDS_gen {
 
         TDS_gen.num_reg_global++;
         this.num_reg = TDS_gen.num_reg_global;
+        
         this.nom_fonction = nom;
         Parent.add_TDS_child(this);
     }
@@ -135,10 +136,13 @@ public class TDS_gen {
 
     public String toString() {
         String sortie = "+==================+\n";
+        sortie += "Nom de la fonction : " + this.nom_fonction + "\n";
+        sortie += "Numéro d'imbrication : " + this.num_imbr + "\n";
+        sortie += "Numéro de region : " + this.num_reg + "\n";
         for(int i = 0; i < this.variable_code.size(); i++) {
             sortie += "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
         }
-        sortie += tds_childrens.size() + " enfants\n";
+        sortie += "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
         for (TDS_gen tds : this.tds_childrens) {
             sortie += tds.toString();
         }

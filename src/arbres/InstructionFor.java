@@ -70,9 +70,9 @@ public class InstructionFor implements Noeud {
         // Ajouter l'itérateur à la TDS
         this.tds.add_variable(iterateur.identifiant, 0, 0);
 
-        this.iterateur.TDS_creation(this.tds);
-        this.borneInf.TDS_creation(this.tds);
-        this.borneSup.TDS_creation(this.tds);
+        // this.iterateur.TDS_creation(this.tds);
+        // this.borneInf.TDS_creation(this.tds);
+        // this.borneSup.TDS_creation(this.tds);
         this.corps.TDS_creation(this.tds);
     }
 

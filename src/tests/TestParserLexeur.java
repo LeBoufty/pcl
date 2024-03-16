@@ -36,10 +36,13 @@ public class TestParserLexeur {
         analyseur.affiche_UML(programme + ".puml");
 
         Logger.debug(AST.toString());
+
         AST.TDS_creation(null);
+        Logger.debug(AST.getTDS().toString());
         GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
         puml.generer();
         //Logger.debug(AST.getTDS().toString());
-        AST.valide();
+        boolean valide = AST.valide();
+        Logger.debug("Valide : " + valide);
     }
 }

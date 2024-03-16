@@ -55,10 +55,7 @@ public class Affectation implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent) {
-        this.tds_parent = Parent;
-        
-        this.gauche.TDS_creation(Parent);
-        this.droite.TDS_creation(Parent);
+        // Rien à faire
     }
 
     public TDS_gen getTDS() {
