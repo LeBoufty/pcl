@@ -2,7 +2,7 @@ package tests;
 
 import java.util.List;
 
-import arbres.*;
+import arbres.Noeud;
 import arbres.PlantUML.GenerateurPUML;
 import outils.Logger;
 import outils.Lexeur.Analyseur_L;
@@ -26,6 +26,7 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/traduisible.adb";
         //programme = "Programmes/Fonctionne/williamfaure.adb";
         programme = "Programmes/Fonctionne/recordiii.adb";
+        programme = "Programmes/Fonctionne/testctrlsem.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
