@@ -140,6 +140,25 @@ public class TDS_gen {
         return this.nom_fonction;
     }
 
+    public int search_imbrication_TDS(int nom) {
+      
+        int imbrication = 0;
+        TDS_gen TDS_parent = this;
+
+        while(TDS_parent != null) {
+            int index = TDS_parent.variable_code.indexOf(nom);
+
+            if(index != -1) {
+                return imbrication;
+            }
+
+            TDS_parent = this.tds_parent;
+            imbrication++;
+        }
+
+        return -1; // Erreur
+    }
+
     public String toString() {
         // Donne un nombre de tabulation égal à l'imbrication
         String tab = "";
@@ -151,8 +170,8 @@ public class TDS_gen {
         sortie += "\n";
         sortie += tab + "Nom de la fonction : " + this.nom_fonction + "\n";
         sortie += tab + "Numéro d'imbrication : " + this.num_imbr + "\n";
-        sortie += tab + "Numéro de region : " + this.num_reg + "\n";
         for(int i = 0; i < this.variable_code.size(); i++) {
+            sortie += tab + "Numéro de region : " + this.num_reg + "\n";
             sortie += tab + "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
         }
         sortie += tab + "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
