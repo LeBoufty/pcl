@@ -159,6 +159,23 @@ public class TDS_gen {
         return -1; // Erreur
     }
 
+    public int search_deplacement_TDS(int nom) {
+
+        TDS_gen TDS_parent = this;
+
+        while(TDS_parent != null) {
+            int index = TDS_parent.variable_code.indexOf(nom);
+            
+            if(index != -1) {
+                return TDS_parent.get_deplacement(nom);
+            }
+
+            TDS_parent = this.tds_parent;
+        }
+
+        return -1;
+    }
+
     public String toString() {
         // Donne un nombre de tabulation égal à l'imbrication
         String tab = "";
