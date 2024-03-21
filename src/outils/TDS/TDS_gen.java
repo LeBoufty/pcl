@@ -148,6 +148,7 @@ public class TDS_gen {
         }
         String sortie = "\n";
         sortie += tab + "+========= DÉBUT TDS N." + this.num_reg + " =========+\n";
+        sortie += "\n";
         sortie += tab + "Nom de la fonction : " + this.nom_fonction + "\n";
         sortie += tab + "Numéro d'imbrication : " + this.num_imbr + "\n";
         sortie += tab + "Numéro de region : " + this.num_reg + "\n";
@@ -158,6 +159,7 @@ public class TDS_gen {
         for (TDS_gen tds : this.tds_childrens) {
             sortie += tds.toString();
         }
+        sortie += "\n";
         sortie += tab + "+========= FIN TDS N." + this.num_reg + " =========+\n";
         return sortie;
     }
