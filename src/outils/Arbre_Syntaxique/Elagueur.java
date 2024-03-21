@@ -498,6 +498,10 @@ public class Elagueur {
             case "£MOINSUnairePresent":
                 return new OperationUnaire((Evaluable)traduire(noeud.getEnfants().get(0)), OperateurUnaire.MOINS);
             case "£APPELfonction":
+                // fonction put gérée à part
+                if (((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf().equals("put")) {
+                    return new Put((Evaluable) traduire(((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants().get(0)));
+                }
                 Fonction fonction = tds.getFonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf());
                 AppelFonction appel = new AppelFonction(fonction);
                 for (Noeud_A enfant : ((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants()) {

@@ -35,7 +35,7 @@ begin
     if choix = 1 or
      else choix = 2 
         then valeur := perimetreRectangle(2, 3) ;
-            --put(valeur) ;
+            put(valeur) ;
         else valeur := aireRectangle(2, 3) ;
             --put(valeur) ;
     end if;
