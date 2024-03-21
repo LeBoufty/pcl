@@ -1,20 +1,13 @@
 with Ada.Text_IO;use Ada.Text_IO;
 
-procedure quelquesinstructions is
+procedure testctrlsem is
     a: Integer;
     b: Integer;
     sortie: Boolean;
-    type recorda is record
-        c: Integer;
-        d: String;
-        f: Boolean;
-    end record;
-    e : recorda;
+
 begin
-    z := -5;
-    a := - 5;
+    z := f(2);
+    a := z;
     b := f + 2;
-    c := 2;
-    e := 7;
     a := -4;
-end quelquesinstructions;
+end testctrlsem;
