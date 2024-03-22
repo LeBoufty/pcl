@@ -2,7 +2,6 @@ package arbres;
 
 import java.util.ArrayList;
 
-import outils.GestionFichier;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -60,26 +59,27 @@ public class AppelFonction extends Evaluable {
         System.out.println("Appel de fonction "+ this.fonction.nom);
         System.out.println("Paramètres : "+ this.params);
 
+        String res = "";
+
         // Sauvegarde des registres
-        GestionFichier.sauvegarderRegistres();
+        res += "stp x29, x30, [sp, #-16]! // Sauvegarde des registres\n"; // TODO : à vérifier
 
         // Met en place les paramètres
         for (int i = 0; i < params.size(); i++) {
             System.out.println("Paramètre "+ i +" : "+ params.get(i));
             // Mettre la valeur du paramètre dans le registre x0
-            params.get(i).produire();
+            res += params.get(i).produire(); // TODO : à vérifier
             // Mettre la valeur du paramètre dans la pile
-            GestionFichier.Addcontenu("str x0, [sp, #"+ (i * 16) +"]\n");
+            res += "str x0, [sp, #"+ (i * 16) +"] // Mettre le paramètre "+ i +" dans la pile\n";
         }
 
         // Appel de la fonction
-        GestionFichier.Addcontenu("bl "+ this.fonction.nom +"\n");
+        res += "bl "+ this.fonction.nom +" // Appel de la fonction\n";
 
         // Restauration des registres
-        GestionFichier.restaurerRegistres();
+        res += "ldp x29, x30, [sp], #16 // Restauration des registres\n";// TODO : à vérifier
 
-        return "";
-    // TODO : côté appelé (dans le cours)
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent) {

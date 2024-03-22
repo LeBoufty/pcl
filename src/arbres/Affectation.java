@@ -1,6 +1,7 @@
 package arbres;
 
 import outils.Logger;
+// ?import outils.Arbre_Syntaxique.TDS;
 import outils.TDS.TDS_gen;
 
 public class Affectation implements Noeud {
@@ -43,13 +44,23 @@ public class Affectation implements Noeud {
         String res = "";
 
         if (this.droite.isConstant()) {
-            res += "MOV x0, #"+((Constante) this.droite).valeur+"\n";
+            // On affecte la valeur de la constante à la variable
+            res += "MOV x0, " + this.droite.produire() + " // On met la constante dans x0 \n";
         }
         else {
             this.droite.produire();
-            res += "MOV x0, x0\n";
+            res += "MOV x0, x1 // Affectation \n";
         }
 
+        // Cas variable locale
+        if (this.gauche.getTDS().search_imbrication_TDS(this.gauche.nom) == 0) {
+            res += "STR x0, [x29, #" + this.gauche.getTDS().search_deplacement_TDS(this.gauche.nom) + "] // On stocke la valeur de la variable locale \n";
+        }
+        else {
+            // Cas variable globale
+            res += "MOV x1, #" + (this.tds_parent.get_num_imbr() - this.gauche.getTDS().search_imbrication_TDS(this.gauche.nom)) + " // On met le nombre de saut dans x1 \n";
+            // TODO : Soit une boucle java de saut soit une boucle d'assembleur générer par le main
+        }
         return res;
         // TODO : Check les registres
     }
