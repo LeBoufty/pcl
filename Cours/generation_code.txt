@@ -130,4 +130,4 @@ Convention :
 
 Pour avoir une simulation : 
     http://163.238.35.161/~zhangs/arm64simulator/*
-    Le site est douteux, mais je vais faire comme d'habitudeet ignorer les problèmes
+    Le site est douteux, mais je vais faire comme d'habitude et ignorer les problèmes
