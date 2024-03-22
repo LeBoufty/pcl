@@ -2,6 +2,7 @@ package arbres;
 
 import java.util.ArrayList;
 
+import outils.GestionFichier;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -57,6 +58,26 @@ public class AppelFonction extends Evaluable {
 
     public String produire() {
         System.out.println("Appel de fonction "+ this.fonction.nom);
+        System.out.println("Paramètres : "+ this.params);
+
+        // Sauvegarde des registres
+        GestionFichier.sauvegarderRegistres();
+
+        // Met en place les paramètres
+        for (int i = 0; i < params.size(); i++) {
+            System.out.println("Paramètre "+ i +" : "+ params.get(i));
+            // Mettre la valeur du paramètre dans le registre x0
+            params.get(i).produire();
+            // Mettre la valeur du paramètre dans la pile
+            GestionFichier.Addcontenu("str x0, [sp, #"+ (i * 16) +"]\n");
+        }
+
+        // Appel de la fonction
+        GestionFichier.Addcontenu("bl "+ this.fonction.nom +"\n");
+
+        // Restauration des registres
+        GestionFichier.restaurerRegistres();
+
         return "";
     // TODO : côté appelé (dans le cours)
     }
