@@ -89,7 +89,8 @@ public class Procedure implements Noeud {
     public String produire() {
         System.out.println("procedure "+nom+" is");
         
-        
+        String res = "";
+
         if (this.tds.num_reg == 0) {
             GestionFichier.AddcontenuHeader(".global "+ this.nom +"\n.extern printf // Import printf\n.section .data\n");
             GestionFichier.Addcontenu(".section .text\n"+ this.nom +":\n");
@@ -97,13 +98,19 @@ public class Procedure implements Noeud {
         }
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
-            noeud.produire();
+            res += noeud.produire();
         }
 
         for (Noeud noeud : ((Bloc) instructions).instructions) {
-            noeud.produire();
+            res += noeud.produire();
         }
 
+        if (this.tds.num_reg == 0) {
+            GestionFichier.Addcontenu(res);
+        }
+        else {
+            GestionFichier.AddcontenuHeader(res);
+        }
         return "";
     }
 
