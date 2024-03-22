@@ -76,38 +76,34 @@ public class Fonction implements Noeud {
     }
 
     public String produire() {
+        System.out.println("=== Fonction ===");
         System.out.println(nom + " fonc type : " + type);
         System.out.println(nom + " fonc params : " + params);
         System.out.println(nom + " fonc definition : " + definitions);
         System.out.println(nom + " fonc instr : " + instructions);
-        
-        // Générer la TDS
-        for (Parametre p : params) {
-            p.produire();
-        }
 
-        for (Noeud n : ((Bloc) definitions).instructions) {
-            n.produire();
-        }
-
+        // Générer le code
         String res = nom + " :" ;;
 
-        //Code appelé
-        res += "STP LR, X11, [SP, #-16]!\n";
-        res += "STP X10, XZR, [SP, #-16]!\n";
-        res += "SUB SP, SP, taille_locale\n";
-
+        // *Code appelé
+        res += "STP LR, X11, [SP, #-16]! // Sauvegarde LR\n";
+        res += "STP X10, XZR, [SP, #-16]! // Sauvegarde X10\n";
+        // Réserve de l'espace pour les variables locales
+        int taille_locale = this.tds.get_taille_variables_locales();
+        res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
 
         for (Noeud n : ((Bloc) instructions).instructions) {
             res += n.produire();
         }
 
-        res += "ADD SP, SP, taille_locale\n";
-        res += "LDP X10, XZR, [SP], #16\n";
-        res += "LDP LR, X11, [SP], #16\n";
-        res += "RET\n";
+        res += "ADD SP, SP, " + taille_locale + " // Libération de l'espace pour les variables locales\n";
+        res += "LDP X10, XZR, [SP], #16 // Restauration de X10\n";
+        res += "LDP LR, X11, [SP], #16 // Restauration de LR\n";
+        res += "RET // Retour de la fonction\n";
 
         GestionFichier.AddcontenuFooter(res);
+
+        System.out.println("=== Fin Fonction ===");
 
         return "";
     }
