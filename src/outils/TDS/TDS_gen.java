@@ -119,10 +119,6 @@ public class TDS_gen {
         return this.deplacement.get(index);
     }
 
-    public int get_deplacement(String nom) {
-        return get_deplacement(Integer.parseInt(nom.substring(1)));
-    }
-
     public int get_taille(int nom) {
         int index = this.variable_code.indexOf(nom);
         return this.taille.get(index);
@@ -178,6 +174,10 @@ public class TDS_gen {
         }
 
         return -1;
+    }
+
+    public int search_deplacement_TDS(String nom) {
+        return search_deplacement_TDS(Integer.parseInt(nom.substring(1)));
     }
 
     public String toString() {
