@@ -29,10 +29,11 @@ public class Variable extends Evaluable {
 
     public String produire() {
         System.out.println(nom + " var type : " + type);
-        System.out.println(nom + " var id : " + identifiant); 
+        System.out.println(nom + " var id : " + identifiant);
+
+        // *Je crois qu'il y a rien à produire pour une variable
 
         return "";
-// TODO : chercher la variable, c'est dans le cours.
     }
 
     public void TDS_creation(TDS_gen Parent) {
