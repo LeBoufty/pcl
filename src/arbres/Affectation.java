@@ -53,12 +53,12 @@ public class Affectation implements Noeud {
         }
 
         // Cas variable locale
-        if (this.gauche.getTDS().search_imbrication_TDS(this.gauche.nom) == 0) {
-            res += "STR x0, [x29, #" + this.gauche.getTDS().search_deplacement_TDS(this.gauche.nom) + "] // On stocke la valeur de la variable locale \n";
+        if (this.gauche.getTDS().search_imbrication_TDS(this.gauche.identifiant) == 0) {
+            res += "STR x0, [x29, #" + this.gauche.getTDS().search_deplacement_TDS(this.gauche.identifiant) + "] // On stocke la valeur de la variable locale \n";
         }
         else {
             // Cas variable globale
-            res += "MOV x1, #" + (this.tds_parent.get_num_imbr() - this.gauche.getTDS().search_imbrication_TDS(this.gauche.nom)) + " // On met le nombre de saut dans x1 \n";
+            res += "MOV x1, #" + (this.tds_parent.get_num_imbr() - this.gauche.getTDS().search_imbrication_TDS(this.gauche.identifiant)) + " // On met le nombre de saut dans x1 \n";
             // TODO : Soit une boucle java de saut soit une boucle d'assembleur générer par le main
         }
         return res;
