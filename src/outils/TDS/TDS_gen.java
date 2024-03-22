@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import outils.Logger;
 
 import arbres.Noeud;
-import outils.Arbre_Syntaxique.TDS;
+// ?import outils.Arbre_Syntaxique.TDS;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -198,5 +198,13 @@ public class TDS_gen {
         sortie += "\n";
         sortie += tab + "+========= FIN TDS N." + this.num_reg + " =========+\n";
         return sortie;
+    }
+
+    public int get_taille_variables_locales(){
+        int taille = 0;
+        for(int i = 0; i < this.taille.size(); i++){
+            taille += this.taille.get(i);
+        }
+        return taille;
     }
 }
