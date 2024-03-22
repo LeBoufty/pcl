@@ -1,10 +1,13 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class Affectation implements Noeud {
     public Variable gauche;
     public Evaluable droite;
+    public TDS_gen tds_parent = null;
+
     public Affectation(Variable g, Evaluable d) {
         this.gauche = g; this.droite = d;
         if (g.type != d.type) Logger.warn("Affectation "+ this.toString() +" : types différents");
@@ -34,6 +37,34 @@ public class Affectation implements Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : changer la valeur d'une variable
+        System.out.println("Affectation gauche : " + this.gauche);
+        System.out.println("Affectation droite : " + this.droite);
+        
+        String res = "";
+
+        if (this.droite.isConstant()) {
+            res += "MOV x0, #"+((Constante) this.droite).valeur+"\n";
+        }
+        else {
+            this.droite.produire();
+            res += "MOV x0, x0\n";
+        }
+
+        return res;
+        // TODO : Check les registres
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.gauche.TDS_link(Parent);
+        this.droite.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS(){
+        return this.tds_parent;
     }
 }

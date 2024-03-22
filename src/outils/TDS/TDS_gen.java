@@ -1,8 +1,10 @@
 package outils.TDS;
 
 import java.util.ArrayList;
+import outils.Logger;
 
 import arbres.Noeud;
+import outils.Arbre_Syntaxique.TDS;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -15,21 +17,49 @@ public class TDS_gen {
     public int num_imbr;
     public int num_reg;
     public String nom_fonction;
-    public ArrayList<String> nom_variable;
+
     public ArrayList<Integer> deplacement;
     public ArrayList<Integer> taille;
 
-    public ArrayList<Integer> tds_code;
+    public ArrayList<Integer> variable_code;
 
-    public TDS_gen(Noeud noeud_associé, int num_imbr, int num_reg, String nom_fonction) {
+    public static int num_reg_global = 0;
+
+    public TDS_gen(Noeud noeud_associé, String nom_fonction) {
         this.noeud_associé = noeud_associé;
         this.tds_childrens = new ArrayList<TDS_gen>();
-        this.tds_code = new ArrayList<Integer>();
+        this.variable_code = new ArrayList<Integer>();
+        this.deplacement = new ArrayList<Integer>();
+        this.taille = new ArrayList<Integer>();
         this.tds_parent = null;
-        this.num_imbr = num_imbr;
-        this.num_reg = num_reg;
+        this.num_imbr = 0;
+
+        this.num_reg = TDS_gen.num_reg_global;
+        TDS_gen.num_reg_global++;
+
         this.nom_fonction = nom_fonction;
     }
+
+    public TDS_gen(Noeud noeud_associé, TDS_gen Parent, String nom) {
+        if (Parent == null) {
+            Logger.error("TDS_gen : Parent is null");
+        }
+
+        this.noeud_associé = noeud_associé;
+        this.tds_childrens = new ArrayList<TDS_gen>();
+        this.variable_code = new ArrayList<Integer>();
+        this.deplacement = new ArrayList<Integer>();
+        this.taille = new ArrayList<Integer>();
+        this.tds_parent = Parent;
+        this.num_imbr = Parent.num_imbr + 1;
+
+        this.num_reg = TDS_gen.num_reg_global;
+        TDS_gen.num_reg_global++;
+        
+        this.nom_fonction = nom;
+        Parent.add_TDS_child(this);
+    }
+
 
     public void add_TDS_child(TDS_gen child) {
         this.tds_childrens.add(child);
@@ -43,44 +73,54 @@ public class TDS_gen {
         child.num_imbr = 0;
     }
 
-    public void add_TDS_code(int code) {
-        this.tds_code.add(code);
-    }
-    
-    public void remove_TDS_code(int code) {
-        this.tds_code.remove(code);
-    }
+    public void add_variable(int nom, int deplacement, int taille) {
+        // Check if the variable is already in the TDS with contains_variable
+        if (this.contains_variable(nom)) {
+            return;
+        }
 
-    public void add_variable(String nom, int deplacement, int taille) {
-        this.nom_variable.add(nom);
-        this.deplacement.add(deplacement);
+        this.variable_code.add(nom);
         this.taille.add(taille);
+        if(this.deplacement.size() == 0)
+        {
+            this.deplacement.add(taille);
+        }   
+        else if(this.deplacement.size() == 1)
+        {
+            this.deplacement.add(this.deplacement.get(0) + taille);
+        }   
+        else if(this.deplacement.size() > 1)
+        {
+            this.deplacement.add(this.deplacement.get(this.deplacement.size() - 1) + taille);
+        }
     }
 
-    public void remove_variable(String nom) {
-        int index = this.nom_variable.indexOf(nom);
-        this.nom_variable.remove(index);
+    public void remove_variable(int nom) {
+        int index = this.variable_code.indexOf(nom);
+        this.variable_code.remove(index);
         this.deplacement.remove(index);
         this.taille.remove(index);
     }
 
-    public void set_deplacement(String nom, int deplacement) {
-        int index = this.nom_variable.indexOf(nom);
-        this.deplacement.set(index, deplacement);
+    public boolean contains_variable(int nom) {
+        // Check if the variable is in the TDS
+        if (this.variable_code.contains(nom)) {
+            return true;
+        }
+        // Check if the variable is in the parent TDS
+        else if (this.tds_parent != null) {
+            return this.tds_parent.contains_variable(nom);
+        }
+        return false;
     }
 
-    public void set_taille(String nom, int taille) {
-        int index = this.nom_variable.indexOf(nom);
-        this.taille.set(index, taille);
-    }
-
-    public int get_deplacement(String nom) {
-        int index = this.nom_variable.indexOf(nom);
+    public int get_deplacement(int nom) {
+        int index = this.variable_code.indexOf(nom);
         return this.deplacement.get(index);
     }
 
-    public int get_taille(String nom) {
-        int index = this.nom_variable.indexOf(nom);
+    public int get_taille(int nom) {
+        int index = this.variable_code.indexOf(nom);
         return this.taille.get(index);
     }
 
@@ -100,6 +140,63 @@ public class TDS_gen {
         return this.nom_fonction;
     }
 
+    public int search_imbrication_TDS(int nom) {
+      
+        int imbrication = 0;
+        TDS_gen TDS_parent = this;
 
+        while(TDS_parent != null) {
+            int index = TDS_parent.variable_code.indexOf(nom);
 
+            if(index != -1) {
+                return imbrication;
+            }
+
+            TDS_parent = this.tds_parent;
+            imbrication++;
+        }
+
+        return -1; // Erreur
+    }
+
+    public int search_deplacement_TDS(int nom) {
+
+        TDS_gen TDS_parent = this;
+
+        while(TDS_parent != null) {
+            int index = TDS_parent.variable_code.indexOf(nom);
+            
+            if(index != -1) {
+                return TDS_parent.get_deplacement(nom);
+            }
+
+            TDS_parent = this.tds_parent;
+        }
+
+        return -1;
+    }
+
+    public String toString() {
+        // Donne un nombre de tabulation égal à l'imbrication
+        String tab = "";
+        for (int i = 0; i < this.num_imbr; i++) {
+            tab += "\t";
+        }
+        String sortie = "\n";
+        sortie += tab + "+========= DÉBUT TDS N." + this.num_reg + " =========+\n";
+        sortie += "\n";
+        sortie += tab + "Nom de la fonction : " + this.nom_fonction + "\n";
+        sortie += tab + "Numéro d'imbrication : " + this.num_imbr + "\n";
+        for(int i = 0; i < this.variable_code.size(); i++) {
+            sortie += tab + "Numéro de region : " + this.num_reg + "\n";
+            sortie += tab + "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
+        }
+        sortie += tab + "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
+        for (TDS_gen tds : this.tds_childrens) {
+            sortie += tds.toString();
+        }
+        sortie += "\n";
+        sortie += tab + "+========= FIN TDS N." + this.num_reg + " =========+\n";
+        return sortie;
+    }
 }

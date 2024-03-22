@@ -1,13 +1,19 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class InstructionFor implements Noeud {
+
+    public int id;
+
     public Variable iterateur;
     public boolean reverse;
     public Evaluable borneInf;
     public Evaluable borneSup;
     public Noeud corps;
+    public TDS_gen tds = null;
+
     public InstructionFor(Variable iterateur, boolean reverse, Evaluable borneInf, Evaluable borneSup, Noeud corps) {
         this.iterateur = iterateur;
         this.reverse = reverse;
@@ -55,6 +61,33 @@ public class InstructionFor implements Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : apparemment c'est dans le cours ? i foror 💀
+         System.out.println("InstructionFor");
+
+         return "";
+// TODO : apparemment c'est dans le cours ? i foror 💀
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        this.tds = new TDS_gen(this, Parent, "for");
+        this.id = this.tds.get_num_reg();
+        
+        // Ajouter l'itérateur à la TDS
+        this.tds.add_variable(iterateur.identifiant, 0, 0);
+
+        // this.iterateur.TDS_creation(this.tds);
+        // this.borneInf.TDS_creation(this.tds);
+        // this.borneSup.TDS_creation(this.tds);
+        this.corps.TDS_creation(this.tds);
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.iterateur.TDS_link(this.tds);
+        this.borneInf.TDS_link(this.tds);
+        this.borneSup.TDS_link(this.tds);
+        this.corps.TDS_link(this.tds);
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds;
     }
 }

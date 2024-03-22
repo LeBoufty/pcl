@@ -1,11 +1,18 @@
 package arbres;
 
+import outils.GestionFichier;
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class Procedure implements Noeud {
+
+    public int id;
+
     public String nom;
     public Noeud definitions;
     public Noeud instructions;
+    public TDS_gen tds = null;
+
     public Procedure(String nom, Noeud def, Noeud inst) {
         this.nom = nom;
         this.definitions = def;
@@ -56,7 +63,74 @@ public class Procedure implements Noeud {
         }
     }
 
+
+    public void TDS_creation(TDS_gen Parent) {
+        if (Parent == null) {
+            this.tds = new TDS_gen(this, nom);
+        }
+        else {
+            this.tds = new TDS_gen(this, Parent, nom);
+        }
+
+        this.id = this.tds.num_reg;
+
+        for (Noeud noeud : ((Bloc) definitions).instructions) {
+            noeud.TDS_creation(this.tds);
+        }
+        for (Noeud noeud : ((Bloc) instructions).instructions) {
+            noeud.TDS_creation(this.tds);
+        }
+
+        if (Parent == null) {
+            this.TDS_link(null);
+        }
+    }
+
     public String produire() {
-        return ""; // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
+        System.out.println("procedure "+nom+" is");
+        System.out.println(nom);
+        // TODO : soit c'est comme une fonction, soit on considère ça comme le fichier.
+
+        return "";
+    }
+
+    public String produire(String nomFichier) {
+        System.out.println("Main : "+nomFichier);
+        GestionFichier.AddcontenuHeader(".global "+ nomFichier + "\n.extern printf\n.section .data\n");
+        GestionFichier.Addcontenu(".section .text\n"+nomFichier+":\n");
+        GestionFichier.AddcontenuFooter("bl exit\n\nexit:\nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
+
+
+        for (Noeud noeud : ((Bloc) definitions).instructions) {
+            noeud.produire();
+        }
+
+        for (Noeud noeud : ((Bloc) instructions).instructions) {
+            noeud.produire();
+        }
+
+        return "";
+    } 
+
+    public void TDS_link(TDS_gen Parent) {
+
+        for (Noeud noeud : ((Bloc) definitions).instructions) {
+            noeud.TDS_link(this.tds);
+        }
+        for (Noeud noeud : ((Bloc) instructions).instructions) {
+            noeud.TDS_link(this.tds);
+        }
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds;
+    }
+
+    public Boolean Is_main() {
+        // Check n° imbrication
+        if (this.tds.num_imbr == 0) {
+            return true;
+        }
+        return false;
     }
 }

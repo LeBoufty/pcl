@@ -3,10 +3,13 @@ package arbres;
 import java.util.ArrayList;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class AppelFonction extends Evaluable {
     public Fonction fonction;
     public ArrayList<Evaluable> params;
+    public TDS_gen tds_parent = null;
+
     public AppelFonction(Fonction fonction, Evaluable[] parametres) {
         this.fonction = fonction;
         this.params = new ArrayList<>();
@@ -41,16 +44,36 @@ public class AppelFonction extends Evaluable {
             Logger.error("Appel de fonction "+ this.fonction.nom +" invalide : nombre de paramètres incorrect");
             sortie = false;
         }
-        for (int i = 0; i < params.size(); i++) {
-            if (params.get(i).type != fonction.params.get(i).type) {
-                Logger.error("Appel de fonction "+ this.fonction.nom +" invalide : paramètre "+ i +" de type incorrect");
-                sortie = false;
+        else {
+            for (int i = 0; i < params.size(); i++) {
+                if (params.get(i).type != fonction.params.get(i).type) {
+                    Logger.error("Appel de fonction "+ this.fonction.nom +" invalide : paramètre "+ i +" de type incorrect");
+                    sortie = false;
+                }
             }
         }
         return sortie;
     }
 
     public String produire() {
-        return ""; // TODO : côté appelé (dans le cours)
+        System.out.println("Appel de fonction "+ this.fonction.nom);
+        return "";
+    // TODO : côté appelé (dans le cours)
     }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        for (Evaluable p : params) {
+            p.TDS_link(Parent);
+        }
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
+    }
+
 }

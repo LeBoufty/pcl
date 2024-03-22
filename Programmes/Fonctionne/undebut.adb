@@ -10,26 +10,34 @@ procedure unDebut is
     end aireRectangle ;
 
     function perimetreRectangle(larg : integer; long : integer) return integer is
-    p : integer;
+    aire : integer;
     begin
-        p := larg*2 + long*2 ;
-    return p ;
+        aire := larg*2 + long*2;
+    return aire ;
     end perimetreRectangle;
 
     -- VARIABLES
 choix : integer ;
 valeur : integer ;
+test : integer ;
 
 -- PROCEDURE PRINCIPALE
 begin
     choix := 2;
+    for choix in 1..2 loop
+        for j in 1..2 loop
+            valeur := aireRectangle(j, 2);
+        end loop;
+        perimetreRectangle(choix, 2);
+    end loop;
+    choix := 1;
 
     if choix = 1 or
      else choix = 2 
         then valeur := perimetreRectangle(2, 3) ;
             put(valeur) ;
         else valeur := aireRectangle(2, 3) ;
-            put(valeur) ;
+            --put(valeur) ;
     end if;
 end unDebut ;
 

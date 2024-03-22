@@ -1,10 +1,13 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class InstructionWhile implements Noeud {
     public Evaluable condition;
     public Noeud corps;
+    public TDS_gen tds_parent = null;
+
     public InstructionWhile(Evaluable cond, Noeud corps) {
         this.condition = cond;
         this.corps = corps;
@@ -36,6 +39,23 @@ public class InstructionWhile implements Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : probablement à mi-chemin entre for et if
+        System.out.println("InstructionWhile");
+
+        return "";
+// TODO : probablement à mi-chemin entre for et if
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        this.corps.TDS_creation(Parent);
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.condition.TDS_link(Parent);
+        this.corps.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
     }
 }

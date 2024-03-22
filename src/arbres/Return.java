@@ -1,7 +1,11 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public class Return implements Noeud {
     public Evaluable valeur;
+    public TDS_gen tds_parent = null;
+
     public Return(Evaluable valeur) {
         this.valeur = valeur;
     }
@@ -23,6 +27,24 @@ public class Return implements Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
+         System.out.println("Return : " + valeur);
+
+         return "";
+// TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Ne fait rien
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        if (!this.estVide()) {
+            this.valeur.TDS_link(Parent);
+        }
+    }
+    
+    public TDS_gen getTDS() {
+        return this.tds_parent;
     }
 }

@@ -14,8 +14,10 @@ import arbres.Return;
 import arbres.Type;
 import arbres.PlantUML.GenerateurPUML;
 import outils.Logger;
+import outils.GestionFichier;
 
 public class TestArbreUnDebutTopDown {
+
     public static void main(String[] args) {
         ////////////////////////////////
         // Sera réalisé à l'initalisation de l'analyseur syntaxique
@@ -116,6 +118,8 @@ public class TestArbreUnDebutTopDown {
         try {
             GenerateurPUML gen = new GenerateurPUML(unDebut, "Programmes/unDebutTopDown.pu");
             gen.generer();
+            unDebut.produire(unDebut.nom);
+            GestionFichier.produirefichier("test.s");
         } catch (Exception e) {
             Logger.error(e.getMessage());
         }

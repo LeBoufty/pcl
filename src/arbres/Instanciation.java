@@ -1,9 +1,13 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public abstract class Instanciation implements Noeud {
     public IType type;
     public Variable variable;
     public String nom;
+    public TDS_gen tds_parent = null;
+
     public Instanciation(IType t) {type = t; variable = new Variable(t);}
     public Instanciation(IType t, String nom) {type = t; variable = new Variable(t, nom); this.nom = nom;}
     public Instanciation() {type = Type.NULLTYPE; variable = new Variable(Type.NULLTYPE);}
@@ -14,6 +18,23 @@ public abstract class Instanciation implements Noeud {
         return true;
     }
     public String produire() {
-        return ""; // TODO : déclaration, je sais pas s'il y a quelque chose à produire précisément, mais en tout cas faut y prendre en compte
+    System.out.println(nom + " declaration : " + type);
+    System.out.println(nom + " declaration : " + variable);
+    
+    return "";
+// TODO : Mettre dans la tds ou la pile
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        variable.TDS_creation(Parent);
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        variable.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
     }
 }

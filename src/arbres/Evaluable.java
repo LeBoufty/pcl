@@ -1,5 +1,7 @@
 package arbres;
 
+// import outils.TDS.TDS_gen;
+
 public abstract class Evaluable implements Noeud {
     protected IType type;
     public Evaluable() {
@@ -7,4 +9,9 @@ public abstract class Evaluable implements Noeud {
     public IType getType() {
         return this.type;
     }
+
+    public boolean isConstant() {
+        return false;
+    }
+
 }

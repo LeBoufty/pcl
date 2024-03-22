@@ -1,10 +1,13 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class OperationUnaire extends Evaluable {
     public Evaluable droite;
     private OperateurUnaire operateur;
+    public TDS_gen tds_parent = null;
+
     public OperationUnaire(Evaluable d, OperateurUnaire o) {
         this.droite = d; this.operateur = o;
         // On prend le type de sortie de l'opérateur.
@@ -40,6 +43,33 @@ public class OperationUnaire extends Evaluable {
     }
 
     public String produire() {
-        return ""; // TODO : je sais pas trop...
+        System.out.println("OperationUnaire");
+
+        String res = "";
+
+        if (this.droite.isConstant()) {
+            return "MOV x0, #"+this.operateur.getvalue((Constante) this.droite);
+        }
+        else {
+            this.droite.produire();
+            res += "MOV x0, x0\n";
+        }
+
+        return res;
+// TODO : je sais pas trop...
     }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Ne fait rien
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.droite.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS(){
+        return this.tds_parent;
+    }
+    
 }

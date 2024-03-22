@@ -1,11 +1,14 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class InstructionIf implements Noeud {
     public Evaluable condition;
     public Noeud alors;
     public Noeud sinon;
+    public TDS_gen tds_parent = null;
+
     public InstructionIf(Evaluable cond, Noeud alors) {
         this.condition = cond;
         this.alors = alors;
@@ -56,6 +59,29 @@ public class InstructionIf implements Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : on l'a fait en ASM.
+        System.out.println("InstructionIf");
+
+        return "";
+// TODO : on l'a fait en ASM.
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        this.alors.TDS_creation(Parent);
+        if (this.sinon != null) {
+            this.sinon.TDS_creation(Parent);
+        }
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.condition.TDS_link(Parent);
+        this.alors.TDS_link(Parent);
+        if (this.sinon != null) {
+            this.sinon.TDS_link(Parent);
+        }
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
     }
 }

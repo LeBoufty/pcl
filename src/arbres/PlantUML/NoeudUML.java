@@ -18,7 +18,7 @@ public class NoeudUML {
         nomsAttribues.add(valeur);
         this.valeur = valeur;
         enfants = new ArrayList<NoeudUML>();
-        Logger.info("Noeud "+this.valeur+" créé");
+        //Logger.info("Noeud "+this.valeur+" créé");
     }
 
     public NoeudUML(Noeud n) {
@@ -220,6 +220,14 @@ public class NoeudUML {
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(p2.type.toString()));
                 break;
+            case "Put":
+                Put pu = (Put) n;
+                this.valeur = Repertoire.getNewID(pu);
+                this.titre = "put";
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(pu.expression));
+                break;
             default:
                 // Cas par défaut, on sait jamais.
                 this.valeur = Repertoire.getNewID(n);
@@ -228,7 +236,7 @@ public class NoeudUML {
                 enfants = new ArrayList<NoeudUML>();
                 break;
         }
-        Logger.info("Noeud "+this.valeur+" créé");
+        //Logger.info("Noeud "+this.valeur+" créé");
     }
     private String rendreUnique(String nom) {
         String nomUnique = nom;

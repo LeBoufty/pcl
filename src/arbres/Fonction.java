@@ -3,13 +3,20 @@ package arbres;
 import java.util.ArrayList;
 
 import outils.Logger;
+import outils.GestionFichier;
+import outils.TDS.TDS_gen;
 
 public class Fonction implements Noeud {
+    
+    public int id;
+
     public String nom;
     public IType type;
     public ArrayList<Parametre> params;
     public Noeud definitions;
     public Noeud instructions;
+    public TDS_gen tds = null;
+
     public Fonction(String nom, Parametre[] parametres, IType t, Noeud def, Noeud inst) {
         this.nom = nom;
         this.type = t;
@@ -69,6 +76,63 @@ public class Fonction implements Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : côté appelé (dans le cours)
+        System.out.println(nom + " fonc type : " + type);
+        System.out.println(nom + " fonc params : " + params);
+        System.out.println(nom + " fonc definition : " + definitions);
+        System.out.println(nom + " fonc instr : " + instructions);
+        
+        // Générer la TDS
+        for (Parametre p : params) {
+            p.produire();
+        }
+
+        for (Noeud n : ((Bloc) definitions).instructions) {
+            n.produire();
+        }
+
+        String res = nom + " :" ;;
+
+        //Code appelé
+        res += "STP LR, X11, [SP, #-16]!\n";
+        res += "STP X10, XZR, [SP, #-16]!\n";
+        res += "SUB SP, SP, taille_locale\n";
+
+
+        for (Noeud n : ((Bloc) instructions).instructions) {
+            res += n.produire();
+        }
+
+        res += "ADD SP, SP, taille_locale\n";
+        res += "LDP X10, XZR, [SP], #16\n";
+        res += "LDP LR, X11, [SP], #16\n";
+        res += "RET\n";
+
+        GestionFichier.AddcontenuFooter(res);
+
+        return "";
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Cree une nouvelle TDS pour la fonction
+        this.tds = new TDS_gen(this, Parent, nom);
+        this.id = this.tds.num_reg;
+        
+        for (Parametre p : params) {
+            p.TDS_creation(this.tds);
+        }
+        definitions.TDS_creation(this.tds);
+        instructions.TDS_creation(this.tds);
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        for (Parametre p : params) {
+            p.TDS_link(this.tds);
+        }
+        definitions.TDS_link(this.tds);
+        instructions.TDS_link(this.tds);
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds;
     }
 }

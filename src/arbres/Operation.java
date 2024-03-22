@@ -1,11 +1,14 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class Operation extends Evaluable {
     public Evaluable gauche;
     public Evaluable droite;
     private Operateur operateur;
+    public TDS_gen tds_parent = null;
+
     public Operation(Evaluable g, Evaluable d, Operateur o) {
         this.gauche = g; this.droite = d; this.operateur = o;
         if (g.type != d.type) {
@@ -49,6 +52,48 @@ public class Operation extends Evaluable {
     }
 
     public String produire() {
-        return ""; // TODO : switch case à faire sur les classes des opérandes et de l'opérateur. Dans le cours.
+        System.out.println("Operation gauche : " + this.gauche);
+        System.out.println("Operation droite : " + this.droite);
+
+        String res = "";
+
+        if (this.gauche.isConstant() && this.droite.isConstant()) {
+            return "MOV x0, #"+this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite);
+        }
+        else if (this.gauche.isConstant()) {
+            this.droite.produire();
+            res += "MOV x1, x0\n";
+            res += "MOV x0, #"+((Constante) this.gauche).valeur+"\n";
+            res += this.operateur.toString()+" x0, x1, x0\n";
+        }
+        else if (this.droite.isConstant()) {
+            this.gauche.produire();
+            res += "MOV x1, x0\n";
+            res += "MOV x0, #"+((Constante) this.droite).valeur+"\n";
+            res += this.operateur.toString()+" x0, x1, x0\n";
+        }
+        else {
+            this.gauche.produire();
+            res += "MOV x1, x0\n";
+            this.droite.produire();
+            res += this.operateur.toString()+" x0, x1, x0\n";
+        }
+
+        return res;
+        //TODO : gestion des registres
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Ne fait rien
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        this.gauche.TDS_link(Parent);
+        this.droite.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS(){
+        return this.tds_parent;
     }
 }

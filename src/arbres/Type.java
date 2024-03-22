@@ -2,6 +2,8 @@ package arbres;
 
 import outils.Logger;
 
+import outils.TDS.TDS_gen;
+
 public enum Type implements IType, Noeud {
     INTEGER, CHARACTER, BOOLEAN, NULLTYPE;
     public boolean valide() {
@@ -13,6 +15,22 @@ public enum Type implements IType, Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : probablement rien à produire, c'est sémantique.
+        System.out.println("Type");
+
+        return "";
+// TODO : probablement rien à produire, c'est sémantique.
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        // Rien à faire - Mais je suis pas sûr que ça soit correct
+    }
+
+    public TDS_gen getTDS() {
+        // Rien à faire - Mais je suis pas sûr que ça soit correct
+        return null;
     }
 }

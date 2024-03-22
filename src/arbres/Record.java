@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public class Record implements Noeud {
     public Struct type;
     public Record(Struct type) {
@@ -21,6 +23,22 @@ public class Record implements Noeud {
     }
 
     public String produire() {
-        return ""; // TODO : à faire en dernier, probablement comme Instanciation.
+         System.out.println("Record");
+
+        return "";
+// TODO : à faire en dernier, probablement comme Instanciation.
+    }
+
+
+    public void TDS_creation(TDS_gen Parent) {
+        // TODO : à faire si on a le temps
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.type.TDS_link(Parent);
+    }
+
+    public TDS_gen getTDS() {
+        return this.type.getTDS();
     }
 }

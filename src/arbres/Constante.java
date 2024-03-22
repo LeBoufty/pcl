@@ -1,9 +1,12 @@
 package arbres;
 
 import outils.Logger;
+import outils.TDS.TDS_gen;
 
 public class Constante extends Evaluable {
     public int valeur;
+    public TDS_gen tds_parent = null;
+
     public Constante(int c) {
         this.valeur = c;
         this.type = Type.INTEGER;
@@ -38,7 +41,25 @@ public class Constante extends Evaluable {
         return true;
     }
 
+    public boolean isConstant() {
+        return true;
+    }
+
     public String produire() {
-        return ""; // TODO : probablement juste retourner la valeur
+        System.out.println("constante " + valeur + " : " + type);
+        return "";
+// TODO : probablement juste retourner la valeur
+    }
+
+    public void TDS_creation(TDS_gen Parent) {
+        // Rien à faire
+    }
+
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+    }
+
+    public TDS_gen getTDS() {
+        return this.tds_parent;
     }
 }
