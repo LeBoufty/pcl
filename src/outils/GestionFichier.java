@@ -44,13 +44,5 @@ public class GestionFichier {
             }
         }
     }
-
-    public static void sauvegarderRegistres(){
-        // TODO : Sauvegarder les registres de x0 à ?
-    }
-
-    public static void restaurerRegistres(){
-        // TODO : Restaurer les registres de x0 à ?
-    }
 }
 
