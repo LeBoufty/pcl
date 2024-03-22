@@ -24,6 +24,8 @@ test : integer ;
 -- PROCEDURE PRINCIPALE
 begin
     choix := 2;
+    valeur := aireRectangle(2, 3);
+    choix := valeur + choix;
     for choix in 1..2 loop
         for j in 1..2 loop
             valeur := aireRectangle(j, 2);
