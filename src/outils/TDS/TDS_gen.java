@@ -159,6 +159,10 @@ public class TDS_gen {
         return -1; // Erreur
     }
 
+    public int search_imbrication_TDS(String nom) {
+        return search_imbrication_TDS(Integer.parseInt(nom.substring(1)));
+    }
+
     public int search_deplacement_TDS(int nom) {
 
         TDS_gen TDS_parent = this;
