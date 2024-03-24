@@ -108,16 +108,16 @@ public class Fonction implements Noeud {
         return "";
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int variable_type) {
         // Cree une nouvelle TDS pour la fonction
         this.tds = new TDS_gen(this, Parent, nom);
         this.id = this.tds.num_reg;
         
         for (Parametre p : params) {
-            p.TDS_creation(this.tds);
+            p.TDS_creation(this.tds, 1);
         }
-        definitions.TDS_creation(this.tds);
-        instructions.TDS_creation(this.tds);
+        definitions.TDS_creation(this.tds, 2);
+        instructions.TDS_creation(this.tds, 2);
     }
 
     public void TDS_link(TDS_gen Parent) {

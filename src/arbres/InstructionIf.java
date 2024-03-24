@@ -65,10 +65,10 @@ public class InstructionIf implements Noeud {
 // TODO : on l'a fait en ASM.
     }
 
-    public void TDS_creation(TDS_gen Parent) {
-        this.alors.TDS_creation(Parent);
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
+        this.alors.TDS_creation(Parent, type_variable);
         if (this.sinon != null) {
-            this.sinon.TDS_creation(Parent);
+            this.sinon.TDS_creation(Parent ,type_variable);
         }
     }
 

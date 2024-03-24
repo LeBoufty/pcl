@@ -21,7 +21,7 @@ public enum Type implements IType, Noeud {
 // TODO : probablement rien à produire, c'est sémantique.
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         // Rien à faire
     }
 

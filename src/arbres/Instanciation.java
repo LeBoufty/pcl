@@ -25,8 +25,8 @@ public abstract class Instanciation implements Noeud {
 // TODO : Mettre dans la tds ou la pile
     }
 
-    public void TDS_creation(TDS_gen Parent) {
-        variable.TDS_creation(Parent);
+    public void TDS_creation(TDS_gen Parent, int variable_type) {
+        variable.TDS_creation(Parent, variable_type);
     }
 
     public void TDS_link(TDS_gen Parent) {

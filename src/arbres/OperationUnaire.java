@@ -59,7 +59,7 @@ public class OperationUnaire extends Evaluable {
 // TODO : je sais pas trop...
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         // Ne fait rien
     }
 

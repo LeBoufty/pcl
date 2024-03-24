@@ -67,17 +67,17 @@ public class InstructionFor implements Noeud {
 // TODO : apparemment c'est dans le cours ? i foror 💀
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         this.tds = new TDS_gen(this, Parent, "for");
         this.id = this.tds.get_num_reg();
         
         // Ajouter l'itérateur à la TDS
-        this.tds.add_variable(iterateur.identifiant, 0, 0);
+        this.tds.add_variable(iterateur.identifiant, 4);
 
         // this.iterateur.TDS_creation(this.tds);
         // this.borneInf.TDS_creation(this.tds);
         // this.borneSup.TDS_creation(this.tds);
-        this.corps.TDS_creation(this.tds);
+        this.corps.TDS_creation(this.tds, type_variable);
     }
 
     public void TDS_link(TDS_gen Parent) {

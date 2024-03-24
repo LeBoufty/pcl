@@ -44,9 +44,9 @@ public class Bloc implements Noeud {
         return "";
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int variable_type) {
         for (Noeud noeud : instructions) {
-            noeud.TDS_creation(Parent);
+            noeud.TDS_creation(Parent, variable_type);
         }
     }
 

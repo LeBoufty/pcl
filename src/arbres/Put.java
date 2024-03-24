@@ -22,7 +22,7 @@ public class Put implements Noeud {
         return this.expression.produire() + "bl printf\n";
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         // Rien
     }
 
