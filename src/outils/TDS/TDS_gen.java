@@ -231,26 +231,28 @@ public class TDS_gen {
         return search_imbrication_TDS(Integer.parseInt(nom.substring(1)));
     }
 
-    // public int search_deplacement_TDS(int nom) { // Ne fonctionne avec la nouvelle version de la TDS
 
-    //     TDS_gen TDS_parent = this;
+    // TODO : Vérifier si cette fonction fonctionne bien avec la nouvelle version de la TDS (On en a besoin)
+    public int search_deplacement_TDS(int nom) { // Ne fonctionne avec la nouvelle version de la TDS
 
-    //     while(TDS_parent != null) {
-    //         int index = TDS_parent.variable_code.indexOf(nom);
+        TDS_gen TDS_parent = this;
+
+        while(TDS_parent != null) {
+            int index = TDS_parent.get_index(nom);
             
-    //         if(index != -1) {
-    //             return TDS_parent.get_deplacement(nom);
-    //         }
+            if(index != -1) {
+                return TDS_parent.TDS_vari.get(index).taille;
+            }
 
-    //         TDS_parent = this.tds_parent;
-    //     }
+            TDS_parent = this.tds_parent;
+        }
 
-    //     return -1;
-    // }
+        return -1;
+    }
 
-    // public int search_deplacement_TDS(String nom) {
-    //     return search_deplacement_TDS(Integer.parseInt(nom.substring(1)));
-    // }
+    public int search_deplacement_TDS(String nom) {
+        return search_deplacement_TDS(Integer.parseInt(nom.substring(1)));
+    }
 
     public String toString() {
         // Donne un nombre de tabulation égal à l'imbrication
@@ -286,11 +288,13 @@ public class TDS_gen {
         return sortie;
     }
 
-    // public int get_taille_variables_locales(){ // Voir s'il faut prendre en compte les paramètres
-    //     int taille = 0;
-    //     for (int i = 3; i < num_variables + 3; i++) {
-    //         taille += this.TDS_vari.get(i).taille;
-    //     }
-    //     return taille;
-    // }
+
+    // TODO : Vérifier si cette fonction fonctionne bien avec la nouvelle version de la TDS (On en a besoin)
+    public int get_taille_variables_locales(){ // Voir s'il faut prendre en compte les paramètres
+        int taille = 0;
+        for (int i = 3; i < num_variables + 3; i++) {
+            taille += this.TDS_vari.get(i).taille;
+        }
+        return taille;
+    }
 }
