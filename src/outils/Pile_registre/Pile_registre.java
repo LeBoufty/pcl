@@ -24,6 +24,5 @@ public class Pile_registre {
         for (int i = 0; i < registres.length; i++) {
             empiler(registres[i]);
         }
-        afficher();
     }
 }
