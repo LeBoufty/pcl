@@ -58,8 +58,9 @@ public class Affectation implements Noeud {
         }
         else {
             // Cas variable globale
+            res += "MOV x0, " + this.gauche.getTDS().search_deplacement_TDS(this.gauche.identifiant) + " // On met le déplacement de la variable dans x0 \n";
             res += "MOV x1, #" + (this.tds_parent.get_num_imbr() - this.gauche.getTDS().search_imbrication_TDS(this.gauche.identifiant)) + " // On met le nombre de saut dans x1 \n";
-            // TODO : Soit une boucle java de saut soit une boucle d'assembleur générer par le main
+            res += "BL loop_search_var_global_515 // On cherche la variable globale \n"; // Il va falloir vérifier que la fonction n'existe pas déjà
         }
         return res;
         // TODO : Check les registres
