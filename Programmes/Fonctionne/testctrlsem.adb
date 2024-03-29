@@ -1,13 +1,25 @@
 with Ada.Text_IO;use Ada.Text_IO;
 
 procedure testctrlsem is
+
     a: Integer;
     b: Integer;
-    sortie: Boolean;
+
+    function Carre(X : Integer) return Integer is
+    begin
+        return X * X;
+    end Carre;
+
+    procedure Main is
+        Num : Integer;
+    begin
+        Num := 2;
+
+        Num := Carre(Num);
+    end Main;
 
 begin
-    z := f(2);
-    a := z;
-    b := f + 2;
-    a := -4;
+    a := 3;
+    b := 4;
+    Main;
 end testctrlsem;

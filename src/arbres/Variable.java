@@ -1,6 +1,8 @@
 package arbres;
 
+
 import outils.TDS.TDS_gen;
+import outils.Logger;
 
 public class Variable extends Evaluable {
     public int identifiant;
@@ -36,7 +38,7 @@ public class Variable extends Evaluable {
         return "";
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         // On ajoute la variable à la TDS du parent
         //INTEGER, CHARACTER, BOOLEAN, NULLTYPE;
         int taille=0;
@@ -58,9 +60,16 @@ public class Variable extends Evaluable {
         }
         else
         {
-            System.out.println("Type de variable inconnu");
+            Logger.error("Type de variable inconnu");
         }
-        Parent.add_variable(identifiant, 0, taille);
+
+        if (type_variable == 1) {
+            Parent.add_parametre(this.identifiant, taille);
+        } else if (type_variable == 2) {
+            Parent.add_variable(this.identifiant, taille);
+        } else {
+            Logger.warn("Type de variable ou paramètres inconnu");
+        }
         
     }
 

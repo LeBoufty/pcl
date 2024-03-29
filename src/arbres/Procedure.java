@@ -64,7 +64,7 @@ public class Procedure implements Noeud {
     }
 
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         if (Parent == null) {
             this.tds = new TDS_gen(this, nom);
         }
@@ -75,10 +75,10 @@ public class Procedure implements Noeud {
         this.id = this.tds.num_reg;
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
-            noeud.TDS_creation(this.tds);
+            noeud.TDS_creation(this.tds, 2);
         }
         for (Noeud noeud : ((Bloc) instructions).instructions) {
-            noeud.TDS_creation(this.tds);
+            noeud.TDS_creation(this.tds, 2);
         }
 
         if (Parent == null) {

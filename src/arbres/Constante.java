@@ -50,7 +50,7 @@ public class Constante extends Evaluable {
         return "#"+valeur;
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int variable_type) {
         // Rien à faire
     }
 

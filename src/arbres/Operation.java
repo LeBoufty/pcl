@@ -83,7 +83,7 @@ public class Operation extends Evaluable {
         //TODO : gestion des registres
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         // Ne fait rien
     }
 

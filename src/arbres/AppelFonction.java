@@ -82,7 +82,7 @@ public class AppelFonction extends Evaluable {
         return res;
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int variable_type) {
         // Rien à faire
     }
 

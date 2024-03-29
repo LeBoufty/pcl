@@ -26,8 +26,8 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/quelquesinstructions.adb";
         //programme = "Programmes/Fonctionne/traduisible.adb";
         //programme = "Programmes/Fonctionne/williamfaure.adb";
-        //programme = "Programmes/Fonctionne/recordiii.adb";
-        //programme = "Programmes/Fonctionne/testctrlsem.adb";
+        programme = "Programmes/Fonctionne/recordiii.adb";
+        programme = "Programmes/Fonctionne/testctrlsem.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
@@ -39,7 +39,7 @@ public class TestParserLexeur {
 
         Logger.debug(AST.toString());
 
-        AST.TDS_creation(null);
+        AST.TDS_creation(null,0);
         Logger.debug(AST.getTDS().toString());
         GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
         puml.generer();

@@ -44,7 +44,7 @@ public class Struct implements Noeud, IType {
 // TODO : cf Record. Il faudra utiliser des déplacements pour les champs.
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         // TODO : à faire 
     }
 

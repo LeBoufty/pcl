@@ -33,7 +33,7 @@ public class Return implements Noeud {
 // TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
         // Ne fait rien
     }
 

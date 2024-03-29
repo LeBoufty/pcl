@@ -45,8 +45,8 @@ public class InstructionWhile implements Noeud {
 // TODO : probablement à mi-chemin entre for et if
     }
 
-    public void TDS_creation(TDS_gen Parent) {
-        this.corps.TDS_creation(Parent);
+    public void TDS_creation(TDS_gen Parent, int type_variable) {
+        this.corps.TDS_creation(Parent, type_variable);
     }
 
     public void TDS_link(TDS_gen Parent) {

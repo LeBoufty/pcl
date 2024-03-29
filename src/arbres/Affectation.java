@@ -65,7 +65,7 @@ public class Affectation implements Noeud {
         // TODO : Check les registres
     }
 
-    public void TDS_creation(TDS_gen Parent) {
+    public void TDS_creation(TDS_gen Parent, int variable_type) {
         // Rien à faire
     }
 
