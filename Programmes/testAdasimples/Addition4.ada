@@ -3,8 +3,8 @@ with Ada.Text_IO;use Ada.Text_IO;
 procedure Addition4 is
 
     e: Integer;
-    y: Integer
-    z: Integer
+    y: Integer;
+    z: Integer;
 
 begin
     z:= 5;

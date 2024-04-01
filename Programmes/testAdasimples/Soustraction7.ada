@@ -3,8 +3,8 @@ with Ada.Text_IO;use Ada.Text_IO;
 procedure Soustraction7 is
 
     h: Integer;
-    y: Integer
-    z: Integer
+    y: Integer;
+    z: Integer;
 
 begin
     z:= 5;

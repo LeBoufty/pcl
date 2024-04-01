@@ -3,6 +3,8 @@ with Ada.Text_IO;use Ada.Text_IO;
 procedure Division1 is
 
     a: Integer;
+    z: Integer;
+    y: Integer;
 
 begin
     z:= 5;
