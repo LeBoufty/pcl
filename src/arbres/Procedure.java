@@ -96,7 +96,7 @@ public class Procedure implements Noeud {
             Pile_registre.init();
             Pile_registre.afficher();
             GestionFichier.AddcontenuHeader(".global "+ this.nom +"\n.extern printf // Import printf\n.section .data\n");
-            GestionFichier.Addcontenu(".section .text\n"+ this.nom +":\n");
+            GestionFichier.Addcontenu(".section .text\n"+ this.nom +" :\n");
             GestionFichier.AddcontenuFooter("bl exit\n\nexit : //Fonction de sortie du programme \nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
             GestionFichier.AddcontenuFooter("\nloop_search_var_global_515: ADD BP, BP, #8 // On passe à la variable suivante, x0 depl, x1 nb_saut\nSUBS x1, x1, #1 // On décrémente le nombre de saut\nBNE loop_search_var_global_515 // On boucle tant que x1 != 0\nLDR x0, [BP, x0] // On charge la valeur de la variable\nRET\n");
         }
