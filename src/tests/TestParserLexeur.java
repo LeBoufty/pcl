@@ -29,6 +29,14 @@ public class TestParserLexeur {
         programme = "Programmes/Fonctionne/recordiii.adb";
         programme = "Programmes/Fonctionne/testctrlsem.adb";
 
+        // Tests sémantiques
+        //programme = "Programmes/testsem/divparzero.adb";
+        programme = "Programmes/testsem/fctnondef.adb";
+        //programme = "Programmes/testsem/mauvaisop.adb";
+        //programme = "Programmes/testsem/mauvaistype.adb";
+        //programme = "Programmes/testsem/varnondef.adb";
+        programme = "Programmes/testsem/erreur2.adb";
+
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
 
