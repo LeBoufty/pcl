@@ -49,7 +49,7 @@ public class Affectation implements Noeud {
             res += "MOV x0, " + this.droite.produire() + " // On met la constante dans x0 \n";
         }
         else {
-            this.droite.produire();
+            res += this.droite.produire();
             res += "MOV x0, x1 // Affectation \n";
         }
 

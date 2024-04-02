@@ -70,13 +70,13 @@ public class AppelFonction extends Evaluable {
         for (int i = 0; i < params.size(); i++) {
             System.out.println("Paramètre "+ i +" : "+ params.get(i));
             // Mettre la valeur du paramètre dans le registre x0
-            res += params.get(i).produire(); // TODO : à vérifier
+            // !res += params.get(i).produire(); // TODO : à vérifier
             // Mettre la valeur du paramètre dans la pile
             res += "str x0, [sp, #"+ (i * 16) +"] // Mettre le paramètre "+ i +" dans la pile\n";
         }
 
         // Appel de la fonction
-        res += "bl "+ this.fonction.nom +" // Appel de la fonction\n";
+        res += "bl F"+ this.fonction.getTDS().get_num_reg() +" // Appel de la fonction\n";
 
         // Restauration des registres
         res += "ldp x29, x30, [sp], #16 // Restauration des registres\n";// TODO : à vérifier

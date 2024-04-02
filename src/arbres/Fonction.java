@@ -84,7 +84,7 @@ public class Fonction implements Noeud {
         System.out.println(nom + " fonc instr : " + instructions);
 
         // Générer le code
-        String res = nom + " :" ;;
+        String res = "F" + this.tds.get_num_reg() + " : // Début de la fonction\n"; 
 
         // *Code appelé
         res += "STP LR, X11, [SP, #-16]! // Sauvegarde LR\n";
