@@ -79,4 +79,9 @@ public class Affectation implements Noeud {
     public TDS_gen getTDS(){
         return this.tds_parent;
     }
+
+    public void TDS_variable(HashMap<Integer, String> variables) {
+        this.gauche.TDS_variable(variables);
+        this.droite.TDS_variable(variables);
+    }
 }

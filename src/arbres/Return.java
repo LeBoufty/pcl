@@ -1,5 +1,7 @@
 package arbres;
 
+import java.util.HashMap;
+
 import outils.TDS.TDS_gen;
 
 public class Return implements Noeud {
@@ -46,5 +48,11 @@ public class Return implements Noeud {
     
     public TDS_gen getTDS() {
         return this.tds_parent;
+    }
+
+    public void TDS_variable(HashMap<Integer, String> variables) {
+        if (!this.estVide()) {
+            this.valeur.TDS_variable(variables);
+        }
     }
 }
