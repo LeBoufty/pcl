@@ -503,6 +503,10 @@ public class Elagueur {
                     return new Put((Evaluable) traduire(((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants().get(0)));
                 }
                 Fonction fonction = tds.getFonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf());
+                if (fonction == null) {
+                    Logger.error("Fonction " + ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf() + " non déclarée");
+                    fonction = new Fonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf());
+                }
                 AppelFonction appel = new AppelFonction(fonction);
                 for (Noeud_A enfant : ((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants()) {
                     appel.ajouterParametre((Evaluable) traduire(enfant));
@@ -654,7 +658,7 @@ public class Elagueur {
                 if (tds.get(noeud.getCodeIdf()) != null) {
                     return tds.get(noeud.getCodeIdf());
                 }
-                Logger.warn("Variable "+noeud.getValeurIdf()+" non initialisée");
+                Logger.error("Variable "+noeud.getValeurIdf()+" non initialisée");
                 return new Variable(Type.INTEGER, noeud.getValeurIdf());
         }
         return null;
