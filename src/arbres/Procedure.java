@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import outils.GestionFichier;
 import outils.Logger;
 import outils.TDS.TDS_gen;
-import outils.Pile_registre.Pile_registre;
 
 public class Procedure implements Noeud {
 
@@ -96,8 +95,6 @@ public class Procedure implements Noeud {
         String res = "";
 
         if (this.tds.get_num_reg() == 0) {
-            Pile_registre.init();
-            Pile_registre.afficher();
             GestionFichier.AddcontenuHeader(".global F"+ this.tds.get_num_reg() +"\n.extern printf // Import printf\n.section .data\n");
             GestionFichier.Addcontenu(".section .text\nF"+ this.tds.get_num_reg() +" :\n");
             GestionFichier.AddcontenuFooter("bl exit\n\nexit : //Fonction de sortie du programme \nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
