@@ -45,14 +45,8 @@ public class Affectation implements Noeud {
         
         String res = "";
 
-        if (this.droite.isConstant()) {
-            // On affecte la valeur de la constante à la variable
-            res += "MOV x0, " + this.droite.produire() + " // On met la constante dans x0 \n";
-        }
-        else {
-            res += this.droite.produire();
-            res += "MOV x0, x1 // Affectation \n";
-        }
+        res += this.droite.produire();
+        res += "MOV x1, x0 // On met la valeur de la droite dans x1 \n";
 
         // Cas variable locale
         if (this.gauche.getTDS().search_imbrication_TDS(this.gauche.identifiant) == 0) {

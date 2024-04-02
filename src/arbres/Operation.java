@@ -61,27 +61,26 @@ public class Operation extends Evaluable {
         String res = "";
 
         if (this.gauche.isConstant() && this.droite.isConstant()) {
-            return "MOV x0, #"+this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite);
+            return "MOV x0, #"+this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite)+ " // On met le résultat de l'opération dans x0 \n";
         }
         else if (this.gauche.isConstant()) {
             this.droite.produire();
-            res += "MOV x1, x0\n";
-            res += "MOV x0, #"+((Constante) this.gauche).valeur+"\n";
-            res += this.operateur.toString()+" x0, x1, x0\n";
+            res += "MOV x1, x0 // On met la valeur de la droite dans x1 \n";
+            res += "MOV x0, #"+((Constante) this.gauche).valeur+" // On met la valeur de la gauche dans x0 \n";
+            res += this.operateur.toString()+" x0, x1, x0 // On effectue l'opération \n";
         }
         else if (this.droite.isConstant()) {
             this.gauche.produire();
-            res += "MOV x1, x0\n";
-            res += "MOV x0, #"+((Constante) this.droite).valeur+"\n";
-            res += this.operateur.toString()+" x0, x1, x0\n";
+            res += "MOV x1, x0 // On met la valeur de la gauche dans x1 \n";
+            res += "MOV x0, #"+((Constante) this.droite).valeur+" // On met la valeur de la droite dans x0 \n";
+            res += this.operateur.toString()+" x0, x1, x0 // On effectue l'opération \n";
         }
         else {
             this.gauche.produire();
-            res += "MOV x1, x0\n";
-            this.droite.produire();
-            res += this.operateur.toString()+" x0, x1, x0\n";
+            res += "MOV x1, x0 // On met la valeur de la gauche dans x1 \n";
+            res += this.droite.produire();
+            res += this.operateur.toString()+" x0, x1, x0 // On effectue l'opération \n";
         }
-
         return res;
         //TODO : gestion des registres
     }
