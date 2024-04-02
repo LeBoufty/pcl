@@ -1,5 +1,6 @@
 package arbres;
 
+import java.util.HashMap;
 import outils.Logger;
 
 import outils.TDS.TDS_gen;
@@ -32,5 +33,9 @@ public enum Type implements IType, Noeud {
     public TDS_gen getTDS() {
         // Rien à faire - Mais je suis pas sûr que ça soit correct
         return null;
+    }
+
+    public void TDS_variable(HashMap<Integer, String> variables) {
+        // Rien à faire
     }
 }

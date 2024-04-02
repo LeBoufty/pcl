@@ -1,5 +1,6 @@
 package arbres;
 
+import java.util.HashMap;
 import java.util.ArrayList;
 
 import outils.Logger;
@@ -55,5 +56,9 @@ public class Struct implements Noeud, IType {
     public TDS_gen getTDS() {
         // TODO : à faire
         return null;
+    }
+
+    public void TDS_variable(HashMap<Integer, String> variables) {
+        // TODO : à faire
     }
 }

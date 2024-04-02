@@ -1,9 +1,11 @@
 package arbres;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import outils.Logger;
 import outils.TDS.TDS_gen;
+
 
 public class AppelFonction extends Evaluable {
     public Fonction fonction;
@@ -95,6 +97,12 @@ public class AppelFonction extends Evaluable {
 
     public TDS_gen getTDS() {
         return this.tds_parent;
+    }
+
+    public void TDS_variable(HashMap<Integer, String> variables) {
+        for (Evaluable p : params) {
+            p.TDS_variable(variables);
+        }
     }
 
 }
