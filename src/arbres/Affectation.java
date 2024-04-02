@@ -1,5 +1,6 @@
 package arbres;
 
+import java.util.HashMap;
 import outils.Logger;
 // ?import outils.Arbre_Syntaxique.TDS;
 import outils.TDS.TDS_gen;
