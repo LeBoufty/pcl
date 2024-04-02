@@ -95,10 +95,14 @@ public class Procedure implements Noeud {
         if (this.tds.get_num_reg() == 0) {
             Pile_registre.init();
             Pile_registre.afficher();
-            GestionFichier.AddcontenuHeader(".global "+ this.nom +"\n.extern printf // Import printf\n.section .data\n");
-            GestionFichier.Addcontenu(".section .text\n"+ this.nom +" :\n");
+            GestionFichier.AddcontenuHeader(".global F"+ this.tds.get_num_reg() +"\n.extern printf // Import printf\n.section .data\n");
+            GestionFichier.Addcontenu(".section .text\nF"+ this.tds.get_num_reg() +" :\n");
             GestionFichier.AddcontenuFooter("bl exit\n\nexit : //Fonction de sortie du programme \nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
             GestionFichier.AddcontenuFooter("\nloop_search_var_global_515: ADD BP, BP, #8 // On passe à la variable suivante, x0 depl, x1 nb_saut\nSUBS x1, x1, #1 // On décrémente le nombre de saut\nBNE loop_search_var_global_515 // On boucle tant que x1 != 0\nLDR x0, [BP, x0] // On charge la valeur de la variable\nRET\n");
+        } else {
+            res += "F"+this.tds.get_num_reg() + " :\n";
+            res += "STP LR, X11, [SP, #-16]! // Sauvegarde LR\n";
+            res += "STP X10, XZR, [SP, #-16]! // Sauvegarde X10\n";
         }
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
