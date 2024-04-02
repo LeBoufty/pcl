@@ -21,8 +21,21 @@ public abstract class Instanciation implements Noeud {
     System.out.println(nom + " declaration : " + type);
     System.out.println(nom + " declaration : " + variable);
     
-    return "";
-// TODO : Mettre dans la tds ou la pile
+    String res = "";
+
+    if (variable.isConstant()) {
+        // On affecte la valeur de la variable en pile
+        res += "MOV x0, " + variable.produire() + " // On met la constante dans x0 \n";
+        res += "SUB sp, sp, #16 // On alloue de la place pour la variable \n";
+        res += "STR x0, [x29, #" + variable.getTDS().search_deplacement_TDS(variable.identifiant) + "] // On stocke la valeur de la variable locale \n";
+    } else {
+        variable.produire();
+
+        res += "SUB sp, sp, #16 // On alloue de la place pour la variable \n";
+        res += "STR x0, [x29, #" + variable.getTDS().search_deplacement_TDS(variable.identifiant) + "] // On stocke la valeur de la variable locale \n";
+    }
+
+    return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int variable_type) {

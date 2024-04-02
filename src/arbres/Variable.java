@@ -33,9 +33,9 @@ public class Variable extends Evaluable {
         System.out.println(nom + " var type : " + type);
         System.out.println(nom + " var id : " + identifiant);
 
-        // *Je crois qu'il y a rien à produire pour une variable
+        String res = "";
 
-        return "";
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
