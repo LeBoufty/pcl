@@ -3,7 +3,7 @@ with Ada.Text_IO;use Ada.Text_IO;
 procedure Addition1 is
 
     a: Integer;
-    y: Integer;
+    y: Integer := 100;
     z: Integer;
 
 begin
