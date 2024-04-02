@@ -453,10 +453,15 @@ public class Elagueur {
         //Logger.debug(nom);
         switch (nom) {
             case "£FICHIER":
-                Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
-                programme.definitions = traduire(noeud.getEnfants().get(2));
-                programme.instructions = traduire(noeud.getEnfants().get(1));
-                return programme;
+                try {
+                    Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+                    programme.definitions = traduire(noeud.getEnfants().get(2));
+                    programme.instructions = traduire(noeud.getEnfants().get(1));
+                    return programme;
+                } catch (Exception e) {
+                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
+                    return null;
+                }
             case "£DECLEtoile":
             case "£CHAMPEtoile":
             case "£INSTRPlus":
