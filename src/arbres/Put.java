@@ -1,6 +1,7 @@
 package arbres;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import outils.TDS.TDS_gen;
 
@@ -37,7 +38,7 @@ public class Put implements Noeud {
         this.expression.TDS_link(Parent);
     }
 
-    public void TDS_variable(HashMap<Integer, String> variables) {
+    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         this.expression.TDS_variable(variables);
     }
 

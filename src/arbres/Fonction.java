@@ -133,7 +133,7 @@ public class Fonction implements Noeud {
         return this.tds;
     }
 
-    public void TDS_variable(HashMap<Integer, String> variables) {
+    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         for (Parametre p : params) {
             p.TDS_variable(variables);
         }

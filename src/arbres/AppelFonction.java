@@ -99,7 +99,7 @@ public class AppelFonction extends Evaluable {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<Integer, String> variables) {
+    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         for (Evaluable p : params) {
             p.TDS_variable(variables);
         }

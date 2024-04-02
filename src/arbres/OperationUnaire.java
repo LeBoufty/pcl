@@ -1,6 +1,7 @@
 package arbres;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import outils.Logger;
 import outils.TDS.TDS_gen;
@@ -74,7 +75,7 @@ public class OperationUnaire extends Evaluable {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<Integer, String> variables) {
+    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         this.droite.TDS_variable(variables);
     }
     

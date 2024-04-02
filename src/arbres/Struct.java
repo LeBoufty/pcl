@@ -58,7 +58,7 @@ public class Struct implements Noeud, IType {
         return null;
     }
 
-    public void TDS_variable(HashMap<Integer, String> variables) {
+    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         // TODO : à faire
     }
 }

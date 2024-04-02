@@ -1,6 +1,7 @@
 package arbres;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import outils.Logger;
 // ?import outils.Arbre_Syntaxique.TDS;
 import outils.TDS.TDS_gen;
@@ -81,7 +82,7 @@ public class Affectation implements Noeud {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<Integer, String> variables) {
+    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         this.gauche.TDS_variable(variables);
         this.droite.TDS_variable(variables);
     }
