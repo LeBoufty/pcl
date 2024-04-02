@@ -1,6 +1,7 @@
 package arbres;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import outils.GestionFichier;
 import outils.Logger;
@@ -142,7 +143,7 @@ public class Procedure implements Noeud {
         return false;
     }
 
-    public void TDS_variable(HashMap<Integer, String> variables) {
+    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             noeud.TDS_variable(variables);
         }
