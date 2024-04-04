@@ -11,8 +11,8 @@ public abstract class Instanciation implements Noeud {
     public String nom;
     public TDS_gen tds_parent = null;
 
-    public Instanciation(IType t) {type = t; variable = new Variable(t);}
-    public Instanciation(IType t, String nom) {type = t; variable = new Variable(t, nom); this.nom = nom;}
+    public Instanciation(IType t) {type = t != null ? t : Type.NULLTYPE; variable = new Variable(type);}
+    public Instanciation(IType t, String nom) {type = t != null ? t : Type.NULLTYPE; variable = new Variable(type, nom); this.nom = nom;}
     public Instanciation() {type = Type.NULLTYPE; variable = new Variable(Type.NULLTYPE);}
     public String toString() {
         return variable.toString() + " : " + type.toString() + ";";

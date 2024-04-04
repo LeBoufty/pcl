@@ -118,7 +118,7 @@ public class TestArbreUnDebutTopDown {
         try {
             GenerateurPUML gen = new GenerateurPUML(unDebut, "Programmes/unDebutTopDown.pu");
             gen.generer();
-            unDebut.produire(unDebut.nom);
+            // unDebut.produire(unDebut.nom);
             GestionFichier.produirefichier("test.s");
         } catch (Exception e) {
             Logger.error(e.getMessage());

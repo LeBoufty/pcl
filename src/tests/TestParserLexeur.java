@@ -19,16 +19,22 @@ public class TestParserLexeur {
 
         String programme = "Programmes/Fonctionne/hello_world.adb";
         programme = "Programmes/Fonctionne/fibonaccii.adb";
-        //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/andthenorelse.adb";
-        //programme = "/home/toyhugs/gitlab/krafft5u1/Programmes/Fonctionne/fibonaccii.adb";
         //programme = "Programmes/Fonctionne/quelquesinstructions.adb";
         programme = "Programmes/Fonctionne/undebut.adb";
-        //programme = "Programmes/Fonctionne/quelquesinstructions.adb";
         //programme = "Programmes/Fonctionne/traduisible.adb";
         //programme = "Programmes/Fonctionne/williamfaure.adb";
-        programme = "Programmes/Fonctionne/recordiii.adb";
-        programme = "Programmes/Fonctionne/testctrlsem.adb";
-        programme = "Programmes/Fonctionne/undebut.adb";
+        //programme = "Programmes/Fonctionne/recordiii.adb";
+        //programme = "Programmes/Fonctionne/testctrlsem.adb";
+        programme = "Programmes/testAdasimples/Addition1.ada";
+
+        // Tests sémantiques
+        //programme = "Programmes/testsem/divparzero.adb";
+        //programme = "Programmes/testsem/fctnondef.adb";
+        //programme = "Programmes/testsem/mauvaisop.adb";
+        //programme = "Programmes/testsem/mauvaistype.adb";
+        //programme = "Programmes/testsem/varnondef.adb";
+        //programme = "Programmes/testsem/erreur2.adb";
+        //programme = "Programmes/testsem/erreur5.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();

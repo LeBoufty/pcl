@@ -58,32 +58,21 @@ public class Operation extends Evaluable {
         System.out.println("Operation gauche : " + this.gauche);
         System.out.println("Operation droite : " + this.droite);
 
-        String res = "";
+        String res = "\n// Opération\n";
 
-        if (this.gauche.isConstant() && this.droite.isConstant()) {
-            return "MOV x0, #"+this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite);
-        }
-        else if (this.gauche.isConstant()) {
-            this.droite.produire();
-            res += "MOV x1, x0\n";
-            res += "MOV x0, #"+((Constante) this.gauche).valeur+"\n";
-            res += this.operateur.toString()+" x0, x1, x0\n";
-        }
-        else if (this.droite.isConstant()) {
-            this.gauche.produire();
-            res += "MOV x1, x0\n";
-            res += "MOV x0, #"+((Constante) this.droite).valeur+"\n";
-            res += this.operateur.toString()+" x0, x1, x0\n";
-        }
-        else {
-            this.gauche.produire();
-            res += "MOV x1, x0\n";
-            this.droite.produire();
-            res += this.operateur.toString()+" x0, x1, x0\n";
-        }
+        res += this.gauche.produire();
+        res += this.droite.produire();
 
+        // On met les premières valeurs de la pile dans x0 et x1
+        res += "POP {x1} // On met l'opérande droite dans x1\n";
+        res += "POP {x0} // On met l'opérande gauche dans x0\n";
+
+        // On effectue l'opération
+        res += this.operateur.toString() + " x0, x0, x1 // On effectue l'opération\n";
+        
+        // On met le résultat en pile
+        res += "PUSH {x0} // On met le résultat en pile\n\n";
         return res;
-        //TODO : gestion des registres
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
