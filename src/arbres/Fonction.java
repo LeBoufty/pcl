@@ -87,8 +87,9 @@ public class Fonction implements Noeud {
         String res = "F" + this.tds.get_num_reg() + " : // Début de la fonction\n"; 
 
         // *Code appelé
-        res += "STP LR, X11, [SP, #-16]! // Sauvegarde LR\n";
-        res += "STP X10, XZR, [SP, #-16]! // Sauvegarde X10\n";
+        res += "STP fp, lr, [sp, #-16]! // Sauvegarde FP et LR\n";
+        res += "MOV fp, sp // Changement du FP pour la fonction\n";
+        res += "STR x19, [sp, -16] // Sauvegarde de X19\n";
         // Réserve de l'espace pour les variables locales
         int taille_locale = this.tds.get_taille_variables_locales();
         res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
@@ -98,10 +99,8 @@ public class Fonction implements Noeud {
         }
 
         res += "ADD SP, SP, " + taille_locale + " // Libération de l'espace pour les variables locales\n";
-        res += "LDP X10, XZR, [SP], #16 // Restauration de X10\n";
-        res += "LDP LR, X11, [SP], #16 // Restauration de LR\n";
+        res += "LDP fp, lr, [sp], #16 // Restauration FP et LR\n";
         res += "RET // Retour de la fonction\n";
-
         GestionFichier.AddcontenuFooter(res);
 
         System.out.println("=== Fin Fonction ===");
