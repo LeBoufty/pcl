@@ -25,7 +25,7 @@ public class Variable extends Evaluable {
         nbvariables++;
     }
     public String toString() {
-        return "&"+String.valueOf(identifiant);
+        return "&"+String.valueOf(identifiant)+"-"+nom;
     }
     public boolean valide() {
         return true;
@@ -102,6 +102,20 @@ public class Variable extends Evaluable {
     }
 
     public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        
+        ArrayList<Integer> tmp = variables.get(this.nom);
+
+        // On prend la première variable trouvée
+        TDS_gen tds = this.tds_parent;
+        while (tds != null) {
+            for (int i = 0; i < tmp.size(); i++) {
+                if (tds.contains_variables(tmp.get(i))) {
+                    this.identifiant = tmp.get(i);
+                    return;
+                }
+            }
+
+            tds = tds.tds_parent;    
+        }
+
     }
 }

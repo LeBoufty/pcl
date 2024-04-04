@@ -66,17 +66,17 @@ public class TDS_gen {
         // Initialisation de la TDS
         this.TDS_vari = new HashMap<Integer, Ligne_TDS>();
 
-        // Initialisation de la variable de retour
-        Ligne_TDS variable_retour = new Ligne_TDS(-1, 0);
-        this.TDS_vari.put(0, variable_retour);
+        // Initialisation du static link avec le numéro de TDS du parent, ou -1 si c'est la TDS principale
+        Ligne_TDS static_link = new Ligne_TDS(this.tds_parent == null ? null : this.tds_parent.num_reg);
+        this.TDS_vari.put(0, static_link);
 
         // Initialisation du dynamic link
-        Ligne_TDS dynamic_link = new Ligne_TDS(-1);
+        Ligne_TDS dynamic_link = new Ligne_TDS(null);
         this.TDS_vari.put(1, dynamic_link);
 
-        // Initialisation du static link avec le numéro de TDS du parent, ou -1 si c'est la TDS principale
-        Ligne_TDS static_link = new Ligne_TDS(this.tds_parent == null ? -1 : this.tds_parent.num_reg);
-        this.TDS_vari.put(2, static_link);
+        // Initialisation de la variable de retour
+        Ligne_TDS variable_retour = new Ligne_TDS(null, null);
+        this.TDS_vari.put(2, variable_retour);
 
     }
 
@@ -143,7 +143,10 @@ public class TDS_gen {
     public boolean contains_variables(int nom) {
         // Check if the variable is in the TDS
         for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
-            if (entry.getValue().contenu == nom && entry.getValue().est_une_variable) {
+            if (entry.getValue().contenu == null) { // Éviter les erreurs de pointeurs null
+                continue;
+            }
+            if (entry.getValue().contenu == nom && (entry.getKey() > 2 || entry.getKey() < 0)) {
                 return true;
             }
         }
@@ -182,14 +185,18 @@ public class TDS_gen {
         return this.nom_fonction;
     }
 
-    public int get_index(int nom) {
+    public Integer get_index(int nom) {
         for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
-            if (entry.getValue().contenu == nom && entry.getValue().est_une_variable) {
+            if (entry.getValue().contenu == null) { // Éviter les erreurs de pointeurs null
+                continue;
+            }
+             // Si la variable est trouvée et que ce n'est pas l'un des 3 premiers éléments
+            if (entry.getValue().contenu == nom && (entry.getKey() > 2 || entry.getKey() < 0)) {
                 return entry.getKey();
             }
         }
 
-        return -1;
+        return null;
     }
 
     public int get_index_and_parent(int nom) {
@@ -208,7 +215,7 @@ public class TDS_gen {
         return -1;
     }
 
-    public int search_imbrication_TDS(int nom) {
+    public Integer search_imbrication_TDS(int nom) {
       
         int imbrication = 0;
         TDS_gen TDS_parent = this;
@@ -224,34 +231,7 @@ public class TDS_gen {
             imbrication++;
         }
 
-        return -1; // Erreur
-    }
-
-    public int search_imbrication_TDS(String nom) {
-        return search_imbrication_TDS(Integer.parseInt(nom.substring(1)));
-    }
-
-
-    // TODO : Vérifier si cette fonction fonctionne bien avec la nouvelle version de la TDS (On en a besoin)
-    public int search_deplacement_TDS(int nom) { // Ne fonctionne avec la nouvelle version de la TDS
-
-        TDS_gen TDS_parent = this;
-
-        while(TDS_parent != null) {
-            int index = TDS_parent.get_index(nom);
-            
-            if(index != -1) {
-                return TDS_parent.TDS_vari.get(index).taille;
-            }
-
-            TDS_parent = this.tds_parent;
-        }
-
-        return -1;
-    }
-
-    public int search_deplacement_TDS(String nom) {
-        return search_deplacement_TDS(Integer.parseInt(nom.substring(1)));
+        return null; // Erreur
     }
 
     public String toString() {

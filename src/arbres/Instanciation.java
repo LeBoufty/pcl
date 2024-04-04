@@ -55,6 +55,6 @@ public abstract class Instanciation implements Noeud {
     }
 
     public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        variable.TDS_variable(variables);
+        // variable.TDS_variable(variables); // On ne change pas l'identifiant de la variable
     }
 }
