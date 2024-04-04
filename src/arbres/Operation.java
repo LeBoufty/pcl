@@ -64,14 +64,17 @@ public class Operation extends Evaluable {
         res += this.droite.produire();
 
         // On met les premières valeurs de la pile dans x0 et x1
-        res += "POP {x1} // On met l'opérande droite dans x1\n";
-        res += "POP {x0} // On met l'opérande gauche dans x0\n";
+        res += "LDR x1, [sp] // On met l'opérande droite dans x1\n";
+        res += "ADD sp, sp, #8 // On décrémente le pointeur de pile\n";
+        res += "LDR x0, [sp] // On met l'opérande gauche dans x0\n";
+        res += "ADD sp, sp, #8 // On décrémente le pointeur de pile\n";
 
         // On effectue l'opération
         res += this.operateur.toString() + " x0, x0, x1 // On effectue l'opération\n";
         
         // On met le résultat en pile
-        res += "PUSH {x0} // On met le résultat en pile\n\n";
+        res += "SUB sp, sp, #8 // On décrémente le pointeur de pile\n";
+        res += "STR x0, [sp] // On met le résultat en pile\n";
         return res;
     }
 
