@@ -115,7 +115,7 @@ Pour executer un programme SUR LA RASPBERRY :
     ld -o hello hello.o
     ./hello
 OU 
-    gcc -o hello hello.sait
+    gcc -o hello hello.s
     ./hello
 
 Il semblerait que la rapberry pi soit en AArch64 (ARMv8)
