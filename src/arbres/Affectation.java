@@ -40,26 +40,30 @@ public class Affectation implements Noeud {
     }
 
     public String produire() {
-        System.out.println("Affectation gauche : " + this.gauche);
+        System.out.println("Affectation gauche : " + this.gauche.identifiant);
         System.out.println("Affectation droite : " + this.droite);
         
         String res = "";
 
-        res += this.droite.produire();
-        res += "MOV x1, x0 // On met la valeur de la droite dans x1 \n";
-
+        res += this.droite.produire(); // Le résultat est en sommet de pile
+        res += "LDR x2, [sp] // On met la valeur de la variable droite dans x0 \n";
+        
+        // On va chercher la variable dans la TDS
+        int depl = this.tds_parent.get_index(this.gauche.identifiant);
+        int num_imbr_ici = this.tds_parent.get_num_imbr();
+        int num_imbr_var = this.tds_parent.search_imbrication_TDS(this.gauche.identifiant);
+        
         // Cas variable locale
-        if (this.gauche.getTDS().search_imbrication_TDS(this.gauche.identifiant) == 0) {
-            res += "STR x0, [x29, #" + this.gauche.getTDS().search_deplacement_TDS(this.gauche.identifiant) + "] // On stocke la valeur de la variable locale \n";
+        if (num_imbr_var == num_imbr_ici) {
+            res += "STR x2, [x29, #-" + depl + "] // On met la valeur de la variable droite dans la variable gauche \n";
         }
-        else {
-            // Cas variable globale
-            res += "MOV x0, " + this.gauche.getTDS().search_deplacement_TDS(this.gauche.identifiant) + " // On met le déplacement de la variable dans x0 \n";
-            res += "MOV x1, #" + (this.tds_parent.get_num_imbr() - this.gauche.getTDS().search_imbrication_TDS(this.gauche.identifiant)) + " // On met le nombre de saut dans x1 \n";
-            res += "BL loop_search_var_global_515 // On cherche la variable globale \n"; // Il va falloir vérifier que la fonction n'existe pas déjà
+        else {// Cas variable globale
+            // On met le nombre depl, nb_saut en pile
+            res += "SUB sp, sp, #16 // On décrémente le pointeur de pile \n";
+            res += "MOVZ x0, #" + depl + " // On met le deplacement en pile \n";
+            res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // On met le nombre de saut en pile \n";
         }
         return res;
-        // TODO : Check les registres
     }
 
     public void TDS_creation(TDS_gen Parent, int variable_type) {
