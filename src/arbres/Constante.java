@@ -50,7 +50,8 @@ public class Constante extends Evaluable {
 
     public String produire() {
         System.out.println("constante " + valeur + " : " + type);
-        return "MOV x0, #" + valeur + " // On met la constante dans x0 \n";
+        // On met la valeur en pile
+        return "movz x0, #" + valeur + "\n push {w0}\n";
     }
 
     public void TDS_creation(TDS_gen Parent, int variable_type) {

@@ -37,6 +37,18 @@ public class Variable extends Evaluable {
 
         String res = "";
 
+        // On va chercher la variable dans la TDS
+        int depl = this.tds_parent.search_deplacement_TDS(this.nom);
+        int num_imbr_ici = this.tds_parent.get_num_imbr();
+        int num_imbr_var = this.tds_parent.search_imbrication_TDS(this.nom);
+
+        if (num_imbr_var == num_imbr_ici) { // Cas variable locale
+            res += "LDR x0, [x29, #" + depl + "] // " + this.nom + " Mise en pile var\n";
+            res += "PUSH {x0} // " + this.nom + " Mise en pile var\n";
+        } else { // Cas variable globale
+            res += "BL get_global_var // " + this.nom + " Mise en pile var\n"; // TODO : A vérifier
+            res += "PUSH {x0} // " + this.nom + " Mise en pile var\n";
+        }
         return res;
     }
 
