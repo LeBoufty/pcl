@@ -198,4 +198,8 @@ public class CSVAnalyseur_S {
         elagueur.elaguer();
         return elagueur.traduire();
     }
+
+    public List<String> getIDFList() {
+        return lect_idf.getListe_idf();
+    }
 }

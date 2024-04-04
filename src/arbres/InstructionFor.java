@@ -95,7 +95,7 @@ public class InstructionFor implements Noeud {
     }
 
     public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        this.iterateur.TDS_variable(variables);
+        // this.iterateur.TDS_variable(variables); // On ne change pas l'identifiant de l'itérateur
         this.borneInf.TDS_variable(variables);
         this.borneSup.TDS_variable(variables);
         this.corps.TDS_variable(variables);

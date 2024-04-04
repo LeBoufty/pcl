@@ -28,6 +28,7 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/williamfaure.adb";
         programme = "Programmes/Fonctionne/recordiii.adb";
         programme = "Programmes/Fonctionne/testctrlsem.adb";
+        programme = "Programmes/Fonctionne/undebut.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();

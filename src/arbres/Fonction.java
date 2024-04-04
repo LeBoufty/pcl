@@ -135,7 +135,7 @@ public class Fonction implements Noeud {
 
     public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
         for (Parametre p : params) {
-            p.TDS_variable(variables);
+            // p.TDS_variable(variables); // On ne change pas l'identifiant du paramètre
         }
         definitions.TDS_variable(variables);
         instructions.TDS_variable(variables);
