@@ -49,7 +49,7 @@ public class Affectation implements Noeud {
         res += "LDR x2, [sp] // On met la valeur de la variable droite dans x0 \n";
         
         // On va chercher la variable dans la TDS
-        int depl = this.tds_parent.get_index(this.gauche.identifiant);
+        int depl = this.tds_parent.get_index(this.gauche.identifiant)*8;
         int num_imbr_ici = this.tds_parent.get_num_imbr();
         int num_imbr_var = this.tds_parent.search_imbrication_TDS(this.gauche.identifiant);
         
