@@ -5,6 +5,8 @@
 .section .text
 F0 :
 
+SUB sp, sp, #24 // On réserve de la place pour le chainage statique, le chainage dynamique et lr 
+
 // Declaration de la variable a
 SUB sp, sp, #8 // Allocation de 8 octets pour la variable a
 
