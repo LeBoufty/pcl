@@ -11,22 +11,13 @@ public class Declaration extends Instanciation {
         System.out.println(nom + " id declaration : " + variable.identifiant);
         System.out.println(nom + " valeur declaration : " + valeur);
         
-        String res = "";
+        String res = "// Declaration de la variable " + nom + "\n";
     
-        int depl = this.tds_parent.get_index(variable.identifiant);
-        // ?int num_imbr_ici = this.tds_parent.get_num_imbr();
-        // ?int num_imbr_var = this.tds_parent.search_imbrication_TDS(variable.identifiant);
-    
-        if (variable.isConstant()) {
-            // On affecte la valeur de la variable en pile
-            res += "MOV x0, " + variable.produire() + " // On met la constante dans x0 \n";
-            res += "SUB sp, sp, #16 // On alloue de la place pour la variable \n";
-            res += "STR x0, [x29, #" + depl + "] // On stocke la valeur de la constante \n";
-        } else {
-            variable.produire();
-    
-            res += "SUB sp, sp, #16 // On alloue de la place pour la variable \n";
-            res += "STR x0, [x29, #" + depl + "] // On stocke la valeur de la variable \n";
+        if (valeur != null) {
+            res += valeur.produire(); // Le résultat est en sommet de pile 
+        }
+        else {
+            res += "SUB sp, sp, #8 // Allocation de 8 octets pour la variable " + nom + "\n";
         }
     
         return res;

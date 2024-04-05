@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import outils.GestionFichier;
 import outils.Logger;
-import outils.TDS.TDS_IDF;
+// ?import outils.TDS.TDS_IDF;
 import outils.TDS.TDS_gen;
 
 public class Procedure implements Noeud {
@@ -109,11 +109,11 @@ public class Procedure implements Noeud {
         }
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
-            res += noeud.produire();
+            res += noeud.produire()+"\n";
         }
-
+        res += "// Instructions de la procédure "+nom+"\n";
         for (Noeud noeud : ((Bloc) instructions).instructions) {
-            res += noeud.produire();
+            res += noeud.produire()+"\n";
         }
 
         if (this.tds.num_reg == 0) {
