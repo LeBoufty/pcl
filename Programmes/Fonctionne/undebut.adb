@@ -30,7 +30,7 @@ begin
         for j in 1..2 loop
             valeur := aireRectangle(j, 2);
         end loop;
-        perimetreRectangle(choix, 2);
+        perimetreRectangle(j, 2);
     end loop;
     choix := 1;
 

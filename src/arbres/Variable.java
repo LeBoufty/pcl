@@ -109,7 +109,9 @@ public class Variable extends Evaluable {
         while (tds != null) {
             for (int i = 0; i < tmp.size(); i++) {
                 if (tds.contains_variables(tmp.get(i))) {
+                    Logger.debug("Variable : " + this.nom + " trouvée dans la TDS : " + tds.nom_fonction + " à l'index : " + tmp.get(i) + " ancien id : " + this.identifiant);
                     this.identifiant = tmp.get(i);
+                    
                     return;
                 }
             }

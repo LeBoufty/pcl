@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import outils.GestionFichier;
 import outils.Logger;
+import outils.TDS.TDS_IDF;
 import outils.TDS.TDS_gen;
 
 public class Procedure implements Noeud {
@@ -86,6 +87,7 @@ public class Procedure implements Noeud {
 
         if (Parent == null) {
             this.TDS_link(null);
+            // TDS_variable(TDS_IDF.table_idf(this.tds));
         }
     }
 

@@ -47,7 +47,8 @@ public class TestParserLexeur {
 
         Logger.debug(AST.toString());
 
-        AST.TDS_creation(null,0);
+        AST.TDS_creation(null,0);;
+        Logger.debug(AST.toString());
         Logger.debug(AST.getTDS().toString());
         TDS_IDF.affiche_table_idf(TDS_IDF.table_idf(AST.getTDS()));
 
