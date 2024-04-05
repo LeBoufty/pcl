@@ -1,6 +1,6 @@
 package tests;
 
-// ?import java.util.List;
+import java.util.List;
 
 import arbres.Noeud;
 import arbres.PlantUML.GenerateurPUML;
@@ -9,6 +9,7 @@ import outils.Logger;
 import outils.Lexeur.Analyseur_L;
 import outils.Syntaxe.CSVAnalyseur_S;
 // ? import outils.Syntaxe.CSVParser;
+import outils.TDS.TDS_IDF;
 
 public class TestParserLexeur {
     
@@ -48,6 +49,8 @@ public class TestParserLexeur {
 
         AST.TDS_creation(null,0);
         Logger.debug(AST.getTDS().toString());
+        TDS_IDF.affiche_table_idf(TDS_IDF.table_idf(AST.getTDS()));
+
         GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
         puml.generer();
         //Logger.debug(AST.getTDS().toString());

@@ -75,7 +75,7 @@ public class TDS_gen {
         this.TDS_vari.put(1, dynamic_link);
 
         // Initialisation de la variable de retour
-        Ligne_TDS variable_retour = new Ligne_TDS(null, null);
+        Ligne_TDS variable_retour = new Ligne_TDS(null);
         this.TDS_vari.put(2, variable_retour);
 
     }
