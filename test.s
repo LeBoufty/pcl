@@ -1,9 +1,9 @@
-.global F0
+.global main
 .extern printf // Import printf
 .section .data
 
 .section .text
-F0 :
+main :
 
 SUB sp, sp, #24 // On réserve de la place pour le chainage statique, le chainage dynamique et lr 
 
