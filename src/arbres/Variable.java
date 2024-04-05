@@ -84,9 +84,9 @@ public class Variable extends Evaluable {
         }
 
         if (type_variable == 1) {
-            Parent.add_parametre(this.identifiant, taille);
+            Parent.add_parametre(this.identifiant, taille, this.nom);
         } else if (type_variable == 2) {
-            Parent.add_variable(this.identifiant, taille);
+            Parent.add_variable(this.identifiant, taille, this.nom);
         } else {
             Logger.warn("Type de variable ou paramètres inconnu");
         }

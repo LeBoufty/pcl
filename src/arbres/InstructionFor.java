@@ -75,7 +75,7 @@ public class InstructionFor implements Noeud {
         this.id = this.tds.get_num_reg();
         
         // Ajouter l'itérateur à la TDS
-        this.tds.add_variable(iterateur.identifiant, 4);
+        this.tds.add_variable(iterateur.identifiant, 4, iterateur.nom);
 
         // this.iterateur.TDS_creation(this.tds);
         // this.borneInf.TDS_creation(this.tds);

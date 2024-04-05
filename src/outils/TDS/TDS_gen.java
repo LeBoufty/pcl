@@ -94,7 +94,7 @@ public class TDS_gen {
     }
 
 
-    public void add_variable(int nom, int taille) {
+    public void add_variable(int nom, int taille, String nom_var) {
         // Check if the variable is already in the TDS with contains_variable
         if (this.contains_variable_and_parent(nom)) {
             Logger.error("TDS_gen : Variable : " + nom + " déjà présente dans la TDS : " + this.nom_fonction);
@@ -102,13 +102,13 @@ public class TDS_gen {
         }
 
         // Ajout de la variable dans la TDS
-        Ligne_TDS variable = new Ligne_TDS(nom, taille);
+        Ligne_TDS variable = new Ligne_TDS(nom, taille, nom_var);
         this.TDS_vari.put(num_variables + 3, variable); // +3 pour les variables de retour, dynamic link et static link
         num_variables++;
         
     }
 
-    public void add_parametre(int nom, int taille) {
+    public void add_parametre(int nom, int taille, String nom_var) {
         // Check if the variable is already in the TDS with contains_variable
         if (this.contains_variable_and_parent(nom)) {
             Logger.error("TDS_gen : Variable : " + nom + " déjà présente dans la TDS : " + this.nom_fonction);
@@ -119,7 +119,7 @@ public class TDS_gen {
         this.deplace_parametre(-1);
 
         // Ajout du paramètre dans la TDS
-        Ligne_TDS parametre = new Ligne_TDS(nom, taille);
+        Ligne_TDS parametre = new Ligne_TDS(nom, taille, nom_var);
         this.TDS_vari.put(-1, parametre);
         num_parametres++;
     }
@@ -250,13 +250,13 @@ public class TDS_gen {
         //     sortie += tab + "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
         // }
         for (int i = - num_parametres; i < 0; i++) {
-            sortie += tab + "ID TDS :" + i + " - Paramètre : " + this.TDS_vari.get(i).contenu + " | Taille : " + this.TDS_vari.get(i).taille + "\n";
+            sortie += tab + "ID TDS :" + i + " - Paramètre : " + this.TDS_vari.get(i).contenu + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).nom_var + "\n";
         }
-            sortie += tab + "ID TDS : 0 - Variable de retour \n";
+            sortie += tab + "ID TDS : 0 - Static link : " + this.TDS_vari.get(0).contenu + "\n"; 
             sortie += tab + "ID TDS : 1 - Dynamic link \n";
-            sortie += tab + "ID TDS : 2 - Static link : " + this.TDS_vari.get(2).contenu + "\n";
+            sortie += tab + "ID TDS : 2 - Variable de retour \n";
         for (int i = 3; i < num_variables + 3; i++) {
-            sortie += tab + "ID TDS :" + i + " - Variable : " + this.TDS_vari.get(i).contenu + " | Taille : " + this.TDS_vari.get(i).taille + "\n";
+            sortie += tab + "ID TDS :" + i + " - Variable : " + this.TDS_vari.get(i).contenu + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).nom_var + "\n";
         }
 
         sortie += tab + "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
