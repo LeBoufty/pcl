@@ -22,12 +22,14 @@ SUB sp, sp, #8 // On décrémente le pointeur de pile
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-40] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #8 // On dépile la valeur 
 
 MOVZ x0, #3 // On met la constante en pile 
 SUB sp, sp, #8 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #8 // On dépile la valeur 
 
 
 // Opération
@@ -46,6 +48,7 @@ SUB sp, sp, #8 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #8 // On dépile la valeur 
 
 // Printf
 LDR x0, [x29, #-32] // y Mise en pile var
