@@ -1,7 +1,6 @@
 package arbres;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import outils.Logger;
 import outils.TDS.TDS_gen;
@@ -99,9 +98,15 @@ public class AppelFonction extends Evaluable {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        for (Evaluable p : params) {
-            p.TDS_variable(variables);
+    public void TDS_variable() {
+
+        for (int i = 0; i < params.size(); i++) {
+            if (params.get(i) instanceof Variable) {
+                params.set(i, this.tds_parent.get_Variable_string_and_parent(((Variable) params.get(i)).nom));
+            }
+            else {
+                params.get(i).TDS_variable();
+            }
         }
     }
 

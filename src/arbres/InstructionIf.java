@@ -1,7 +1,5 @@
 package arbres;
 
-import java.util.HashMap;
-import java.util.ArrayList;
 
 import outils.Logger;
 import outils.TDS.TDS_gen;
@@ -88,11 +86,26 @@ public class InstructionIf implements Noeud {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        this.condition.TDS_variable(variables);
-        this.alors.TDS_variable(variables);
-        if (this.sinon != null) {
-            this.sinon.TDS_variable(variables);
+    public void TDS_variable() {
+        if (this.condition instanceof Variable) {
+            condition = tds_parent.get_Variable_string_and_parent(((Variable) condition).nom);
+        }
+        else {
+            condition.TDS_variable();
+        }
+
+        if (this.alors instanceof Variable) {
+            alors = tds_parent.get_Variable_string_and_parent(((Variable) alors).nom);
+        }
+        else {
+            alors.TDS_variable();
+        }
+
+        if (this.sinon != null && this.sinon instanceof Variable) {
+            sinon = tds_parent.get_Variable_string_and_parent(((Variable) sinon).nom);
+        }
+        else if (this.sinon != null) {
+            sinon.TDS_variable();
         }
     }
 }
