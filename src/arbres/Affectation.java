@@ -55,7 +55,7 @@ public class Affectation implements Noeud {
         // Cas variable locale
         if (num_imbr_var == num_imbr_ici) {
             res += "STR x2, [x29, #-" + depl + "] // On met la valeur de la variable droite dans la variable gauche \n";
-            res += "ADD sp, sp, #8 // On dépile la valeur \n";
+            res += "ADD sp, sp, #16 // On dépile la valeur \n";
         }
         else {// Cas variable globale
             // On met le nombre depl, nb_saut en pile
