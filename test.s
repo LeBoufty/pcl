@@ -2,8 +2,7 @@
 .extern printf // Import printf
 .section .data
 format :
-.string "%d
-"
+.string "%d\n"
 
 .section .text
 main :
