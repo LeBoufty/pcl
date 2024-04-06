@@ -96,21 +96,21 @@ public class Procedure implements Noeud {
         if (this.tds.get_num_reg() == 0) {
             GestionFichier.AddcontenuHeader(".global F"+ this.tds.get_num_reg() +"\n.extern printf // Import printf\n.section .data\n");
             GestionFichier.Addcontenu(".section .text\nF"+ this.tds.get_num_reg() +" :\n");
+            GestionFichier.Addcontenu("SUB sp, sp, #24 // On réserve de la place pour le chainage statique, le chainage dynamique et lr \n");
             GestionFichier.AddcontenuFooter("bl exit\n\nexit : //Fonction de sortie du programme \nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
             GestionFichier.AddcontenuFooter("\nget_global_var : ADD fp, fp, #8 // On passe à la variable suivante, x0 depl, x1 nb_saut\nSUBS x1, x1, #1 // On décrémente le nombre de saut\nBNE get_global_var // On boucle tant que x1 != 0\nLDR x0, [fp, x0] // On charge la valeur de la variable\nSUB sp,sp, #8 // On fait de la place dans la pile pour le retour\nSTR x0, [sp] // On met la valeur de la variable en pile\nRET\n");
             GestionFichier.AddcontenuFooter("set_global_var : ADD fp, fp, #8 // On passe à la variable suivante, x0 depl, x1 nb_saut\nSUBS x1, x1, #1 // On décrémente le nombre de saut\nBNE set_global_var // On boucle tant que x1 != 0\nSTR x2, [fp, x0] // On charge la valeur de la variable\nRET\n");
         } else {
             res += "F"+this.tds.get_num_reg() + " :\n";
-            res += "STP LR, X11, [SP, #-16]! // Sauvegarde LR\n";
-            res += "STP X10, XZR, [SP, #-16]! // Sauvegarde X10\n";
+            res += "SUB sp, sp, #8 // On décrémente le pointeur de pile\nSTR x29, [sp] // Sauvegarde du pointeur de pile statique\nSUB sp, sp, #8 // On décrémente le pointeur de pile dynamique\nSTR x29, [sp] // Sauvegarde du pointeur de pile\nSUB sp, sp, #8 // On décrémente le pointeur de pile\nSTR lr, [sp] // Sauvegarde du lien de retour\n";
         }
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
-            res += noeud.produire();
+            res += noeud.produire()+"\n";
         }
-
+        res += "// Instructions de la procédure "+nom+"\n";
         for (Noeud noeud : ((Bloc) instructions).instructions) {
-            res += noeud.produire();
+            res += noeud.produire()+"\n";
         }
 
         if (this.tds.num_reg == 0) {

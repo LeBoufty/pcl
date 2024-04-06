@@ -20,7 +20,7 @@ public class Put implements Noeud {
     }
 
     public String produire() {
-        return this.expression.produire() + "bl printf\n";
+        return "// Printf\n"+this.expression.produire() + "bl printf\nADD sp, sp, #8 // On dépile la valeur\n";
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {

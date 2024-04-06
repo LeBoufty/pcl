@@ -48,19 +48,20 @@ public class Affectation implements Noeud {
         res += "LDR x2, [sp] // On met la valeur de la variable droite dans x0 \n";
         
         // On va chercher la variable dans la TDS
-        int depl = this.tds_parent.get_index(this.gauche.identifiant);
+        int depl = this.tds_parent.get_index(this.gauche.identifiant)*8;
         int num_imbr_ici = this.tds_parent.get_num_imbr();
         int num_imbr_var = this.tds_parent.search_imbrication_TDS(this.gauche.identifiant);
         
         // Cas variable locale
         if (num_imbr_var == num_imbr_ici) {
             res += "STR x2, [x29, #-" + depl + "] // On met la valeur de la variable droite dans la variable gauche \n";
+            res += "ADD sp, sp, #8 // On dépile la valeur \n";
         }
         else {// Cas variable globale
             // On met le nombre depl, nb_saut en pile
             res += "SUB sp, sp, #16 // On décrémente le pointeur de pile \n";
             res += "MOVZ x0, #" + depl + " // On met le deplacement en pile \n";
-            res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // On met le nombre de saut en pile \n";
+            res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // On met le nombre de saut en pile \n"; //TODO : A vérifier
         }
         return res;
     }
