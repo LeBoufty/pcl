@@ -1,7 +1,6 @@
 package arbres;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import outils.TDS.TDS_gen;
 //import outils.GestionFichier;
 
@@ -62,9 +61,15 @@ public class Bloc implements Noeud {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        for (Noeud noeud : instructions) {
-            noeud.TDS_variable(variables);
+    public void TDS_variable() {
+
+        for (int i = 0; i < instructions.size(); i++) {
+            if (instructions.get(i) instanceof Variable) {
+                instructions.set(i, tds_parent.get_Variable_string_and_parent(((Variable) instructions.get(i)).nom));
+            }
+            else {
+                instructions.get(i).TDS_variable();
+            }
         }
     }
 }

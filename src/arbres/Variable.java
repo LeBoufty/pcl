@@ -1,8 +1,5 @@
 package arbres;
 
-import java.util.HashMap;
-import java.util.ArrayList;
-
 import outils.TDS.TDS_gen;
 import outils.Logger;
 
@@ -84,9 +81,9 @@ public class Variable extends Evaluable {
         }
 
         if (type_variable == 1) {
-            Parent.add_parametre(this.identifiant, taille, this.nom);
+            Parent.add_parametre(this, taille);
         } else if (type_variable == 2) {
-            Parent.add_variable(this.identifiant, taille, this.nom);
+            Parent.add_variable(this, taille);
         } else {
             Logger.warn("Type de variable ou paramètres inconnu");
         }
@@ -101,23 +98,7 @@ public class Variable extends Evaluable {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        ArrayList<Integer> tmp = variables.get(this.nom);
-
-        // On prend la première variable trouvée
-        TDS_gen tds = this.tds_parent;
-        while (tds != null) {
-            for (int i = 0; i < tmp.size(); i++) {
-                if (tds.contains_variables(tmp.get(i))) {
-                    Logger.debug("Variable : " + this.nom + " trouvée dans la TDS : " + tds.nom_fonction + " à l'index : " + tmp.get(i) + " ancien id : " + this.identifiant);
-                    this.identifiant = tmp.get(i);
-                    
-                    return;
-                }
-            }
-
-            tds = tds.tds_parent;    
-        }
-
+    public void TDS_variable() {
+        // Rien à faire car on le fait dans le noeud parent
     }
 }

@@ -1,7 +1,6 @@
 package arbres;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import outils.Logger;
 import outils.GestionFichier;
@@ -132,11 +131,17 @@ public class Fonction implements Noeud {
         return this.tds;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
+    public void TDS_variable() {
         // for (Parametre p : params) {
-        //     // p.TDS_variable(variables); // On ne change pas l'identifiant du paramètre
+        //     // p.TDS_variable(variables); // On ne change pas l'identifiant du paramètre, il agit comme une déclaration
         // }
-        definitions.TDS_variable(variables);
-        instructions.TDS_variable(variables);
+        definitions.TDS_variable();
+    
+
+        if (instructions instanceof Variable) {
+            instructions = tds.get_Variable_string_and_parent(((Variable) instructions).nom);
+        } else {
+            instructions.TDS_variable();
+        }
     }
 }

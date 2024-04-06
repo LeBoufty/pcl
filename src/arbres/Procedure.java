@@ -1,11 +1,8 @@
 package arbres;
 
-import java.util.HashMap;
-import java.util.ArrayList;
 
 import outils.GestionFichier;
 import outils.Logger;
-// ?import outils.TDS.TDS_IDF;
 import outils.TDS.TDS_gen;
 
 public class Procedure implements Noeud {
@@ -87,7 +84,7 @@ public class Procedure implements Noeud {
 
         if (Parent == null) {
             this.TDS_link(null);
-            // TDS_variable(TDS_IDF.table_idf(this.tds));
+            TDS_variable();
         }
     }
 
@@ -147,12 +144,13 @@ public class Procedure implements Noeud {
         return false;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        for (Noeud noeud : ((Bloc) definitions).instructions) {
-            noeud.TDS_variable(variables);
-        }
-        for (Noeud noeud : ((Bloc) instructions).instructions) {
-            noeud.TDS_variable(variables);
+    public void TDS_variable() {
+        definitions.TDS_variable();
+
+        if (instructions instanceof Variable) {
+            instructions = tds.get_Variable_string_and_parent(((Variable) instructions).nom);
+        } else {
+            instructions.TDS_variable();
         }
     }
 }

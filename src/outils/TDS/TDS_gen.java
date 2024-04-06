@@ -8,6 +8,7 @@ import outils.Logger;
 
 import arbres.Noeud;
 // ?import outils.Arbre_Syntaxique.TDS;
+import arbres.Variable;
 
 public class TDS_gen {
     //doit contenir num imbr, num reg, nom de fonction
@@ -94,24 +95,24 @@ public class TDS_gen {
     }
 
 
-    public void add_variable(int nom, int taille, String nom_var) {
+    public void add_variable(Variable var_obj, int taille) {
         // Check if the variable is already in the TDS with contains_variable
-        if (this.contains_variable_and_parent(nom)) {
-            Logger.error("TDS_gen : Variable : " + nom + " déjà présente dans la TDS : " + this.nom_fonction);
+        if (this.contains_variable_and_parent(var_obj.identifiant)) {
+            Logger.error("TDS_gen : Variable : " + var_obj.identifiant + " déjà présente dans la TDS : " + this.nom_fonction);
             return;
         }
 
         // Ajout de la variable dans la TDS
-        Ligne_TDS variable = new Ligne_TDS(nom, taille, nom_var);
-        this.TDS_vari.put(num_variables + 3, variable); // +3 pour les variables de retour, dynamic link et static link
+        Ligne_TDS variable_ligne = new Ligne_TDS(var_obj, taille);
+        this.TDS_vari.put(num_variables + 3, variable_ligne); // +3 pour les variables de retour, dynamic link et static link
         num_variables++;
         
     }
 
-    public void add_parametre(int nom, int taille, String nom_var) {
+    public void add_parametre(Variable var_obj, int taille) {
         // Check if the variable is already in the TDS with contains_variable
-        if (this.contains_variable_and_parent(nom)) {
-            Logger.error("TDS_gen : Variable : " + nom + " déjà présente dans la TDS : " + this.nom_fonction);
+        if (this.contains_variable_and_parent(var_obj.identifiant)) {
+            Logger.error("TDS_gen : Variable : " + var_obj.identifiant + " déjà présente dans la TDS : " + this.nom_fonction);
             return;
         }
 
@@ -119,7 +120,7 @@ public class TDS_gen {
         this.deplace_parametre(-1);
 
         // Ajout du paramètre dans la TDS
-        Ligne_TDS parametre = new Ligne_TDS(nom, taille, nom_var);
+        Ligne_TDS parametre = new Ligne_TDS(var_obj, taille);
         this.TDS_vari.put(-1, parametre);
         num_parametres++;
     }
@@ -140,13 +141,13 @@ public class TDS_gen {
         }
     }
 
-    public boolean contains_variables(int nom) {
+    public boolean contains_variables(int identifiant) {
         // Check if the variable is in the TDS
         for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
-            if (entry.getValue().contenu == null) { // Éviter les erreurs de pointeurs null
+            if (entry.getValue().variable == null) { // Éviter les erreurs de pointeurs null
                 continue;
             }
-            if (entry.getValue().contenu == nom && (entry.getKey() > 2 || entry.getKey() < 0)) {
+            if (entry.getValue().variable.identifiant == identifiant && (entry.getKey() > 2 || entry.getKey() < 0)) {
                 return true;
             }
         }
@@ -154,12 +155,12 @@ public class TDS_gen {
         return false;
     }
 
-    public boolean contains_variable_and_parent(int nom) {
+    public boolean contains_variable_and_parent(int identifiant) {
         // Check if the variable is in the TDS or in the parent TDS
         TDS_gen TDS_parent = this;
 
         while(TDS_parent != null) {
-            if (TDS_parent.contains_variables(nom)) {
+            if (TDS_parent.contains_variables(identifiant)) {
                 return true;
             }
 
@@ -167,6 +168,51 @@ public class TDS_gen {
         }
 
         return false;
+    }
+
+    public boolean contains_variable_string(String nom) {
+        // Check if the variable is in the TDS
+        for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
+            if (entry.getValue().variable == null) { // Éviter les erreurs de pointeurs null
+                continue;
+            }
+            if (entry.getValue().variable.nom.equals(nom) && (entry.getKey() > 2 || entry.getKey() < 0)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    public Variable get_Variable_string(String nom) {
+        // Check if the variable is in the TDS
+        for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
+            if (entry.getValue().variable == null) { // Éviter les erreurs de pointeurs null
+                continue;
+            }
+            if (entry.getValue().variable.nom.equals(nom) && (entry.getKey() > 2 || entry.getKey() < 0)) {
+                return entry.getValue().variable;
+            }
+        }
+        
+        return null;
+    }
+
+    public Variable get_Variable_string_and_parent(String nom) {
+        // Check if the variable is in the TDS or in the parent TDS
+        TDS_gen TDS_parent = this;
+
+        while(TDS_parent != null) {
+            Variable var = TDS_parent.get_Variable_string(nom);
+
+            if(var != null) {
+                return var;
+            }
+
+            TDS_parent = TDS_parent.tds_parent;
+        }
+
+        return null;
     }
 
     public TDS_gen get_parent() {
@@ -185,13 +231,13 @@ public class TDS_gen {
         return this.nom_fonction;
     }
 
-    public Integer get_index(int nom) {
+    public Integer get_index(int identifiant) {
         for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
-            if (entry.getValue().contenu == null) { // Éviter les erreurs de pointeurs null
+            if (entry.getValue().variable == null) { // Éviter les erreurs de pointeurs null
                 continue;
             }
              // Si la variable est trouvée et que ce n'est pas l'un des 3 premiers éléments
-            if (entry.getValue().contenu == nom && (entry.getKey() > 2 || entry.getKey() < 0)) {
+            if (entry.getValue().variable.identifiant == identifiant && (entry.getKey() > 2 || entry.getKey() < 0)) {
                 return entry.getKey();
             }
         }
@@ -250,13 +296,13 @@ public class TDS_gen {
         //     sortie += tab + "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
         // }
         for (int i = - num_parametres; i < 0; i++) {
-            sortie += tab + "ID TDS :" + i + " - Paramètre : " + this.TDS_vari.get(i).contenu + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).nom_var + "\n";
+            sortie += tab + "ID TDS :" + i + " - Paramètre : " + this.TDS_vari.get(i).variable.identifiant + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).variable.nom + "\n";
         }
-            sortie += tab + "ID TDS : 0 - Static link : " + this.TDS_vari.get(0).contenu + "\n"; 
+            sortie += tab + "ID TDS : 0 - Static link : " + this.TDS_vari.get(0).contenu_base + "\n"; 
             sortie += tab + "ID TDS : 1 - Dynamic link \n";
             sortie += tab + "ID TDS : 2 - Variable de retour \n";
         for (int i = 3; i < num_variables + 3; i++) {
-            sortie += tab + "ID TDS :" + i + " - Variable : " + this.TDS_vari.get(i).contenu + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).nom_var + "\n";
+            sortie += tab + "ID TDS :" + i + " - Variable : " + this.TDS_vari.get(i).variable.identifiant + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).variable.nom + "\n";
         }
 
         sortie += tab + "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
