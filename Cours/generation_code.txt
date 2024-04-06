@@ -131,3 +131,18 @@ Convention :
 Pour avoir une simulation : 
     http://163.238.35.161/~zhangs/arm64simulator/*
     Le site est douteux, mais je vais faire comme d'habitude et ignorer les problèmes
+
+Debug en utilisant GDB : 
+    Compiler le programme :
+    gcc -g -o hello hello.s
+
+    Pour debug :
+    gdb // lance le debugger
+    tui enable // lance le debugger mais en plus grand ??
+    b 6 // Met un breakpoint à la ligne 6
+    p $x0 // Affiche le registre x0
+    layout asm // Lance le visionneur ASM 
+    layout regs // Lance le visionneur de registres 
+    bt // Affiche la pile (je sais pas comment il marche)
+    run
+    ni // Next Instruction
