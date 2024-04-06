@@ -1,7 +1,5 @@
 package arbres;
 
-import java.util.HashMap;
-import java.util.ArrayList;
 
 import outils.TDS.TDS_gen;
 
@@ -39,7 +37,7 @@ public abstract class Instanciation implements Noeud {
         return this.tds_parent;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
-        // variable.TDS_variable(variables); // On ne change pas l'identifiant de la variable
+    public void TDS_variable() {
+        // Rien à faire
     }
 }

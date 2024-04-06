@@ -1,7 +1,5 @@
 package arbres;
 
-import java.util.HashMap;
-import java.util.ArrayList;
 
 import outils.Logger;
 import outils.TDS.TDS_gen;
@@ -75,7 +73,7 @@ public class InstructionFor implements Noeud {
         this.id = this.tds.get_num_reg();
         
         // Ajouter l'itérateur à la TDS
-        this.tds.add_variable(iterateur.identifiant, 4, iterateur.nom);
+        this.tds.add_variable(this.iterateur, 1);
 
         // this.iterateur.TDS_creation(this.tds);
         // this.borneInf.TDS_creation(this.tds);
@@ -94,10 +92,24 @@ public class InstructionFor implements Noeud {
         return this.tds;
     }
 
-    public void TDS_variable(HashMap<String, ArrayList<Integer>> variables) {
+    public void TDS_variable() {
         // this.iterateur.TDS_variable(variables); // On ne change pas l'identifiant de l'itérateur
-        this.borneInf.TDS_variable(variables);
-        this.borneSup.TDS_variable(variables);
-        this.corps.TDS_variable(variables);
+        if (this.corps instanceof Variable) {
+            this.corps = this.tds.get_Variable_string_and_parent(((Variable) this.corps).nom);
+        } else {
+            this.corps.TDS_variable();
+        }
+
+        if (this.borneInf instanceof Variable) {
+            borneInf = this.tds.get_Variable_string_and_parent(((Variable) borneInf).nom);
+        } else {
+            this.borneInf.TDS_variable();
+        }
+
+        if (this.borneSup instanceof Variable) {
+            borneSup = this.tds.get_Variable_string_and_parent(((Variable) borneSup).nom);
+        } else {
+            this.borneSup.TDS_variable();
+        }
     }
 }

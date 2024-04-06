@@ -22,4 +22,16 @@ public class Declaration extends Instanciation {
     
         return res;
         }
+
+    @Override
+    public void TDS_variable() {
+
+        if (valeur instanceof Variable) {
+            
+            valeur = this.tds_parent.get_Variable_string(((Variable) valeur).nom);
+        }
+        else if (valeur != null){
+            valeur.TDS_variable();
+        }
+    }
 }
