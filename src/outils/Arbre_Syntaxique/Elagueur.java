@@ -458,36 +458,60 @@ public class Elagueur {
 
                     Boolean il_y_a_definition = true;
 
-                    // Test si l'enfant 2 peut être cast en Noeud_Terminal puis si c'est de type "IDF", sinon continue
-                    if ((noeud.getEnfants().get(2) instanceof Noeud_Terminal)) {
-                        il_y_a_definition = false;
-                        if (((Noeud_Terminal)noeud.getEnfants().get(2)).getCode() == terminaux.get("IDF")) {
-                            // Test si les deux noms de la procédure sont identiques (nom après le procedure et nom après le end)
-                            if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf())) {
-                                Error_list.identifiant_non_identique = true;
-                                Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
-                                throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
+
+                    // Test si l'enfant 0 n'est pas de type "£BEGIN", sinon continue
+                    if (noeud.getEnfants().get(0).getCode() != nonterminaux.get("£BEGIN")) {
+                        
+                        // Test si l'enfant 2 peut être cast en Noeud_Terminal puis si c'est de type "IDF", sinon continue
+                        if ((noeud.getEnfants().get(2) instanceof Noeud_Terminal)) {
+                            il_y_a_definition = false;
+                            if (((Noeud_Terminal)noeud.getEnfants().get(2)).getCode() == terminaux.get("IDF")) {
+                                // Test si les deux noms de la procédure sont identiques (nom après le procedure et nom après le end)
+                                if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf())) {
+                                    Error_list.identifiant_non_identique = true;
+                                    Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                                    throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                                }
+                            }
+                            else {
+                                Logger.error("Erreur qui ne devrait pas arriver.");
                             }
                         }
-                        else {
-                            Logger.error("Erreur qui ne devrait pas arriver.");
+                        else if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(3)).getValeurIdf())) { // Même test pour l'enfant 3
+                            Error_list.identifiant_non_identique = true;
+                            Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                            throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
                         }
+                        
+                        Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+
+                        if (il_y_a_definition) {
+                            programme.definitions = traduire(noeud.getEnfants().get(2));
+                        } 
+
+                        programme.instructions = traduire(noeud.getEnfants().get(1));
+
+                        return programme;
+
                     }
-                    else if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(3)).getValeurIdf())) { // Même test pour l'enfant 3
-                        Error_list.identifiant_non_identique = true;
-                        Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
-                        throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
+
+                    // Si l'enfant 0 est de type "£BEGIN"
+                    // regarde si l'enfant 1 est de type "IDF"
+                    if (noeud.getEnfants().get(1) instanceof Noeud_Terminal && noeud.getEnfants().get(1).getCode() == terminaux.get("IDF")) {
+                        Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf());
+                        programme.instructions = traduire(noeud.getEnfants().get(0));
+                        return programme;
                     }
+
+                    // Sinon c'est l'enfant 2 qui est de type "IDF" et l'enfant 1 sont les définitions
+                    Procedure programme2 = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf());
+                    programme2.instructions = traduire(noeud.getEnfants().get(0));
+                    programme2.definitions = traduire(noeud.getEnfants().get(1));
+                    return programme2;
                     
-                    Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
+                    
 
-                    if (il_y_a_definition) {
-                        programme.definitions = traduire(noeud.getEnfants().get(2));
-                    } 
-
-                    programme.instructions = traduire(noeud.getEnfants().get(1));
-
-                    return programme;
+                    
                 } catch (Exception e) {
                     Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
                     // Logger.error(e.getMessage());
