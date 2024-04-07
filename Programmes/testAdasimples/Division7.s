@@ -3,6 +3,8 @@
 .section .data
 format :
 .string "%d\n"
+erreur_division_msg :
+.string "Erreur : division par zéro"
 
 .section .text
 main :
@@ -11,10 +13,10 @@ STP x29, lr, [sp, #-16]! // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 
 // Declaration de la variable a
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable a
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable a
 
 // Declaration de la variable z
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable z
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable z
 
 // Instructions de la procédure division6
 MOVZ x0, #20
@@ -36,6 +38,8 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x1, #0 // Opération /
+BEQ erreur_division // Opération /
 SDIV x0, x0, x1 // Opération /
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
@@ -76,4 +80,9 @@ SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE set_global_var // On boucle tant que x1 != 0
 STR x2, [x29, x0] // On charge la valeur de la variable
 RET
+
+erreur_division : // Fonction d'erreur de division
+LDR x0, =erreur_division_msg // On charge le message d'erreur
+BL printf // On affiche le message d'erreur
+BL exit_program // On quitte le programme
 

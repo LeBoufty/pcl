@@ -81,8 +81,11 @@ public enum Operateur {
                 return "SUB x0, x0, x1 // Opération " + this + "\n";
             case FOIS:
                 return "MUL x0, x0, x1 // Opération " + this + "\n";
-            case DIV:// TODO : faire le cas où x1 = 0
-                return "SDIV x0, x0, x1 // Opération " + this + "\n";
+            case DIV:
+                res += "CMP x1, #0 // Opération " + this + "\n";
+                res += "BEQ erreur_division // Opération " + this + "\n";
+                res += "SDIV x0, x0, x1 // Opération " + this + "\n";
+                return res;
             case REM:
                 res += "SDIV x2, x0, x1 // Opération " + this + "\n";
                 res += "MUL x2, x2, x1 // Opération " + this + "\n";
