@@ -5,7 +5,7 @@ public enum Operateur {
     NONE("", Type.NULLTYPE),
     // Opérations sur entiers
     PLUS("ADD", Type.INTEGER), MOINS("SUB", Type.INTEGER),
-    FOIS("MUL", Type.INTEGER), DIV("DIV", Type.INTEGER),
+    FOIS("MUL", Type.INTEGER), DIV("SDIV", Type.INTEGER),
     REM("rem", Type.INTEGER),
     // Tests sur entiers
     SUPERIEUR(">", Type.BOOLEAN), INFERIEUR("<", Type.BOOLEAN),
