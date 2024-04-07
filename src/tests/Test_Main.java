@@ -6,10 +6,11 @@ import outils.Syntaxe.CSVAnalyseur_S;
 import outils.Error_list;
 import outils.Logger;
 
+
 public class Test_Main {
     
     public static void main(String[] args) throws Exception {
-
+        try {
 
         String programme = "Programmes/Fonctionne/undebut.adb";
 
@@ -50,5 +51,10 @@ public class Test_Main {
             Logger.error("Valide : " + valide);
         }
 
+
+
+        } catch (Exception e) {
+            Logger.error("Erreur, arrêt du programme");
+        }
     }
 }
