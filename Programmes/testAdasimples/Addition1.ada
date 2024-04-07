@@ -9,6 +9,8 @@ procedure Addition1 is
 begin
     z:= 5;
     y:= 3;
-    a := 3 + 4; --7
+    a := 6 + 4; --10
+    Put(z);
     Put(y);
+    Put(a);
 end Addition1;

@@ -10,4 +10,7 @@ begin
     z:= 5;
     y:= 3;
     c := 1 + z; --6
+    Put(z);
+    Put(y);
+    Put(c);
 end Addition3;

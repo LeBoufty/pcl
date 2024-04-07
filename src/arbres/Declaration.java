@@ -17,7 +17,7 @@ public class Declaration extends Instanciation {
             res += valeur.produire(); // Le résultat est en sommet de pile 
         }
         else {
-            res += "SUB sp, sp, #8 // Allocation de 8 octets pour la variable " + nom + "\n";
+            res += "SUB sp, sp, #16 // Allocation de 8 octets pour la variable " + nom + "\n";
         }
     
         return res;

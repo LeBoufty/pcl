@@ -20,7 +20,14 @@ public class Put implements Noeud {
     }
 
     public String produire() {
-        return "// Printf\n"+this.expression.produire() + "bl printf\nADD sp, sp, #8 // On dépile la valeur\n";
+        String res = "// Printf\n";
+        res += this.expression.produire();
+        res += "MOV x1, x0\n";
+        res += "ADRP x0, format\n";
+        res += "ADD x0, x0, :lo12:format\n";
+        res += "BL printf\n";
+        res += "ADD sp, sp, #16\n";
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {

@@ -43,7 +43,7 @@ public class Variable extends Evaluable {
 
         if (num_imbr_var == num_imbr_ici) { // Cas variable locale
             res += "LDR x0, [x29, #-" + depl + "] // " + this.nom + " Mise en pile var\n";
-            res += "SUB sp, sp, #8 // " + this.nom + " Mise en pile var\n";
+            res += "SUB sp, sp, #16 // " + this.nom + " Mise en pile var\n";
             res += "STR x0, [sp] // " + this.nom + " Mise en pile var\n";
         } else { // Cas variable globale
             res += "MOVZ x0, #" + depl + " // " + this.nom + " Mise en pile depl var\n";
