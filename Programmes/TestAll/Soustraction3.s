@@ -4,20 +4,21 @@
 format :
 .string "%d\n"
 
-.section .text
-main :
-
-STP x29, lr, [sp, #-16]! // Sauvegarde du pointeur de pile et du lien de retour
-MOV x29, sp // Mise à jour du pointeur de pile
-
+F1 :
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x29, [sp] // Sauvegarde du pointeur de pile statique
+SUB sp, sp, #16 // On décrémente le pointeur de pile dynamique
+STR x29, [sp] // Sauvegarde du pointeur de pile
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR lr, [sp] // Sauvegarde du lien de retour
 // Declaration de la variable c
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable c
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable c
 
 // Declaration de la variable y
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable y
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable y
 
 // Declaration de la variable z
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable z
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable z
 
 // Instructions de la procédure soustraction3
 MOVZ x0, #5
@@ -82,6 +83,46 @@ ADRP x0, format
 ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
+
+
+.section .text
+main :
+
+STP x29, lr, [sp, #-16]! // Sauvegarde du pointeur de pile et du lien de retour
+MOV x29, sp // Mise à jour du pointeur de pile
+
+// Declaration de la variable b
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable b
+
+// Declaration de la variable y
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable y
+
+// Declaration de la variable z
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable z
+
+// Instructions de la procédure addition2
+MOVZ x0, #5
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-40] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+MOVZ x0, #3
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+MOVZ x0, #7 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
 
 
 bl exit_program
