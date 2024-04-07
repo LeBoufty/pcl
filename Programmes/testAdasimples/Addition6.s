@@ -10,8 +10,8 @@ main :
 STP x29, lr, [sp, #-16]! // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 
-// Declaration de la variable c
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable c
+// Declaration de la variable g
+SUB sp, sp, #16 // Allocation de 8 octets pour la variable g
 
 // Declaration de la variable y
 SUB sp, sp, #16 // Allocation de 8 octets pour la variable y
@@ -19,7 +19,7 @@ SUB sp, sp, #16 // Allocation de 8 octets pour la variable y
 // Declaration de la variable z
 SUB sp, sp, #16 // Allocation de 8 octets pour la variable z
 
-// Instructions de la procédure addition3
+// Instructions de la procédure addition6
 MOVZ x0, #5
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -36,12 +36,24 @@ ADD sp, sp, #16 // On dépile la valeur
 
 
 // Opération
-MOVZ x0, #1
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
+
+// Opération
 LDR x0, [x29, #-40] // z Mise en pile var
 SUB sp, sp, #16 // z Mise en pile var
 STR x0, [sp] // z Mise en pile var
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+SUB x0, x0, x1 // Opération -
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
 LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
@@ -52,36 +64,6 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-
-// Printf
-LDR x0, [x29, #-40] // z Mise en pile var
-SUB sp, sp, #16 // z Mise en pile var
-STR x0, [sp] // z Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-LDR x0, [x29, #-32] // y Mise en pile var
-SUB sp, sp, #16 // y Mise en pile var
-STR x0, [sp] // y Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-LDR x0, [x29, #-24] // c Mise en pile var
-SUB sp, sp, #16 // c Mise en pile var
-STR x0, [sp] // c Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
 
 
 bl exit_program

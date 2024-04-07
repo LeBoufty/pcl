@@ -1,6 +1,6 @@
 with Ada.Text_IO;use Ada.Text_IO;
 
-procedure Mult3 is
+procedure Multi3 is
 
     a: Integer;
     z: Integer;
@@ -11,4 +11,7 @@ begin
     z:= 5;
     y:= 2;
     a := y * z; --10
-end Mult3;
+    Put(z);
+    Put(y);
+    Put(a);
+end Multi3;
