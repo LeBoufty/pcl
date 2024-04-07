@@ -42,6 +42,11 @@ public class Test_Main {
             return;
         }
 
+        if (Error_list.traduction) {
+            Logger.error("Erreur lors de la traduction, arrêt du programme");
+            return;
+        }
+
 
         // Création de la table des symboles et liaisons des variables
         AST.TDS_creation(null,0);

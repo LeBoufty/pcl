@@ -454,7 +454,7 @@ public class Elagueur {
         //Logger.debug(nom);
         switch (nom) {
             case "£FICHIER":
-                try {
+                try { // Code devenu illisble par Pierre, vaut mieux me demander si besoin de relire
 
                     Boolean il_y_a_definition = true;
 
@@ -468,7 +468,7 @@ public class Elagueur {
                             if (((Noeud_Terminal)noeud.getEnfants().get(2)).getCode() == terminaux.get("IDF")) {
                                 // Test si les deux noms de la procédure sont identiques (nom après le procedure et nom après le end)
                                 if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf())) {
-                                    Error_list.identifiant_non_identique = true;
+                                    Error_list.traduction = true;
                                     Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
                                     throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
                                 }
@@ -478,7 +478,7 @@ public class Elagueur {
                             }
                         }
                         else if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(3)).getValeurIdf())) { // Même test pour l'enfant 3
-                            Error_list.identifiant_non_identique = true;
+                            Error_list.traduction = true;
                             Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
                             throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
                         }
@@ -505,8 +505,8 @@ public class Elagueur {
 
                     // Sinon c'est l'enfant 2 qui est de type "IDF" et l'enfant 1 sont les définitions
                     Procedure programme2 = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf());
-                    programme2.instructions = traduire(noeud.getEnfants().get(0));
                     programme2.definitions = traduire(noeud.getEnfants().get(1));
+                    programme2.instructions = traduire(noeud.getEnfants().get(0));
                     return programme2;
                     
                     
@@ -577,21 +577,58 @@ public class Elagueur {
             case "£IDFInterro":
                 return traduire(noeud.getEnfants().get(0));
             case "£FUNCTIONDECL":
-                Fonction fonc = new Fonction(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
-                tds.ajouter(((Noeud_Terminal)noeud.getEnfants().get(0)).getCodeIdf(), fonc);
-                Noeud_Non_Terminal returnfonction = (Noeud_Non_Terminal) noeud.getEnfants().get(2);
-                fonc.type = getType((Noeud_Terminal)returnfonction.getEnfants().get(returnfonction.getEnfants().size()-1));
-                if (returnfonction.getEnfants().size() > 1)
-                fonc.definitions = traduire(returnfonction.getEnfants().get(0));
-                Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)noeud.getEnfants().get(noeud.getEnfants().size()-1));
+                try {
+            
+                // Va chercher le nom de la fonction
+                Noeud_Non_Terminal noeud_name = (Noeud_Non_Terminal) noeud.getEnfants().get(noeud.getEnfants().size() - 1);
+                
+                String name_fun = ((Noeud_Terminal) noeud_name.getEnfants().get(noeud_name.getEnfants().size() - 1)).getValeurIdf();
+
+                int code_name = ((Noeud_Terminal)noeud_name.getEnfants().get(noeud_name.getEnfants().size() - 1)).getCodeIdf();
+
+                
+                int slider = 0;
+                Noeud_A noeud_temp = noeud.getEnfants().get(0);
+                if (noeud_temp instanceof Noeud_Non_Terminal && ((Noeud_Non_Terminal)noeud_temp).getCode() == nonterminaux.get("£BEGIN")) {
+                    slider = 1;
+                }
+                else if (!((Noeud_Terminal) noeud.getEnfants().get(0)).getValeurIdf().equals(name_fun)) { // Si le nom de la fonction est différent du nom de la fonction après end
+                    Logger.error("Erreur : les deux noms de la fonction ne sont pas identiques.");
+                    throw new Exception("Erreur : les deux noms de la fonction ne sont pas identiques.");
+                }
+
+                Fonction fonc = new Fonction(name_fun);
+                tds.ajouter(code_name, fonc);
+
+                Noeud_Non_Terminal returnfonction = (Noeud_Non_Terminal) noeud.getEnfants().get(2 - slider);
+
+                fonc.type = getType((Noeud_Terminal)returnfonction.getEnfants().get(returnfonction.getEnfants().size() - 1));
+
+                if (returnfonction.getEnfants().size() > 1) {
+                    fonc.definitions = traduire(returnfonction.getEnfants().get(0));
+                }
+
+                Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)noeud.getEnfants().get(noeud.getEnfants().size() - 1));
+
                 while (!getNomNT(paramplus.getEnfants().get(0).getCode()).equals("£PARAMUnique")) {
                     paramplus = (Noeud_Non_Terminal) paramplus.getEnfants().get(0);
                 }
+
                 for (Noeud_A na : paramplus.getEnfants()) {
                     fonc.params.add((Parametre)traduire(na));
                 }
-                fonc.instructions = traduire(noeud.getEnfants().get(1));
+
+                fonc.instructions = traduire(noeud.getEnfants().get(1 - slider));
+
                 return fonc;
+                    
+                } catch (Exception e) {
+                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
+                    Error_list.traduction = true;
+                    // Logger.error(e.getMessage());
+                    return null;
+                }
+
             case "£PARAMUnique":
                 IType paratype = getType((Noeud_Terminal)noeud.getEnfants().get(0));
                 String paranom = ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf();

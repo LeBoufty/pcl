@@ -4,6 +4,7 @@ import java.util.List;
 
 import arbres.Noeud;
 import arbres.PlantUML.GenerateurPUML;
+import outils.Error_list;
 import outils.GestionFichier;
 import outils.Logger;
 import outils.Lexeur.Analyseur_L;
@@ -43,6 +44,7 @@ public class TestParserLexeur {
 
         CSVAnalyseur_S analyseur = new CSVAnalyseur_S(programme + ".lex", "src/tests/Tableau_LL.csv", programme + ".idf");
         analyseur.analyse();
+
         if (analyseur.getEn_erreur()) {
             Logger.error("Erreur lors de l'analyse syntaxique, arrêt du programme");
             return;
@@ -50,6 +52,11 @@ public class TestParserLexeur {
 
         Noeud AST = analyseur.elaguer();
         analyseur.affiche_UML(programme + ".puml");
+
+        if (Error_list.traduction) {
+            Logger.error("Erreur lors de la traduction, arrêt du programme");
+            return;
+        }
 
         Logger.debug(AST.toString());
 

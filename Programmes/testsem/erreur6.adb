@@ -1,13 +1,15 @@
 with Ada.Text_IO;use Ada.Text_IO;
 
 procedure erreur9 is
-    function bab(lo : Integer) return Integer is
+
+    function bab0(lo : Integer) return Integer is
+    o : Integer := 1;
     begin
         return 1;
-    end bab0;
+    end bo;
 
-    a : Integer := 1;
+    bq: Integer;
 
 begin
-    put('a');
+    bq := bab0(1);
 end;
