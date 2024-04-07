@@ -69,8 +69,10 @@ public class InstructionFor implements Noeud {
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
+
         this.tds = new TDS_gen(this, Parent, "for");
         this.id = this.tds.get_num_reg();
+        Logger.info("Création de la TDS de la boucle for n°" + this.id);
         
         // Ajouter l'itérateur à la TDS
         this.tds.add_variable(this.iterateur, 1);

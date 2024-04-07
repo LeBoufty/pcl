@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 import arbres.*;
+import outils.Error_list;
 import outils.Logger;
 import outils.Syntaxe.CSVParser;
 
@@ -664,6 +665,7 @@ public class Elagueur {
                     return tds.get(noeud.getCodeIdf());
                 }
                 Logger.error("Variable "+noeud.getValeurIdf()+" non initialisée");
+                Error_list.elaguage = true;
                 return new Variable(Type.INTEGER, noeud.getValeurIdf());
         }
         return null;

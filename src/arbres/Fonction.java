@@ -111,6 +111,7 @@ public class Fonction implements Noeud {
         // Cree une nouvelle TDS pour la fonction
         this.tds = new TDS_gen(this, Parent, nom);
         this.id = this.tds.num_reg;
+        Logger.info("Création de la TDS de la fonction " + nom + " n°" + this.id);
         
         for (Parametre p : params) {
             p.TDS_creation(this.tds, 1);

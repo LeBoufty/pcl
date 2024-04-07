@@ -5,6 +5,9 @@ package arbres;
 import outils.TDS.TDS_gen;
 
 public interface Noeud {
+
+    public static boolean en_erreur = false;
+
     public String toString();
     public boolean valide();
     public String produire();

@@ -29,8 +29,8 @@ public class TestParserLexeur {
         // programme = "Programmes/testAdasimples/Addition1.ada";
 
         // Tests sémantiques
-        //programme = "Programmes/testsem/divparzero.adb";
-        //programme = "Programmes/testsem/fctnondef.adb";
+        // programme = "Programmes/testsem/divparzero.adb";
+        programme = "Programmes/testsem/fctnondef.adb";
         //programme = "Programmes/testsem/mauvaisop.adb";
         //programme = "Programmes/testsem/mauvaistype.adb";
         //programme = "Programmes/testsem/varnondef.adb";
@@ -50,16 +50,16 @@ public class TestParserLexeur {
         AST.TDS_creation(null,0);;
         Logger.debug(AST.toString());
         Logger.debug(AST.getTDS().toString());
-        TDS_IDF.affiche_table_idf(TDS_IDF.table_idf(AST.getTDS()));
+        // TDS_IDF.affiche_table_idf(TDS_IDF.table_idf(AST.getTDS()));
 
         GenerateurPUML puml = new GenerateurPUML(AST, programme+".ast.pu");
         puml.generer();
         //Logger.debug(AST.getTDS().toString());
         boolean valide = AST.valide();
         Logger.debug("Valide : " + valide);
-        AST.produire(); 
+        // AST.produire(); 
         // *GestionFichier.produirefichier(programme + ".s");
-        GestionFichier.produirefichier("test.s");
+        // GestionFichier.produirefichier("test.s");
 
     }
 }

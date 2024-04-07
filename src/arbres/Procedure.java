@@ -67,13 +67,16 @@ public class Procedure implements Noeud {
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
         if (Parent == null) {
+            Logger.milestone("Début de la création des TDS");
             this.tds = new TDS_gen(this, nom);
+            
         }
         else {
             this.tds = new TDS_gen(this, Parent, nom);
         }
 
         this.id = this.tds.num_reg;
+        Logger.info("Création de la TDS de la procédure "+nom+" n°"+this.id);
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             noeud.TDS_creation(this.tds, 2);
@@ -82,6 +85,7 @@ public class Procedure implements Noeud {
             noeud.TDS_creation(this.tds, 2);
         }
 
+        Logger.milestone("Fin de la création des TDS");
         if (Parent == null) {
             this.TDS_link(null);
             TDS_variable();
