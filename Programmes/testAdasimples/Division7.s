@@ -4,7 +4,7 @@
 format :
 .string "%d\n"
 erreur_division_msg :
-.string "Erreur : division par zéro"
+.string "Erreur : division par zéro\n"
 
 .section .text
 main :
