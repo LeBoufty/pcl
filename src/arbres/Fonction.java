@@ -54,6 +54,17 @@ public class Fonction implements Noeud {
             Logger.error("Nom de fonction invalide : "+nom);
             sortie = false;
         }
+        if (!(instructions instanceof Bloc) && !(instructions instanceof Return)) {
+            Logger.error("La fonction "+ nom +" doit se terminer par un return");
+            sortie = false;
+        } else if (instructions instanceof Bloc) {
+            Bloc instrbloc = (Bloc) instructions;
+            if (!(instrbloc.instructions.get(instrbloc.instructions.size()-1) instanceof Return)) {
+                Logger.error("La fonction "+ nom +" doit se terminer par un return");
+                sortie = false;
+            }
+
+        }
         return sortie && definitions.valide() && instructions.valide();
     }
     public void ajouterDefinition(Noeud definition) {

@@ -13,7 +13,7 @@ public class Test_Main {
         try {
 
         String programme = "Programmes/Fonctionne/undebut.adb";
-        programme = "Programmes/testsem/erreur6.adb";
+        //programme = "Programmes/testsem/erreur6.adb";
 
         // Création de l'analyseur lexical
         Analyseur_L al = new Analyseur_L(programme);
