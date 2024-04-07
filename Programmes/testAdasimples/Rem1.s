@@ -39,9 +39,9 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
-SDIV x0, x0, x1 // Opération rem
-MUL x0, x0, x1 // Opération rem
-SUB x0, x0, x1 // Opération rem
+SDIV x2, x0, x1 // Opération rem
+MUL x2, x2, x1 // Opération rem
+SUB x0, x0, x2 // Opération rem
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
@@ -70,9 +70,9 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
-SDIV x0, x0, x1 // Opération rem
-MUL x0, x0, x1 // Opération rem
-SUB x0, x0, x1 // Opération rem
+SDIV x2, x0, x1 // Opération rem
+MUL x2, x2, x1 // Opération rem
+SUB x0, x0, x2 // Opération rem
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
@@ -101,9 +101,9 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
-SDIV x0, x0, x1 // Opération rem
-MUL x0, x0, x1 // Opération rem
-SUB x0, x0, x1 // Opération rem
+SDIV x2, x0, x1 // Opération rem
+MUL x2, x2, x1 // Opération rem
+SUB x0, x0, x2 // Opération rem
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
@@ -146,9 +146,9 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
-SDIV x0, x0, x1 // Opération rem
-MUL x0, x0, x1 // Opération rem
-SUB x0, x0, x1 // Opération rem
+SDIV x2, x0, x1 // Opération rem
+MUL x2, x2, x1 // Opération rem
+SUB x0, x0, x2 // Opération rem
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
