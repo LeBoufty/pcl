@@ -4,8 +4,8 @@ public enum Operateur {
     // Placeholder pour quand on crée l'opération
     NONE("", Type.NULLTYPE),
     // Opérations sur entiers
-    PLUS("ADD", Type.INTEGER), MOINS("SUB", Type.INTEGER),
-    FOIS("MUL", Type.INTEGER), DIV("SDIV", Type.INTEGER),
+    PLUS("+", Type.INTEGER), MOINS("-", Type.INTEGER),
+    FOIS("*", Type.INTEGER), DIV("/", Type.INTEGER),
     REM("rem", Type.INTEGER),
     // Tests sur entiers
     SUPERIEUR(">", Type.BOOLEAN), INFERIEUR("<", Type.BOOLEAN),
@@ -69,6 +69,37 @@ public enum Operateur {
                 return gauche.valeur != 0 || droite.valeur != 0 ? 1 : 0;
             default:
                 return 0;
+        }
+    }
+
+    public String produire() {
+        String res = "";
+        switch (this) {
+            case PLUS:
+                return "ADD x0, x0, x1 // Opération " + this + "\n";
+            case MOINS:
+                return "SUB x0, x0, x1 // Opération " + this + "\n";
+            case FOIS:
+                return "MUL x0, x0, x1 // Opération " + this + "\n";
+            case DIV:// TODO : faire le cas où x1 = 0
+                return "SDIV x0, x0, x1 // Opération " + this + "\n";
+            case REM:
+                res += "SDIV x0, x0, x1 // Opération " + this + "\n";
+                res += "MUL x0, x0, x1 // Opération " + this + "\n";
+                res += "SUB x0, x0, x1 // Opération " + this + "\n";
+                return res;
+            case SUPERIEUR:
+            case INFERIEUR:
+            case SUPERIEUR_EGAL:
+            case INFERIEUR_EGAL:
+            case DIFFERENT:
+            case EGAL:
+            case AND:
+            case OR:
+            case AND_THEN:
+            case OR_ELSE:
+            default:
+                return "";
         }
     }
 }

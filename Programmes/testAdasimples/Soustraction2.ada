@@ -9,5 +9,8 @@ procedure Soustraction2 is
 begin
     z:= 5;
     y:= 3;
-    b := 4 + 3; --(-1)
+    b := 4 + 3 - 2 - 10; --(-5)
+    Put(z);
+    Put(y);
+    Put(b);
 end Soustraction2;

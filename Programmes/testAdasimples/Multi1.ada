@@ -1,14 +1,16 @@
 with Ada.Text_IO;use Ada.Text_IO;
 
-procedure Division1 is
+procedure Multi1 is
 
     a: Integer;
     b: Integer;
     c: Integer;
 
 begin
-    z:= 5;
-    y:= 3;
-    a := 3 * 4; --12
-    
-end Division2;
+    a:= 5;
+    b:= 3;
+    c := 6 * 4; --24
+    Put(a);
+    Put(b);
+    Put(c);    
+end Multi1;

@@ -67,7 +67,7 @@ public class Operation extends Evaluable {
         res += "ADD sp, sp, #16 // On décrémente le pointeur de pile\n";
 
         // On effectue l'opération
-        res += this.operateur.toString() + " x0, x0, x1 // On effectue l'opération\n";
+        res += operateur.produire();
         
         // On met le résultat en pile
         res += "SUB sp, sp, #16 // On décrémente le pointeur de pile\n";

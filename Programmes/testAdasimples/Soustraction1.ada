@@ -10,4 +10,7 @@ begin
     z:= 5;
     y:= 3;
     a := 3 - 4; --(-1)
+    Put(z);
+    Put(y);
+    Put(a);
 end Soustraction1;
