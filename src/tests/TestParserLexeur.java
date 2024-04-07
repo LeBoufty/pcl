@@ -1,6 +1,6 @@
 package tests;
 
-import java.util.List;
+// ?import java.util.List;
 
 import arbres.Noeud;
 import arbres.PlantUML.GenerateurPUML;
@@ -9,8 +9,8 @@ import outils.GestionFichier;
 import outils.Logger;
 import outils.Lexeur.Analyseur_L;
 import outils.Syntaxe.CSVAnalyseur_S;
-// ? import outils.Syntaxe.CSVParser;
-import outils.TDS.TDS_IDF;
+// ?import outils.Syntaxe.CSVParser;
+// ?import outils.TDS.TDS_IDF;
 
 public class TestParserLexeur {
     
@@ -27,7 +27,7 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/williamfaure.adb";
         //programme = "Programmes/Fonctionne/recordiii.adb";
         //programme = "Programmes/Fonctionne/testctrlsem.adb";
-        // programme = "Programmes/testAdasimples/Addition1.ada";
+        programme = "Programmes/testAdasimples/Addition9.ada";
 
         // Tests sémantiques
         // programme = "Programmes/testsem/divparzero.adb";
@@ -36,7 +36,7 @@ public class TestParserLexeur {
         //programme = "Programmes/testsem/mauvaistype.adb";
         //programme = "Programmes/testsem/varnondef.adb";
         //programme = "Programmes/testsem/erreur2.adb";
-        programme = "Programmes/testsem/erreur6.adb";
+        //programme = "Programmes/testsem/erreur6.adb";
 
 
         Analyseur_L al = new Analyseur_L(programme);
@@ -70,8 +70,8 @@ public class TestParserLexeur {
         //Logger.debug(AST.getTDS().toString());
         boolean valide = AST.valide();
         Logger.debug("Valide : " + valide);
-        // AST.produire(); 
-        // *GestionFichier.produirefichier(programme + ".s");
+        AST.produire(); 
+        GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
         // GestionFichier.produirefichier("test.s");
 
     }

@@ -10,4 +10,5 @@ begin
     z:= 5;
     y:= 3;
     i := -1 + z; --4
+    Put(i);
 end Addition8;
