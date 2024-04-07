@@ -57,6 +57,14 @@ public class Operation extends Evaluable {
 
         String res = "\n// Opération\n";
 
+        if (this.gauche.isConstant() && this.droite.isConstant()) {
+            // Si les deux opérandes sont des constantes, on peut les évaluer à la compilation
+            res += "MOVZ x0, #" + this.operateur.getvalue((Constante) this.gauche, (Constante) this.droite) + " // On met le résultat de l'opération en x0\n";
+            res += "SUB sp, sp, #16 // On décrémente le pointeur de pile\n";
+            res += "STR x0, [sp] // On met le résultat en pile\n";
+            return res;
+        }
+
         res += this.gauche.produire();
         res += this.droite.produire();
 
