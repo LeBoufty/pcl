@@ -30,18 +30,24 @@ public class TestParserLexeur {
 
         // Tests sémantiques
         // programme = "Programmes/testsem/divparzero.adb";
-        programme = "Programmes/testsem/fctnondef.adb";
+        // programme = "Programmes/testsem/fctnondef.adb";
         //programme = "Programmes/testsem/mauvaisop.adb";
         //programme = "Programmes/testsem/mauvaistype.adb";
         //programme = "Programmes/testsem/varnondef.adb";
         //programme = "Programmes/testsem/erreur2.adb";
-        //programme = "Programmes/testsem/erreur5.adb";
+        programme = "Programmes/testsem/erreur6.adb";
+
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
 
         CSVAnalyseur_S analyseur = new CSVAnalyseur_S(programme + ".lex", "src/tests/Tableau_LL.csv", programme + ".idf");
         analyseur.analyse();
+        if (analyseur.getEn_erreur()) {
+            Logger.error("Erreur lors de l'analyse syntaxique, arrêt du programme");
+            return;
+        }
+
         Noeud AST = analyseur.elaguer();
         analyseur.affiche_UML(programme + ".puml");
 

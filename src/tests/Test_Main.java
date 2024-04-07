@@ -13,6 +13,7 @@ public class Test_Main {
         try {
 
         String programme = "Programmes/Fonctionne/undebut.adb";
+        programme = "Programmes/testsem/erreur6.adb";
 
         // Création de l'analyseur lexical
         Analyseur_L al = new Analyseur_L(programme);
@@ -25,6 +26,12 @@ public class Test_Main {
 
         // Lancement de l'analyse syntaxique
         analyseur.analyse();
+
+        // Si une erreur est survenue lors de l'analyse syntaxique, on arrête le programme
+        if (analyseur.getEn_erreur()) {
+            Logger.error("Erreur lors de l'analyse syntaxique, arrêt du programme");
+            return;
+        }
 
 
         // Transformation de l'anayseur syntaxique en AST puis élaguage
@@ -50,6 +57,8 @@ public class Test_Main {
         } else {
             Logger.error("Valide : " + valide);
         }
+
+        Logger.info(AST.toString());
 
 
 

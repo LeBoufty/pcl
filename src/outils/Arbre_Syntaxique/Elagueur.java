@@ -455,12 +455,42 @@ public class Elagueur {
         switch (nom) {
             case "£FICHIER":
                 try {
+
+                    Boolean il_y_a_definition = true;
+
+                    // Test si l'enfant 2 peut être cast en Noeud_Terminal puis si c'est de type "IDF", sinon continue
+                    if ((noeud.getEnfants().get(2) instanceof Noeud_Terminal)) {
+                        il_y_a_definition = false;
+                        if (((Noeud_Terminal)noeud.getEnfants().get(2)).getCode() == terminaux.get("IDF")) {
+                            // Test si les deux noms de la procédure sont identiques (nom après le procedure et nom après le end)
+                            if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf())) {
+                                Error_list.identifiant_non_identique = true;
+                                Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                                throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                            }
+                        }
+                        else {
+                            Logger.error("Erreur qui ne devrait pas arriver.");
+                        }
+                    }
+                    else if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(3)).getValeurIdf())) { // Même test pour l'enfant 3
+                        Error_list.identifiant_non_identique = true;
+                        Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                        throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                    }
+                    
                     Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
-                    programme.definitions = traduire(noeud.getEnfants().get(2));
+
+                    if (il_y_a_definition) {
+                        programme.definitions = traduire(noeud.getEnfants().get(2));
+                    } 
+
                     programme.instructions = traduire(noeud.getEnfants().get(1));
+
                     return programme;
                 } catch (Exception e) {
                     Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
+                    // Logger.error(e.getMessage());
                     return null;
                 }
             case "£DECLEtoile":
