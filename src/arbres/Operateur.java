@@ -89,13 +89,39 @@ public enum Operateur {
                 res += "SUB x0, x0, x2 // Opération " + this + "\n";
                 return res;
             case SUPERIEUR:
+                res += "CMP x0, x1 // Opération " + this + "\n";
+                res += "MOVGT x0, #1 // Opération " + this + "\n";
+                res += "MOVLE x0, #0 // Opération " + this + "\n";
+                return res;
             case INFERIEUR:
+                res += "CMP x0, x1 // Opération " + this + "\n";
+                res += "MOVLT x0, #1 // Opération " + this + "\n";
+                res += "MOVGE x0, #0 // Opération " + this + "\n";
+                return res;
             case SUPERIEUR_EGAL:
+                res += "CMP x0, x1 // Opération " + this + "\n";
+                res += "MOVGE x0, #1 // Opération " + this + "\n";
+                res += "MOVLT x0, #0 // Opération " + this + "\n";
+                return res;
             case INFERIEUR_EGAL:
+                res += "CMP x0, x1 // Opération " + this + "\n";
+                res += "MOVLE x0, #1 // Opération " + this + "\n";
+                res += "MOVGT x0, #0 // Opération " + this + "\n";
+                return res;
             case DIFFERENT:
+                res += "CMP x0, x1 // Opération " + this + "\n";
+                res += "MOVNE x0, #1 // Opération " + this + "\n";
+                res += "MOVEQ x0, #0 // Opération " + this + "\n";
+                return res;
             case EGAL:
+                res += "CMP x0, x1 // Opération " + this + "\n";
+                res += "MOVEQ x0, #1 // Opération " + this + "\n";
+                res += "MOVNE x0, #0 // Opération " + this + "\n";
+                return res;
             case AND:
+                return "AND x0, x0, x1 // Opération " + this + "\n";
             case OR:
+                return "ORR x0, x0, x1 // Opération " + this + "\n";
             case AND_THEN:
             case OR_ELSE:
             default:
