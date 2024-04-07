@@ -1,13 +1,12 @@
 with Ada.Text_IO;use Ada.Text_IO;
 
-procedure Division4 is
+procedure Division6 is
 
     a: Integer;
     z: Integer;
 
 begin
     z:= 20;
-    a := z / 4; --5
-    Put(z);
+    a := z / 2 / 5; -- 2
     Put(a);
-end Division4;
+end Division6;

@@ -10,5 +10,8 @@ procedure Division3 is
 begin
     z:= 5;
     y:= 10;
-    a := y / z; --
+    a := y / z; --2
+    Put(z);
+    Put(y);
+    Put(a);
 end Division3;

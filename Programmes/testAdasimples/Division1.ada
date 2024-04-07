@@ -9,6 +9,8 @@ procedure Division1 is
 begin
     z:= 5;
     y:= 3;
-    a := 3 / 4; --
-    
-end Division2;
+    a := 3 / 4; --0.75
+    Put(z);
+    Put(y);
+    Put(a);    
+end Division1;

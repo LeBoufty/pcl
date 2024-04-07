@@ -7,5 +7,7 @@ procedure Division5 is
 
 begin
     z:= 20;
-    a := 4 / z; --5
+    a := 4 / z; --0.2
+    Put(z);
+    Put(a);
 end Division5;
