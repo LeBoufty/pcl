@@ -36,7 +36,13 @@ ADD sp, sp, #16 // On dépile la valeur
 
 
 // Opération
-MOV x0, #-1LDR x0, [x29, #-40] // z Mise en pile var
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x0, [sp] // Opération moins
+NEG x0, x0 // Opération moins
+STR x0, [sp] // Opération moins
+LDR x0, [x29, #-40] // z Mise en pile var
 SUB sp, sp, #16 // z Mise en pile var
 STR x0, [sp] // z Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
