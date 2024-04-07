@@ -34,4 +34,19 @@ public enum OperateurUnaire {
                 return 0;
         }
     }
+
+    public String produire() {
+        String res = "";
+        switch (this) {
+            case MOINS:
+                res += "LDR x0, [sp] // Opération moins\n";
+                res += "NEG x0, x0 // Opération moins\n";
+                res += "STR x0, [sp] // Opération moins\n";
+                return res;
+            case NOT:
+                return "EOR x0, x0, #1 // Opération not\n"; // TODO: Vérifier que ça marche
+            default:
+                return "";
+        }
+    }
 }

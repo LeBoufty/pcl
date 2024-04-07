@@ -44,20 +44,13 @@ public class OperationUnaire extends Evaluable {
     }
 
     public String produire() {
-        System.out.println("OperationUnaire");
+        System.out.println("Operation droite : " + this.droite);
+        System.out.println("Operation operateur : " + this.operateur);
 
         String res = "";
-
-        if (this.droite.isConstant()) {
-            return "MOV x0, #"+this.operateur.getvalue((Constante) this.droite);
-        }
-        else {
-            this.droite.produire();
-            res += "MOV x0, x0\n";
-        }
-
+        res += this.droite.produire();
+        res += this.operateur.produire();
         return res;
-// TODO : je sais pas trop...
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
