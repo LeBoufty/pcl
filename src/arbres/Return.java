@@ -11,10 +11,10 @@ public class Return implements Noeud {
         this.valeur = valeur;
     }
     public Return() {
-        this.valeur = null;
+        this.valeur = new Constante();
     }
     public boolean estVide() {
-        return this.valeur == null;
+        return this.valeur.type == Type.NULLTYPE;
     }
     public String toString() {
         if (!estVide()) {
