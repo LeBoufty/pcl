@@ -2,14 +2,18 @@ with Ada.Text_IO;use Ada.Text_IO;
 
 procedure erreur9 is
 
-    function bab0(lo : Integer) return Integer is
+    function bab(lo : Integer) return Integer is
     o : Integer := 1;
     begin
-        return 1;
-    end bo;
+        o := o + 1;
+        return o;
+    end;
+
 
     bq: Integer;
 
 begin
-    bq := bab0(1);
+
+    bq := 1;
+
 end;
