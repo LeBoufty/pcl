@@ -3,7 +3,7 @@ package outils.TDS;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import outils.TDS.Ligne_TDS;
+import outils.TDS.Ligne_TDS; // Faut le laisser pour l'ordi Arnaud
 
 import outils.Logger;
 

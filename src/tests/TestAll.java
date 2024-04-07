@@ -22,6 +22,8 @@ public class TestAll {
         if (directoryListing != null) {
             for (File child : directoryListing) {
                 String programme = child.getPath();
+
+                Error_list.reset(); // On reset la liste d'erreurs
                 
                 if(programme.contains(".ada") == true && !programme.contains(".lex") && !programme.contains(".idf") && !programme.contains(".puml") && !programme.contains(".ast.pu") && !programme.contains(".s"))
                 {
