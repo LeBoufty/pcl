@@ -43,6 +43,16 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
+// Printf
+LDR x0, [x29, #-24] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
 
 bl exit_program
 

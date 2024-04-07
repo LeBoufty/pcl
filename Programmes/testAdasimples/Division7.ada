@@ -8,4 +8,5 @@ procedure Division6 is
 begin
     z:= 20;
     a := z / 0; -- division by zero
+    Put(a);
 end Division6;

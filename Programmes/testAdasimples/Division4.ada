@@ -7,7 +7,7 @@ procedure Division4 is
 
 begin
     z:= 20;
-    a := z / 4; --5
+    a := z / -4; --5
     Put(z);
     Put(a);
 end Division4;
