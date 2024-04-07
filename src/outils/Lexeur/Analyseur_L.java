@@ -15,7 +15,7 @@ public class Analyseur_L {
     private int num_ligne_en_lecture;
 
     private boolean en_erreur;
-    private boolean DEBUG = true;
+    private boolean DEBUG = false;
     private Dico_L dico;
 
     public Analyseur_L(String nom_fichier) throws Exception {

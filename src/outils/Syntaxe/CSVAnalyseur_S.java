@@ -68,22 +68,22 @@ public class CSVAnalyseur_S {
         pile_AST_Non_Terminal.push(AST);
         
         int tete = lect.lire();
-        Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+        // Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
         tete = vecteur_passage.get_vecteur_passage_Lexeur_CSV(tete);
-        Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+        // Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
 
         lect_idf.lire();
         List<String> liste_idf = lect_idf.getListe_idf();
 
         while (!pile.empty()) {
             int element = pile.pop();
-            if (element < 0) {
-                Logger.info("Element Pile Non-Terminal : " + dico_non_terminaux.get(-element) + " code : " + element);
-            }
-            else {
-                Logger.info("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
-            }
-            Logger.info("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+            // if (element < 0) {
+            //     Logger.info("Element Pile Non-Terminal : " + dico_non_terminaux.get(-element) + " code : " + element);
+            // }
+            // else {
+            //     Logger.info("Element Pile Terminal : " + dico_terminaux.get(element) + " code : " + element);
+            // }
+            // Logger.info("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
 
             if (element > 0) { // si c'est un terminal
 
@@ -113,9 +113,9 @@ public class CSVAnalyseur_S {
                     }
 
                     tete = lect.lire();
-                    Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+                    // Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
                     tete = vecteur_passage.get_vecteur_passage_Lexeur_CSV(tete);
-                    Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
+                    // Logger.debug("Tete : " + dico_terminaux.get(tete) + " code : " + tete);
                 }
 
                 else { // si c'est pas le terminal attendu
