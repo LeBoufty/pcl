@@ -104,8 +104,11 @@ public class Fonction implements Noeud {
         int taille_locale = this.tds.get_taille_variables_locales();
         res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
 
-        for (Noeud n : ((Bloc) instructions).instructions) {
-            res += n.produire();
+        // Produire les instructions
+        if (instructions instanceof Bloc) {
+            res += ((Bloc) instructions).produire();
+        } else {
+            res += ((Return) instructions).produire();
         }
 
         res += "ADD SP, SP, " + taille_locale + " // Libération de l'espace pour les variables locales\n";
