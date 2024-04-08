@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class GestionFichier {
     static private String contenuHeader = ""; // Contenu à écrire dans le fichier
@@ -29,7 +30,7 @@ public class GestionFichier {
         BufferedWriter bw = null;
         try {
             // Création d'un FileWriter pour écrire dans le fichier
-            bw = new BufferedWriter(new FileWriter(fichier));
+            bw = new BufferedWriter(new FileWriter(fichier, StandardCharsets.UTF_8));
             bw.write(contenuHeader+contenu+contenuFooter);
             System.out.println("Fichier créé avec succès : " + fichier.getAbsolutePath());
         } catch (IOException e) {
