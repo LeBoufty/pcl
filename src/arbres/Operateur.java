@@ -113,13 +113,11 @@ public enum Operateur {
                 return res;
             case DIFFERENT:
                 res += "CMP x0, x1 // Opération " + this + "\n";
-                res += "MOVNE x0, #1 // Opération " + this + "\n";
-                res += "MOVEQ x0, #0 // Opération " + this + "\n";
+                res += "CSET x0, NE // Opération " + this + "\n";
                 return res;
             case EGAL:
                 res += "CMP x0, x1 // Opération " + this + "\n";
-                res += "MOVEQ x0, #1 // Opération " + this + "\n";
-                res += "MOVNE x0, #0 // Opération " + this + "\n";
+                res += "CSET x0, EQ // Opération " + this + "\n";
                 return res;
             case AND:
                 return "AND x0, x0, x1 // Opération " + this + "\n";

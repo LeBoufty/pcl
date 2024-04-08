@@ -225,8 +225,7 @@ ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 CMP x0, x1 // Opération =
-MOVEQ x0, #1 // Opération =
-MOVNE x0, #0 // Opération =
+CSET x0, EQ // Opération =
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
