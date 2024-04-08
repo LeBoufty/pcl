@@ -52,6 +52,10 @@ public class Constante extends Evaluable {
         return "MOVZ x0, #" + valeur + "\nSUB sp, sp, #16 // On décrémente le pointeur de pile \nSTR x0, [sp] // On met la constante en pile \n";
     }
 
+    public String produire(TDS_gen tds_actuelle) {
+        return this.produire();
+    }
+
     public void TDS_creation(TDS_gen Parent, int variable_type) {
         // Rien à faire
     }

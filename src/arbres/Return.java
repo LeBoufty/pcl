@@ -27,7 +27,7 @@ public class Return implements Noeud {
         return this.estVide() || this.valeur.valide();
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
          System.out.println("Return : " + valeur);
 
          return "";

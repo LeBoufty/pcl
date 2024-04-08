@@ -19,9 +19,9 @@ public class Put implements Noeud {
         return this.expression.valide();
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         String res = "// Printf\n";
-        res += this.expression.produire();
+        res += this.expression.produire(tds_parent);
         res += "MOV x1, x0\n";
         res += "ADRP x0, format\n";
         res += "ADD x0, x0, :lo12:format\n";

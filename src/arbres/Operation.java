@@ -51,7 +51,7 @@ public class Operation extends Evaluable {
         return this.gauche.toString() +" "+ this.operateur.toString() +" "+ this.droite.toString();
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("Operation gauche : " + this.gauche);
         System.out.println("Operation droite : " + this.droite);
 
@@ -64,9 +64,9 @@ public class Operation extends Evaluable {
             res += "STR x0, [sp] // On met le résultat en pile\n";
             return res;
         }
-
-        res += this.gauche.produire();
-        res += this.droite.produire();
+        
+        res += this.gauche.produire(tds_parent);
+        res += this.droite.produire(tds_parent);
 
         // On met les premières valeurs de la pile dans x0 et x1
         res += "LDR x1, [sp] // On met l'opérande droite dans x1\n";

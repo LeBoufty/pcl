@@ -2,6 +2,7 @@ package arbres;
 
 import outils.TDS.TDS_gen;
 import outils.Logger;
+// ?import outils.Arbre_Syntaxique.TDS;
 
 public class Variable extends Evaluable {
     public int identifiant;
@@ -28,16 +29,17 @@ public class Variable extends Evaluable {
         return true;
     }
 
-    public String produire() {
+
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println(nom + " var type : " + type);
         System.out.println(nom + " var id : " + identifiant);
 
         String res = "";
 
         // On va chercher la variable dans la TDS
-        int depl = this.tds_parent.get_index(this.identifiant)*8;
-        int num_imbr_ici = this.tds_parent.get_num_imbr();
-        int num_imbr_var = this.tds_parent.search_imbrication_TDS(this.identifiant);
+        int depl = tds_actuelle.get_index(this.identifiant)*16;
+        int num_imbr_ici = tds_actuelle.get_num_imbr();
+        int num_imbr_var = tds_actuelle.search_imbrication_TDS(this.identifiant);
 
         System.out.println("Deplacement : " + depl + " Num imbrication : " + num_imbr_ici + " Num imbrication var : " + num_imbr_var);
 

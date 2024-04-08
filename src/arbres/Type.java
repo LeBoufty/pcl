@@ -14,11 +14,9 @@ public enum Type implements IType, Noeud {
         return NULLTYPE;
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("Type");
-
         return "";
-// TODO : probablement rien à produire, c'est sémantique.
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {

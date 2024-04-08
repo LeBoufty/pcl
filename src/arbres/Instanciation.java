@@ -19,7 +19,7 @@ public abstract class Instanciation implements Noeud {
         return true;
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println(nom + " Instanciation type : " + type);
         return "";
     }

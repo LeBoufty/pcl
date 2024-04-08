@@ -1,12 +1,14 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public class Declaration extends Instanciation {
     public Evaluable valeur;
     public Declaration(IType t, String nom) {super(t, nom); valeur=null;}
     public Declaration(IType t, String nom, Evaluable valeur) {super(t, nom); this.valeur = valeur;}
 
     @Override
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println(nom + " type declaration : " + type);
         System.out.println(nom + " id declaration : " + variable.identifiant);
         System.out.println(nom + " valeur declaration : " + valeur);
@@ -14,7 +16,7 @@ public class Declaration extends Instanciation {
         String res = "// Declaration de la variable " + nom + "\n";
     
         if (valeur != null) {
-            res += valeur.produire(); // Le résultat est en sommet de pile 
+            res += valeur.produire(tds_parent); // Le résultat est en sommet de pile 
         }
         else {
             res += "SUB sp, sp, #16 // Allocation de 16 octets pour la variable " + nom + "\n";
