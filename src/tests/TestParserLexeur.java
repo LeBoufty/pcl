@@ -28,6 +28,7 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/recordiii.adb";
         //programme = "Programmes/Fonctionne/testctrlsem.adb";
         programme = "Programmes/testAdasimples/Addition1.ada";
+        programme = "Programmes/testAdasimples/TurboMegaTest.ada";
 
         // Tests sémantiques
         // programme = "Programmes/testsem/divparzero.adb";
