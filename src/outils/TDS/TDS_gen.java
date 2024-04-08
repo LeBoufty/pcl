@@ -242,7 +242,7 @@ public class TDS_gen {
                 return entry.getKey();
             }
         }
-
+        // Logger.error("TDS_gen : Variable : " + identifiant + " non trouvée dans la TDS : " + this.nom_fonction);
         return null;
     }
 
@@ -250,9 +250,9 @@ public class TDS_gen {
         TDS_gen TDS_parent = this;
 
         while(TDS_parent != null) {
-            int index = TDS_parent.get_index(nom);
+            Integer index = TDS_parent.get_index(nom);
 
-            if(index != -1) {
+            if(index != null) {
                 return index;
             }
 
