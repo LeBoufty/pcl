@@ -3,6 +3,8 @@
 .section .data
 format :
 .string "%d\n"
+erreur_division_msg :
+.string "Erreur : division par zéro\n"
 
 .section .text
 main :
@@ -11,7 +13,7 @@ STP x29, lr, [sp, #-16]! // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 
 // Declaration de la variable a
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable a
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable a
 
 // Declaration de la variable y
 MOVZ x0, #100
@@ -19,44 +21,34 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met la constante en pile 
 
 // Declaration de la variable z
-SUB sp, sp, #16 // Allocation de 8 octets pour la variable z
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable z
 
 // Instructions de la procédure addition1
 MOVZ x0, #5
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-40] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 MOVZ x0, #3
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 
 // Opération
-MOVZ x0, #6
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-MOVZ x0, #4
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-ADD x0, x0, x1 // Opération +
+MOVZ x0, #10 // On met le résultat de l'opération en x0
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-40] // z Mise en pile var
+LDR x0, [x29, #-80] // z Mise en pile var
 SUB sp, sp, #16 // z Mise en pile var
 STR x0, [sp] // z Mise en pile var
 MOV x1, x0
@@ -66,7 +58,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-32] // y Mise en pile var
+LDR x0, [x29, #-64] // y Mise en pile var
 SUB sp, sp, #16 // y Mise en pile var
 STR x0, [sp] // y Mise en pile var
 MOV x1, x0
@@ -76,7 +68,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOV x1, x0
@@ -108,4 +100,9 @@ SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE set_global_var // On boucle tant que x1 != 0
 STR x2, [x29, x0] // On charge la valeur de la variable
 RET
+
+erreur_division : // Fonction d'erreur de division
+LDR x0, =erreur_division_msg // On charge le message d'erreur
+BL printf // On affiche le message d'erreur
+BL exit_program // On quitte le programme
 
