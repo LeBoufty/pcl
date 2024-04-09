@@ -15,6 +15,8 @@ procedure TurboMegaTest is
     c: Integer;
     d: Integer;
     e: Integer;
+    f: Boolean;
+    g: Boolean;
 
 begin
     a:= 1;
@@ -27,6 +29,8 @@ begin
     Put(c);
     Put(d);
     Put(e);
+    b := a+ -1;
+    Put(b);
 
     a:=2;
     b:=3;
@@ -43,5 +47,29 @@ begin
     Put(a);
     Put(b);
 
+
+
+    Put(3=3);
+    Put(3/=3);
+    Put(false=false);
+    --Put((false=false)/=(true=true));
+    f:=true;
+    --f:= f=((true=true) = (f=f));
+    g:=f;
+    Put(f);
+    Put(2<=3);
+    Put(3>=2);
+    Put(2>=2);
+    Put(2<=2);
+    Put(2>=3);
+    Put(2<3);
+    Put(2>3);
+    Put(2=3);
+    Put(2/=3);
+    Put(2=2);
+    Put(2/=2);
+    Put(f=g);
+    Put(f*g);
+    Put(g);
     
 end TurboMegaTest;

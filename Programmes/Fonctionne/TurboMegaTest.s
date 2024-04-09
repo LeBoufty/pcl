@@ -28,6 +28,12 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable d
 // Declaration de la variable e
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable e
 
+// Declaration de la variable f
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable f
+
+// Declaration de la variable g
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable g
+
 // Instructions de la procédure turbomegatest
 MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -156,6 +162,38 @@ ADD sp, sp, #16
 LDR x0, [x29, #-56] // e Mise en pile var
 SUB sp, sp, #16 // e Mise en pile var
 STR x0, [sp] // e Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+
+// Opération
+LDR x0, [x29, #-24] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x0, [sp] // Opération moins
+NEG x0, x0 // Opération moins
+STR x0, [sp] // Opération moins
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+// Printf
+LDR x0, [x29, #-32] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -297,6 +335,253 @@ ADD sp, sp, #16
 LDR x0, [x29, #-32] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #0 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+LDR x0, [x29, #-64] // f Mise en pile var
+SUB sp, sp, #16 // f Mise en pile var
+STR x0, [sp] // f Mise en pile var
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-72] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+// Printf
+LDR x0, [x29, #-64] // f Mise en pile var
+SUB sp, sp, #16 // f Mise en pile var
+STR x0, [sp] // f Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #0 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #0 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #0 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #1 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+MOVZ x0, #0 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+LDR x0, [x29, #-64] // f Mise en pile var
+SUB sp, sp, #16 // f Mise en pile var
+STR x0, [sp] // f Mise en pile var
+LDR x0, [x29, #-72] // g Mise en pile var
+SUB sp, sp, #16 // g Mise en pile var
+STR x0, [sp] // g Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x0, x1 // Opération =
+CSET x0, EQ // Opération =
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+
+// Opération
+LDR x0, [x29, #-64] // f Mise en pile var
+SUB sp, sp, #16 // f Mise en pile var
+STR x0, [sp] // f Mise en pile var
+LDR x0, [x29, #-72] // g Mise en pile var
+SUB sp, sp, #16 // g Mise en pile var
+STR x0, [sp] // g Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+MUL x0, x0, x1 // Opération *
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-72] // g Mise en pile var
+SUB sp, sp, #16 // g Mise en pile var
+STR x0, [sp] // g Mise en pile var
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
