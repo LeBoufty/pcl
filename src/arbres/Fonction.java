@@ -86,7 +86,7 @@ public class Fonction implements Noeud {
         }
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("=== Fonction ===");
         System.out.println(nom + " fonc type : " + type);
         System.out.println(nom + " fonc params : " + params);
@@ -104,8 +104,11 @@ public class Fonction implements Noeud {
         int taille_locale = this.tds.get_taille_variables_locales();
         res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
 
-        for (Noeud n : ((Bloc) instructions).instructions) {
-            res += n.produire();
+        // Produire les instructions
+        if (instructions instanceof Bloc) {
+            res += ((Bloc) instructions).produire(tds);
+        } else {
+            res += ((Return) instructions).produire(tds);
         }
 
         res += "ADD SP, SP, " + taille_locale + " // Libération de l'espace pour les variables locales\n";

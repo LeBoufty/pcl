@@ -39,7 +39,7 @@ public class InstructionWhile implements Noeud {
         }
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("InstructionWhile");
 
         return "";

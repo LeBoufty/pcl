@@ -37,7 +37,7 @@ public class Struct implements Noeud, IType {
         return sortie;
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println(nom);
 
         return "";

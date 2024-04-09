@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.TDS.TDS_gen;
+
 public enum OperateurUnaire {
     // Placeholder pour quand on crée l'opération
     NONE("", Type.NULLTYPE),
@@ -35,7 +37,7 @@ public enum OperateurUnaire {
         }
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         String res = "";
         switch (this) {
             case MOINS:
@@ -44,7 +46,7 @@ public enum OperateurUnaire {
                 res += "STR x0, [sp] // Opération moins\n";
                 return res;
             case NOT:
-                return "EOR x0, x0, #1 // Opération not\n"; // TODO: Vérifier que ça marche
+                return "EOR x0, x0, #1 // Opération not\n";
             default:
                 return "";
         }

@@ -39,7 +39,14 @@ public class Bloc implements Noeud {
     public String produire() {
         System.err.println("Bloc");
         for (Noeud noeud : instructions) {
-            noeud.produire();
+            noeud.produire(tds_parent);
+        }
+        return "";
+    }
+
+    public String produire(TDS_gen tds_actuelle){
+        for (Noeud noeud : instructions) {
+            noeud.produire(tds_actuelle);
         }
         return "";
     }

@@ -89,7 +89,7 @@ public class Procedure implements Noeud {
         }
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("procedure "+nom+" is");
         
         String res = "";
@@ -108,11 +108,11 @@ public class Procedure implements Noeud {
         }
 
         for (Noeud noeud : ((Bloc) definitions).instructions) {
-            res += noeud.produire()+"\n";
+            res += noeud.produire(tds)+"\n";
         }
         res += "// Instructions de la procédure "+nom+"\n";
         for (Noeud noeud : ((Bloc) instructions).instructions) {
-            res += noeud.produire()+"\n";
+            res += noeud.produire(tds)+"\n";
         }
 
         if (this.tds.num_reg == 0) {

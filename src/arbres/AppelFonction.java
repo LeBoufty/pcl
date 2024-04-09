@@ -83,6 +83,11 @@ public class AppelFonction extends Evaluable {
         return res;
     }
 
+    public String produire(TDS_gen tds_actuelle){
+        this.tds_parent = tds_actuelle;
+        return this.produire();
+    }
+
     public void TDS_creation(TDS_gen Parent, int variable_type) {
         // Rien à faire
     }

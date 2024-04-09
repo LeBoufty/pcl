@@ -27,7 +27,8 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/williamfaure.adb";
         //programme = "Programmes/Fonctionne/recordiii.adb";
         //programme = "Programmes/Fonctionne/testctrlsem.adb";
-        // programme = "Programmes/testAdasimples/Addition9.ada";
+        programme = "Programmes/testAdasimples/Addition1.ada";
+        programme = "Programmes/testAdasimples/TurboMegaTest.ada";
 
         // Tests sémantiques
         // programme = "Programmes/testsem/divparzero.adb";
@@ -70,7 +71,7 @@ public class TestParserLexeur {
         //Logger.debug(AST.getTDS().toString());
         boolean valide = AST.valide();
         Logger.debug("Valide : " + valide);
-        AST.produire(); 
+        AST.produire(null); 
         GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
         // GestionFichier.produirefichier("test.s");
 

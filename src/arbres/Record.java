@@ -23,7 +23,7 @@ public class Record implements Noeud {
         return type.valide();
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
          System.out.println("Record");
 
         return "";

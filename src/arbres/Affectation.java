@@ -38,13 +38,13 @@ public class Affectation implements Noeud {
         return sortie;
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("Affectation gauche : " + this.gauche.identifiant);
         System.out.println("Affectation droite : " + this.droite);
         
         String res = "";
 
-        res += this.droite.produire(); // Le résultat est en sommet de pile
+        res += this.droite.produire(tds_parent); // Le résultat est en sommet de pile
         res += "LDR x2, [sp] // On met la valeur de la variable droite dans x0 \n";
         
         // On va chercher la variable dans la TDS
