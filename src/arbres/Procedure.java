@@ -3,7 +3,6 @@ package arbres;
 
 import outils.GestionFichier;
 import outils.Logger;
-import outils.Arbre_Syntaxique.TDS;
 import outils.TDS.TDS_gen;
 
 public class Procedure implements Noeud {
