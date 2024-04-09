@@ -324,4 +324,43 @@ public class TDS_gen {
         }
         return taille;
     }
+
+    public boolean valide() {
+        // Vérifie si la TDS est valide
+        // Vérifie pour sa TDS si deux variables n'ont pas le même nom
+
+        for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
+            if (entry.getValue().variable == null) { // Éviter les erreurs de pointeurs null
+                continue;
+            }
+            for (Map.Entry<Integer, Ligne_TDS> entry2 : this.TDS_vari.entrySet()) {
+                if (entry2.getValue().variable == null) { // Éviter les erreurs de pointeurs null
+                    continue;
+                }
+
+                if (entry.getKey() != entry2.getKey() && entry.getValue().variable.nom.equals(entry2.getValue().variable.nom)) {
+                    Logger.error("TDS_gen : Deux variables ont le même nom : " + entry.getValue().variable.nom + " dans la TDS : " + this.nom_fonction);
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
+
+    public boolean valide_et_enfants() {
+        // Vérifie si la TDS est valide et si ses enfants le sont aussi
+        if (!this.valide()) {
+            return false;
+        }
+
+        for (TDS_gen tds : this.tds_childrens) {
+            if (!tds.valide_et_enfants()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

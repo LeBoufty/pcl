@@ -3,6 +3,7 @@ package arbres;
 
 import outils.GestionFichier;
 import outils.Logger;
+import outils.Arbre_Syntaxique.TDS;
 import outils.TDS.TDS_gen;
 
 public class Procedure implements Noeud {
@@ -85,7 +86,11 @@ public class Procedure implements Noeud {
         Logger.milestone("Fin de la création des TDS");
         if (Parent == null) {
             this.TDS_link(null);
-            TDS_variable();
+            this.TDS_variable();
+            if (!this.tds.valide_et_enfants()) {
+                Logger.error("TDS invalide - Arrêt du programme");
+                System.exit(1);
+            }
         }
     }
 

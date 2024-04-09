@@ -93,7 +93,7 @@ public class Variable extends Evaluable {
     }
 
     public void TDS_link(TDS_gen Parent) {
-        this.tds_parent = Parent;
+        // this.tds_parent = Parent; // Ne pas le faire ici
     }
 
     public TDS_gen getTDS() {
