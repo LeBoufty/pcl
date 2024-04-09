@@ -85,12 +85,14 @@ public class Procedure implements Noeud {
         
         Logger.milestone("Fin de la création des TDS");
         if (Parent == null) {
+            Logger.milestone("Début de la vérification des TDS");
             this.TDS_link(null);
             this.TDS_variable();
             if (!this.tds.valide_et_enfants()) {
                 Logger.error("TDS invalide - Arrêt du programme");
                 System.exit(1);
             }
+            Logger.milestone("Fin de la vérification des TDS");
         }
     }
 
