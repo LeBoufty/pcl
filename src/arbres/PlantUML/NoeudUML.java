@@ -87,6 +87,19 @@ public class NoeudUML {
                     enfants.add(new NoeudUML(e));
                 }
                 break;
+            case "ProcedureParams":
+                this.titre = "Procédure";
+                ProcedureParams prp = (ProcedureParams) n;
+                this.valeur = Repertoire.getNewID(prp);
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(prp.nom));
+                for (Instanciation v2 : prp.params) {
+                    enfants.add(new NoeudUML(v2));
+                }
+                enfants.add(new NoeudUML(prp.definitions));
+                enfants.add(new NoeudUML(prp.instructions));
+                break;
             case "Fonction":
                 this.titre = "Fonction";
                 Fonction f = (Fonction) n;
