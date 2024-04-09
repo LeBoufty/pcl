@@ -97,6 +97,7 @@ public class NoeudUML {
                 for (Instanciation v2 : prp.params) {
                     enfants.add(new NoeudUML(v2));
                 }
+                
                 enfants.add(new NoeudUML(prp.definitions));
                 enfants.add(new NoeudUML(prp.instructions));
                 break;
