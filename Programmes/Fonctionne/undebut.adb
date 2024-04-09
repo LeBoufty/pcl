@@ -16,6 +16,13 @@ procedure unDebut is
         return aire ;
     end perimetreRectangle;
 
+    procedure testProcedure(bo : integer) is
+    o : integer;
+    a : integer;
+    begin
+        o := bo;
+    end testProcedure;
+
     -- VARIABLES
 choix : integer ;
 valeur : integer ;

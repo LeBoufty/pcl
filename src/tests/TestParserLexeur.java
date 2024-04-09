@@ -38,7 +38,7 @@ public class TestParserLexeur {
         //programme = "Programmes/testsem/varnondef.adb";
         //programme = "Programmes/testsem/erreur2.adb";
         // programme = "Programmes/testsem/erreur6.adb";
-
+        programme = "Programmes/Fonctionne/undebut.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();

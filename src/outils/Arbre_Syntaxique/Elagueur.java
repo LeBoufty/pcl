@@ -576,6 +576,58 @@ public class Elagueur {
                 return traduire(noeud.getEnfants().get(0));
             case "£IDFInterro":
                 return traduire(noeud.getEnfants().get(0));
+            case "£PROCEDUREDECL":
+            try {
+            
+                // Va chercher le nom de la fonction
+                Noeud_Non_Terminal noeud_name = (Noeud_Non_Terminal) noeud.getEnfants().get(noeud.getEnfants().size() - 1);
+                
+                String name_fun = ((Noeud_Terminal) noeud_name.getEnfants().get(noeud_name.getEnfants().size() - 1)).getValeurIdf();
+
+                int code_name = ((Noeud_Terminal)noeud_name.getEnfants().get(noeud_name.getEnfants().size() - 1)).getCodeIdf();
+
+                
+                int slider = 0;
+                Noeud_A noeud_temp = noeud.getEnfants().get(0);
+                if (noeud_temp instanceof Noeud_Non_Terminal && ((Noeud_Non_Terminal)noeud_temp).getCode() == nonterminaux.get("£BEGIN")) {
+                    slider = 1;
+                }
+                else if (!((Noeud_Terminal) noeud.getEnfants().get(0)).getValeurIdf().equals(name_fun)) { // Si le nom de la fonction est différent du nom de la fonction après end
+                    Logger.error("Erreur : les deux noms de la fonction ne sont pas identiques.");
+                    throw new Exception("Erreur : les deux noms de la fonction ne sont pas identiques.");
+                }
+
+                ProcedureParams fonc = new ProcedureParams(name_fun);
+                tds.ajouter(code_name, fonc);
+
+
+                Noeud_Non_Terminal decletoile = (Noeud_Non_Terminal) noeud.getEnfants().get(2 - slider);
+
+                if (decletoile.getCode() != nonterminaux.get("£NAME")) {
+                    fonc.definitions = traduire(decletoile);
+                }
+
+                Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)noeud.getEnfants().get(noeud.getEnfants().size() - 1));
+
+                while (!getNomNT(paramplus.getEnfants().get(0).getCode()).equals("£PARAMUnique")) {
+                    paramplus = (Noeud_Non_Terminal) paramplus.getEnfants().get(0);
+                }
+
+                for (Noeud_A na : paramplus.getEnfants()) {
+                    fonc.params.add((Parametre)traduire(na));
+                }
+
+                fonc.instructions = traduire(noeud.getEnfants().get(1 - slider));
+
+                return fonc;
+                    
+                } catch (Exception e) {
+                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
+                    Error_list.traduction = true;
+                    // Logger.error(e.getMessage());
+                    return null;
+                }
+                
             case "£FUNCTIONDECL":
                 try {
             
@@ -733,7 +785,8 @@ public class Elagueur {
                 String champnom = ((Noeud_Terminal)paramplusacces.getEnfants().get(0)).getValeurIdf();
                 Acces acces = new Acces(recordvar, champnom);
                 return acces;
-        }   
+        }
+        Logger.error("Erreur : noeud non reconnu lors de la traduction");
         return null;
     }
 
