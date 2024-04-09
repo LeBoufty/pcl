@@ -3,7 +3,6 @@ package arbres;
 import java.util.ArrayList;
 
 import outils.Logger;
-import outils.GestionFichier;
 import outils.TDS.TDS_gen;
 
 public class ProcedureParams implements Noeud {
@@ -93,6 +92,7 @@ public class ProcedureParams implements Noeud {
     public void TDS_creation(TDS_gen Parent, int variable_type) {
         // Cree une nouvelle TDS pour la fonction
         this.tds = new TDS_gen(this, Parent, nom);
+        this.tds.est_procedure = true;
         this.id = this.tds.num_reg;
         Logger.info("Création de la TDS de la procédure " + nom + " n°" + this.id);
         

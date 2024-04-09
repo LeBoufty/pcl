@@ -17,10 +17,8 @@ procedure unDebut is
     end perimetreRectangle;
 
     procedure testProcedure(bo : integer) is
-    o : integer;
-    a : integer;
     begin
-        o := bo;
+        bo := bo;
     end testProcedure;
 
     -- VARIABLES

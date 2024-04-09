@@ -9,8 +9,9 @@ erreur_division_msg :
 .section .text
 main :
 
-STP x29, lr, [sp, #-16]! // Sauvegarde du pointeur de pile et du lien de retour
+STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
+SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 
 
@@ -29,7 +30,7 @@ MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 stp x29, x30, [sp, #-16]! // Sauvegarde des registres
@@ -38,15 +39,15 @@ str x0, [sp, #16] // Mettre le paramètre 1 dans la pile
 bl F1 // Appel de la fonction
 ldp x29, x30, [sp], #16 // Restauration des registres
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 
 // Opération
-LDR x0, [x29, #-32] // valeur Mise en pile var
+LDR x0, [x29, #-64] // valeur Mise en pile var
 SUB sp, sp, #16 // valeur Mise en pile var
 STR x0, [sp] // valeur Mise en pile var
-LDR x0, [x29, #-24] // choix Mise en pile var
+LDR x0, [x29, #-48] // choix Mise en pile var
 SUB sp, sp, #16 // choix Mise en pile var
 STR x0, [sp] // choix Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -57,7 +58,7 @@ ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 
@@ -65,7 +66,7 @@ MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 

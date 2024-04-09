@@ -22,6 +22,8 @@ public class TDS_gen {
     public int num_imbr;
     public int num_reg;
     public String nom_fonction;
+    public boolean est_fonction = false;
+    public boolean est_procedure = false;
 
 
     public HashMap<Integer, Ligne_TDS> TDS_vari;
