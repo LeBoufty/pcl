@@ -28,16 +28,20 @@ begin
     a := a+ -1;
     b := 2;
     b := -1 + b;
+    Put(a);
     Put(b);
 
-    a:=2;
-    b:=3;
+    a:=2457;
+    b:=76;
     c:=a/b;
+    c:=10;
     d:=b/a/c;
+    e:=50/2;
     Put(a);
     Put(b);
     Put(c);
     Put(d);
+    Put(e);
 
     a:=2;
     b:=3;

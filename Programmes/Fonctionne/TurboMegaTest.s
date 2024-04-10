@@ -457,6 +457,16 @@ STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable g
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
 LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
@@ -466,14 +476,14 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ x0, #2
+MOVZ x0, #2457
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-MOVZ x0, #3
+MOVZ x0, #76
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
@@ -497,6 +507,13 @@ BEQ erreur_division // Opération /
 SDIV x0, x0, x1 // Opération /
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+MOVZ x0, #10
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
@@ -536,6 +553,15 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 STR x2, [x29, #-96] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
+
+// Opération
+MOVZ x0, #25 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-112] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
 // Printf
 LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
@@ -570,6 +596,16 @@ ADD sp, sp, #16
 LDR x0, [x29, #-96] // d Mise en pile var
 SUB sp, sp, #16 // d Mise en pile var
 STR x0, [sp] // d Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-112] // e Mise en pile var
+SUB sp, sp, #16 // e Mise en pile var
+STR x0, [sp] // e Mise en pile var
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
