@@ -8,10 +8,13 @@ procedure Iff is
 
 begin
     a:= 5;
+    put(a);
     if a = 5 then
         b:= 6;
+        put(b);
     else
         b:= 7;
+        put(b);
     end if;
     c := a + b; 
 end Iff;

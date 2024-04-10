@@ -45,10 +45,11 @@ public class Bloc implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle){
+        String res = "";
         for (Noeud noeud : instructions) {
-            noeud.produire(tds_actuelle);
+            res += noeud.produire(tds_actuelle);
         }
-        return "";
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int variable_type) {

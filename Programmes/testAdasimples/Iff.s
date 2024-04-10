@@ -30,26 +30,54 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// if 1104106489
+// Printf
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// if 1732398722
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then1104106489 // Branchement si la condition est vraie
+BNE then1732398722 // Branchement si la condition est vraie
 MOVZ x0, #7
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B end1104106489 // Branchement à la fin du if
-then1104106489 :
+// Printf
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+B end1732398722 // Branchement à la fin du if
+then1732398722 :
 MOVZ x0, #6
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-end1104106489 :
+// Printf
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+end1732398722 :
 
 
 // Opération
