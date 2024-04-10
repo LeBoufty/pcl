@@ -1,6 +1,7 @@
 package arbres;
 
 
+import outils.GestionFichier;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -60,10 +61,25 @@ public class InstructionIf implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
+        String ifid = this.hashCode() + "";
+        String res = "// if "+ifid+"\n";
+        this.condition.produire(tds_actuelle);
+        res += "LDR x0, [sp] // Chargement de la condition\n";
+        res += "ADD sp, sp, #16 // Décrémentation du pointeur de pile\n";
         System.out.println("InstructionIf");
+        res += "CMP x0, #0 // Comparaison de la condition\n";
+        res += "BNE then"+ifid+" // Branchement si la condition est vraie\n";
+        if (this.sinon != null) {
+            res += this.sinon.produire(tds_actuelle);
+            res += "B end"+ifid+" // Branchement à la fin du if\n";
+        }
+        res += "then"+ifid+" :\n";
+        res += this.alors.produire(tds_actuelle);
+        res += "end"+ifid+" :\n";
 
-        return "";
-// TODO : on l'a fait en ASM.
+        GestionFichier.AddcontenuFooter(res);
+
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
