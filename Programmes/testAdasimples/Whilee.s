@@ -31,7 +31,7 @@ while94438417 :
 LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
-MOVZ x0, #0
+MOVZ x0, #6
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x1, [sp] // On met l'opérande droite dans x1
