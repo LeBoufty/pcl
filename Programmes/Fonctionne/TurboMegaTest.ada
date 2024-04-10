@@ -41,6 +41,17 @@ begin
     Put(c);
     Put(d);
 
+    a:=2;
+    b:=3;
+    c:=a*b;
+    d:=b*a;
+    e:=a*1;
+    Put(a);
+    Put(b);
+    Put(c);
+    Put(d);
+    Put(e);
+
     a:=1;
     b := somme4(a,a,a,a);
     c:=3;
