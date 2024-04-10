@@ -540,6 +540,8 @@ public class Elagueur {
                 return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.DIV);
             case "£REM":
                 return new Operation((Evaluable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)), Operateur.REM);
+            case "£EXPRESSIONparenthese":
+                return traduire(noeud.getEnfants().get(0));
             case "£ASSERTION":
                 if (noeud.getEnfants().size()==1) return traduire(noeud.getEnfants().get(0));
                 return new Affectation((Variable) traduire(noeud.getEnfants().get(1)), (Evaluable) traduire(noeud.getEnfants().get(0)));

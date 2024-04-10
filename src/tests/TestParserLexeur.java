@@ -28,7 +28,8 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/recordiii.adb";
         //programme = "Programmes/Fonctionne/testctrlsem.adb";
         programme = "Programmes/testAdasimples/Addition1.ada";
-        programme = "Programmes/Fonctionne/TurboMegaTest.ada";
+        //programme = "Programmes/Fonctionne/TurboMegaTest.ada";
+        programme = "Programmes/testAdasimples/Parentheses.ada";
 
         // Tests sémantiques
         // programme = "Programmes/testsem/divparzero.adb";
@@ -38,7 +39,7 @@ public class TestParserLexeur {
         //programme = "Programmes/testsem/varnondef.adb";
         //programme = "Programmes/testsem/erreur2.adb";
         // programme = "Programmes/testsem/erreur6.adb";
-        programme = "Programmes/Fonctionne/undebut.adb";
+        //programme = "Programmes/Fonctionne/undebut.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
