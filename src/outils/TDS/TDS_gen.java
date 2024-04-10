@@ -6,8 +6,9 @@ import java.util.Map;
 import outils.TDS.Ligne_TDS; // Faut le laisser pour l'ordi Arnaud
 
 import outils.Logger;
-
+import arbres.Fonction;
 import arbres.Noeud;
+import arbres.ProcedureParams;
 // ?import outils.Arbre_Syntaxique.TDS;
 import arbres.Variable;
 
@@ -27,6 +28,7 @@ public class TDS_gen {
 
 
     public HashMap<Integer, Ligne_TDS> TDS_vari;
+    public HashMap<Integer, Ligne_TDS_func> TDS_function;
     public int num_variables = 0;
     public int num_parametres = 0;
 
@@ -364,5 +366,26 @@ public class TDS_gen {
         }
 
         return true;
+    }
+
+    public void TDS_add_func_proc(Noeud func_proc) {
+        // Ajoute une fonction à la TDS
+        if (this.TDS_function == null) {
+            this.TDS_function = new HashMap<Integer, Ligne_TDS_func>();
+        }
+
+        if (func_proc instanceof Fonction) {
+            Ligne_TDS_func func = new Ligne_TDS_func((Fonction) func_proc);
+            this.TDS_function.put(func_proc.getTDS().num_reg, func);
+            return;
+        }
+        if (func_proc instanceof ProcedureParams) {
+            Ligne_TDS_func proc = new Ligne_TDS_func((ProcedureParams) func_proc);
+            this.TDS_function.put(func_proc.getTDS().num_reg, proc);
+            return;
+        }
+
+        Logger.error("TDS_gen : Fonction ou procédure invalide");
+        
     }
 }

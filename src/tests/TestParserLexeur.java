@@ -36,7 +36,7 @@ public class TestParserLexeur {
         // programme = "Programmes/testsem/fctnondef.adb";
         //programme = "Programmes/testsem/mauvaisop.adb";
         //programme = "Programmes/testsem/mauvaistype.adb";
-        //programme = "Programmes/testsem/varnondef.adb";
+        programme = "Programmes/testsem/varnondef.adb";
         //programme = "Programmes/testsem/erreur2.adb";
         // programme = "Programmes/testsem/erreur6.adb";
         //programme = "Programmes/Fonctionne/undebut.adb";

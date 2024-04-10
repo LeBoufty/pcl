@@ -36,7 +36,7 @@ ADD sp, sp, #16 // On dépile la valeur
 stp x29, x30, [sp, #-16]! // Sauvegarde des registres
 str x0, [sp, #0] // Mettre le paramètre 0 dans la pile
 str x0, [sp, #16] // Mettre le paramètre 1 dans la pile
-bl F1 // Appel de la fonction
+bl F4 // Appel de la fonction
 ldp x29, x30, [sp], #16 // Restauration des registres
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 

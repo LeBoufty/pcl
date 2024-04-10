@@ -9,7 +9,5 @@ procedure mauvaistype is
     sortie: Boolean;
 
 begin
-    a := "ejnedjd";
-    b := f + 2;
-    a := -4;
+    a := 'a';
 end mauvaistype;

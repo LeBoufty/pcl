@@ -2,9 +2,8 @@ with Ada.Text_IO;use Ada.Text_IO;
 
 --affectation d'une var non def
 
-procedure varnondefis
+procedure varnondef is
     a: Integer;
-    b: Integer;
     c: String;
     sortie: Boolean;
 

@@ -5,6 +5,7 @@ import outils.Error_list;
 import outils.Logger;
 import outils.Lexeur.Analyseur_L;
 import outils.Syntaxe.CSVAnalyseur_S;
+import outils.GestionFichier;
 
 
 public class Test_Main {
@@ -15,6 +16,10 @@ public class Test_Main {
         //String programme = "Programmes/Fonctionne/undebut.adb";
         //programme = "Programmes/testsem/erreur6.adb";
         String programme = "Programmes/Fonctionne/TurboMegaTest.ada";
+        programme = "Programmes/testsem/varnondef.adb";
+        programme = "Programmes/testsem/fctnondef.adb";
+        programme = "Programmes/testsem/mauvaistype.adb";
+        programme = "Programmes/testsem/erreur6.adb";
         
 
         // Création de l'analyseur lexical
@@ -63,11 +68,13 @@ public class Test_Main {
             Logger.info("Valide : " + valide);
         } else {
             Logger.error("Valide : " + valide);
+            Logger.error("Arrêt du programme");
+            return;
         }
 
         Logger.info(AST.toString());
-
-
+        
+        GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
 
         } catch (Exception e) {
             Logger.error("Erreur, arrêt du programme");
