@@ -99,24 +99,3 @@ LDR x0, =erreur_division_msg // On charge le message d'erreur
 BL printf // On affiche le message d'erreur
 BL exit_program // On quitte le programme
 
-// if 1104106489
-LDR x0, [sp] // Chargement de la condition
-ADD sp, sp, #16 // Décrémentation du pointeur de pile
-CMP x0, #0 // Comparaison de la condition
-BNE then1104106489 // Branchement si la condition est vraie
-MOVZ x0, #7
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
-ADD sp, sp, #16 // On dépile la valeur 
-B end1104106489 // Branchement à la fin du if
-then1104106489 :
-MOVZ x0, #6
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
-ADD sp, sp, #16 // On dépile la valeur 
-end1104106489 :
-

@@ -1,7 +1,5 @@
 package arbres;
 
-
-import outils.GestionFichier;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -76,8 +74,6 @@ public class InstructionIf implements Noeud {
         res += "then"+ifid+" :\n";
         res += this.alors.produire(tds_actuelle);
         res += "end"+ifid+" :\n";
-
-        GestionFichier.AddcontenuFooter(res);
 
         return res;
     }
