@@ -13,21 +13,17 @@ public class Fonction implements Noeud {
     public String nom;
     public IType type;
     public ArrayList<Parametre> params;
-    public Noeud definitions;
-    public Noeud instructions;
+    public Bloc definitions;
+    public Bloc instructions;
     public TDS_gen tds = null;
 
     public Fonction(String nom, Parametre[] parametres, IType t, Noeud def, Noeud inst) {
         this.nom = nom;
         this.type = t;
-        this.definitions = def;
-        this.instructions = inst;
-        if (!(def instanceof Bloc)) {
-            this.definitions = new Bloc(new Noeud[] {def});
-        }
-        if (!(inst instanceof Bloc)) {
-            this.instructions = new Bloc(new Noeud[] {inst});
-        }
+        if (!(def instanceof Bloc)) this.definitions = new Bloc(new Noeud[] {def});
+        else this.definitions = (Bloc) def;
+        if (!(inst instanceof Bloc)) this.instructions = new Bloc(new Noeud[] {inst});
+        else this.instructions = (Bloc) inst;
         this.params = new ArrayList<>();
         for (Parametre p : parametres) {
             this.params.add(p);
@@ -39,6 +35,7 @@ public class Fonction implements Noeud {
     public Fonction(String nom) {
         this(nom, new Parametre[] {}, Type.NULLTYPE, new Bloc(), new Bloc());
     }
+
     public String toString() {
         String sortie = "function " + this.nom + "(";
         ArrayList<String> paramStrings = new ArrayList<>();
@@ -51,6 +48,7 @@ public class Fonction implements Noeud {
         sortie += instructions.toString() + " end " + this.nom +";";
         return sortie;
     }
+
     public boolean valide() {
         boolean sortie = true;
         for (Instanciation p : params) {
@@ -60,50 +58,29 @@ public class Fonction implements Noeud {
             Logger.error("Nom de fonction invalide : "+nom);
             sortie = false;
         }
-        if (!(instructions instanceof Bloc) && !(instructions instanceof Return)) {
+        if (!(instructions.instructions.get(instructions.instructions.size()-1) instanceof Return)) {
             Logger.error("La fonction "+ nom +" doit se terminer par un return");
             sortie = false;
-        } else if (instructions instanceof Bloc) {
-            Bloc instrbloc = (Bloc) instructions;
-            if (!(instrbloc.instructions.get(instrbloc.instructions.size()-1) instanceof Return)) {
-                Logger.error("La fonction "+ nom +" doit se terminer par un return");
-                sortie = false;
-            }
-
         }
         return sortie && definitions.valide() && instructions.valide();
     }
+    
     public void ajouterDefinition(Noeud definition) {
-        if (this.definitions instanceof Bloc) {
-            ((Bloc) this.definitions).ajouterInstruction(definition);
-        } else if (this.definitions == null) {
-            this.definitions = new Bloc(new Noeud[] {definition});
-        } else {
-            this.definitions = new Bloc(new Noeud[] {this.definitions, definition});
-        }
+        if (definition instanceof Bloc) {
+            Bloc defbloc = (Bloc) definition;
+            for (Noeud def : defbloc.instructions) {
+                ajouterDefinition(def);
+            }
+        } else definitions.ajouterInstruction(definition);
     }
+
     public void ajouterInstruction(Noeud instruction) {
-        if (this.instructions instanceof Bloc) {
-            if (instruction instanceof Bloc) {
-                for (Noeud i : ((Bloc) instruction).instructions) {
-                    ((Bloc) this.instructions).ajouterInstruction(i);
-                }
-            } else
-            ((Bloc) this.instructions).ajouterInstruction(instruction);
-        } else if (this.instructions == null) {
-            if (instruction instanceof Bloc) {
-                this.instructions = instruction;
-            } else
-            this.instructions = new Bloc(new Noeud[] {instruction});
-        } else {
-            this.instructions = new Bloc(new Noeud[] {this.instructions});
-            if (instruction instanceof Bloc) {
-                for (Noeud i : ((Bloc) instruction).instructions) {
-                    ((Bloc) this.instructions).ajouterInstruction(i);
-                }
-            } else
-            ((Bloc) this.instructions).ajouterInstruction(instruction);
-        }
+        if (instruction instanceof Bloc) {
+            Bloc instrbloc = (Bloc) instruction;
+            for (Noeud instr : instrbloc.instructions) {
+                ajouterInstruction(instr);
+            }
+        } else instructions.ajouterInstruction(instruction);
     }
 
     public String produire(TDS_gen tds_actuelle) {
@@ -125,11 +102,7 @@ public class Fonction implements Noeud {
         res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
 
         // Produire les instructions
-        if (instructions instanceof Bloc) {
-            res += ((Bloc) instructions).produire(tds);
-        } else {
-            res += ((Return) instructions).produire(tds);
-        }
+        res += instructions.produire(tds);
 
         res += "ADD SP, SP, " + taille_locale + " // Libération de l'espace pour les variables locales\n";
         res += "LDP x29, lr, [sp], #16 // Restauration x29 et LR\n";
@@ -172,12 +145,6 @@ public class Fonction implements Noeud {
         //     // p.TDS_variable(variables); // On ne change pas l'identifiant du paramètre, il agit comme une déclaration
         // }
         definitions.TDS_variable();
-    
-
-        if (instructions instanceof Variable) {
-            instructions = tds.get_Variable_string_and_parent(((Variable) instructions).nom);
-        } else {
-            instructions.TDS_variable();
-        }
+        instructions.TDS_variable();
     }
 }
