@@ -486,10 +486,10 @@ public class Elagueur {
                         Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
 
                         if (il_y_a_definition) {
-                            programme.definitions = traduire(noeud.getEnfants().get(2));
+                            programme.ajouterDefinition(traduire(noeud.getEnfants().get(2)));
                         } 
 
-                        programme.instructions = traduire(noeud.getEnfants().get(1));
+                        programme.ajouterInstruction(traduire(noeud.getEnfants().get(1)));
 
                         return programme;
 
@@ -499,14 +499,14 @@ public class Elagueur {
                     // regarde si l'enfant 1 est de type "IDF"
                     if (noeud.getEnfants().get(1) instanceof Noeud_Terminal && noeud.getEnfants().get(1).getCode() == terminaux.get("IDF")) {
                         Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf());
-                        programme.instructions = traduire(noeud.getEnfants().get(0));
+                        programme.ajouterInstruction(traduire(noeud.getEnfants().get(0)));
                         return programme;
                     }
 
                     // Sinon c'est l'enfant 2 qui est de type "IDF" et l'enfant 1 sont les définitions
                     Procedure programme2 = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf());
-                    programme2.definitions = traduire(noeud.getEnfants().get(1));
-                    programme2.instructions = traduire(noeud.getEnfants().get(0));
+                    programme2.ajouterDefinition(traduire(noeud.getEnfants().get(1)));
+                    programme2.ajouterInstruction(traduire(noeud.getEnfants().get(0)));
                     return programme2;
                     
                     
