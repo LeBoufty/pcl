@@ -786,7 +786,7 @@ public class Elagueur {
                 Acces acces = new Acces(recordvar, champnom);
                 return acces;
         }
-        Logger.error("Erreur : noeud non reconnu lors de la traduction");
+        Logger.error("Erreur : noeud non reconnu lors de la traduction : " + nom);
         return null;
     }
 

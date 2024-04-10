@@ -9,44 +9,54 @@ erreur_division_msg :
 .section .text
 main :
 
-STP x29, lr, [sp, #-16]! // Sauvegarde du pointeur de pile et du lien de retour
+STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
-
+SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 // Declaration de la variable a
-SUB sp, sp, #16 // Allocation de 16 octets pour la variable a
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
 
 // Declaration de la variable b
-SUB sp, sp, #16 // Allocation de 16 octets pour la variable b
+MOVZ x0, #2
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
 
 // Declaration de la variable c
-SUB sp, sp, #16 // Allocation de 16 octets pour la variable c
+MOVZ x0, #3
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
 
 // Declaration de la variable d
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable d
 
 // Declaration de la variable e
-SUB sp, sp, #16 // Allocation de 16 octets pour la variable e
+MOVZ x0, #5
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
 
 // Declaration de la variable f
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable f
 
 // Declaration de la variable g
-SUB sp, sp, #16 // Allocation de 16 octets pour la variable g
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
 
 // Instructions de la procédure turbomegatest
 MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 
 // Opération
 
 // Opération
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOVZ x0, #1
@@ -70,22 +80,223 @@ SUB x0, x0, x1 // Opération -
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-40] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 
 // Opération
-LDR x0, [x29, #-24] // a Mise en pile var
-SUB sp, sp, #16 // a Mise en pile var
-STR x0, [sp] // a Mise en pile var
-LDR x0, [x29, #-40] // c Mise en pile var
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+MOVZ x0, #3 // On met le résultat de l'opération en x0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #3
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #4
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #5
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #6
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #7
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #8
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #9
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #10
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+
+// Opération
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
 SUB sp, sp, #16 // c Mise en pile var
 STR x0, [sp] // c Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -101,10 +312,29 @@ ADD sp, sp, #16 // On dépile la valeur
 
 
 // Opération
-LDR x0, [x29, #-40] // c Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+LDR x0, [x29, #-80] // c Mise en pile var
 SUB sp, sp, #16 // c Mise en pile var
 STR x0, [sp] // c Mise en pile var
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-96] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -115,11 +345,11 @@ ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-56] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-112] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOV x1, x0
@@ -129,7 +359,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-32] // b Mise en pile var
+LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
 MOV x1, x0
@@ -139,7 +369,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-40] // c Mise en pile var
+LDR x0, [x29, #-80] // c Mise en pile var
 SUB sp, sp, #16 // c Mise en pile var
 STR x0, [sp] // c Mise en pile var
 MOV x1, x0
@@ -149,7 +379,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-48] // d Mise en pile var
+LDR x0, [x29, #-96] // d Mise en pile var
 SUB sp, sp, #16 // d Mise en pile var
 STR x0, [sp] // d Mise en pile var
 MOV x1, x0
@@ -159,7 +389,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-56] // e Mise en pile var
+LDR x0, [x29, #-112] // e Mise en pile var
 SUB sp, sp, #16 // e Mise en pile var
 STR x0, [sp] // e Mise en pile var
 MOV x1, x0
@@ -168,9 +398,16 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+MOVZ x0, #2
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
 
 // Opération
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOVZ x0, #1
@@ -187,11 +424,40 @@ ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+MOVZ x0, #2
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x0, [sp] // Opération moins
+NEG x0, x0 // Opération moins
+STR x0, [sp] // Opération moins
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-32] // b Mise en pile var
+LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
 MOV x1, x0
@@ -204,22 +470,22 @@ MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 MOVZ x0, #3
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 
 // Opération
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
-LDR x0, [x29, #-32] // b Mise en pile var
+LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -232,15 +498,17 @@ SDIV x0, x0, x1 // Opération /
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-40] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 
 // Opération
-LDR x0, [x29, #-32] // b Mise en pile var
+
+// Opération
+LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -252,12 +520,24 @@ BEQ erreur_division // Opération /
 SDIV x0, x0, x1 // Opération /
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x1, #0 // Opération /
+BEQ erreur_division // Opération /
+SDIV x0, x0, x1 // Opération /
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-96] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOV x1, x0
@@ -267,7 +547,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-32] // b Mise en pile var
+LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
 MOV x1, x0
@@ -277,7 +557,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-40] // c Mise en pile var
+LDR x0, [x29, #-80] // c Mise en pile var
 SUB sp, sp, #16 // c Mise en pile var
 STR x0, [sp] // c Mise en pile var
 MOV x1, x0
@@ -287,7 +567,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-48] // d Mise en pile var
+LDR x0, [x29, #-96] // d Mise en pile var
 SUB sp, sp, #16 // d Mise en pile var
 STR x0, [sp] // d Mise en pile var
 MOV x1, x0
@@ -296,33 +576,79 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ x0, #1
+MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-24] // On met la valeur de la variable droite dans la variable gauche 
-ADD sp, sp, #16 // On dépile la valeur 
-
-stp x29, x30, [sp, #-16]! // Sauvegarde des registres
-str x0, [sp, #0] // Mettre le paramètre 0 dans la pile
-str x0, [sp, #16] // Mettre le paramètre 1 dans la pile
-str x0, [sp, #32] // Mettre le paramètre 2 dans la pile
-str x0, [sp, #48] // Mettre le paramètre 3 dans la pile
-bl F1 // Appel de la fonction
-ldp x29, x30, [sp], #16 // Restauration des registres
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-32] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 MOVZ x0, #3
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-40] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+MUL x0, x0, x1 // Opération *
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+MUL x0, x0, x1 // Opération *
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-96] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+MOVZ x0, #50
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+MUL x0, x0, x1 // Opération *
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-112] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-24] // a Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOV x1, x0
@@ -332,9 +658,265 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-32] // b Mise en pile var
+LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-96] // d Mise en pile var
+SUB sp, sp, #16 // d Mise en pile var
+STR x0, [sp] // d Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-112] // e Mise en pile var
+SUB sp, sp, #16 // e Mise en pile var
+STR x0, [sp] // e Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+MOVZ x0, #287
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+MOVZ x0, #17
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+SDIV x2, x0, x1 // Opération rem
+MUL x2, x2, x1 // Opération rem
+SUB x0, x0, x2 // Opération rem
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+SDIV x2, x0, x1 // Opération rem
+MUL x2, x2, x1 // Opération rem
+SUB x0, x0, x2 // Opération rem
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-96] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+// Printf
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-96] // d Mise en pile var
+SUB sp, sp, #16 // d Mise en pile var
+STR x0, [sp] // d Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+MOVZ x0, #2
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+MOVZ x0, #3
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+MOVZ x0, #4
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+
+// Opération
+
+// Opération
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+
+// Opération
+
+// Opération
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+MUL x0, x0, x1 // Opération *
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+MUL x0, x0, x1 // Opération *
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+
+// Opération
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+SDIV x2, x0, x1 // Opération rem
+MUL x2, x2, x1 // Opération rem
+SUB x0, x0, x2 // Opération rem
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+ADD x0, x0, x1 // Opération +
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+STR x2, [x29, #-96] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+// Printf
+LDR x0, [x29, #-48] // a Mise en pile var
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-64] // b Mise en pile var
+SUB sp, sp, #16 // b Mise en pile var
+STR x0, [sp] // b Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-80] // c Mise en pile var
+SUB sp, sp, #16 // c Mise en pile var
+STR x0, [sp] // c Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-96] // d Mise en pile var
+SUB sp, sp, #16 // d Mise en pile var
+STR x0, [sp] // d Mise en pile var
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -381,18 +963,18 @@ MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-128] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-LDR x0, [x29, #-64] // f Mise en pile var
+LDR x0, [x29, #-128] // f Mise en pile var
 SUB sp, sp, #16 // f Mise en pile var
 STR x0, [sp] // f Mise en pile var
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-72] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-144] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-64] // f Mise en pile var
+LDR x0, [x29, #-128] // f Mise en pile var
 SUB sp, sp, #16 // f Mise en pile var
 STR x0, [sp] // f Mise en pile var
 MOV x1, x0
@@ -536,10 +1118,10 @@ ADD sp, sp, #16
 // Printf
 
 // Opération
-LDR x0, [x29, #-64] // f Mise en pile var
+LDR x0, [x29, #-128] // f Mise en pile var
 SUB sp, sp, #16 // f Mise en pile var
 STR x0, [sp] // f Mise en pile var
-LDR x0, [x29, #-72] // g Mise en pile var
+LDR x0, [x29, #-144] // g Mise en pile var
 SUB sp, sp, #16 // g Mise en pile var
 STR x0, [sp] // g Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -559,10 +1141,10 @@ ADD sp, sp, #16
 // Printf
 
 // Opération
-LDR x0, [x29, #-64] // f Mise en pile var
+LDR x0, [x29, #-128] // f Mise en pile var
 SUB sp, sp, #16 // f Mise en pile var
 STR x0, [sp] // f Mise en pile var
-LDR x0, [x29, #-72] // g Mise en pile var
+LDR x0, [x29, #-144] // g Mise en pile var
 SUB sp, sp, #16 // g Mise en pile var
 STR x0, [sp] // g Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -579,7 +1161,7 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-LDR x0, [x29, #-72] // g Mise en pile var
+LDR x0, [x29, #-144] // g Mise en pile var
 SUB sp, sp, #16 // g Mise en pile var
 STR x0, [sp] // g Mise en pile var
 MOV x1, x0
@@ -616,13 +1198,4 @@ erreur_division : // Fonction d'erreur de division
 LDR x0, =erreur_division_msg // On charge le message d'erreur
 BL printf // On affiche le message d'erreur
 BL exit_program // On quitte le programme
-
-F1 : // Début de la fonction
-STP x29, lr, [sp, #-16]! // Sauvegarde x29 et LR
-MOV x29, sp // Changement du x29 pour la fonction
-STR x19, [sp, -16] // Sauvegarde de X19
-SUB SP, SP, 4 // Réserve de l'espace pour les variables locales
-ADD SP, SP, 4 // Libération de l'espace pour les variables locales
-LDP x29, lr, [sp], #16 // Restauration x29 et LR
-RET // Retour de la fonction
 
