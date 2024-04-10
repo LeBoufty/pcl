@@ -9,7 +9,7 @@ procedure Iff is
 begin
     a:= 5;
     put(a);
-    if a = 8 then
+    if a = 5 then
         b:= 6;
         put(b);
     else
