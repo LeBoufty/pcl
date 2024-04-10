@@ -6,7 +6,7 @@ procedure Whilee is
 
 begin
     a:= 5;
-    while a /= 6 loop
+    while a /= 5 loop
         Put(a);
         a:= a - 1;
     end loop;
