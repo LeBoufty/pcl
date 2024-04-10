@@ -1,4 +1,4 @@
-with Ada.Text_IO;use Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
 
 procedure TurboMegaTest is
 
@@ -69,12 +69,12 @@ begin
     Put(a); -- 2
     Put(b); -- 3
     Put(c); -- 4
-    Put(d); -- 22
+    Put(d); -- 43
 
     Put(3=3); -- true
     Put(3/=3); -- false
-    Put(false=false);
-    Put((false=false)/=(true=true));
+    Put(false=false); -- true
+    Put((false=false)/=(true=true)); -- false
     f:=true;
     f:= f=((true=true) = (f=f));
     g:=f;
