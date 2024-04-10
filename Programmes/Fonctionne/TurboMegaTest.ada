@@ -2,13 +2,6 @@ with Ada.Text_IO;use Ada.Text_IO;
 
 procedure TurboMegaTest is
 
-    function somme4(a1: Integer; a2: Integer; a3: Integer; a4: Integer) return Integer is
-    somme: Integer;
-    begin
-        somme := a1 + a2 + a3 + a4;
-        return somme;
-    end somme4;
-
 
     a: Integer;
     b: Integer;
@@ -51,12 +44,6 @@ begin
     Put(c);
     Put(d);
     Put(e);
-
-    a:=1;
-    b := somme4(a,a,a,a);
-    c:=3;
-    Put(a);
-    Put(b);
 
 
 
