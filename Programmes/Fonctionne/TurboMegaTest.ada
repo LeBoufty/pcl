@@ -69,29 +69,29 @@ begin
     Put(a); -- 2
     Put(b); -- 3
     Put(c); -- 4
-    Put(d); -- 19
+    Put(d); -- 22
 
-    Put(3=3);
-    Put(3/=3);
+    Put(3=3); -- true
+    Put(3/=3); -- false
     Put(false=false);
     --Put((false=false)/=(true=true));
     f:=true;
     --f:= f=((true=true) = (f=f));
     g:=f;
-    Put(f);
-    Put(2<=3);
-    Put(3>=2);
-    Put(2>=2);
-    Put(2<=2);
-    Put(2>=3);
-    Put(2<3);
-    Put(2>3);
-    Put(2=3);
-    Put(2/=3);
-    Put(2=2);
-    Put(2/=2);
-    Put(f=g);
-    Put(f*g);
-    Put(g);
+    Put(f); -- true
+    Put(2<=3); -- true
+    Put(3>=2); -- true
+    Put(2>=2); -- true
+    Put(2<=2); -- true
+    Put(2>=3); -- false
+    Put(2<3); -- true
+    Put(2>3); -- false
+    Put(2=3); -- false
+    Put(2/=3); -- true
+    Put(2=2); -- true
+    Put(2/=2); -- false
+    Put(f=g); -- true
+    Put(f*g); -- true
+    Put(g); -- true
 
 end TurboMegaTest;
