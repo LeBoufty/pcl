@@ -61,7 +61,7 @@ public class InstructionIf implements Noeud {
     public String produire(TDS_gen tds_actuelle) {
         String ifid = this.hashCode() + "";
         String res = "// if "+ifid+"\n";
-        this.condition.produire(tds_actuelle);
+        res += this.condition.produire(tds_actuelle);
         res += "LDR x0, [sp] // Chargement de la condition\n";
         res += "ADD sp, sp, #16 // Décrémentation du pointeur de pile\n";
         System.out.println("InstructionIf");
