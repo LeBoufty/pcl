@@ -65,7 +65,7 @@ begin
     a:= 2;
     b:= 3;
     c:= 4;
-    d:= b+c*a*a+ b rem c;
+    d:= b+c*a*(a+ b rem c);
     Put(a); -- 2
     Put(b); -- 3
     Put(c); -- 4
@@ -74,9 +74,9 @@ begin
     Put(3=3); -- true
     Put(3/=3); -- false
     Put(false=false);
-    --Put((false=false)/=(true=true));
+    Put((false=false)/=(true=true));
     f:=true;
-    --f:= f=((true=true) = (f=f));
+    f:= f=((true=true) = (f=f));
     g:=f;
     Put(f); -- true
     Put(2<=3); -- true

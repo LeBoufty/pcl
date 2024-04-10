@@ -9,7 +9,7 @@ procedure Parentheses is
 begin
     z:= 5;
     y:= 3;
-    k := z * (3 + y + 5 * 7);
+    k := z * (10 + y + 60 * 7);
     Put(z);
     Put(y);
     Put(k);

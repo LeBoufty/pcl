@@ -46,7 +46,7 @@ STR x0, [sp] // z Mise en pile var
 // Opération
 
 // Opération
-MOVZ x0, #3
+MOVZ x0, #10
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [x29, #-64] // y Mise en pile var
@@ -61,7 +61,7 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 
 // Opération
-MOVZ x0, #35 // On met le résultat de l'opération en x0
+MOVZ x0, #420 // On met le résultat de l'opération en x0
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x1, [sp] // On met l'opérande droite dans x1

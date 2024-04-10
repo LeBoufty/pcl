@@ -9,9 +9,9 @@ begin
     Put(3=3);
     Put(3/=3);
     Put(false=false);
-    --Put((false=false)/=(true=true));
+    Put((false=false)/=(true=true));
     a:=true;
-    --a:= a=((true=true) = (a=a));
+    a:= a=((true=true) = (a=a));
     b:=a;
     Put(a);
     Put(2<=3);
