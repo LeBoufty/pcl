@@ -3,6 +3,12 @@ with Ada.Text_IO;use Ada.Text_IO;
 procedure traduisible is
     a: Integer;
     b: Integer;
+
+    function f(x: Integer) return Integer is
+    begin
+        return x + 1;
+    end f;
+
 begin
     if a = b then
         b := b + 1;

@@ -659,7 +659,7 @@ public class Elagueur {
                 fonc.type = getType((Noeud_Terminal)returnfonction.getEnfants().get(returnfonction.getEnfants().size() - 1));
 
                 if (returnfonction.getEnfants().size() > 1) {
-                    fonc.definitions = traduire(returnfonction.getEnfants().get(0));
+                    fonc.ajouterDefinition(traduire(returnfonction.getEnfants().get(0)));
                 }
 
                 Noeud_Non_Terminal paramplus = ((Noeud_Non_Terminal)noeud.getEnfants().get(noeud.getEnfants().size() - 1));
@@ -672,7 +672,7 @@ public class Elagueur {
                     fonc.params.add((Parametre)traduire(na));
                 }
 
-                fonc.instructions = traduire(noeud.getEnfants().get(1 - slider));
+                fonc.ajouterInstruction(traduire(noeud.getEnfants().get(1 - slider)));
 
                 return fonc;
                     

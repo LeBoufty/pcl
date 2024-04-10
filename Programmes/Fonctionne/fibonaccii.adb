@@ -10,6 +10,7 @@ procedure Fibonacci is
         else
             return Fib(n - 1) + Fib(n - 2);
         end if;
+        return 0;
     end Fib;
 
     --Variables

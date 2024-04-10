@@ -22,6 +22,12 @@ public class Fonction implements Noeud {
         this.type = t;
         this.definitions = def;
         this.instructions = inst;
+        if (!(def instanceof Bloc)) {
+            this.definitions = new Bloc(new Noeud[] {def});
+        }
+        if (!(inst instanceof Bloc)) {
+            this.instructions = new Bloc(new Noeud[] {inst});
+        }
         this.params = new ArrayList<>();
         for (Parametre p : parametres) {
             this.params.add(p);
@@ -71,18 +77,32 @@ public class Fonction implements Noeud {
         if (this.definitions instanceof Bloc) {
             ((Bloc) this.definitions).ajouterInstruction(definition);
         } else if (this.definitions == null) {
-            this.definitions = definition;
+            this.definitions = new Bloc(new Noeud[] {definition});
         } else {
             this.definitions = new Bloc(new Noeud[] {this.definitions, definition});
         }
     }
     public void ajouterInstruction(Noeud instruction) {
         if (this.instructions instanceof Bloc) {
+            if (instruction instanceof Bloc) {
+                for (Noeud i : ((Bloc) instruction).instructions) {
+                    ((Bloc) this.instructions).ajouterInstruction(i);
+                }
+            } else
             ((Bloc) this.instructions).ajouterInstruction(instruction);
         } else if (this.instructions == null) {
-            this.instructions = instruction;
+            if (instruction instanceof Bloc) {
+                this.instructions = instruction;
+            } else
+            this.instructions = new Bloc(new Noeud[] {instruction});
         } else {
-            this.instructions = new Bloc(new Noeud[] {this.instructions, instruction});
+            this.instructions = new Bloc(new Noeud[] {this.instructions});
+            if (instruction instanceof Bloc) {
+                for (Noeud i : ((Bloc) instruction).instructions) {
+                    ((Bloc) this.instructions).ajouterInstruction(i);
+                }
+            } else
+            ((Bloc) this.instructions).ajouterInstruction(instruction);
         }
     }
 
