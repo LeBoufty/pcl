@@ -82,11 +82,13 @@ public enum Operateur {
             case FOIS:
                 return "MUL x0, x0, x1 // Opération " + this + "\n";
             case DIV:
-                res += "CMP x1, #0 // Opération " + this + "\n";
-                res += "BEQ erreur_division // Opération " + this + "\n";
+                res += "CMP x1, #0 // Opération " + this + ", on vérifie que le diviseur n'est pas nul\n";
+                res += "BEQ erreur_division // Opération " + this + ", on arrête le programme si c'est le cas\n";
                 res += "SDIV x0, x0, x1 // Opération " + this + "\n";
                 return res;
             case REM:
+                res += "CMP x1, #0 // Opération " + this +", on vérifie que le diviseur n'est pas nul\n";
+                res += "BEQ erreur_division // Opération " + this + ", on arrête le programme si c'est le cas\n";
                 res += "SDIV x2, x0, x1 // Opération " + this + "\n";
                 res += "MUL x2, x2, x1 // Opération " + this + "\n";
                 res += "SUB x0, x0, x2 // Opération " + this + "\n";

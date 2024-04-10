@@ -502,8 +502,8 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x1, #0 // Opération /
-BEQ erreur_division // Opération /
+CMP x1, #0 // Opération /, on vérifie que le diviseur n'est pas nul
+BEQ erreur_division // Opération /, on arrête le programme si c'est le cas
 SDIV x0, x0, x1 // Opération /
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
@@ -511,29 +511,22 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-MOVZ x0, #10
+
+// Opération
+
+// Opération
+MOVZ x0, #10930
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-STR x2, [x29, #-80] // On met la valeur de la variable droite dans la variable gauche 
-ADD sp, sp, #16 // On dépile la valeur 
-
-
-// Opération
-
-// Opération
 LDR x0, [x29, #-64] // b Mise en pile var
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
-LDR x0, [x29, #-48] // a Mise en pile var
-SUB sp, sp, #16 // a Mise en pile var
-STR x0, [sp] // a Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x1, #0 // Opération /
-BEQ erreur_division // Opération /
+CMP x1, #0 // Opération /, on vérifie que le diviseur n'est pas nul
+BEQ erreur_division // Opération /, on arrête le programme si c'est le cas
 SDIV x0, x0, x1 // Opération /
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
@@ -544,8 +537,8 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x1, #0 // Opération /
-BEQ erreur_division // Opération /
+CMP x1, #0 // Opération /, on vérifie que le diviseur n'est pas nul
+BEQ erreur_division // Opération /, on arrête le programme si c'est le cas
 SDIV x0, x0, x1 // Opération /
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
@@ -733,14 +726,14 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ x0, #287
+MOVZ x0, #5
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-MOVZ x0, #17
+MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
@@ -759,6 +752,8 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x1, #0 // Opération rem, on vérifie que le diviseur n'est pas nul
+BEQ erreur_division // Opération rem, on arrête le programme si c'est le cas
 SDIV x2, x0, x1 // Opération rem
 MUL x2, x2, x1 // Opération rem
 SUB x0, x0, x2 // Opération rem
@@ -780,6 +775,8 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x1, #0 // Opération rem, on vérifie que le diviseur n'est pas nul
+BEQ erreur_division // Opération rem, on arrête le programme si c'est le cas
 SDIV x2, x0, x1 // Opération rem
 MUL x2, x2, x1 // Opération rem
 SUB x0, x0, x2 // Opération rem
@@ -903,6 +900,8 @@ LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x1, #0 // Opération rem, on vérifie que le diviseur n'est pas nul
+BEQ erreur_division // Opération rem, on arrête le programme si c'est le cas
 SDIV x2, x0, x1 // Opération rem
 MUL x2, x2, x1 // Opération rem
 SUB x0, x0, x2 // Opération rem

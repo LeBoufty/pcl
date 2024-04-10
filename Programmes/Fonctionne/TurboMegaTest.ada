@@ -18,59 +18,58 @@ begin
     a:= c + c + c + c + c + c + c + c + c + c;
     d:=a+c;
     e:=c+a;
-    Put(a);
-    Put(b);
-    Put(c);
-    Put(d);
-    Put(e);
+    Put(a); -- 550
+    Put(b); -- 1
+    Put(c); -- 55
+    Put(d); -- 605
+    Put(e); -- 605
 
     a := 2;
     a := a+ -1;
     b := 2;
     b := -1 + b;
-    Put(a);
-    Put(b);
+    Put(a); -- 1
+    Put(b); -- 1
 
     a:=2457;
     b:=76;
     c:=a/b;
-    c:=10;
-    d:=b/a/c;
+    d:=10930/b/c;
     e:=50/2;
-    Put(a);
-    Put(b);
-    Put(c);
-    Put(d);
-    Put(e);
+    Put(a); -- 2457
+    Put(b); -- 76
+    Put(c); -- 32
+    Put(d); -- 4
+    Put(e); -- 25
 
     a:=2;
     b:=3;
     c:=a*b;
     d:=b*a;
     e:=a*50;
-    Put(a);
-    Put(b);
-    Put(c);
-    Put(d);
-    Put(e);
+    Put(a); -- 2
+    Put(b); -- 3
+    Put(c); -- 6
+    Put(d); -- 6
+    Put(e); -- 100
 
-    a:=287;
-    b:=17;
+    a:=5;
+    b:=2;
     c:= a rem b;
     d:= b rem a;
-    Put(a);
-    Put(b);
-    Put(c);
-    Put(d);
+    Put(a); -- 5
+    Put(b); -- 2
+    Put(c); -- 1
+    Put(d); -- 2
 
     a:= 2;
     b:= 3;
     c:= 4;
     d:= b+c*a*a+ b rem c;
-    Put(a);
-    Put(b);
-    Put(c);
-    Put(d);
+    Put(a); -- 2
+    Put(b); -- 3
+    Put(c); -- 4
+    Put(d); -- 19
 
     Put(3=3);
     Put(3/=3);
