@@ -10,14 +10,16 @@ public class Procedure implements Noeud {
     public int id;
 
     public String nom;
-    public Noeud definitions;
-    public Noeud instructions;
+    public Bloc definitions;
+    public Bloc instructions;
     public TDS_gen tds = null;
 
     public Procedure(String nom, Noeud def, Noeud inst) {
         this.nom = nom;
-        this.definitions = def;
-        this.instructions = inst;
+        if (!(def instanceof Bloc)) this.definitions = new Bloc(new Noeud[] {def});
+        else this.definitions = (Bloc) def;
+        if (!(inst instanceof Bloc)) this.instructions = new Bloc(new Noeud[] {inst});
+        else this.instructions = (Bloc) inst;
     }
     public Procedure(String nom) {
         this(nom, new Bloc(), new Bloc());
@@ -45,23 +47,23 @@ public class Procedure implements Noeud {
         }
         return sortie;
     }
+
     public void ajouterDefinition(Noeud definition) {
-        if (this.definitions instanceof Bloc) {
-            ((Bloc) this.definitions).ajouterInstruction(definition);
-        } else if (this.definitions == null) {
-            this.definitions = definition;
-        } else {
-            this.definitions = new Bloc(new Noeud[] {this.definitions, definition});
-        }
+        if (definition instanceof Bloc) {
+            Bloc defbloc = (Bloc) definition;
+            for (Noeud def : defbloc.instructions) {
+                ajouterDefinition(def);
+            }
+        } else definitions.ajouterInstruction(definition);
     }
+
     public void ajouterInstruction(Noeud instruction) {
-        if (this.instructions instanceof Bloc) {
-            ((Bloc) this.instructions).ajouterInstruction(instruction);
-        } else if (this.instructions == null) {
-            this.instructions = instruction;
-        } else {
-            this.instructions = new Bloc(new Noeud[] {this.instructions, instruction});
-        }
+        if (instruction instanceof Bloc) {
+            Bloc instrbloc = (Bloc) instruction;
+            for (Noeud instr : instrbloc.instructions) {
+                ajouterInstruction(instr);
+            }
+        } else instructions.ajouterInstruction(instruction);
     }
 
 
@@ -150,11 +152,6 @@ public class Procedure implements Noeud {
 
     public void TDS_variable() {
         definitions.TDS_variable();
-
-        if (instructions instanceof Variable) {
-            instructions = tds.get_Variable_string_and_parent(((Variable) instructions).nom);
-        } else {
-            instructions.TDS_variable();
-        }
+        instructions.TDS_variable();
     }
 }
