@@ -40,10 +40,21 @@ public class InstructionWhile implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("InstructionWhile");
-
-        return "";
-// TODO : probablement à mi-chemin entre for et if
+        String whileid = ""+this.hashCode();
+        String res = "// while "+whileid+"\n";
+        res += "while"+whileid+" :\n";
+        res += this.condition.produire(tds_actuelle);
+        res += "LDR x0, [sp] // Chargement de la condition\n";
+        res += "ADD sp, sp, #16 // Dépilement de la condition\n";
+        res += "CMP x0, #0\n";
+        res += "\n";
+        res += "BNE whilecontinue"+whileid+"\n";
+        res += "B whileend"+whileid+"\n";
+        res += "whilecontinue"+whileid+" :\n";
+        res += this.corps.produire(tds_actuelle);
+        res += "B while"+whileid+"\n";
+        res += "whileend"+whileid+" :\n";
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
