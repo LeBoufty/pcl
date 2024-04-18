@@ -22,8 +22,8 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 MOVZ x0, #48 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
 
-// while 1104106489
-while1104106489 :
+// while 363771819
+while363771819 :
 
 // Opération
 MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
@@ -38,17 +38,16 @@ ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 CMP x0, x1 // Opération <=
-MOVLE x0, #1 // Opération <=
-MOVGT x0, #0 // Opération <=
+CSET x0, LE // Opération <=
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue1104106489
-B whileend1104106489
-whilecontinue1104106489 :
+BNE whilecontinue363771819
+B whileend363771819
+whilecontinue363771819 :
 // Printf
 MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
 MOVZ x1, #1 // i Nb saut VAR GLOBALE
@@ -79,8 +78,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 MOVZ x0, #48 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
-B while1104106489
-whileend1104106489 :
+B while363771819
+whileend363771819 :
 
 
 bl exit_program

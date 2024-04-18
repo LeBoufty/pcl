@@ -79,17 +79,18 @@ begin
     f:= f=((true=true) = (f=f));
     g:=f;
     Put(f); -- true
-    Put(2<=3); -- true
-    Put(3>=2); -- true
-    Put(2>=2); -- true
-    Put(2<=2); -- true
-    Put(2>=3); -- false
-    Put(2<3); -- true
-    Put(2>3); -- false
-    Put(2=3); -- false
-    Put(2/=3); -- true
-    Put(2=2); -- true
-    Put(2/=2); -- false
+    Put(a<=b); -- true
+    Put(b>=a); -- true
+    Put(a>=a); -- true
+    Put(a<=a); -- true
+    Put(a>=b); -- false
+    Put(a<b); -- true
+    Put(a>b); -- false
+    Put(a=b); -- false
+    Put(a/=b); -- true
+    Put(a=a); -- true
+    Put(a/=a); -- false
+
     Put(f=g); -- true
     Put(f*g); -- true
     Put(g); -- true
