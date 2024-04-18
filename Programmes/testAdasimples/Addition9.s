@@ -11,7 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
-SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
+SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr
 
 // Declaration de la variable j
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable j
@@ -39,10 +39,10 @@ ADD sp, sp, #16 // On dépile la valeur
 
 
 // Opération
-LDR x0, [x29, #-64] // y Mise en pile var
+LDR x0, [x29, #-64] // On récupère la valeur de la variable y
 SUB sp, sp, #16 // y Mise en pile var
 STR x0, [sp] // y Mise en pile var
-LDR x0, [x29, #-80] // z Mise en pile var
+LDR x0, [x29, #-80] // On récupère la valeur de la variable z
 SUB sp, sp, #16 // z Mise en pile var
 STR x0, [sp] // z Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -57,7 +57,7 @@ STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable g
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-48] // j Mise en pile var
+LDR x0, [x29, #-48] // On récupère la valeur de la variable j
 SUB sp, sp, #16 // j Mise en pile var
 STR x0, [sp] // j Mise en pile var
 MOV x1, x0
