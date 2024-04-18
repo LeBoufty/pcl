@@ -49,7 +49,7 @@ public class Variable extends Evaluable {
             res += "STR x0, [sp] // " + this.nom + " Mise en pile var\n";
         } else { // Cas variable globale
             if (depl < 0) {res += "MOVN x0, #" + -depl + " // Deplacement en pile VAR GLOBALE \n";}
-            else{res += "MOVZ x0, #" + depl + " // Deplacement en pile VAR GLOBALE \n";} // TODO : depl > 250
+            else{res += "MOVZ x0, #" + depl + " // Deplacement en pile VAR GLOBALE \n";} // TODO : depl > 256
             res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // " + this.nom + " Nb saut VAR GLOBALE\n";
             res += "BL get_global_var // " + this.nom + " Mise en pile var\n";
             // Déplace le sommet de pile de 2*16 bits pour supprimer les deux valeurs depl et nb_saut
@@ -107,16 +107,16 @@ public class Variable extends Evaluable {
 
     public String Store_Variable_X0_locale(int depl){
         String res = "";
-        if (depl < 250 ) {res += "LDR x0, [x29, #"+ -depl + "] // On récupère la valeur de la variable "+ this.nom +"\n";}
+        if (depl < 256 ) {res += "LDR x0, [x29, #"+ -depl + "] // On récupère la valeur de la variable "+ this.nom +"\n";}
         else {
-        int nb_depl = depl/250;
-        int reste = depl%250;
+        int nb_depl = depl/256;
+        int reste = depl%256;
         for (int i = 0; i < nb_depl; i++) {
-            res += "SUB x29, x29, #250 // On déplace le frame pointer pour éviter les overflow dans le déplacement \n";
+            res += "SUB x29, x29, #256 // On déplace le frame pointer pour éviter les overflow dans le déplacement \n";
         }
         res += "LDR x0, [x29, #-" + reste + "] // On récupère la valeur de la variable "+ this.nom +"\n";
         for (int i = 0; i < nb_depl; i++) {
-            res += "ADD x29, x29, #250 // On restaure le frame pointer \n";
+            res += "ADD x29, x29, #256 // On restaure le frame pointer \n";
         }
         }
         return res;
