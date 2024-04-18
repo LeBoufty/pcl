@@ -94,18 +94,24 @@ public class Fonction implements Noeud {
         String res = "F" + this.tds.get_num_reg() + " : // Début de la fonction\n"; 
 
         // *Code appelé
-        res += "STP x29, lr, [sp, #-16]! // Sauvegarde x29 et LR\n";
-        res += "MOV x29, sp // Changement du x29 pour la fonction\n";
-        res += "STR x19, [sp, -16] // Sauvegarde de X19\n";
+        res += "STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour\n";
+        res += "MOV x29, sp // Mise à jour du pointeur de pile\n";
+        // TODO : Sauvegarde du chainage dynamique
+        res += "SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr\n";
         // Réserve de l'espace pour les variables locales
         int taille_locale = this.tds.get_taille_variables_locales();
         res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
 
-        // Produire les instructions
-        res += instructions.produire(tds);
+        res += "// Instructions de la fonction " + nom + "\n";
+        for (Noeud noeud : ((Bloc) instructions).instructions) {
+            res += noeud.produire(tds)+"\n";
+        }
 
         res += "ADD SP, SP, " + taille_locale + " // Libération de l'espace pour les variables locales\n";
-        res += "LDP x29, lr, [sp], #16 // Restauration x29 et LR\n";
+        // Restauration du pointeur de pile
+        res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
+        // Restauration du pointeur de pile et du lien de retour
+        res += "LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour\n";
         res += "RET // Retour de la fonction\n";
         GestionFichier.AddcontenuFooter(res);
 
