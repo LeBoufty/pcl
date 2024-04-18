@@ -48,8 +48,9 @@ public class Variable extends Evaluable {
             res += "SUB sp, sp, #16 // " + this.nom + " Mise en pile var\n";
             res += "STR x0, [sp] // " + this.nom + " Mise en pile var\n";
         } else { // Cas variable globale
-            res += "MOVZ x0, #" + depl + " // " + this.nom + " Mise en pile depl var\n";
-            res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // " + this.nom + " Mise en pile nb saut var\n";
+            if (depl < 0) {res += "MOVN x0, #" + -depl + " // Deplacement en pile VAR GLOBALE \n";}
+            else{res += "MOVZ x0, #" + depl + " // Deplacement en pile VAR GLOBALE \n";}
+            res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // " + this.nom + " Nb saut VAR GLOBALE\n";
             res += "BL get_global_var // " + this.nom + " Mise en pile var\n";
             // Déplace le sommet de pile de 2*16 bits pour supprimer les deux valeurs depl et nb_saut
             res += "STR x2, [sp, #0] // " + this.nom + " Mise en pile var depuis le registre de retours des fonctions :)\n";

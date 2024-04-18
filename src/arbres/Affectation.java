@@ -60,7 +60,8 @@ public class Affectation implements Noeud {
         else {// Cas variable globale
             // On met le nombre depl, nb_saut en pile
             res += "SUB sp, sp, #16 // On décrémente le pointeur de pile \n";
-            res += "MOVZ x0, #" + depl + " // On met le deplacement en pile \n";
+            if (depl < 0) {res += "MOVN x0, #" + -depl + " // On met le deplacement en pile \n";}
+            else{res += "MOVZ x0, #" + depl + " // On met le deplacement en pile \n";}
             res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // On met le nombre de saut en pile \n"; //TODO : A vérifier
         }
         return res;

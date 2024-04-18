@@ -49,7 +49,12 @@ public class Constante extends Evaluable {
     public String produire() {
         System.out.println("constante " + valeur + " : " + type);
         // On met la valeur en pile
-        return "MOVZ x0, #" + valeur + "\nSUB sp, sp, #16 // On décrémente le pointeur de pile \nSTR x0, [sp] // On met la constante en pile \n";
+        String res = "";
+        if (valeur < 0) {res += "MOVN x0, #" + -valeur + "// On met la constante en négatif \n";} 
+        else {res += "MOVZ x0, #" + valeur + "\n";}
+        res += "SUB sp, sp, #16 // On décrémente le pointeur de pile \n";
+        res += "STR x0, [sp] // On met la constante en pile \n";
+        return res;
     }
 
     public String produire(TDS_gen tds_actuelle) {
