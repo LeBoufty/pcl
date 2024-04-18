@@ -30,13 +30,14 @@ public class TestParserLexeur {
         programme = "Programmes/testAdasimples/Addition1.ada";
         //programme = "Programmes/Fonctionne/TurboMegaTest.ada";
         programme = "Programmes/testAdasimples/Parentheses.ada";
+        programme = "Programmes/testAdasimples/Forr.ada";
 
         // Tests sémantiques
         // programme = "Programmes/testsem/divparzero.adb";
         // programme = "Programmes/testsem/fctnondef.adb";
         //programme = "Programmes/testsem/mauvaisop.adb";
         //programme = "Programmes/testsem/mauvaistype.adb";
-        programme = "Programmes/testsem/varnondef.adb";
+        //programme = "Programmes/testsem/varnondef.adb";
         //programme = "Programmes/testsem/erreur2.adb";
         // programme = "Programmes/testsem/erreur6.adb";
         //programme = "Programmes/Fonctionne/undebut.adb";

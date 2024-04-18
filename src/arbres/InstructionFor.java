@@ -62,10 +62,23 @@ public class InstructionFor implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-         System.out.println("InstructionFor");
-
-         return "";
-// TODO : apparemment c'est dans le cours ? i foror 💀
+        InstructionWhile whileLoop = new InstructionWhile();
+        Affectation finDeBoucle = new Affectation();
+        Declaration declaration;
+        finDeBoucle.gauche = this.iterateur;
+        if (reverse) {
+            whileLoop.condition = new Operation(this.iterateur, borneInf, Operateur.SUPERIEUR_EGAL);
+            finDeBoucle.droite = new Operation(this.iterateur, new Constante(1), Operateur.MOINS);
+            declaration = new Declaration(Type.INTEGER, ""+this.iterateur.hashCode(), borneSup);
+        } else {
+            whileLoop.condition = new Operation(this.iterateur, borneSup, Operateur.INFERIEUR_EGAL);
+            finDeBoucle.droite = new Operation(this.iterateur, new Constante(1), Operateur.PLUS);
+            declaration = new Declaration(Type.INTEGER, ""+this.iterateur.hashCode(), borneInf);
+        }
+        whileLoop.TDS_link(this.tds);
+        whileLoop.corps = this.corps;
+        whileLoop.ajouterInstruction(finDeBoucle);
+        return declaration.produire(tds) + "\n" + whileLoop.produire(tds);
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
