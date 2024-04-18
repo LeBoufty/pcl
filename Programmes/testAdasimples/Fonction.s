@@ -43,6 +43,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+
 bl exit_program
 
 exit_program : //Fonction de sortie du programme 
@@ -78,8 +79,8 @@ STR x19, [sp, -16] // Sauvegarde de X19
 SUB SP, SP, 0 // Réserve de l'espace pour les variables locales
 
 // Opération
-MOVZ x0, #-16 // x Mise en pile depl var
-MOVZ x1, #1 // x Mise en pile nb saut var
+MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
+MOVZ x1, #1 // x Nb saut VAR GLOBALE
 BL get_global_var // x Mise en pile var
 STR x2, [sp, #0] // x Mise en pile var depuis le registre de retours des fonctions :)
 MOVZ x0, #100
@@ -94,7 +95,7 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
-MOVZ x0, #-16 // On met le deplacement en pile 
+MOVN x0, #16 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
 ADD SP, SP, 0 // Libération de l'espace pour les variables locales
 LDP x29, lr, [sp], #16 // Restauration x29 et LR
