@@ -11,7 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
-SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
+SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr
 
 // Declaration de la variable a
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable a
@@ -73,10 +73,11 @@ BL printf // On affiche le message d'erreur
 BL exit_program // On quitte le programme
 
 F1 : // Début de la fonction
-STP x29, lr, [sp, #-16]! // Sauvegarde x29 et LR
-MOV x29, sp // Changement du x29 pour la fonction
-STR x19, [sp, -16] // Sauvegarde de X19
+STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
+MOV x29, sp // Mise à jour du pointeur de pile
+SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr
 SUB SP, SP, 0 // Réserve de l'espace pour les variables locales
+// Instructions de la fonction add100
 
 // Opération
 MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
@@ -97,7 +98,10 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 MOVN x0, #16 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
+
+
 ADD SP, SP, 0 // Libération de l'espace pour les variables locales
-LDP x29, lr, [sp], #16 // Restauration x29 et LR
+MOV sp, x29 // Restauration du pointeur de pile
+LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
 
