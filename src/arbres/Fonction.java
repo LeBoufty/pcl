@@ -97,7 +97,7 @@ public class Fonction implements Noeud {
         res += "STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour\n";
         res += "MOV x29, sp // Mise à jour du pointeur de pile\n";
         // TODO : Sauvegarde du chainage dynamique
-        res += "SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr\n";
+        res += "SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n";
         // Réserve de l'espace pour les variables locales
         int taille_locale = this.tds.get_taille_variables_locales();
         res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
