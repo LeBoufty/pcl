@@ -11,7 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
-SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr
+SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 // Declaration de la variable a1
 MOVZ x0, #1
