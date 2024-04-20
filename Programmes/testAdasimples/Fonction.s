@@ -11,7 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
-SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr
+SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 // Declaration de la variable a
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable a
@@ -34,7 +34,7 @@ STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable g
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Printf
-LDR x0, [x29, #-48] // a Mise en pile var
+LDR x0, [x29, #-48] // On récupère la valeur de la variable a
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOV x1, x0
@@ -75,9 +75,20 @@ BL exit_program // On quitte le programme
 F1 : // Début de la fonction
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
-SUB sp, sp, #48 // Déplacement du stack pointer pour fp et lr
+SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 SUB SP, SP, 0 // Réserve de l'espace pour les variables locales
 // Instructions de la fonction add100
+// Printf
+MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
+MOVZ x1, #1 // x Nb saut VAR GLOBALE
+BL get_global_var // x Mise en pile var
+STR x2, [sp, #0] // x Mise en pile var depuis le registre de retours des fonctions :)
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
 
 // Opération
 MOVN x0, #16 // Deplacement en pile VAR GLOBALE 

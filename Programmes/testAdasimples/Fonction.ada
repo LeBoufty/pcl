@@ -6,6 +6,7 @@ procedure Fonction is
 
     function Add100(x: Integer) return Integer is
     begin
+        Put(x);
         x := x + 100;
         return x;
     end Add100;
