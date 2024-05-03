@@ -90,4 +90,8 @@ public class Affectation implements Noeud {
             this.droite.TDS_variable();
         }
     }
+
+    public void TDS_func_proc_creation() {
+        // Rien à faire
+    }
 }

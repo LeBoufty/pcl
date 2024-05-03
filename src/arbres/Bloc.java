@@ -80,4 +80,10 @@ public class Bloc implements Noeud {
             }
         }
     }
+
+    public void TDS_func_proc_creation() {
+        for (Noeud noeud : instructions) {
+            noeud.TDS_func_proc_creation();
+        }
+    }
 }

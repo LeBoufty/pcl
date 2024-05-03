@@ -297,7 +297,7 @@ public class TDS_gen {
         sortie += tab + "Nom de la fonction : " + this.nom_fonction + "\n";
         sortie += tab + "Numéro d'imbrication : " + this.num_imbr + "\n";
         sortie += tab + "Numéro de region : " + this.num_reg + "\n";
-        
+
         for (int i = - num_parametres; i < 0; i++) {
             sortie += tab + "ID TDS :" + i + " - Paramètre : " + this.TDS_vari.get(i).variable.identifiant + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).variable.nom + "\n";
         }
@@ -305,14 +305,10 @@ public class TDS_gen {
             sortie += tab + "ID TDS : 1 - Dynamic link \n";
             sortie += tab + "ID TDS : 2 - Variable de retour \n";
         for (int i = 3; i < num_variables + 3; i++) {
-            sortie += tab + "ID TDS :" + i + " - Variable : " + this.TDS_vari.get(i).variable.identifiant + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).variable.nom + "\n";
+            sortie += tab + "ID TDS : " + i + " - Variable : " + this.TDS_vari.get(i).variable.identifiant + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).variable.nom + "\n";
         }
 
         sortie += tab + "Nombre d'enfants : " + tds_childrens.size() + " enfants\n";
-        for (TDS_gen tds : this.tds_childrens) {
-            sortie += tds.toString();
-        }
-        sortie += "\n";
 
         // Partie Fonctions et Procédures
         if (this.TDS_function != null) {
@@ -324,6 +320,13 @@ public class TDS_gen {
                 }
             }
         }
+
+        for (TDS_gen tds : this.tds_childrens) {
+            sortie += tds.toString();
+        }
+        sortie += "\n";
+
+        
 
         sortie += tab + "+========= FIN TDS N." + this.num_reg + " =========+\n";
         return sortie;
@@ -359,6 +362,18 @@ public class TDS_gen {
             }
         }
 
+        // Vérifie pour les fonctions et procédures
+        if (this.TDS_function != null) {
+            for (Map.Entry<Integer, Ligne_TDS_func> entry : this.TDS_function.entrySet()) {
+                for (Map.Entry<Integer, Ligne_TDS_func> entry2 : this.TDS_function.entrySet()) {
+                    if (entry.getKey() != entry2.getKey() && entry.getValue().getnom().equals(entry2.getValue().getnom())) {
+                        Logger.error("TDS_gen : Deux fonctions ou procédures ont le même nom : " + entry.getValue().getnom() + " dans la TDS : " + this.nom_fonction);
+                        return false;
+                    }
+                }
+            }
+        }
+
         return true;
 
     }
@@ -368,7 +383,7 @@ public class TDS_gen {
         if (!this.valide()) {
             return false;
         }
-
+        
         for (TDS_gen tds : this.tds_childrens) {
             if (!tds.valide_et_enfants()) {
                 return false;
@@ -379,6 +394,7 @@ public class TDS_gen {
     }
 
     public void TDS_add_func_proc(Noeud func_proc) {
+        // Logger.debug("TDS_gen : Ajout de la fonction ou procédure à la TDS : " + func_proc.toString());
         // Ajoute une fonction à la TDS
         if (this.TDS_function == null) {
             this.TDS_function = new HashMap<Integer, Ligne_TDS_func>();

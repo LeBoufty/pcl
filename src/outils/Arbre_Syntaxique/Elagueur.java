@@ -561,22 +561,39 @@ public class Elagueur {
                 return new OperationUnaire((Evaluable)traduire(noeud.getEnfants().get(0)), OperateurUnaire.MOINS);
             case "£APPELfonction":
                 try{
-
+                
                 // fonction put gérée à part
                 if (((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf().equals("put")) {
                     return new Put((Evaluable) traduire(((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants().get(0)));
                 }
                 
-                Fonction fonction = tds.getFonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf());
-                if (fonction == null) {
-                    Logger.error("Fonction " + ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf() + " non déclarée");
-                    fonction = new Fonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf());
+                Noeud fonc_or_proc = tds.getFonctionOrProcedureParams(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf());
+
+                if (fonc_or_proc == null) {
+                    Logger.error("Fonction ou procédure " + ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf() + " non déclarée - Création d'une fonction temporaire.");
+                    fonc_or_proc = new Fonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf());
                 }
-                AppelFonction appel = new AppelFonction(fonction);
-                for (Noeud_A enfant : ((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants()) {
-                    appel.ajouterParametre((Evaluable) traduire(enfant));
+
+                if (fonc_or_proc instanceof Fonction) {
+                    Fonction fonction = (Fonction) fonc_or_proc;
+
+                    AppelFonction appel = new AppelFonction(fonction);
+                    for (Noeud_A enfant : ((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants()) {
+                        appel.ajouterParametre((Evaluable) traduire(enfant));
+                    }
+                    return appel;
                 }
-                return appel;
+
+                if (fonc_or_proc instanceof ProcedureParams) {
+                    ProcedureParams procedure = (ProcedureParams) fonc_or_proc;
+
+                    AppelProcedure appel = new AppelProcedure(procedure);
+                    for (Noeud_A enfant : ((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants()) {
+                        appel.ajouterParametre((Evaluable) traduire(enfant));
+                    }
+                    return appel;
+                }
+                
 
                 } catch (Exception e) {
                     Logger.error("Erreur syntaxique empêchant la construction de l'arbre. traduire - APPELfonction");

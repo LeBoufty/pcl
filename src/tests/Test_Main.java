@@ -13,13 +13,13 @@ public class Test_Main {
     public static void main(String[] args) throws Exception {
         try {
 
-        //String programme = "Programmes/Fonctionne/undebut.adb";
+        String programme = "Programmes/Fonctionne/undebut.adb";
         //programme = "Programmes/testsem/erreur6.adb";
-        String programme = "Programmes/Fonctionne/TurboMegaTest.ada";
-        programme = "Programmes/testsem/varnondef.adb";
-        programme = "Programmes/testsem/fctnondef.adb";
-        programme = "Programmes/testsem/mauvaistype.adb";
-        programme = "Programmes/testsem/erreur6.adb";
+        // String programme = "Programmes/Fonctionne/TurboMegaTest.ada";
+        // programme = "Programmes/testsem/varnondef.adb";
+        // programme = "Programmes/testsem/fctnondef.adb";
+        // programme = "Programmes/testsem/mauvaistype.adb";
+        // programme = "Programmes/testsem/erreur6.adb";
         
 
         // Création de l'analyseur lexical

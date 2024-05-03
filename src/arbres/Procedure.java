@@ -88,6 +88,7 @@ public class Procedure implements Noeud {
         if (Parent == null) {
             Logger.milestone("Début de la vérification des TDS");
             this.TDS_link(null);
+            this.TDS_func_proc_creation();
             this.TDS_variable();
             if (!this.tds.valide_et_enfants()) {
                 Logger.error("TDS invalide - Arrêt du programme");
@@ -155,5 +156,11 @@ public class Procedure implements Noeud {
     public void TDS_variable() {
         definitions.TDS_variable();
         instructions.TDS_variable();
+    }
+
+    public void TDS_func_proc_creation() {
+        // La procédure de base n'est pas a rajouter dans la TDS
+        definitions.TDS_func_proc_creation();
+        // instructions.TDS_func_proc_creation(); // On ne rajoute pas les instructions dans la TDS
     }
 }

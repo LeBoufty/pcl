@@ -153,4 +153,12 @@ public class Fonction implements Noeud {
         definitions.TDS_variable();
         instructions.TDS_variable();
     }
+
+    public void TDS_func_proc_creation() {
+        // On rajoute la fonction à la TDS parent
+        TDS_gen tds_parent = this.tds.get_parent();
+        tds_parent.TDS_add_func_proc(this);
+
+        definitions.TDS_func_proc_creation();
+    }
 }
