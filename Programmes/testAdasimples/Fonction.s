@@ -21,7 +21,7 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable a
 MOVZ x0, #10
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
@@ -45,7 +45,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x6, [sp] // Sauvegarde du résultat
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
@@ -119,10 +119,9 @@ ADD sp, sp, #16 // On décrémente le pointeur de pile
 ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-MOVN x0, #16 // On met le deplacement en pile 
-MOVZ x1, #1 // On met le nombre de saut en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
+STR x2, [x29, #16] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
 
 // Return 
 LDR x0, [x29, #16] // On récupère la valeur de la variable x
