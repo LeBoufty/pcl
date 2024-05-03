@@ -362,6 +362,18 @@ public class TDS_gen {
             }
         }
 
+        // Vérifie pour les fonctions et procédures
+        if (this.TDS_function != null) {
+            for (Map.Entry<Integer, Ligne_TDS_func> entry : this.TDS_function.entrySet()) {
+                for (Map.Entry<Integer, Ligne_TDS_func> entry2 : this.TDS_function.entrySet()) {
+                    if (entry.getKey() != entry2.getKey() && entry.getValue().getnom().equals(entry2.getValue().getnom())) {
+                        Logger.error("TDS_gen : Deux fonctions ou procédures ont le même nom : " + entry.getValue().getnom() + " dans la TDS : " + this.nom_fonction);
+                        return false;
+                    }
+                }
+            }
+        }
+
         return true;
 
     }
