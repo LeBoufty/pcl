@@ -297,9 +297,7 @@ public class TDS_gen {
         sortie += tab + "Nom de la fonction : " + this.nom_fonction + "\n";
         sortie += tab + "Numéro d'imbrication : " + this.num_imbr + "\n";
         sortie += tab + "Numéro de region : " + this.num_reg + "\n";
-        // for(int i = 0; i < this.variable_code.size(); i++) {
-        //     sortie += tab + "Code : " + this.variable_code.get(i) + " | Deplacement : " + this.deplacement.get(i) + " | Taille : " + this.taille.get(i) + "\n";
-        // }
+        
         for (int i = - num_parametres; i < 0; i++) {
             sortie += tab + "ID TDS :" + i + " - Paramètre : " + this.TDS_vari.get(i).variable.identifiant + " | Taille : " + this.TDS_vari.get(i).taille + " | Nom : " + this.TDS_vari.get(i).variable.nom + "\n";
         }
@@ -315,6 +313,18 @@ public class TDS_gen {
             sortie += tds.toString();
         }
         sortie += "\n";
+
+        // Partie Fonctions et Procédures
+        if (this.TDS_function != null) {
+            for (Map.Entry<Integer, Ligne_TDS_func> entry : this.TDS_function.entrySet()) {
+                if (entry.getValue().estFonction()) {
+                    sortie += tab + "Fonction : " + entry.getValue().getnom() + " : num_reg : " + entry.getKey() + "\n";
+                } else if (entry.getValue().estProcedure()) {
+                    sortie += tab + "Procédure : " + entry.getValue().getnom() + " : num_reg : " + entry.getKey() + "\n";
+                }
+            }
+        }
+
         sortie += tab + "+========= FIN TDS N." + this.num_reg + " =========+\n";
         return sortie;
     }

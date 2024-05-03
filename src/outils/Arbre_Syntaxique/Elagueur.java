@@ -513,7 +513,7 @@ public class Elagueur {
 
                     
                 } catch (Exception e) {
-                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
+                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre : Traduire - FICHIER");
                     // Logger.error(e.getMessage());
                     return null;
                 }
@@ -560,10 +560,13 @@ public class Elagueur {
             case "£MOINSUnairePresent":
                 return new OperationUnaire((Evaluable)traduire(noeud.getEnfants().get(0)), OperateurUnaire.MOINS);
             case "£APPELfonction":
+                try{
+
                 // fonction put gérée à part
                 if (((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf().equals("put")) {
                     return new Put((Evaluable) traduire(((Noeud_Non_Terminal)noeud.getEnfants().get(0)).getEnfants().get(0)));
                 }
+                
                 Fonction fonction = tds.getFonction(((Noeud_Terminal)noeud.getEnfants().get(1)).getCodeIdf());
                 if (fonction == null) {
                     Logger.error("Fonction " + ((Noeud_Terminal)noeud.getEnfants().get(1)).getValeurIdf() + " non déclarée");
@@ -574,6 +577,13 @@ public class Elagueur {
                     appel.ajouterParametre((Evaluable) traduire(enfant));
                 }
                 return appel;
+
+                } catch (Exception e) {
+                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre. traduire - APPELfonction");
+                    // Error_list.traduction = true;
+                    Logger.error(e.getMessage());
+                    return null;
+                }
             case "£DECLARATION":
                 return traduire(noeud.getEnfants().get(0));
             case "£IDFInterro":
@@ -624,7 +634,7 @@ public class Elagueur {
                 return fonc;
                     
                 } catch (Exception e) {
-                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
+                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre. traduire - PROCEDUREDECL");
                     Error_list.traduction = true;
                     // Logger.error(e.getMessage());
                     return null;
@@ -677,7 +687,7 @@ public class Elagueur {
                 return fonc;
                     
                 } catch (Exception e) {
-                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre.");
+                    Logger.error("Erreur syntaxique empêchant la construction de l'arbre. traduire - FUNCTIONDECL");
                     Error_list.traduction = true;
                     // Logger.error(e.getMessage());
                     return null;
