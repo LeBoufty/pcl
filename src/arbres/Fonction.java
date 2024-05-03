@@ -105,13 +105,14 @@ public class Fonction implements Noeud {
         for (Noeud noeud : ((Bloc) instructions).instructions) {
             res += noeud.produire(tds)+"\n";
         }
-
-        res += "ADD SP, SP, #" + taille_locale + " // Libération de l'espace pour les variables locales\n";
-        // Restauration du pointeur de pile
-        res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
-        // Restauration du pointeur de pile et du lien de retour
-        res += "LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour\n";
-        res += "RET // Retour de la fonction\n";
+        
+        // // Mise en place de la valeur de retour
+        // res += "LDR x6, [sp] // Valeur de retour dans le registre x6\n";
+        // // Restauration du pointeur de pile
+        // res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
+        // // Restauration du pointeur de pile et du lien de retour
+        // res += "LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour\n";
+        // res += "RET // Retour de la fonction\n";
         GestionFichier.AddcontenuFooter(res);
 
         System.out.println("=== Fin Fonction ===");

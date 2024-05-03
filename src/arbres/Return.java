@@ -30,8 +30,21 @@ public class Return implements Noeud {
     public String produire(TDS_gen tds_actuelle) {
         System.out.println("Return : " + valeur);
 
-        return "";
-// TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
+        String res = "// Return \n";
+
+        if (!this.estVide()) {
+            res += this.valeur.produire(tds_actuelle);
+        }
+
+        // Mise en place de la valeur de retour
+        res += "LDR x6, [sp] // Valeur de retour dans le registre x6\n";
+        // Restauration du pointeur de pile
+        res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
+        // Restauration du pointeur de pile et du lien de retour
+        res += "LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour\n";
+        res += "RET // Retour de la fonction\n";
+
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {

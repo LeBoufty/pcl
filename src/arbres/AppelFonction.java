@@ -92,6 +92,8 @@ public class AppelFonction extends Evaluable {
         // Récupération du résultat
         res += "// Récupération du résultat\n";
         res += "ADD sp, sp, #" + (params.size() * 16) + " // Décrémentation du pointeur de pile de la taille des paramètres\n";
+        res += "SUB sp, sp, #16 // Réserve de l'espace pour le résultat\n";
+        res += "STR x6, [sp] // Sauvegarde du résultat\n";
 
         return res;
     }
