@@ -26,6 +26,14 @@ public class TDS {
         return (Fonction) this.tds.get(id);
     }
 
+    public ProcedureParams getProcedureParams(int id) {
+        return (ProcedureParams) this.tds.get(id);
+    }
+
+    public Noeud getFonctionOrProcedureParams(int id) {
+        return this.tds.get(id);
+    }
+
     public IType getType(int id) {
         return (IType) this.tds.get(id);
     }

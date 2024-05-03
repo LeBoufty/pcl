@@ -383,7 +383,7 @@ public class TDS_gen {
         if (!this.valide()) {
             return false;
         }
-
+        
         for (TDS_gen tds : this.tds_childrens) {
             if (!tds.valide_et_enfants()) {
                 return false;

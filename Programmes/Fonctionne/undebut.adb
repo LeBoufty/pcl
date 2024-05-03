@@ -38,7 +38,7 @@ test : integer ;
 
 -- PROCEDURE PRINCIPALE
 begin
-    --  testProcedure(1);
+    testProcedure(1);
     choix := 2;
     valeur := aireRectangle(2, 3);
     choix := valeur + choix;
