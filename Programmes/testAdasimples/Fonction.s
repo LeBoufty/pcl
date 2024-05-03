@@ -25,10 +25,26 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-stp x29, x30, [sp, #-16]! // Sauvegarde des registres
-str x0, [sp, #0] // Mettre le paramètre 0 dans la pile
-bl F1 // Appel de la fonction
-ldp x29, x30, [sp], #16 // Restauration des registres
+// Appel de fonction add100
+// Paramètre 0
+MOVZ x0, #515
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+// Paramètre 1
+LDR x0, [x29, #-48] // On récupère la valeur de la variable a
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+// Gestion du chainage statique
+SUB sp, sp, #16 // Incrémentation du pointeur de pile
+STR x29, [sp] // Sauvegarde du chainage statique
+MOV x7, x29 // Mise à jour du chainage statique
+BL F1 // Appel de la fonction
+// Gestion du chainage statique
+ADD sp, sp, #16 // Le chainage statique ça dégage
+// Récupération du résultat
+ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
+SUB sp, sp, #16 // Réserve de l'espace pour le résultat
+STR x6, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
@@ -76,7 +92,7 @@ F1 : // Début de la fonction
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
-SUB SP, SP, 0 // Réserve de l'espace pour les variables locales
+SUB SP, SP, #0 // Réserve de l'espace pour les variables locales
 // Instructions de la fonction add100
 // Printf
 MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
@@ -110,9 +126,14 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 MOVN x0, #16 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
 
-
-ADD SP, SP, 0 // Libération de l'espace pour les variables locales
+// Return 
+MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
+MOVZ x1, #1 // x Nb saut VAR GLOBALE
+BL get_global_var // x Mise en pile var
+STR x2, [sp, #0] // x Mise en pile var depuis le registre de retours des fonctions :)
+LDR x6, [sp] // Valeur de retour dans le registre x6
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
+
 

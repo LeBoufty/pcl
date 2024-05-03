@@ -60,25 +60,40 @@ public class AppelFonction extends Evaluable {
         System.out.println("Appel de fonction "+ this.fonction.nom);
         System.out.println("Paramètres : "+ this.params);
 
-        String res = "";
-
-        // Sauvegarde des registres
-        res += "stp x29, x30, [sp, #-16]! // Sauvegarde des registres\n"; // TODO : à vérifier
+        String res = "// Appel de fonction "+ this.fonction.nom +"\n";
 
         // Met en place les paramètres
         for (int i = 0; i < params.size(); i++) {
             System.out.println("Paramètre "+ i +" : "+ params.get(i));
             // Mettre la valeur du paramètre dans le registre x0
-            // !res += params.get(i).produire(); // TODO : à vérifier
-            // Mettre la valeur du paramètre dans la pile
-            res += "str x0, [sp, #"+ (i * 16) +"] // Mettre le paramètre "+ i +" dans la pile\n";
+            res += "// Paramètre "+ i +"\n";
+            res += params.get(i).produire(this.tds_parent);
+        }
+
+        // Gestion du chainage statique
+        res += "// Gestion du chainage statique\n";
+        res += "SUB sp, sp, #16 // Incrémentation du pointeur de pile\n";
+        if (this.tds_parent.get_num_reg() == this.fonction.getTDS().get_num_reg()) {
+            // Sauvegarde du chainage statique cas récursif
+            res += "STR x7, [sp] // Sauvegarde du chainage statique\n";
+        } else {
+            // Sauvegarde du chainage statique cas non récursif
+            res += "STR x29, [sp] // Sauvegarde du chainage statique\n";
+            res += "MOV x7, x29 // Mise à jour du chainage statique\n";
         }
 
         // Appel de la fonction
-        res += "bl F"+ this.fonction.getTDS().get_num_reg() +" // Appel de la fonction\n";
+        res += "BL F"+ this.fonction.getTDS().get_num_reg() +" // Appel de la fonction\n";
 
-        // Restauration des registres
-        res += "ldp x29, x30, [sp], #16 // Restauration des registres\n";// TODO : à vérifier
+        // Gestion du chainage statique
+        res += "// Gestion du chainage statique\n";
+        res += "ADD sp, sp, #16 // Le chainage statique ça dégage\n";
+
+        // Récupération du résultat
+        res += "// Récupération du résultat\n";
+        res += "ADD sp, sp, #" + (params.size() * 16) + " // Décrémentation du pointeur de pile de la taille des paramètres\n";
+        res += "SUB sp, sp, #16 // Réserve de l'espace pour le résultat\n";
+        res += "STR x6, [sp] // Sauvegarde du résultat\n";
 
         return res;
     }

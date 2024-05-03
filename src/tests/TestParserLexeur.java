@@ -78,3 +78,5 @@ public class TestParserLexeur {
 
     }
 }
+
+// find . -type f \( -name "*.pu" -o -name "*.puml" -o -name "*.idf" -o -name "*.lex" \) -exec rm -f {} +
