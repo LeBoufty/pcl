@@ -60,7 +60,7 @@ BL printf
 ADD sp, sp, #16
 
 
-bl exit_program
+B exit_program
 
 exit_program : //Fonction de sortie du programme 
 mov x0,#0
@@ -86,7 +86,7 @@ RET
 erreur_division : // Fonction d'erreur de division
 LDR x0, =erreur_division_msg // On charge le message d'erreur
 BL printf // On affiche le message d'erreur
-BL exit_program // On quitte le programme
+B exit_program // On quitte le programme
 
 F1 : // Début de la fonction
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
@@ -95,10 +95,9 @@ SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 SUB SP, SP, #0 // Réserve de l'espace pour les variables locales
 // Instructions de la fonction add100
 // Printf
-MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // x Nb saut VAR GLOBALE
-BL get_global_var // x Mise en pile var
-STR x2, [sp, #0] // x Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #16] // On récupère la valeur de la variable x
+SUB sp, sp, #16 // x Mise en pile var
+STR x0, [sp] // x Mise en pile var
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -107,10 +106,9 @@ ADD sp, sp, #16
 
 
 // Opération
-MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // x Nb saut VAR GLOBALE
-BL get_global_var // x Mise en pile var
-STR x2, [sp, #0] // x Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #16] // On récupère la valeur de la variable x
+SUB sp, sp, #16 // x Mise en pile var
+STR x0, [sp] // x Mise en pile var
 MOVZ x0, #100
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -127,10 +125,9 @@ MOVN x0, #16 // On met le deplacement en pile
 MOVZ x1, #1 // On met le nombre de saut en pile 
 
 // Return 
-MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // x Nb saut VAR GLOBALE
-BL get_global_var // x Mise en pile var
-STR x2, [sp, #0] // x Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #16] // On récupère la valeur de la variable x
+SUB sp, sp, #16 // x Mise en pile var
+STR x0, [sp] // x Mise en pile var
 LDR x6, [sp] // Valeur de retour dans le registre x6
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
