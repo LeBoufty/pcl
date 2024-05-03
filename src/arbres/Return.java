@@ -28,9 +28,9 @@ public class Return implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-         System.out.println("Return : " + valeur);
+        System.out.println("Return : " + valeur);
 
-         return "";
+        return "";
 // TODO : on définit ce qu'on met dans le registre de sortie (ou dans la pile)
     }
 

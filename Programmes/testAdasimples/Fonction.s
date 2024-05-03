@@ -25,10 +25,24 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x0
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-stp x29, x30, [sp, #-16]! // Sauvegarde des registres
-str x0, [sp, #0] // Mettre le paramètre 0 dans la pile
-bl F1 // Appel de la fonction
-ldp x29, x30, [sp], #16 // Restauration des registres
+// Appel de fonction add100
+// Paramètre 0
+MOVZ x0, #515
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+// Paramètre 1
+LDR x0, [x29, #-48] // On récupère la valeur de la variable a
+SUB sp, sp, #16 // a Mise en pile var
+STR x0, [sp] // a Mise en pile var
+// Gestion du chainage statique
+SUB sp, sp, #16 // Incrémentation du pointeur de pile
+STR x29, [sp] // Sauvegarde du chainage statique
+MOV x7, x29 // Mise à jour du chainage statique
+BL F1 // Appel de la fonction
+// Gestion du chainage statique
+ADD sp, sp, #16 // Le chainage statique ça dégage
+// Récupération du résultat
+ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 LDR x2, [sp] // On met la valeur de la variable droite dans x0 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 

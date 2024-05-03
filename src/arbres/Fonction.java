@@ -96,18 +96,17 @@ public class Fonction implements Noeud {
         // *Code appelé
         res += "STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour\n";
         res += "MOV x29, sp // Mise à jour du pointeur de pile\n";
-        // TODO : Sauvegarde du chainage dynamique
         res += "SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n";
         // Réserve de l'espace pour les variables locales
         int taille_locale = this.tds.get_taille_variables_locales();
-        res += "SUB SP, SP, " + taille_locale + " // Réserve de l'espace pour les variables locales\n";
+        res += "SUB SP, SP, #" + taille_locale + " // Réserve de l'espace pour les variables locales\n";
 
         res += "// Instructions de la fonction " + nom + "\n";
         for (Noeud noeud : ((Bloc) instructions).instructions) {
             res += noeud.produire(tds)+"\n";
         }
 
-        res += "ADD SP, SP, " + taille_locale + " // Libération de l'espace pour les variables locales\n";
+        res += "ADD SP, SP, #" + taille_locale + " // Libération de l'espace pour les variables locales\n";
         // Restauration du pointeur de pile
         res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
         // Restauration du pointeur de pile et du lien de retour

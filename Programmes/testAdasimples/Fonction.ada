@@ -4,7 +4,7 @@ procedure Fonction is
 
     a: Integer;
 
-    function Add100(x: Integer) return Integer is
+    function Add100(x: Integer; x2: Integer) return Integer is
     begin
         Put(x);
         x := x + 100;
@@ -13,6 +13,6 @@ procedure Fonction is
 
 begin
     a := 10;
-    a := Add100(a);
+    a := Add100(a,515);
     Put(a);
 end Fonction;
