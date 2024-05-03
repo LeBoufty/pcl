@@ -27,16 +27,16 @@ public class TestParserLexeur {
         //programme = "Programmes/Fonctionne/williamfaure.adb";
         //programme = "Programmes/Fonctionne/recordiii.adb";
         //programme = "Programmes/Fonctionne/testctrlsem.adb";
-        programme = "Programmes/testAdasimples/Addition1.ada";
-        //programme = "Programmes/Fonctionne/TurboMegaTest.ada";
-        programme = "Programmes/testAdasimples/Parentheses.ada";
+        programme = "Programmes/testAdasimples/Fonction.ada";
+        //programme = "Programmes/Fonctionne/stack.ada";
+        //programme = "Programmes/testAdasimples/Parentheses.ada";
 
         // Tests sémantiques
         // programme = "Programmes/testsem/divparzero.adb";
         // programme = "Programmes/testsem/fctnondef.adb";
         //programme = "Programmes/testsem/mauvaisop.adb";
         //programme = "Programmes/testsem/mauvaistype.adb";
-        programme = "Programmes/testsem/varnondef.adb";
+        //programme = "Programmes/testsem/varnondef.adb";
         //programme = "Programmes/testsem/erreur2.adb";
         // programme = "Programmes/testsem/erreur6.adb";
         //programme = "Programmes/Fonctionne/undebut.adb";
@@ -78,3 +78,5 @@ public class TestParserLexeur {
 
     }
 }
+
+// find . -type f \( -name "*.pu" -o -name "*.puml" -o -name "*.idf" -o -name "*.lex" \) -exec rm -f {} +
