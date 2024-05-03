@@ -35,4 +35,8 @@ public enum Type implements IType, Noeud {
     public void TDS_variable() {
         // Rien à faire
     }
+
+    public void TDS_func_proc_creation() {
+        // Rien à faire
+    }
 }

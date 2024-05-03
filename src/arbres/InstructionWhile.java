@@ -86,4 +86,8 @@ public class InstructionWhile implements Noeud {
             this.corps.TDS_variable();
         }
     }
+
+    public void TDS_func_proc_creation() {
+        // On ne fait rien car il n'y a pas de fonction ou procédure dans un while
+    }
 }

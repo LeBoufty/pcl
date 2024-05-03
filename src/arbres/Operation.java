@@ -114,4 +114,5 @@ public class Operation extends Evaluable {
             this.droite.TDS_variable();
         }
     }
+
 }

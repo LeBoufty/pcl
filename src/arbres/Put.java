@@ -52,4 +52,8 @@ public class Put implements Noeud {
         }
     }
 
+    public void TDS_func_proc_creation() {
+        // Rien à faire
+    }
+
 }

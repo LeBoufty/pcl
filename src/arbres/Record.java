@@ -46,4 +46,8 @@ public class Record implements Noeud {
     public void TDS_variable() {
         // TODO : à faire si on a le temps
     }
+
+    public void TDS_func_proc_creation() {
+        // TODO : à faire si on a le temps
+    }
 }

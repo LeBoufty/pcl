@@ -58,4 +58,8 @@ public class Return implements Noeud {
             }
         }
     }
+
+    public void TDS_func_proc_creation() {
+        // Ne fait rien
+    }
 }

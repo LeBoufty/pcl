@@ -14,4 +14,7 @@ public abstract class Evaluable implements Noeud {
         return false;
     }
 
+    public void TDS_func_proc_creation() {
+        // Rien à faire
+    }
 }
