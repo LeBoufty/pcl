@@ -45,16 +45,15 @@ public class Affectation implements Noeud {
         String res = "";
 
         res += this.droite.produire(tds_parent); // Le résultat est en sommet de pile
-        res += "LDR x2, [sp] // On met la valeur de la variable droite dans x0 \n";
+        res += "LDR x2, [sp] // On met la valeur de la variable droite dans x2 \n";
         
         // On va chercher la variable dans la TDS
         int depl = this.tds_parent.get_index(this.gauche.identifiant)*16;
-        int num_imbr_ici = this.tds_parent.get_num_imbr();
-        int num_imbr_var = this.tds_parent.search_imbrication_TDS(this.gauche.identifiant);
+        int Nb_saut = this.tds_parent.search_imbrication_TDS(this.gauche.identifiant);
         
         // Cas variable locale
-        if (num_imbr_var == num_imbr_ici) {
-            res += "STR x2, [x29, #-" + depl + "] // On met la valeur de la variable droite dans la variable gauche \n";
+        if (Nb_saut == 0) {
+            res += "STR x2, [x29, #" + -depl + "] // On met la valeur de la variable droite dans la variable gauche \n";
             res += "ADD sp, sp, #16 // On dépile la valeur \n";
         }
         else {// Cas variable globale
@@ -62,7 +61,8 @@ public class Affectation implements Noeud {
             res += "SUB sp, sp, #16 // On décrémente le pointeur de pile \n";
             if (depl < 0) {res += "MOVN x0, #" + -depl + " // On met le deplacement en pile \n";}
             else{res += "MOVZ x0, #" + depl + " // On met le deplacement en pile \n";}
-            res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // On met le nombre de saut en pile \n"; //TODO : A vérifier
+            res += "MOVZ x1, #" + Nb_saut + " // On met le nombre de saut en pile \n"; //TODO : A vérifier
+            res += "BL set_global_var // On met la valeur de la variable droite dans la variable gauche \n";
         }
         return res;
     }

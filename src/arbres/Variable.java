@@ -38,19 +38,18 @@ public class Variable extends Evaluable {
 
         // On va chercher la variable dans la TDS
         int depl = tds_actuelle.get_index(this.identifiant)*16;
-        int num_imbr_ici = tds_actuelle.get_num_imbr();
-        int num_imbr_var = tds_actuelle.search_imbrication_TDS(this.identifiant);
+        int Nb_saut = tds_actuelle.search_imbrication_TDS(this.identifiant);
 
-        System.out.println("Deplacement : " + depl + " Num imbrication : " + num_imbr_ici + " Num imbrication var : " + num_imbr_var);
+        System.out.println("Numero de la variable : " + this.identifiant + " Nom de la variable : " + this.nom);
 
-        if (num_imbr_var == num_imbr_ici) { // Cas variable locale
+        if (Nb_saut == 0) { // Cas variable locale
             res += Store_Variable_X0_locale(depl);
             res += "SUB sp, sp, #16 // " + this.nom + " Mise en pile var\n";
             res += "STR x0, [sp] // " + this.nom + " Mise en pile var\n";
         } else { // Cas variable globale
             if (depl < 0) {res += "MOVN x0, #" + -depl + " // Deplacement en pile VAR GLOBALE \n";}
             else{res += "MOVZ x0, #" + depl + " // Deplacement en pile VAR GLOBALE \n";} // TODO : depl > 256
-            res += "MOVZ x1, #" + (num_imbr_ici - num_imbr_var) + " // " + this.nom + " Nb saut VAR GLOBALE\n";
+            res += "MOVZ x1, #" + Nb_saut + " // " + this.nom + " Nb saut VAR GLOBALE\n";
             res += "BL get_global_var // " + this.nom + " Mise en pile var\n";
             // Déplace le sommet de pile de 2*16 bits pour supprimer les deux valeurs depl et nb_saut
             res += "STR x2, [sp, #0] // " + this.nom + " Mise en pile var depuis le registre de retours des fonctions :)\n";

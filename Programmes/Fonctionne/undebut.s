@@ -30,7 +30,7 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable test
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
@@ -54,7 +54,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x6, [sp] // Sauvegarde du résultat
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
@@ -73,7 +73,7 @@ ADD sp, sp, #16 // On décrémente le pointeur de pile
 ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
@@ -81,11 +81,11 @@ ADD sp, sp, #16 // On dépile la valeur
 MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// if 396873410
+// if 960604060
 
 // Opération
 
@@ -130,7 +130,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then396873410 // Branchement si la condition est vraie
+BNE then960604060 // Branchement si la condition est vraie
 // Appel de fonction airerectangle
 // Paramètre 0
 MOVZ x0, #3
@@ -151,11 +151,11 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x6, [sp] // Sauvegarde du résultat
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B end396873410 // Branchement à la fin du if
-then396873410 :
+B end960604060 // Branchement à la fin du if
+then960604060 :
 // Appel de fonction perimetrerectangle
 // Paramètre 0
 MOVZ x0, #3
@@ -176,7 +176,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x6, [sp] // Sauvegarde du résultat
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 // Printf
@@ -188,10 +188,10 @@ ADRP x0, format
 ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
-end396873410 :
+end960604060 :
 
 
-bl exit_program
+B exit_program
 
 exit_program : //Fonction de sortie du programme 
 mov x0,#0
@@ -217,7 +217,7 @@ RET
 erreur_division : // Fonction d'erreur de division
 LDR x0, =erreur_division_msg // On charge le message d'erreur
 BL printf // On affiche le message d'erreur
-BL exit_program // On quitte le programme
+B exit_program // On quitte le programme
 
 F1 : // Début de la fonction
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
@@ -227,14 +227,12 @@ SUB SP, SP, #4 // Réserve de l'espace pour les variables locales
 // Instructions de la fonction airerectangle
 
 // Opération
-MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // larg Nb saut VAR GLOBALE
-BL get_global_var // larg Mise en pile var
-STR x2, [sp, #0] // larg Mise en pile var depuis le registre de retours des fonctions :)
-MOVN x0, #32 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // long Nb saut VAR GLOBALE
-BL get_global_var // long Mise en pile var
-STR x2, [sp, #0] // long Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #16] // On récupère la valeur de la variable larg
+SUB sp, sp, #16 // larg Mise en pile var
+STR x0, [sp] // larg Mise en pile var
+LDR x0, [x29, #32] // On récupère la valeur de la variable long
+SUB sp, sp, #16 // long Mise en pile var
+STR x0, [sp] // long Mise en pile var
 LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
@@ -242,16 +240,14 @@ ADD sp, sp, #16 // On décrémente le pointeur de pile
 MUL x0, x0, x1 // Opération *
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-MOVZ x0, #48 // On met le deplacement en pile 
-MOVZ x1, #1 // On met le nombre de saut en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
 
 // Return 
-MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // aire Nb saut VAR GLOBALE
-BL get_global_var // aire Mise en pile var
-STR x2, [sp, #0] // aire Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #-48] // On récupère la valeur de la variable aire
+SUB sp, sp, #16 // aire Mise en pile var
+STR x0, [sp] // aire Mise en pile var
 LDR x6, [sp] // Valeur de retour dans le registre x6
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
@@ -268,10 +264,9 @@ SUB SP, SP, #4 // Réserve de l'espace pour les variables locales
 // Opération
 
 // Opération
-MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // larg Nb saut VAR GLOBALE
-BL get_global_var // larg Mise en pile var
-STR x2, [sp, #0] // larg Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #16] // On récupère la valeur de la variable larg
+SUB sp, sp, #16 // larg Mise en pile var
+STR x0, [sp] // larg Mise en pile var
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -284,10 +279,9 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 
 // Opération
-MOVN x0, #32 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // long Nb saut VAR GLOBALE
-BL get_global_var // long Mise en pile var
-STR x2, [sp, #0] // long Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #32] // On récupère la valeur de la variable long
+SUB sp, sp, #16 // long Mise en pile var
+STR x0, [sp] // long Mise en pile var
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -305,16 +299,14 @@ ADD sp, sp, #16 // On décrémente le pointeur de pile
 ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
-LDR x2, [sp] // On met la valeur de la variable droite dans x0 
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-MOVZ x0, #48 // On met le deplacement en pile 
-MOVZ x1, #1 // On met le nombre de saut en pile 
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
+STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
 
 // Return 
-MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // aire Nb saut VAR GLOBALE
-BL get_global_var // aire Mise en pile var
-STR x2, [sp, #0] // aire Mise en pile var depuis le registre de retours des fonctions :)
+LDR x0, [x29, #-48] // On récupère la valeur de la variable aire
+SUB sp, sp, #16 // aire Mise en pile var
+STR x0, [sp] // aire Mise en pile var
 LDR x6, [sp] // Valeur de retour dans le registre x6
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
