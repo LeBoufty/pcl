@@ -6,6 +6,9 @@ import java.util.Map;
 import outils.TDS.Ligne_TDS; // Faut le laisser pour l'ordi Arnaud
 
 import outils.Logger;
+import arbres.AppelFonction;
+import arbres.AppelProcedure;
+import arbres.Evaluable;
 import arbres.Fonction;
 import arbres.Noeud;
 import arbres.ProcedureParams;
@@ -413,5 +416,71 @@ public class TDS_gen {
 
         Logger.error("TDS_gen : Fonction ou procédure invalide");
         
+    }
+
+    public Noeud get_Fonc_Proc_string(String nom) {
+        // Check if the TDS functions exist
+        if (this.TDS_function == null) {
+            return null;
+        }
+
+        // Check if the variable is in the TDS
+        for (Map.Entry<Integer, Ligne_TDS_func> entry : this.TDS_function.entrySet()) {
+            if (entry.getValue().getnom().equals(nom)) {
+                return entry.getValue().get_Fonc_Proc();
+            }
+        }
+        
+        return null;
+    }
+
+    public Noeud get_Fonc_Proc_string_and_parent(String nom) {
+        // Check if the variable is in the TDS or in the parent TDS
+        TDS_gen TDS_parent = this;
+
+        while(TDS_parent != null) {
+            Noeud var = TDS_parent.get_Fonc_Proc_string(nom);
+
+            if(var != null) {
+                return var;
+            }
+
+            TDS_parent = TDS_parent.tds_parent;
+        }
+
+        return null;
+    }
+
+    public Evaluable get_new_Appel(String nom, Evaluable ancien_appel) {
+        // Récupère la fonction ou procédure à partir de son nom
+        Noeud func_proc = this.get_Fonc_Proc_string_and_parent(nom);
+
+        // Si la fonction ou procédure n'est pas trouvée
+        if (func_proc == null) {
+            Logger.error("TDS_gen : Fonction ou procédure : " + nom + " non trouvée dans la TDS : " + this.nom_fonction);
+            return null;
+        }
+
+        // Si c'est une fonction
+        if (func_proc instanceof Fonction) {
+            // Création d'un nouvel appel de fonction
+            AppelFonction appel = new AppelFonction((Fonction) func_proc);
+            // Ajout des paramètres de l'ancien appel
+            appel.params = ((AppelFonction) ancien_appel).params;
+            return appel;
+        }
+
+
+        // Si c'est une procédure
+        if (func_proc instanceof ProcedureParams) {
+            // Création d'un nouvel appel de procédure
+            AppelProcedure appel = new AppelProcedure((ProcedureParams) func_proc);
+            // Ajout des paramètres de l'ancien appel
+            appel.params = ((AppelProcedure) ancien_appel).params;
+
+            return appel;
+        }
+        
+        return null;
     }
 }

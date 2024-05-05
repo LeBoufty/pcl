@@ -76,4 +76,8 @@ public class Constante extends Evaluable {
     public void TDS_variable() {
         // Rien à faire
     }
+
+    public void TDS_func_proc_change() {
+        // Rien à faire
+    }
 }

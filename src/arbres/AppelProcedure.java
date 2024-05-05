@@ -132,4 +132,21 @@ public class AppelProcedure extends Evaluable {
         }
     }
 
+    public void TDS_func_proc_change() {
+        
+        for (int i = 0; i < params.size(); i++) {
+            if (params.get(i) instanceof AppelFonction) {
+                String nom = ((AppelFonction) params.get(i)).fonction.nom;
+                params.set(i, this.tds_parent.get_new_Appel(nom, params.get(i)));
+            }
+            else if (params.get(i) instanceof AppelProcedure) {
+                String nom = ((AppelProcedure) params.get(i)).procedure.nom;
+                params.set(i, this.tds_parent.get_new_Appel(nom, params.get(i)));
+            }
+            else {
+                params.get(i).TDS_func_proc_change();
+            }
+        }
+    }
+
 }

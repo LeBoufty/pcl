@@ -86,4 +86,21 @@ public class Bloc implements Noeud {
             noeud.TDS_func_proc_creation();
         }
     }
+
+    public void TDS_func_proc_change() {
+        
+        for (int i = 0; i < instructions.size(); i++) {
+            if (instructions.get(i) instanceof AppelFonction) {
+                String nom = ((AppelFonction) instructions.get(i)).fonction.nom;
+                instructions.set(i, tds_parent.get_new_Appel(nom, (AppelFonction) instructions.get(i)));
+            }
+            else if (instructions.get(i) instanceof AppelProcedure) {
+                String nom = ((AppelProcedure) instructions.get(i)).procedure.nom;
+                instructions.set(i, tds_parent.get_new_Appel(nom, (AppelProcedure) instructions.get(i)));
+            }
+            else {
+                instructions.get(i).TDS_func_proc_change();
+            }
+        }
+    }
 }

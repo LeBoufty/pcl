@@ -75,4 +75,18 @@ public class Return implements Noeud {
     public void TDS_func_proc_creation() {
         // Ne fait rien
     }
+
+    public void TDS_func_proc_change() {
+        if (!this.estVide()) {
+            if (this.valeur instanceof AppelFonction) {
+                String nom = ((AppelFonction) this.valeur).fonction.nom;
+                this.valeur = this.tds_parent.get_new_Appel(nom, this.valeur);
+            } else if (this.valeur instanceof AppelProcedure) {
+                String nom = ((AppelProcedure) this.valeur).procedure.nom;
+                this.valeur = this.tds_parent.get_new_Appel(nom, this.valeur);
+            } else {
+                this.valeur.TDS_func_proc_change();
+            }
+        }
+    }
 }

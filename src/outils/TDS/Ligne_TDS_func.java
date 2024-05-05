@@ -31,4 +31,13 @@ public class Ligne_TDS_func {
         }
         return null;
     }
+
+    public Noeud get_Fonc_Proc() {
+        if (this.fonction != null) {
+            return this.fonction;
+        } else if (this.procedure != null) {
+            return this.procedure;
+        }
+        return null;
+    }
 }

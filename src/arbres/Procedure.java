@@ -90,6 +90,7 @@ public class Procedure implements Noeud {
             this.TDS_link(null);
             this.TDS_func_proc_creation();
             this.TDS_variable();
+            this.TDS_func_proc_change();
             if (!this.tds.valide_et_enfants()) {
                 Logger.error("TDS invalide - Arrêt du programme");
                 System.exit(1);
@@ -162,5 +163,10 @@ public class Procedure implements Noeud {
         // La procédure de base n'est pas a rajouter dans la TDS
         definitions.TDS_func_proc_creation();
         // instructions.TDS_func_proc_creation(); // On ne rajoute pas les instructions dans la TDS
+    }
+
+    public void TDS_func_proc_change() {
+        definitions.TDS_func_proc_change();
+        instructions.TDS_func_proc_change();
     }
 }

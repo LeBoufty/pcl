@@ -90,4 +90,34 @@ public class InstructionWhile implements Noeud {
     public void TDS_func_proc_creation() {
         // On ne fait rien car il n'y a pas de fonction ou procédure dans un while
     }
+
+    public void TDS_func_proc_change() {
+        // On fait le cas de la condition
+        if (this.condition instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.condition).fonction.nom;
+            this.condition = tds_parent.get_new_Appel(nom, condition);
+        }
+        else if (this.condition instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.condition).procedure.nom;
+            this.condition = tds_parent.get_new_Appel(nom, condition);
+        }
+        else {
+            this.condition.TDS_func_proc_change();
+        }
+
+        // On fait le cas du corps
+        if (this.corps instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.corps).fonction.nom;
+            this.corps = tds_parent.get_new_Appel(nom, (AppelFonction) this.corps);
+        }
+        else if (this.corps instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.corps).procedure.nom;
+            this.corps = tds_parent.get_new_Appel(nom, (AppelProcedure) this.corps);
+        }
+        else {
+            this.corps.TDS_func_proc_change();
+        }
+
+
+    }
 }

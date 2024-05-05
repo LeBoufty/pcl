@@ -9,27 +9,36 @@ procedure unDebut is
         return aire ;
     end aireRectangle ;
 
-    function perimetreRectangle(larg : integer; long : integer) return integer is
-    aire : integer;
-    begin
-        aire := larg*2 + long*2;
-        return aire ;
-    end perimetreRectangle;
-    choix : integer ;
+
+
     procedure testProcedure(bo : integer) is
 
-        function aireRectangles(larg : integer; long : integer) return integer is
+        function aireRectangle(larg : integer; long : integer) return integer is
         aire: integer;
         begin
             aire := larg * long ;
             choix := 0;
             return aire ;
-        end aireRectangles ;
+        end aireRectangle ;
 
     begin
         bo := bo + 1;
         return 1;
     end testProcedure;
+
+    function perimetreRectangle(larg : integer; long : integer) return integer is
+        aire : integer;
+        procedure testProcedure(bo : integer) is
+        begin
+            bo := bo + 1;
+            return 1;
+        end testProcedure;
+
+    begin
+        aire := larg*2 + long*2;
+        return aire ;
+    end perimetreRectangle;
+    choix : integer ;
 
     -- VARIABLES
 

@@ -120,4 +120,8 @@ public class Variable extends Evaluable {
         }
         return res;
     }
+
+    public void TDS_func_proc_change() {
+        // Ne fait rien
+    }
 }

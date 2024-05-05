@@ -115,4 +115,32 @@ public class Operation extends Evaluable {
         }
     }
 
+    public void TDS_func_proc_change() {
+        // Cas du membre gauche
+        if (this.gauche instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.gauche).fonction.nom;
+            this.gauche = this.tds_parent.get_new_Appel(nom, this.gauche);
+        }
+        else if (this.gauche instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.gauche).procedure.nom;
+            this.gauche = this.tds_parent.get_new_Appel(nom, this.gauche);
+        }
+        else {
+            this.gauche.TDS_func_proc_change();
+        }
+
+        // Cas du membre droit
+        if (this.droite instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.droite).fonction.nom;
+            this.droite = this.tds_parent.get_new_Appel(nom, this.droite);
+        }
+        else if (this.droite instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.droite).procedure.nom;
+            this.droite = this.tds_parent.get_new_Appel(nom, this.droite);
+        }
+        else {
+            this.droite.TDS_func_proc_change();
+        }
+    }
+
 }

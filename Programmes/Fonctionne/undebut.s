@@ -15,9 +15,9 @@ SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 
 
+
 // Declaration de la variable choix
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable choix
-
 
 // Declaration de la variable valeur
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable valeur
@@ -85,7 +85,7 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// if 960604060
+// if 159413332
 
 // Opération
 
@@ -130,7 +130,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then960604060 // Branchement si la condition est vraie
+BNE then159413332 // Branchement si la condition est vraie
 // Appel de fonction airerectangle
 // Paramètre 0
 MOVZ x0, #3
@@ -154,8 +154,8 @@ STR x6, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B end960604060 // Branchement à la fin du if
-then960604060 :
+B end159413332 // Branchement à la fin du if
+then159413332 :
 // Appel de fonction perimetrerectangle
 // Paramètre 0
 MOVZ x0, #3
@@ -169,7 +169,7 @@ STR x0, [sp] // On met la constante en pile
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
 MOV x7, x29 // Mise à jour du chainage statique
-BL F2 // Appel de la fonction
+BL F4 // Appel de la fonction
 // Gestion du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
 // Récupération du résultat
@@ -188,7 +188,7 @@ ADRP x0, format
 ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
-end960604060 :
+end159413332 :
 
 
 B exit_program
@@ -254,7 +254,7 @@ LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
 
 
-F2 : // Début de la fonction
+F4 : // Début de la fonction
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr

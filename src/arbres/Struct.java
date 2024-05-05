@@ -64,4 +64,8 @@ public class Struct implements Noeud, IType {
     public void TDS_func_proc_creation() {
         // TODO : à faire
     }
+
+    public void TDS_func_proc_change() {
+        // TODO : à faire
+    }
 }

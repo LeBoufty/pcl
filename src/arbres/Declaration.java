@@ -36,4 +36,28 @@ public class Declaration extends Instanciation {
             valeur.TDS_variable();
         }
     }
+
+    @Override
+    public void TDS_link(TDS_gen Parent) {
+        this.tds_parent = Parent;
+        variable.TDS_link(Parent);
+        if (valeur != null) valeur.TDS_link(Parent);
+    }
+
+    @Override
+    public void TDS_func_proc_change() {
+        if (valeur == null) return;
+
+        if (valeur instanceof AppelFonction) {
+            String nom = ((AppelFonction) valeur).fonction.nom;
+            valeur = this.tds_parent.get_new_Appel(nom, valeur);
+        }
+        else if (valeur instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) valeur).procedure.nom;
+            valeur = this.tds_parent.get_new_Appel(nom, valeur);
+        }
+        else {
+            valeur.TDS_func_proc_change();
+        }
+    }
 }

@@ -56,4 +56,17 @@ public class Put implements Noeud {
         // Rien à faire
     }
 
+    public void TDS_func_proc_change() {
+        if (this.expression instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.expression).fonction.nom;
+            this.expression = this.tds_parent.get_new_Appel(nom, this.expression);
+        }
+        else if (this.expression instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.expression).procedure.nom;
+            this.expression = this.tds_parent.get_new_Appel(nom, this.expression);
+        }
+        else {
+            this.expression.TDS_func_proc_change();
+        }
+    }
 }

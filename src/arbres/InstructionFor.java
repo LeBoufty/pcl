@@ -118,4 +118,47 @@ public class InstructionFor implements Noeud {
     public void TDS_func_proc_creation() {
         // On ne fait rien car il n'y a pas de création de fonction ou procédure dans une boucle for
     }
+
+    public void TDS_func_proc_change() {
+
+        // Pour le corps de la boucle
+        if (this.corps instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.corps).fonction.nom;
+            this.corps = this.tds.get_new_Appel(nom, (AppelFonction) this.corps);
+        }
+        else if (this.corps instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.corps).procedure.nom;
+            this.corps = this.tds.get_new_Appel(nom, (AppelProcedure) this.corps);
+        }
+        else {
+            this.corps.TDS_func_proc_change();
+        }
+
+        // Pour la borne inférieure
+        if (this.borneInf instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.borneInf).fonction.nom;
+            borneInf = this.tds.get_new_Appel(nom, (AppelFonction) this.borneInf);
+        }
+        else if (this.borneInf instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.borneInf).procedure.nom;
+            borneInf = this.tds.get_new_Appel(nom, (AppelProcedure) this.borneInf);
+        }
+        else {
+            this.borneInf.TDS_func_proc_change();
+        }
+
+        // Pour la borne supérieure
+        if (this.borneSup instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.borneSup).fonction.nom;
+            borneSup = this.tds.get_new_Appel(nom, (AppelFonction) this.borneSup);
+        }
+        else if (this.borneSup instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.borneSup).procedure.nom;
+            borneSup = this.tds.get_new_Appel(nom, (AppelProcedure) this.borneSup);
+        }
+        else {
+            this.borneSup.TDS_func_proc_change();
+        }
+
+    }
 }

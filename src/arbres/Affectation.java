@@ -94,4 +94,18 @@ public class Affectation implements Noeud {
     public void TDS_func_proc_creation() {
         // Rien à faire
     }
+
+    public void TDS_func_proc_change() {
+        if (this.droite instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.droite).fonction.nom;
+            this.droite = this.tds_parent.get_new_Appel(nom, droite);
+        }
+        else if (this.droite instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.droite).procedure.nom;
+            this.droite = this.tds_parent.get_new_Appel(nom, droite);
+        }
+        else {
+            this.droite.TDS_func_proc_change();
+        }
+    }
 }

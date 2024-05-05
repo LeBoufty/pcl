@@ -161,4 +161,9 @@ public class Fonction implements Noeud {
 
         definitions.TDS_func_proc_creation();
     }
+
+    public void TDS_func_proc_change() {
+        definitions.TDS_func_proc_change();
+        instructions.TDS_func_proc_change();
+    }
 }

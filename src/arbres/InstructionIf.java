@@ -124,4 +124,45 @@ public class InstructionIf implements Noeud {
     public void TDS_func_proc_creation() {
         // On ne fait rien car il n'y a pas de création de fonction ou procédure dans un if
     }
+
+    public void TDS_func_proc_change() {
+        // Cas pour la pour la condition
+        if (this.condition instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.condition).fonction.nom;
+            this.condition = this.tds_parent.get_new_Appel(nom, (AppelFonction) this.condition);
+        }
+        else if (this.condition instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.condition).procedure.nom;
+            this.condition = this.tds_parent.get_new_Appel(nom, (AppelProcedure) this.condition);
+        }
+        else {
+            this.condition.TDS_func_proc_change();
+        }
+
+        // Cas pour le alors du if
+        if (this.alors instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.alors).fonction.nom;
+            this.alors = this.tds_parent.get_new_Appel(nom, (AppelFonction) this.alors);
+        }
+        else if (this.alors instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.alors).procedure.nom;
+            this.alors = this.tds_parent.get_new_Appel(nom, (AppelProcedure) this.alors);
+        }
+        else {
+            this.alors.TDS_func_proc_change();
+        }
+
+        // Cas pour le sinon du if
+        if (this.sinon != null && this.sinon instanceof AppelFonction) {
+            String nom = ((AppelFonction) this.sinon).fonction.nom;
+            this.sinon = this.tds_parent.get_new_Appel(nom, (AppelFonction) this.sinon);
+        }
+        else if (this.sinon != null && this.sinon instanceof AppelProcedure) {
+            String nom = ((AppelProcedure) this.sinon).procedure.nom;
+            this.sinon = this.tds_parent.get_new_Appel(nom, (AppelProcedure) this.sinon);
+        }
+        else if (this.sinon != null) {
+            this.sinon.TDS_func_proc_change();
+        }
+    }
 }

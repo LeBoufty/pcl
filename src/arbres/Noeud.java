@@ -15,5 +15,6 @@ public interface Noeud {
     public void TDS_link(TDS_gen Parent); // Permet de lier les objets à leur TDS parent - à appeler après la création des TDS
     public void TDS_func_proc_creation(); // Permet de créer les fonctions et procédures dans les TDS - à appeler après le link des TDS
     public void TDS_variable(); // Permet de changer les variables en fonction des TDS - à appeler après le link des TDS
+    public void TDS_func_proc_change(); // Permet de changer les fonctions et procédures en fonction des TDS - à appeler après la création des fonctions et procédures dans les TDS
     public TDS_gen getTDS();
 }
