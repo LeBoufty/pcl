@@ -31,7 +31,7 @@ public class ProcedureParams implements Noeud {
         this(nom, new Parametre[] {}, new Bloc(), new Bloc());
     }
     public String toString() {
-        String sortie = "procedure " + this.nom + "(";
+        String sortie = "procedure " + this.nom + "-p&" + this.id + "(";
         ArrayList<String> paramStrings = new ArrayList<>();
         for (Parametre p : params) {
             paramStrings.add(p.toString());

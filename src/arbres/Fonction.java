@@ -8,7 +8,7 @@ import outils.TDS.TDS_gen;
 
 public class Fonction implements Noeud {
     
-    public int id;
+    public int id = -1;
 
     public String nom;
     public IType type;
@@ -37,7 +37,7 @@ public class Fonction implements Noeud {
     }
 
     public String toString() {
-        String sortie = "function " + this.nom + "(";
+        String sortie = "function " + this.nom + "-f&" + this.id + "(";
         ArrayList<String> paramStrings = new ArrayList<>();
         for (Parametre p : params) {
             paramStrings.add(p.toString());

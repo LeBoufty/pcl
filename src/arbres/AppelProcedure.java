@@ -29,7 +29,7 @@ public class AppelProcedure extends Evaluable {
         this.params.add(parametre);
     }
     public String toString() {
-        String sortie = this.procedure.nom + "(";
+        String sortie = this.procedure.nom + "-p&" + this.procedure.id + "(";
         ArrayList<String> parStrings = new ArrayList<>();
         for (Evaluable p : params) {
             parStrings.add(p.toString());

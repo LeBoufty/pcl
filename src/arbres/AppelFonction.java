@@ -28,7 +28,7 @@ public class AppelFonction extends Evaluable {
         this.params.add(parametre);
     }
     public String toString() {
-        String sortie = this.fonction.nom + "(";
+        String sortie = this.fonction.nom + "-f&" + this.fonction.id + "(";
         ArrayList<String> parStrings = new ArrayList<>();
         for (Evaluable p : params) {
             parStrings.add(p.toString());
