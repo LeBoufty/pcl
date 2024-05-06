@@ -69,8 +69,8 @@ public class InstructionIf implements Noeud {
         res += "BNE then"+ifid+" // Branchement si la condition est vraie\n";
         if (this.sinon != null) {
             res += this.sinon.produire(tds_actuelle);
-            res += "B end"+ifid+" // Branchement à la fin du if\n";
         }
+        res += "B end"+ifid+" // Branchement à la fin du if\n";
         res += "then"+ifid+" :\n";
         res += this.alors.produire(tds_actuelle);
         res += "end"+ifid+" :\n";
