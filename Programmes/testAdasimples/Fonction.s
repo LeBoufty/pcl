@@ -129,7 +129,7 @@ SUB sp, sp, #16 // x Mise en pile var
 STR x0, [sp] // x Mise en pile var
 LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
-LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
+LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
 
 

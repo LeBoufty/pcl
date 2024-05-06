@@ -41,7 +41,7 @@ public class Return implements Noeud {
         // Restauration du pointeur de pile
         res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
         // Restauration du pointeur de pile et du lien de retour
-        res += "LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour\n";
+        res += "LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour\n";
         res += "RET // Retour de la fonction\n";
 
         return res;
