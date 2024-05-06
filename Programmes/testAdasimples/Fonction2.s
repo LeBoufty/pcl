@@ -149,52 +149,6 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-// Printf
-
-// Opération
-LDR x0, [x29, #16] // On récupère la valeur de la variable x
-SUB sp, sp, #16 // x Mise en pile var
-STR x0, [sp] // x Mise en pile var
-MOVZ x0, #1
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x0, x1 // Opération =
-CSET x0, EQ // Opération =
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-
-// Opération
-LDR x0, [x29, #16] // On récupère la valeur de la variable x
-SUB sp, sp, #16 // x Mise en pile var
-STR x0, [sp] // x Mise en pile var
-MOVZ x0, #0
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x0, x1 // Opération /=
-CSET x0, NE // Opération /=
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
 // if 824909230
 
 // Opération
@@ -376,27 +330,6 @@ MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
 end824909230 :
-
-
-// Opération
-
-// Opération
-MOVZ x0, #1030
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
-MOVZ x0, #515
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-SUB x0, x0, x1 // Opération -
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
-LDR x2, [sp] // On met la valeur de la variable droite dans x2 
-STR x2, [x29, #16] // On met la valeur de la variable droite dans la variable gauche 
-ADD sp, sp, #16 // On dépile la valeur 
 
 // Return 
 LDR x0, [x29, #16] // On récupère la valeur de la variable x

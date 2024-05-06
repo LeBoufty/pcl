@@ -12,8 +12,6 @@ procedure Fonction2 is
             Put(b);
             Put(c);
             Put(x);
-            Put(x=1);
-            Put(x/=0);
             if x = 1 then
                 a := a + 3;
                 b := b + 3;
@@ -21,8 +19,7 @@ procedure Fonction2 is
                 return PrintIfEqual0Or1(x-1);
             elsif x /= 0 then
                 return PrintIfEqual0Or1(x-1);
-            end if;
-            x:= 515+515-515;    
+            end if;    
             return x;
         end PrintIfEqual0Or1;      
 
