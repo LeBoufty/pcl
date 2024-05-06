@@ -98,8 +98,13 @@ public class Fonction implements Noeud {
         res += "MOV x29, sp // Mise à jour du pointeur de pile\n";
         res += "SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n";
         // Réserve de l'espace pour les variables locales
-        int taille_locale = this.tds.get_taille_variables_locales();
-        res += "SUB SP, SP, #" + taille_locale + " // Réserve de l'espace pour les variables locales\n";
+        // ?int taille_locale = this.tds.get_taille_variables_locales();
+        // ?res += "SUB SP, SP, #" + taille_locale + " // Réserve de l'espace pour les variables locales\n";
+
+        res += "// Définitions de la fonction " + nom + "\n";
+        for (Noeud noeud : ((Bloc) definitions).instructions) {
+            res += noeud.produire(tds)+"\n";
+        }
 
         res += "// Instructions de la fonction " + nom + "\n";
         for (Noeud noeud : ((Bloc) instructions).instructions) {
