@@ -48,20 +48,19 @@ procedure diff_tribo_fibo is
     begin
         trib := tribonacci(n, 0, 1, 1);
         fib := fibonacci(n, 0, 1);
-        Put("Suite de tribonacci : ");
+        --Put("Suite de tribonacci : ");
         Put(trib);
-        Put("Suite de fibonacci : ");
+        --Put("Suite de fibonacci : ");
         Put(fib);
-        Put("tribonacci - fibonacci : ");
+        --Put("tribonacci - fibonacci : ");
         Put(trib-fib);
         if n > 1 then
             f0 := tribonacci(n - 2, 0, 1, 1) - fibonacci(n - 2, 0, 1);
             f1 := tribonacci(n - 1, 0, 1, 1) - fibonacci(n - 1, 0, 1);
             f2 := trib - fib ;
-            Put("Acceleration : ");
+            --Put("Acceleration : ");
             Put(get_acceleration(f0, f1, f2, n - 1, n));
-        else
-            Put("valeur de n trop faible.");
+            --Put("valeur de n trop faible.");
         end if;
     end acc_fib_trib;
 

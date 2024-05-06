@@ -11,6 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
+STR x29, [sp]
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 // Définitions de la procédure diff_tribo_fibo
@@ -50,7 +51,8 @@ ret
 get_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut
 SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE get_global_var // On boucle tant que x1 != 0
-LDR x0, [x28, x0] // On charge la valeur de la variable
+SUB x28, x28, x0 // On déplace le pointeur de la variable
+LDR x0, [x28] // On charge la valeur de la variable
 SUB sp,sp, #16 // On fait de la place dans la pile pour le retour
 STR x0, [sp] // On met la valeur de la variable en pile
 RET
@@ -58,7 +60,8 @@ RET
 set_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut
 SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE set_global_var // On boucle tant que x1 != 0
-STR x2, [x28, x0] // On charge la valeur de la variable
+SUB x28, x28, x0 // On déplace le pointeur de la variable
+STR x2, [x28] // On charge la valeur de la variable
 RET
 
 erreur_division : // Fonction d'erreur de division
@@ -415,11 +418,11 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 
 // Opération
-MOVN x0, #16 // Deplacement en pile VAR GLOBALE 
+MOVZ x0, #0 // On met le deplacement en pile 
+ADD x0, x0, #-16 // On met le deplacement en pile 
 MOVZ x1, #1 // n Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // n Mise en pile var
-STR x2, [sp, #0] // n Mise en pile var depuis le registre de retours des fonctions :)
 LDR x0, [x29, #64] // On récupère la valeur de la variable n1
 SUB sp, sp, #16 // n1 Mise en pile var
 STR x0, [sp] // n1 Mise en pile var
@@ -603,6 +606,7 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
 BNE then159413332 // Branchement si la condition est vraie
+B end159413332 // Branchement à la fin du if
 then159413332 :
 
 // Opération
