@@ -377,9 +377,23 @@ RET // Retour de la fonction
 end824909230 :
 
 // Return 
-LDR x0, [x29, #16] // On récupère la valeur de la variable x
-SUB sp, sp, #16 // x Mise en pile var
-STR x0, [sp] // x Mise en pile var
+
+// Opération
+
+// Opération
+MOVZ x0, #1030
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+MOVZ x0, #515
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+SUB x0, x0, x1 // Opération -
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
 LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour

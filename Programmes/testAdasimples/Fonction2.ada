@@ -22,7 +22,7 @@ procedure Fonction2 is
             elsif x /= 0 then
                 return PrintIfEqual0Or1(x-1);
             end if;
-            return x;
+            return 515+515-515;
         end PrintIfEqual0Or1;      
 
 begin
