@@ -111,13 +111,6 @@ public class Fonction implements Noeud {
             res += noeud.produire(tds)+"\n";
         }
         
-        // // Mise en place de la valeur de retour
-        // res += "LDR x26, [sp] // Valeur de retour dans le registre x26\n";
-        // // Restauration du pointeur de pile
-        // res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
-        // // Restauration du pointeur de pile et du lien de retour
-        // res += "LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour\n";
-        // res += "RET // Retour de la fonction\n";
         GestionFichier.AddcontenuFooter(res);
 
         System.out.println("=== Fin Fonction ===");

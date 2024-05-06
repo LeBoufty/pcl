@@ -117,21 +117,26 @@ public class Procedure implements Noeud {
             res += "SUB sp, sp, #16 // On décrémente le pointeur de pile\nSTR x29, [sp] // Sauvegarde du pointeur de pile statique\nSUB sp, sp, #16 // On décrémente le pointeur de pile dynamique\nSTR x29, [sp] // Sauvegarde du pointeur de pile\nSUB sp, sp, #16 // On décrémente le pointeur de pile\nSTR lr, [sp] // Sauvegarde du lien de retour\n";
         }
 
+        res += "// Définitions de la procédure "+nom+"\n";
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             res += noeud.produire(tds)+"\n";
         }
+
         res += "// Instructions de la procédure "+nom+"\n";
         for (Noeud noeud : ((Bloc) instructions).instructions) {
             res += noeud.produire(tds)+"\n";
         }
 
-        // TODO : Vider la pile
-
         if (this.tds.num_reg == 0) {
             GestionFichier.Addcontenu(res);
         }
         else {
-            GestionFichier.AddcontenuHeader(res);
+            // Restauration du pointeur de pile
+            res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
+            // Restauration du pointeur de pile et du lien de retour
+            res += "LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour\n";
+            res += "RET // Retour de la fonction\n";
+            GestionFichier.AddcontenuFooter(res);
         }
         return "";
     }
