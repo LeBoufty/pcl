@@ -82,7 +82,8 @@ ret
 get_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut
 SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE get_global_var // On boucle tant que x1 != 0
-LDR x0, [x28, x0] // On charge la valeur de la variable
+SUB x28, x28, x0 // On déplace le pointeur de la variable
+LDR x0, [x28] // On charge la valeur de la variable
 SUB sp,sp, #16 // On fait de la place dans la pile pour le retour
 STR x0, [sp] // On met la valeur de la variable en pile
 RET
@@ -90,7 +91,8 @@ RET
 set_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut
 SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE set_global_var // On boucle tant que x1 != 0
-STR x2, [x28, x0] // On charge la valeur de la variable
+SUB x28, x28, x0 // On déplace le pointeur de la variable
+STR x2, [x28] // On charge la valeur de la variable
 RET
 
 erreur_division : // Fonction d'erreur de division
@@ -147,7 +149,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-// if 824909230
+// if 960604060
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable x
@@ -167,8 +169,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then824909230 // Branchement si la condition est vraie
-// if 122883338
+BNE then960604060 // Branchement si la condition est vraie
+// if 1349393271
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable x
@@ -188,9 +190,9 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then122883338 // Branchement si la condition est vraie
-B end122883338 // Branchement à la fin du if
-then122883338 :
+BNE then1349393271 // Branchement si la condition est vraie
+B end1349393271 // Branchement à la fin du if
+then1349393271 :
 // Return 
 // Appel de fonction printifequal0or1
 // Paramètre 0
@@ -223,9 +225,9 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end122883338 :
-B end824909230 // Branchement à la fin du if
-then824909230 :
+end1349393271 :
+B end960604060 // Branchement à la fin du if
+then960604060 :
 
 // Opération
 MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
@@ -324,7 +326,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end824909230 :
+end960604060 :
 
 // Return 
 LDR x0, [x29, #16] // On récupère la valeur de la variable x

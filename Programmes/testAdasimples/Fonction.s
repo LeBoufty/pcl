@@ -73,7 +73,8 @@ ret
 get_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut
 SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE get_global_var // On boucle tant que x1 != 0
-LDR x0, [x28, x0] // On charge la valeur de la variable
+SUB x28, x28, x0 // On déplace le pointeur de la variable
+LDR x0, [x28] // On charge la valeur de la variable
 SUB sp,sp, #16 // On fait de la place dans la pile pour le retour
 STR x0, [sp] // On met la valeur de la variable en pile
 RET
@@ -81,7 +82,8 @@ RET
 set_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut
 SUBS x1, x1, #1 // On décrémente le nombre de saut
 BNE set_global_var // On boucle tant que x1 != 0
-STR x2, [x28, x0] // On charge la valeur de la variable
+SUB x28, x28, x0 // On déplace le pointeur de la variable
+STR x2, [x28] // On charge la valeur de la variable
 RET
 
 erreur_division : // Fonction d'erreur de division
