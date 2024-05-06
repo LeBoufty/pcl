@@ -596,8 +596,7 @@ ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 CMP x0, x1 // Opération >
-MOVGT x0, #1 // Opération >
-MOVLE x0, #0 // Opération >
+CSET x0, GT // Opération >
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
