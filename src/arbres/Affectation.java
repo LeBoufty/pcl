@@ -62,6 +62,7 @@ public class Affectation implements Noeud {
             if (depl < 0) {res += "MOVN x0, #" + -depl + " // On met le deplacement en pile \n";}
             else{res += "MOVZ x0, #" + depl + " // On met le deplacement en pile \n";}
             res += "MOVZ x1, #" + Nb_saut + " // On met le nombre de saut en pile \n"; //TODO : A vérifier
+            res += "MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)\n";
             res += "BL set_global_var // On met la valeur de la variable droite dans la variable gauche \n";
         }
         return res;
