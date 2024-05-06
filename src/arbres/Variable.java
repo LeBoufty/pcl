@@ -37,8 +37,10 @@ public class Variable extends Evaluable {
         String res = "";
 
         // On va chercher la variable dans la TDS
-        int depl = tds_actuelle.get_index(this.identifiant)*16;
+        int depl = tds_actuelle.get_index_and_parent(this.identifiant)*16;
         int Nb_saut = tds_actuelle.search_imbrication_TDS(this.identifiant);
+        System.out.println("    Deplacement de la variable : " + depl);
+        System.out.println("    Nombre de saut de la variable : " + Nb_saut);
 
         System.out.println("Numero de la variable : " + this.identifiant + " Nom de la variable : " + this.nom);
 
