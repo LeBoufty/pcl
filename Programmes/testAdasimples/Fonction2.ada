@@ -22,7 +22,8 @@ procedure Fonction2 is
             elsif x /= 0 then
                 return PrintIfEqual0Or1(x-1);
             end if;
-            return 515+515-515;
+            x:= 515+515-515;    
+            return x;
         end PrintIfEqual0Or1;      
 
 begin
