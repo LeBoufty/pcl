@@ -103,28 +103,43 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction printifequal0or1
 // Instructions de la fonction printifequal0or1
-// if 1915910607
+// Printf
+MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
+MOVZ x1, #1 // a Nb saut VAR GLOBALE
+MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
+BL get_global_var // a Mise en pile var
+STR x2, [sp, #0] // a Mise en pile var depuis le registre de retours des fonctions :)
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
 
-// Opération
-LDR x0, [x29, #16] // On récupère la valeur de la variable x
-SUB sp, sp, #16 // x Mise en pile var
-STR x0, [sp] // x Mise en pile var
-MOVZ x0, #0
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x0, x1 // Opération =
-CSET x0, EQ // Opération =
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
-LDR x0, [sp] // Chargement de la condition
-ADD sp, sp, #16 // Décrémentation du pointeur de pile
-CMP x0, #0 // Comparaison de la condition
-BNE then1915910607 // Branchement si la condition est vraie
-// if 122883338
+// Printf
+MOVZ x0, #64 // Deplacement en pile VAR GLOBALE 
+MOVZ x1, #1 // b Nb saut VAR GLOBALE
+MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
+BL get_global_var // b Mise en pile var
+STR x2, [sp, #0] // b Mise en pile var depuis le registre de retours des fonctions :)
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+MOVZ x0, #80 // Deplacement en pile VAR GLOBALE 
+MOVZ x1, #1 // c Nb saut VAR GLOBALE
+MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
+BL get_global_var // c Mise en pile var
+STR x2, [sp, #0] // c Mise en pile var depuis le registre de retours des fonctions :)
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// if 824909230
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable x
@@ -144,7 +159,29 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
+BNE then824909230 // Branchement si la condition est vraie
+// if 122883338
+
+// Opération
+LDR x0, [x29, #16] // On récupère la valeur de la variable x
+SUB sp, sp, #16 // x Mise en pile var
+STR x0, [sp] // x Mise en pile var
+MOVZ x0, #0
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x0, x1 // Opération /=
+CSET x0, NE // Opération /=
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x0, [sp] // Chargement de la condition
+ADD sp, sp, #16 // Décrémentation du pointeur de pile
+CMP x0, #0 // Comparaison de la condition
 BNE then122883338 // Branchement si la condition est vraie
+then122883338 :
 // Return 
 // Appel de fonction printifequal0or1
 // Paramètre 0
@@ -177,41 +214,9 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end122883338 // Branchement à la fin du if
-then122883338 :
-// Printf
-MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // a Nb saut VAR GLOBALE
-MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
-BL get_global_var // a Mise en pile var
-STR x2, [sp, #0] // a Mise en pile var depuis le registre de retours des fonctions :)
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-// Printf
-MOVZ x0, #64 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // b Nb saut VAR GLOBALE
-MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
-BL get_global_var // b Mise en pile var
-STR x2, [sp, #0] // b Mise en pile var depuis le registre de retours des fonctions :)
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-// Printf
-MOVZ x0, #80 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // c Nb saut VAR GLOBALE
-MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
-BL get_global_var // c Mise en pile var
-STR x2, [sp, #0] // c Mise en pile var depuis le registre de retours des fonctions :)
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
+end122883338 :
+B end824909230 // Branchement à la fin du if
+then824909230 :
 
 // Opération
 MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
@@ -313,43 +318,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end122883338 :
-B end1915910607 // Branchement à la fin du if
-then1915910607 :
-// Printf
-MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // a Nb saut VAR GLOBALE
-MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
-BL get_global_var // a Mise en pile var
-STR x2, [sp, #0] // a Mise en pile var depuis le registre de retours des fonctions :)
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-// Printf
-MOVZ x0, #64 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // b Nb saut VAR GLOBALE
-MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
-BL get_global_var // b Mise en pile var
-STR x2, [sp, #0] // b Mise en pile var depuis le registre de retours des fonctions :)
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-// Printf
-MOVZ x0, #80 // Deplacement en pile VAR GLOBALE 
-MOVZ x1, #1 // c Nb saut VAR GLOBALE
-MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
-BL get_global_var // c Mise en pile var
-STR x2, [sp, #0] // c Mise en pile var depuis le registre de retours des fonctions :)
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-end1915910607 :
+end824909230 :
 
 // Return 
 LDR x0, [x29, #16] // On récupère la valeur de la variable x

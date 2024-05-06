@@ -8,19 +8,15 @@ procedure Fonction2 is
 
     function PrintIfEqual0Or1 (x: Integer) return Integer is
         begin
-            if x = 0 then
-                Put(a);
-                Put(b);
-                Put(c);
-            elsif x = 1 then
-                Put(a);
-                Put(b);
-                Put(c);
+            Put(a);
+            Put(b);
+            Put(c);
+            if x = 1 then
                 a := a + 3;
                 b := b + 3;
                 c := c + 3;
                 return PrintIfEqual0Or1(x-1);
-            else
+            elsif x /= 0 then
                 return PrintIfEqual0Or1(x-1);
             end if;
             return x;
