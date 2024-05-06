@@ -13,6 +13,7 @@ procedure Fonction2 is
             Put(c);
             Put(x);
             Put(x=1);
+            Put(x/=0);
             if x = 1 then
                 a := a + 3;
                 b := b + 3;
