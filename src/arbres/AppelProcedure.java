@@ -76,11 +76,11 @@ public class AppelProcedure extends Evaluable {
         // res += "SUB sp, sp, #16 // Incrémentation du pointeur de pile\n";
         // if (this.tds_parent.get_num_reg() == this.fonction.getTDS().get_num_reg()) {
         //     // Sauvegarde du chainage statique cas récursif
-        //     res += "STR x7, [sp] // Sauvegarde du chainage statique\n";
+        //     res += "STR x27, [sp] // Sauvegarde du chainage statique\n";
         // } else {
         //     // Sauvegarde du chainage statique cas non récursif
         //     res += "STR x29, [sp] // Sauvegarde du chainage statique\n";
-        //     res += "MOV x7, x29 // Mise à jour du chainage statique\n";
+        //     res += "MOV x27, x29 // Mise à jour du chainage statique\n";
         // }
 
         // // Appel de la fonction
@@ -94,7 +94,7 @@ public class AppelProcedure extends Evaluable {
         // res += "// Récupération du résultat\n";
         // res += "ADD sp, sp, #" + (params.size() * 16) + " // Décrémentation du pointeur de pile de la taille des paramètres\n";
         // res += "SUB sp, sp, #16 // Réserve de l'espace pour le résultat\n";
-        // res += "STR x6, [sp] // Sauvegarde du résultat\n";
+        // res += "STR x26, [sp] // Sauvegarde du résultat\n";
 
         // return res;
         return "";

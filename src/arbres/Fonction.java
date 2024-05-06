@@ -107,7 +107,7 @@ public class Fonction implements Noeud {
         }
         
         // // Mise en place de la valeur de retour
-        // res += "LDR x6, [sp] // Valeur de retour dans le registre x6\n";
+        // res += "LDR x26, [sp] // Valeur de retour dans le registre x26\n";
         // // Restauration du pointeur de pile
         // res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
         // // Restauration du pointeur de pile et du lien de retour

@@ -46,14 +46,14 @@ STR x0, [sp] // On met la constante en pile
 // Gestion du chainage statique
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
-MOV x7, x29 // Mise à jour du chainage statique
+MOV x27, x29 // Mise à jour du chainage statique
 BL F1 // Appel de la fonction
 // Gestion du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
 // Récupération du résultat
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
-STR x6, [sp] // Sauvegarde du résultat
+STR x26, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
@@ -143,14 +143,14 @@ STR x0, [sp] // On met la constante en pile
 // Gestion du chainage statique
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
-MOV x7, x29 // Mise à jour du chainage statique
+MOV x27, x29 // Mise à jour du chainage statique
 BL F1 // Appel de la fonction
 // Gestion du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
 // Récupération du résultat
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
-STR x6, [sp] // Sauvegarde du résultat
+STR x26, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
@@ -168,14 +168,14 @@ STR x0, [sp] // On met la constante en pile
 // Gestion du chainage statique
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
-MOV x7, x29 // Mise à jour du chainage statique
+MOV x27, x29 // Mise à jour du chainage statique
 BL F4 // Appel de la fonction
 // Gestion du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
 // Récupération du résultat
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
-STR x6, [sp] // Sauvegarde du résultat
+STR x26, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
@@ -248,7 +248,7 @@ ADD sp, sp, #16 // On dépile la valeur
 LDR x0, [x29, #-48] // On récupère la valeur de la variable aire
 SUB sp, sp, #16 // aire Mise en pile var
 STR x0, [sp] // aire Mise en pile var
-LDR x6, [sp] // Valeur de retour dans le registre x6
+LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
@@ -307,7 +307,7 @@ ADD sp, sp, #16 // On dépile la valeur
 LDR x0, [x29, #-48] // On récupère la valeur de la variable aire
 SUB sp, sp, #16 // aire Mise en pile var
 STR x0, [sp] // aire Mise en pile var
-LDR x6, [sp] // Valeur de retour dans le registre x6
+LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
