@@ -11,6 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
+STR x29, [sp]
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 // Définitions de la procédure fonction2
@@ -108,7 +109,6 @@ MOVZ x0, #48 // Deplacement en pile VAR GLOBALE
 MOVZ x1, #1 // a Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // a Mise en pile var
-STR x2, [sp, #0] // a Mise en pile var depuis le registre de retours des fonctions :)
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -120,7 +120,6 @@ MOVZ x0, #64 // Deplacement en pile VAR GLOBALE
 MOVZ x1, #1 // b Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // b Mise en pile var
-STR x2, [sp, #0] // b Mise en pile var depuis le registre de retours des fonctions :)
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -132,7 +131,6 @@ MOVZ x0, #80 // Deplacement en pile VAR GLOBALE
 MOVZ x1, #1 // c Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // c Mise en pile var
-STR x2, [sp, #0] // c Mise en pile var depuis le registre de retours des fonctions :)
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -234,7 +232,6 @@ MOVZ x0, #48 // Deplacement en pile VAR GLOBALE
 MOVZ x1, #1 // a Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // a Mise en pile var
-STR x2, [sp, #0] // a Mise en pile var depuis le registre de retours des fonctions :)
 MOVZ x0, #3
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -246,18 +243,17 @@ ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
 MOVZ x0, #48 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL set_global_var // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
 
 // Opération
 MOVZ x0, #64 // Deplacement en pile VAR GLOBALE 
 MOVZ x1, #1 // b Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // b Mise en pile var
-STR x2, [sp, #0] // b Mise en pile var depuis le registre de retours des fonctions :)
 MOVZ x0, #3
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -269,18 +265,17 @@ ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
 MOVZ x0, #64 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL set_global_var // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
 
 // Opération
 MOVZ x0, #80 // Deplacement en pile VAR GLOBALE 
 MOVZ x1, #1 // c Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // c Mise en pile var
-STR x2, [sp, #0] // c Mise en pile var depuis le registre de retours des fonctions :)
 MOVZ x0, #3
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -292,11 +287,11 @@ ADD x0, x0, x1 // Opération +
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
 MOVZ x0, #80 // On met le deplacement en pile 
 MOVZ x1, #1 // On met le nombre de saut en pile 
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL set_global_var // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
 // Return 
 // Appel de fonction printifequal0or1
 // Paramètre 0

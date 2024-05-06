@@ -11,6 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
+STR x29, [sp]
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 // Définitions de la procédure fonction

@@ -11,6 +11,7 @@ main :
 
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
+STR x29, [sp]
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
 // Définitions de la procédure fonction_extended
@@ -437,7 +438,6 @@ MOVZ x0, #48 // Deplacement en pile VAR GLOBALE
 MOVZ x1, #1 // b Nb saut VAR GLOBALE
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL get_global_var // b Mise en pile var
-STR x2, [sp, #0] // b Mise en pile var depuis le registre de retours des fonctions :)
 // Appel de fonction add515
 // Paramètre 0
 

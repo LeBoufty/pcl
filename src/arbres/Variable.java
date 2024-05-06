@@ -55,7 +55,6 @@ public class Variable extends Evaluable {
             res += "MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)\n";
             res += "BL get_global_var // " + this.nom + " Mise en pile var\n";
             // Déplace le sommet de pile de 2*16 bits pour supprimer les deux valeurs depl et nb_saut
-            res += "STR x2, [sp, #0] // " + this.nom + " Mise en pile var depuis le registre de retours des fonctions :)\n";
         }
         return res;
     }

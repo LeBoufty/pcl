@@ -106,7 +106,7 @@ public class Procedure implements Noeud {
 
         GestionFichier.AddcontenuHeader(".global main\n.extern printf // Import printf\n.section .data\nformat :\n.string \"%d\\n\"\nerreur_division_msg :\n.string \"Erreur : division par zéro\\n\"\n");
         GestionFichier.Addcontenu(".section .text\nmain :\n");
-        GestionFichier.Addcontenu("STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour\nMOV x29, sp // Mise à jour du pointeur de pile\nSUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n");
+        GestionFichier.Addcontenu("STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour\nMOV x29, sp // Mise à jour du pointeur de pile\nSTR x29, [sp]\nSUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n");
         GestionFichier.AddcontenuFooter("B exit_program\n\nexit_program : //Fonction de sortie du programme \nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
         GestionFichier.AddcontenuFooter("get_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut\nSUBS x1, x1, #1 // On décrémente le nombre de saut\nBNE get_global_var // On boucle tant que x1 != 0\nLDR x0, [x28, x0] // On charge la valeur de la variable\nSUB sp,sp, #16 // On fait de la place dans la pile pour le retour\nSTR x0, [sp] // On met la valeur de la variable en pile\nRET\n");
         GestionFichier.AddcontenuFooter("set_global_var : LDR x28, [x28] // On saute de chainage statique, x0 depl, x1 nb_saut\nSUBS x1, x1, #1 // On décrémente le nombre de saut\nBNE set_global_var // On boucle tant que x1 != 0\nSTR x2, [x28, x0] // On charge la valeur de la variable\nRET\n");
