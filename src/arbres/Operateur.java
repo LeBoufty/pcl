@@ -95,23 +95,19 @@ public enum Operateur {
                 return res;
             case SUPERIEUR:
                 res += "CMP x0, x1 // Opération " + this + "\n";
-                res += "MOVGT x0, #1 // Opération " + this + "\n";
-                res += "MOVLE x0, #0 // Opération " + this + "\n";
+                res += "CSET x0, GT // Opération " + this + "\n";
                 return res;
             case INFERIEUR:
                 res += "CMP x0, x1 // Opération " + this + "\n";
-                res += "MOVLT x0, #1 // Opération " + this + "\n";
-                res += "MOVGE x0, #0 // Opération " + this + "\n";
+                res += "CSET x0, LT // Opération " + this + "\n";
                 return res;
             case SUPERIEUR_EGAL:
                 res += "CMP x0, x1 // Opération " + this + "\n";
-                res += "MOVGE x0, #1 // Opération " + this + "\n";
-                res += "MOVLT x0, #0 // Opération " + this + "\n";
+                res += "CSET x0, GE // Opération " + this + "\n";
                 return res;
             case INFERIEUR_EGAL:
                 res += "CMP x0, x1 // Opération " + this + "\n";
-                res += "MOVLE x0, #1 // Opération " + this + "\n";
-                res += "MOVGT x0, #0 // Opération " + this + "\n";
+                res += "CSET x0, LE // Opération " + this + "\n";
                 return res;
             case DIFFERENT:
                 res += "CMP x0, x1 // Opération " + this + "\n";
