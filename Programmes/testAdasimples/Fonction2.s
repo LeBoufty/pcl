@@ -237,6 +237,7 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
 BNE then122883338 // Branchement si la condition est vraie
+B end122883338 // Branchement à la fin du if
 then122883338 :
 // Return 
 // Appel de fonction printifequal0or1
