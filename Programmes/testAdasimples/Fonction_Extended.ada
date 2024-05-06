@@ -13,6 +13,8 @@ procedure Fonction_Extended is
                     return a;
                 else
                     return Add1(a + 1, n - 1);
+                
+                return 0;
                 end if;
             end Add1;
     begin

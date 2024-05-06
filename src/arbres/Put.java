@@ -45,7 +45,8 @@ public class Put implements Noeud {
 
     public void TDS_variable() {
         if (this.expression instanceof Variable) {
-            ((Variable) this.expression).TDS_variable();
+            // ((Variable) this.expression).TDS_variable();
+            this.expression = this.tds_parent.get_Variable_string_and_parent(((Variable) this.expression).nom);
         }
         else {
             this.expression.TDS_variable();

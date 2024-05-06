@@ -65,7 +65,8 @@ public class Return implements Noeud {
     public void TDS_variable() {
         if (!this.estVide()) {
             if (this.valeur instanceof Variable) {
-                ((Variable) this.valeur).TDS_variable();
+                // ((Variable) this.valeur).TDS_variable();
+                this.valeur = this.tds_parent.get_Variable_string_and_parent(((Variable) this.valeur).nom);
             } else {
                 this.valeur.TDS_variable();
             }
