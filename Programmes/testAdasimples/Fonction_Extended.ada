@@ -6,14 +6,16 @@ procedure Fonction_Extended is
 
     function Add100(a: Integer) return Integer is
         function Add1(a: Integer; n: Integer) return Integer is
+            res : Integer;
             begin
                     Put(a);
                     Put(n);
                 if n = 0 then
-                    return a;
+                    res := a;
                 else
-                    return Add1(a + 1, n - 1);
+                    res := Add1(a + 1, n - 1);
                 end if;
+                return res;
             end Add1;
     begin
         return Add1(a, 100);
@@ -21,13 +23,15 @@ procedure Fonction_Extended is
 
     function Add(a: Integer; n: Integer) return Integer is
         pas : Integer;
+        res : Integer;
         begin
             pas := 1;
             if n = 0 then
-                return a;
+                res := a;
             else
-                return Add(a + pas, n - pas);
+                res := Add(a + pas, n - 1);
             end if;
+            return res;
         end Add;
 
 
