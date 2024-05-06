@@ -139,6 +139,16 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+// Printf
+LDR x0, [x29, #16] // On récupère la valeur de la variable x
+SUB sp, sp, #16 // x Mise en pile var
+STR x0, [sp] // x Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
 // if 824909230
 
 // Opération
