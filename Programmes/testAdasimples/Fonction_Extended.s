@@ -177,7 +177,7 @@ SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable res
 
 // Instructions de la fonction add1
-// if 1915910607
+// if 793589513
 
 // Opération
 LDR x0, [x29, #32] // On récupère la valeur de la variable n
@@ -197,7 +197,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then1915910607 // Branchement si la condition est vraie
+BNE then793589513 // Branchement si la condition est vraie
 // Appel de fonction add1
 // Paramètre 0
 
@@ -244,15 +244,15 @@ STR x26, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B end1915910607 // Branchement à la fin du if
-then1915910607 :
+B end793589513 // Branchement à la fin du if
+then793589513 :
 LDR x0, [x29, #16] // On récupère la valeur de la variable a
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-end1915910607 :
+end793589513 :
 
 // Return 
 LDR x0, [x29, #-48] // On récupère la valeur de la variable res
@@ -317,7 +317,7 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// if 122883338
+// if 1349393271
 
 // Opération
 LDR x0, [x29, #32] // On récupère la valeur de la variable n
@@ -337,7 +337,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then122883338 // Branchement si la condition est vraie
+BNE then1349393271 // Branchement si la condition est vraie
 // Appel de fonction add
 // Paramètre 0
 
@@ -384,15 +384,15 @@ STR x26, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B end122883338 // Branchement à la fin du if
-then122883338 :
+B end1349393271 // Branchement à la fin du if
+then1349393271 :
 LDR x0, [x29, #16] // On récupère la valeur de la variable a
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-end122883338 :
+end1349393271 :
 
 // Return 
 LDR x0, [x29, #-64] // On récupère la valeur de la variable res
@@ -410,7 +410,7 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction add515
 // Instructions de la fonction add515
-// if 666641942
+// if 1338668845
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable a
@@ -430,7 +430,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then666641942 // Branchement si la condition est vraie
+BNE then1338668845 // Branchement si la condition est vraie
 // Return 
 
 // Opération
@@ -476,8 +476,8 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end666641942 // Branchement à la fin du if
-then666641942 :
+B end1338668845 // Branchement à la fin du if
+then1338668845 :
 // Return 
 MOVZ x0, #0
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -486,7 +486,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end666641942 :
+end1338668845 :
 
 // Return 
 MOVZ x0, #0
