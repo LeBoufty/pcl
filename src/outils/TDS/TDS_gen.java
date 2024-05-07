@@ -471,6 +471,8 @@ public class TDS_gen {
             AppelFonction appel = new AppelFonction((Fonction) func_proc);
             // Ajout des paramètres de l'ancien appel
             appel.params = ((AppelFonction) ancien_appel).params;
+            // Ajout de l'ancienne TDS
+            appel.tds_parent = ((AppelFonction) ancien_appel).tds_parent;
             return appel;
         }
 
@@ -481,7 +483,8 @@ public class TDS_gen {
             AppelProcedure appel = new AppelProcedure((ProcedureParams) func_proc);
             // Ajout des paramètres de l'ancien appel
             appel.params = ((AppelProcedure) ancien_appel).params;
-
+            // Ajout de l'ancienne TDS
+            appel.tds_parent = ((AppelProcedure) ancien_appel).tds_parent;
             return appel;
         }
         
