@@ -44,14 +44,15 @@ public class Affectation implements Noeud {
         System.out.println("Affectation droite : " + this.droite);
         
         String res = "";
-
         res += this.droite.produire(tds_parent); // Le résultat est en sommet de pile
+        
         res += "LDR x2, [sp] // On met la valeur de la variable droite dans x2 \n";
         
         // On va chercher la variable dans la TDS
         int depl = this.tds_parent.get_index_and_parent(this.gauche.identifiant)*16;
+
         int Nb_saut = this.tds_parent.search_imbrication_TDS(this.gauche.identifiant);
-        
+
         // Cas variable locale
         if (Nb_saut == 0) {
             res += "STR x2, [x29, #" + -depl + "] // On met la valeur de la variable droite dans la variable gauche \n";
