@@ -468,9 +468,8 @@ public class Elagueur {
                             if (((Noeud_Terminal)noeud.getEnfants().get(2)).getCode() == terminaux.get("IDF")) {
                                 // Test si les deux noms de la procédure sont identiques (nom après le procedure et nom après le end)
                                 if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(2)).getValeurIdf())) {
-                                    Error_list.traduction = true;
-                                    Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
-                                    throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                                    Logger.error("Erreur : les deux noms de la procédure principale ne sont pas identiques.");
+                                    Error_list.semantique = true;
                                 }
                             }
                             else {
@@ -478,9 +477,8 @@ public class Elagueur {
                             }
                         }
                         else if (!((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf().equals(((Noeud_Terminal)noeud.getEnfants().get(3)).getValeurIdf())) { // Même test pour l'enfant 3
-                            Error_list.traduction = true;
-                            Logger.error("Erreur : les deux noms de la procédure ne sont pas identiques.");
-                            throw new Exception("Erreur : les deux noms de la procédure ne sont pas identiques.");
+                            Logger.error("Erreur : les deux noms de la procédure principale ne sont pas identiques.");
+                            Error_list.semantique = true;
                         }
                         
                         Procedure programme = new Procedure(((Noeud_Terminal)noeud.getEnfants().get(0)).getValeurIdf());
@@ -513,6 +511,7 @@ public class Elagueur {
 
                     
                 } catch (Exception e) {
+                    Error_list.traduction = true;
                     Logger.error("Erreur syntaxique empêchant la construction de l'arbre : Traduire - FICHIER");
                     // Logger.error(e.getMessage());
                     return null;
@@ -598,7 +597,7 @@ public class Elagueur {
                 } catch (Exception e) {
                     Logger.error("Erreur syntaxique empêchant la construction de l'arbre. traduire - APPELfonction");
                     // Error_list.traduction = true;
-                    Logger.error(e.getMessage());
+                    // Logger.error(e.getMessage());
                     return null;
                 }
             case "£DECLARATION":
@@ -622,8 +621,8 @@ public class Elagueur {
                     slider = 1;
                 }
                 else if (!((Noeud_Terminal) noeud.getEnfants().get(0)).getValeurIdf().equals(name_fun)) { // Si le nom de la fonction est différent du nom de la fonction après end
-                    Logger.error("Erreur : les deux noms de la fonction ne sont pas identiques.");
-                    throw new Exception("Erreur : les deux noms de la fonction ne sont pas identiques.");
+                    Logger.error("Erreur : les deux noms de la procédure " + name_fun + " ne sont pas identiques.");
+                    Error_list.semantique = true;
                 }
 
                 ProcedureParams fonc = new ProcedureParams(name_fun);
@@ -674,8 +673,8 @@ public class Elagueur {
                     slider = 1;
                 }
                 else if (!((Noeud_Terminal) noeud.getEnfants().get(0)).getValeurIdf().equals(name_fun)) { // Si le nom de la fonction est différent du nom de la fonction après end
-                    Logger.error("Erreur : les deux noms de la fonction ne sont pas identiques.");
-                    throw new Exception("Erreur : les deux noms de la fonction ne sont pas identiques.");
+                    Logger.error("Erreur : les deux noms composant la fonction " + name_fun + " ne sont pas identiques.");
+                    Error_list.semantique = true;
                 }
 
                 Fonction fonc = new Fonction(name_fun);

@@ -29,7 +29,7 @@ procedure unDebut is
             aire := larg * long ;
             choix := 0;
             return aire ;
-        end aireRectangle ;
+        end aireRectang ;
 
     begin
         bo := bo + 1;
