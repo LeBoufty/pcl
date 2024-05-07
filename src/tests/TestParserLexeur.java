@@ -73,7 +73,7 @@ public class TestParserLexeur {
         //Logger.debug(AST.getTDS().toString());
         boolean valide = AST.valide();
         Logger.debug("Valide : " + valide);
-        if (valide && false){
+        if (valide){
             AST.produire(null); 
             GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
         }
