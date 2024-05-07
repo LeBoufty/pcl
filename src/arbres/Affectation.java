@@ -1,6 +1,7 @@
 package arbres;
 
 
+import outils.Error_list;
 import outils.Logger;
 // ?import outils.Arbre_Syntaxique.TDS;
 import outils.TDS.TDS_gen;
@@ -84,9 +85,26 @@ public class Affectation implements Noeud {
     }
 
     public void TDS_variable() {
-        this.gauche = this.tds_parent.get_Variable_string_and_parent(this.gauche.nom);
+
+        Variable tmp = this.tds_parent.get_Variable_string_and_parent(this.gauche.nom);
+        if (tmp == null) {
+            Logger.error("Variable "+ this.gauche.nom +" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+            Error_list.tdsgen = true;
+        }
+        else {
+            this.gauche = tmp;
+        }
+
+
         if (this.droite instanceof Variable) {
-            this.droite = this.tds_parent.get_Variable_string_and_parent(((Variable) this.droite).nom);
+            tmp = this.tds_parent.get_Variable_string_and_parent(((Variable) this.droite).nom);
+            if (tmp != null) {
+                this.droite = tmp;
+            }
+            else {
+                Logger.error("Variable "+((Variable) this.droite).nom+" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         }
         else {
             this.droite.TDS_variable();

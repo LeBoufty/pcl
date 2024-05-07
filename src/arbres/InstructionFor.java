@@ -1,6 +1,7 @@
 package arbres;
 
 
+import outils.Error_list;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -112,19 +113,40 @@ public class InstructionFor implements Noeud {
     public void TDS_variable() {
         // this.iterateur.TDS_variable(variables); // On ne change pas l'identifiant de l'itérateur
         if (this.corps instanceof Variable) {
-            this.corps = this.tds.get_Variable_string_and_parent(((Variable) this.corps).nom);
+            Variable tmp = this.tds.get_Variable_string_and_parent(((Variable) this.corps).nom);
+            if (tmp != null) {
+                this.corps = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) this.corps).nom +" non déclarée dans la TDS : "+tds.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         } else {
             this.corps.TDS_variable();
         }
 
         if (this.borneInf instanceof Variable) {
-            borneInf = this.tds.get_Variable_string_and_parent(((Variable) borneInf).nom);
+            Variable tmp = this.tds.get_Variable_string_and_parent(((Variable) this.borneInf).nom);
+            if (tmp != null) {
+                this.borneInf = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) this.borneInf).nom +" non déclarée dans la TDS : "+tds.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         } else {
             this.borneInf.TDS_variable();
         }
 
         if (this.borneSup instanceof Variable) {
-            borneSup = this.tds.get_Variable_string_and_parent(((Variable) borneSup).nom);
+            Variable tmp = this.tds.get_Variable_string_and_parent(((Variable) this.borneSup).nom);
+            if (tmp != null) {
+                this.borneSup = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) this.borneSup).nom +" non déclarée dans la TDS : "+tds.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         } else {
             this.borneSup.TDS_variable();
         }

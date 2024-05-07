@@ -1,6 +1,7 @@
 package arbres;
 
 
+import outils.Error_list;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -68,7 +69,14 @@ public class OperationUnaire extends Evaluable {
 
     public void TDS_variable() {
         if (this.droite instanceof Variable) {
-            this.droite = this.tds_parent.get_Variable_string_and_parent(((Variable) this.droite).nom);
+            Variable tmp = this.tds_parent.get_Variable_string_and_parent(((Variable) this.droite).nom);
+            if (tmp != null) {
+                this.droite = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) this.droite).nom +" non déclarée dans la TDS : "+this.tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         }
         else {
             this.droite.TDS_variable();

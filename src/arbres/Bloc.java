@@ -2,6 +2,8 @@ package arbres;
 
 import java.util.ArrayList;
 import outils.TDS.TDS_gen;
+import outils.Error_list;
+import outils.Logger;
 //import outils.GestionFichier;
 
 
@@ -73,7 +75,14 @@ public class Bloc implements Noeud {
 
         for (int i = 0; i < instructions.size(); i++) {
             if (instructions.get(i) instanceof Variable) {
-                instructions.set(i, tds_parent.get_Variable_string_and_parent(((Variable) instructions.get(i)).nom));
+                Variable tmp = tds_parent.get_Variable_string_and_parent(((Variable) instructions.get(i)).nom);
+                if (tmp == null) {
+                    Logger.error("Variable "+ ((Variable) instructions.get(i)).nom +" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                    Error_list.tdsgen = true;
+                }
+                else {
+                    instructions.set(i, tmp);
+                }
             }
             else {
                 instructions.get(i).TDS_variable();

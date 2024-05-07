@@ -1,5 +1,6 @@
 package arbres;
 
+import outils.Error_list;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -100,21 +101,43 @@ public class InstructionIf implements Noeud {
 
     public void TDS_variable() {
         if (this.condition instanceof Variable) {
-            condition = tds_parent.get_Variable_string_and_parent(((Variable) condition).nom);
+            Variable tmp = tds_parent.get_Variable_string_and_parent(((Variable) this.condition).nom);
+            if (tmp != null) {
+                this.condition = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) this.condition).nom +" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
+
         }
         else {
             condition.TDS_variable();
         }
 
         if (this.alors instanceof Variable) {
-            alors = tds_parent.get_Variable_string_and_parent(((Variable) alors).nom);
+            Variable tmp = tds_parent.get_Variable_string_and_parent(((Variable) this.alors).nom);
+            if (tmp != null) {
+                this.alors = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) this.alors).nom +" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         }
         else {
             alors.TDS_variable();
         }
 
         if (this.sinon != null && this.sinon instanceof Variable) {
-            sinon = tds_parent.get_Variable_string_and_parent(((Variable) sinon).nom);
+            Variable tmp = tds_parent.get_Variable_string_and_parent(((Variable) this.sinon).nom);
+            if (tmp != null) {
+                this.sinon = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) this.sinon).nom +" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         }
         else if (this.sinon != null) {
             sinon.TDS_variable();

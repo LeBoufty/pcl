@@ -2,6 +2,7 @@ package arbres;
 
 import java.util.ArrayList;
 
+import outils.Error_list;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -122,7 +123,14 @@ public class AppelFonction extends Evaluable {
 
         for (int i = 0; i < params.size(); i++) {
             if (params.get(i) instanceof Variable) {
-                params.set(i, this.tds_parent.get_Variable_string_and_parent(((Variable) params.get(i)).nom));
+                Variable tmp = this.tds_parent.get_Variable_string_and_parent(((Variable) params.get(i)).nom);
+                if (tmp != null) {
+                    params.set(i, tmp);
+                }
+                else {
+                    Logger.error("Variable "+((Variable) params.get(i)).nom+" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                    Error_list.tdsgen = true;
+                }
             }
             else {
                 params.get(i).TDS_variable();

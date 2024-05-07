@@ -1,6 +1,7 @@
 package arbres;
 
 
+import outils.Error_list;
 import outils.Logger;
 import outils.TDS.TDS_gen;
 
@@ -74,14 +75,28 @@ public class InstructionWhile implements Noeud {
     public void TDS_variable() {
         
         if (this.condition instanceof Variable) {
-            condition = tds_parent.get_Variable_string_and_parent(((Variable) condition).nom);
+            Variable tmp = tds_parent.get_Variable_string_and_parent(((Variable) condition).nom);
+            if (tmp == null) {
+                Logger.error("Variable "+ ((Variable) condition).nom +" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
+            else {
+                condition = tmp;
+            }
         }
         else {
             condition.TDS_variable();
         }
 
         if (this.corps instanceof Variable) {
-            corps = tds_parent.get_Variable_string_and_parent(((Variable) corps).nom);
+            Variable tmp = tds_parent.get_Variable_string_and_parent(((Variable) corps).nom);
+            if (tmp != null) {
+                Logger.error("Variable "+ ((Variable) corps).nom +" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
+            else {
+                this.corps = tds_parent.get_Variable_string_and_parent(((Variable) corps).nom);
+            }
         } else {
             this.corps.TDS_variable();
         }
