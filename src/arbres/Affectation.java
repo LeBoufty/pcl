@@ -48,22 +48,24 @@ public class Affectation implements Noeud {
         res += "LDR x2, [sp] // On met la valeur de la variable droite dans x2 \n";
         
         // On va chercher la variable dans la TDS
-        int depl = this.tds_parent.get_index(this.gauche.identifiant)*16;
+        int depl = this.tds_parent.get_index_and_parent(this.gauche.identifiant)*16;
         int Nb_saut = this.tds_parent.search_imbrication_TDS(this.gauche.identifiant);
         
         // Cas variable locale
         if (Nb_saut == 0) {
             res += "STR x2, [x29, #" + -depl + "] // On met la valeur de la variable droite dans la variable gauche \n";
-            res += "ADD sp, sp, #16 // On dépile la valeur \n";
         }
         else {// Cas variable globale
-            // On met le nombre depl, nb_saut en pile
-            res += "SUB sp, sp, #16 // On décrémente le pointeur de pile \n";
-            if (depl < 0) {res += "MOVN x0, #" + -depl + " // On met le deplacement en pile \n";}
+            if (depl < 0) {
+                res += "MOVZ x0, #0 // On met le deplacement en pile \n";
+                res += "ADD x0, x0, #" + depl + " // On met le deplacement en pile \n";
+            }
             else{res += "MOVZ x0, #" + depl + " // On met le deplacement en pile \n";}
-            res += "MOVZ x1, #" + Nb_saut + " // On met le nombre de saut en pile \n"; //TODO : A vérifier
+            res += "MOVZ x1, #" + Nb_saut + " // On met le nombre de saut en pile \n";
+            res += "MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)\n";
             res += "BL set_global_var // On met la valeur de la variable droite dans la variable gauche \n";
         }
+        res += "ADD sp, sp, #16 // On dépile la valeur \n";
         return res;
     }
 

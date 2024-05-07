@@ -5,19 +5,21 @@ def diff_fib_trib(n):
             return x1
         else:
             return fibonacci(n-1,x2,x1+x2)
-        
-    def tribonacci(n):
+    
+    def tribonacci(n, a=0, b=1, c=1):
         if n == 0:
-            return 0
-        elif n == 1 or n == 2:
-            return 1
+            return a
+        elif n == 1:
+            return b
+        elif n == 2:
+            return c
         else:
-            return tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3)
+            return tribonacci(n-1, b, c, a+b+c)
     
     def get_acceleration(f0,f1,f2,n1,n2):
         return (f2-2*f1+f0)/((n2-n1)*(n-n1))
 
-    tri = tribonacci(n)
+    tri = tribonacci(n,0,1,1)
     fib = fibonacci(n,0,1)
     print("Tribonacci: ", tri)
     print("Fibonacci: ", fib)
@@ -29,7 +31,5 @@ def diff_fib_trib(n):
         print("Acceleration: ", get_acceleration(f0,f1,f2,n-1,n))
 
 
-n=6
+n=8
 diff_fib_trib(n)
-diff_fib_trib(n+1)
-diff_fib_trib(n+2)

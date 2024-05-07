@@ -37,8 +37,10 @@ public class Variable extends Evaluable {
         String res = "";
 
         // On va chercher la variable dans la TDS
-        int depl = tds_actuelle.get_index(this.identifiant)*16;
+        int depl = tds_actuelle.get_index_and_parent(this.identifiant)*16;
         int Nb_saut = tds_actuelle.search_imbrication_TDS(this.identifiant);
+        System.out.println("    Deplacement de la variable : " + depl);
+        System.out.println("    Nombre de saut de la variable : " + Nb_saut);
 
         System.out.println("Numero de la variable : " + this.identifiant + " Nom de la variable : " + this.nom);
 
@@ -47,12 +49,14 @@ public class Variable extends Evaluable {
             res += "SUB sp, sp, #16 // " + this.nom + " Mise en pile var\n";
             res += "STR x0, [sp] // " + this.nom + " Mise en pile var\n";
         } else { // Cas variable globale
-            if (depl < 0) {res += "MOVN x0, #" + -depl + " // Deplacement en pile VAR GLOBALE \n";}
+            if (depl < 0) {
+                res += "MOVZ x0, #0 // On met le deplacement en pile \n";
+                res += "ADD x0, x0, #" + depl + " // On met le deplacement en pile \n";
+            }
             else{res += "MOVZ x0, #" + depl + " // Deplacement en pile VAR GLOBALE \n";} // TODO : depl > 256
             res += "MOVZ x1, #" + Nb_saut + " // " + this.nom + " Nb saut VAR GLOBALE\n";
+            res += "MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)\n";
             res += "BL get_global_var // " + this.nom + " Mise en pile var\n";
-            // Déplace le sommet de pile de 2*16 bits pour supprimer les deux valeurs depl et nb_saut
-            res += "STR x2, [sp, #0] // " + this.nom + " Mise en pile var depuis le registre de retours des fonctions :)\n";
         }
         return res;
     }

@@ -43,13 +43,13 @@ public class AppelProcedure extends Evaluable {
             sortie = sortie && p.valide();
         }
         if (params.size() != procedure.params.size()) {
-            Logger.error("Appel de fonction "+ this.procedure.nom +" invalide : nombre de paramètres incorrect");
+            Logger.error("Appel de procedure "+ this.procedure.nom +" invalide : nombre de paramètres incorrect");
             sortie = false;
         }
         else {
             for (int i = 0; i < params.size(); i++) {
                 if (params.get(i).type != procedure.params.get(i).type) {
-                    Logger.error("Appel de fonction "+ this.procedure.nom +" invalide : paramètre "+ i +" de type incorrect");
+                    Logger.error("Appel de procedure "+ this.procedure.nom +" invalide : paramètre "+ i +" de type incorrect");
                     sortie = false;
                 }
             }
@@ -58,46 +58,39 @@ public class AppelProcedure extends Evaluable {
     }
 
     public String produire() {
-        // System.out.println("Appel de fonction "+ this.fonction.nom);
-        // System.out.println("Paramètres : "+ this.params);
+        System.out.println("Appel de procédure "+ this.procedure.nom);
+        System.out.println("Paramètres : "+ this.params);
 
-        // String res = "// Appel de fonction "+ this.fonction.nom +"\n";
+        String res = "";
 
-        // // Met en place les paramètres
-        // for (int i = 0; i < params.size(); i++) {
-        //     System.out.println("Paramètre "+ i +" : "+ params.get(i));
-        //     // Mettre la valeur du paramètre dans le registre x0
-        //     res += "// Paramètre "+ i +"\n";
-        //     res += params.get(i).produire(this.tds_parent);
-        // }
+        // Met en place les paramètres
+        for (int i = 0; i < params.size(); i++) {
+            System.out.println("Paramètre "+ i +" : "+ params.get(i));
+            // Mettre la valeur du paramètre dans le registre x0
+            res += "// Paramètre "+ i +"\n";
+            res += params.get(i).produire(this.tds_parent);
+        }
 
-        // // Gestion du chainage statique
-        // res += "// Gestion du chainage statique\n";
-        // res += "SUB sp, sp, #16 // Incrémentation du pointeur de pile\n";
-        // if (this.tds_parent.get_num_reg() == this.fonction.getTDS().get_num_reg()) {
-        //     // Sauvegarde du chainage statique cas récursif
-        //     res += "STR x27, [sp] // Sauvegarde du chainage statique\n";
-        // } else {
-        //     // Sauvegarde du chainage statique cas non récursif
-        //     res += "STR x29, [sp] // Sauvegarde du chainage statique\n";
-        //     res += "MOV x27, x29 // Mise à jour du chainage statique\n";
-        // }
+        // Gestion du chainage statique
+        res += "// Gestion du chainage statique\n";
+        res += "SUB sp, sp, #16 // Incrémentation du pointeur de pile\n";
+        if (this.tds_parent.get_num_reg() == this.procedure.getTDS().get_num_reg()) {
+            // Sauvegarde du chainage statique cas récursif
+            res += "STR x27, [sp] // Sauvegarde du chainage statique\n";
+        } else {
+            // Sauvegarde du chainage statique cas non récursif
+            res += "STR x29, [sp] // Sauvegarde du chainage statique\n";
+            res += "MOV x27, x29 // Mise à jour du chainage statique\n";
+        }
 
-        // // Appel de la fonction
-        // res += "BL F"+ this.fonction.getTDS().get_num_reg() +" // Appel de la fonction\n";
+        // Appel de la procedure
+        res += "BL P"+ this.procedure.getTDS().get_num_reg() +" // Appel de la procedure\n";
 
-        // // Gestion du chainage statique
-        // res += "// Gestion du chainage statique\n";
-        // res += "ADD sp, sp, #16 // Le chainage statique ça dégage\n";
+        // Gestion du chainage statique
+        res += "// Gestion du chainage statique\n";
+        res += "ADD sp, sp, #16 // Le chainage statique ça dégage\n";
 
-        // // Récupération du résultat
-        // res += "// Récupération du résultat\n";
-        // res += "ADD sp, sp, #" + (params.size() * 16) + " // Décrémentation du pointeur de pile de la taille des paramètres\n";
-        // res += "SUB sp, sp, #16 // Réserve de l'espace pour le résultat\n";
-        // res += "STR x26, [sp] // Sauvegarde du résultat\n";
-
-        // return res;
-        return "";
+        return res;
     }
 
     public String produire(TDS_gen tds_actuelle){
