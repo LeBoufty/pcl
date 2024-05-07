@@ -23,10 +23,15 @@ public class Put implements Noeud {
 
     public String produire(TDS_gen tds_actuelle) {
         String res = "// Printf\n";
+        String format = "";
         res += this.expression.produire(tds_parent);
         res += "MOV x1, x0\n";
-        res += "ADRP x0, format\n";
-        res += "ADD x0, x0, :lo12:format\n";
+        if (this.expression.getType() == Type.CHARACTER)
+            format = "_char";
+        else if (this.expression.getType() == Type.BOOLEAN)
+            format = "_bool";
+        res += "ADRP x0, format"+format+"\n";
+        res += "ADD x0, x0, :lo12:format"+format+"\n";
         res += "BL printf\n";
         res += "ADD sp, sp, #16\n";
         return res;

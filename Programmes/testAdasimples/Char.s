@@ -6,6 +6,11 @@ format :
 erreur_division_msg :
 .string "Erreur : division par zéro\n"
 
+format_char :
+.string "%c\n"
+format_bool :
+.string "%s\n"
+
 .section .text
 main :
 
@@ -31,8 +36,8 @@ LDR x0, [x29, #-48] // On récupère la valeur de la variable a
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
 BL printf
 ADD sp, sp, #16
 
