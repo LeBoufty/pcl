@@ -28,8 +28,6 @@ public class Put implements Noeud {
         res += "MOV x1, x0\n";
         if (this.expression.getType() == Type.CHARACTER)
             format = "_char";
-        else if (this.expression.getType() == Type.BOOLEAN)
-            format = "_bool";
         res += "ADRP x0, format"+format+"\n";
         res += "ADD x0, x0, :lo12:format"+format+"\n";
         res += "BL printf\n";

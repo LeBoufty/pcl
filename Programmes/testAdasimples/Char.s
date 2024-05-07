@@ -8,8 +8,6 @@ erreur_division_msg :
 
 format_char :
 .string "%c\n"
-format_bool :
-.string "%s\n"
 
 .section .text
 main :

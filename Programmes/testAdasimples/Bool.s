@@ -8,8 +8,6 @@ erreur_division_msg :
 
 format_char :
 .string "%c\n"
-format_bool :
-.string "%s\n"
 
 .section .text
 main :
@@ -40,8 +38,8 @@ MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -52,8 +50,8 @@ MOVZ x0, #0
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -64,8 +62,8 @@ MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -91,8 +89,8 @@ CSET x0, NE // Opération /=
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -156,8 +154,8 @@ LDR x0, [x29, #-48] // On récupère la valeur de la variable a
 SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -166,8 +164,8 @@ LDR x0, [x29, #-64] // On récupère la valeur de la variable b
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -203,8 +201,8 @@ CSET x0, EQ // Opération =
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -226,8 +224,8 @@ CSET x0, NE // Opération /=
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -249,8 +247,8 @@ CSET x0, GT // Opération >
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -272,8 +270,8 @@ CSET x0, LT // Opération <
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -295,8 +293,8 @@ CSET x0, GE // Opération >=
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -318,8 +316,8 @@ CSET x0, LE // Opération <=
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -341,8 +339,8 @@ CSET x0, EQ // Opération =
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -373,8 +371,8 @@ LDR x0, [x29, #-64] // On récupère la valeur de la variable b
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
@@ -390,8 +388,8 @@ LDR x0, [x29, #-64] // On récupère la valeur de la variable b
 SUB sp, sp, #16 // b Mise en pile var
 STR x0, [sp] // b Mise en pile var
 MOV x1, x0
-ADRP x0, format_bool
-ADD x0, x0, :lo12:format_bool
+ADRP x0, format
+ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
