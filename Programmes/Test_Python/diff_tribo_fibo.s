@@ -85,6 +85,36 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+// Printf
+LDR x0, [x29, #32] // On récupère la valeur de la variable x1
+SUB sp, sp, #16 // x1 Mise en pile var
+STR x0, [sp] // x1 Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #48] // On récupère la valeur de la variable x2
+SUB sp, sp, #16 // x2 Mise en pile var
+STR x0, [sp] // x2 Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+MOVZ x0, #11111
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
 // if 666641942
 
 // Opération

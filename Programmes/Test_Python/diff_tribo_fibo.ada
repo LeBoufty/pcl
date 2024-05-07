@@ -15,6 +15,9 @@ procedure diff_tribo_fibo is
         function fibonacci(n: Integer; x1: Integer; x2: Integer) return Integer is
             begin
                 Put(n);
+                Put(x1);
+                Put(x2);
+                Put(11111);
                 if n = 0 then
                     return x1;
                 else
