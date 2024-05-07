@@ -523,6 +523,26 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable f2
 
 
 // Instructions de la procédure acc_fib_trib
+// Printf
+LDR x0, [x29, #16] // On récupère la valeur de la variable n
+SUB sp, sp, #16 // n Mise en pile var
+STR x0, [sp] // n Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+MOVZ x0, #22222
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
 // Appel de fonction fibonacci
 // Paramètre 0
 MOVZ x0, #1

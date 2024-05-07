@@ -50,6 +50,8 @@ procedure diff_tribo_fibo is
             end get_acceleration;
 
     begin
+        Put(n);
+        Put(22222);
         fib := fibonacci(n, 0, 1);
         Put(fib);
         trib := tribonacci(n, 0, 1, 1);
