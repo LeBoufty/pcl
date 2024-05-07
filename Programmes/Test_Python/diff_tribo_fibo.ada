@@ -60,6 +60,6 @@ procedure diff_tribo_fibo is
     end acc_fib_trib;
 
 begin
-    n := 5;
+    n := 25;
     acc_fib_trib(n);
 end diff_tribo_fibo;

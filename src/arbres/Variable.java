@@ -53,7 +53,7 @@ public class Variable extends Evaluable {
                 res += "MOVZ x0, #0 // On met le deplacement en pile \n";
                 res += "ADD x0, x0, #" + depl + " // On met le deplacement en pile \n";
             }
-            else{res += "MOVZ x0, #" + depl + " // Deplacement en pile VAR GLOBALE \n";} // TODO : depl > 256
+            else{res += "MOVZ x0, #" + depl + " // Deplacement en pile VAR GLOBALE \n";} 
             res += "MOVZ x1, #" + Nb_saut + " // " + this.nom + " Nb saut VAR GLOBALE\n";
             res += "MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)\n";
             res += "BL get_global_var // " + this.nom + " Mise en pile var\n";

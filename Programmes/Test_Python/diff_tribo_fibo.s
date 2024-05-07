@@ -20,7 +20,7 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable n
 
 
 // Instructions de la procédure diff_tribo_fibo
-MOVZ x0, #5
+MOVZ x0, #25
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 

@@ -31,5 +31,5 @@ def diff_fib_trib(n):
         print("Acceleration: ", get_acceleration(f0,f1,f2,n-1,n))
 
 
-n=8
+n=25
 diff_fib_trib(n)
