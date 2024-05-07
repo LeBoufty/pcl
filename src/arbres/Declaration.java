@@ -1,5 +1,7 @@
 package arbres;
 
+import outils.Error_list;
+import outils.Logger;
 import outils.TDS.TDS_gen;
 
 public class Declaration extends Instanciation {
@@ -29,8 +31,14 @@ public class Declaration extends Instanciation {
     public void TDS_variable() {
 
         if (valeur instanceof Variable) {
-            
-            valeur = this.tds_parent.get_Variable_string(((Variable) valeur).nom);
+            Variable tmp = this.tds_parent.get_Variable_string_and_parent(((Variable) valeur).nom);
+            if (tmp != null) {
+                valeur = tmp;
+            }
+            else {
+                Logger.error("Variable "+((Variable) valeur).nom+" non déclarée dans la TDS : "+tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         }
         else if (valeur != null){
             valeur.TDS_variable();

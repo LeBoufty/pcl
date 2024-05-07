@@ -2,6 +2,7 @@ package arbres;
 
 import java.util.ArrayList;
 
+import outils.Error_list;
 import outils.GestionFichier;
 import outils.Logger;
 import outils.TDS.TDS_gen;
@@ -148,7 +149,15 @@ public class ProcedureParams implements Noeud {
     
 
         if (instructions instanceof Variable) {
-            instructions = tds.get_Variable_string_and_parent(((Variable) instructions).nom);
+            Variable tmp = tds.get_Variable_string_and_parent(((Variable) instructions).nom);
+            if (tmp != null) {
+                instructions = tmp;
+            }
+            else {
+                Logger.error("Variable "+ ((Variable) instructions).nom +" non déclarée dans la TDS : "+tds.nom_fonction);
+                Error_list.tdsgen = true;
+            }
+
         } else {
             instructions.TDS_variable();
         }

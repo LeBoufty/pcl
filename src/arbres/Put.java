@@ -1,6 +1,8 @@
 package arbres;
 
 
+import outils.Error_list;
+import outils.Logger;
 import outils.TDS.TDS_gen;
 
 public class Put implements Noeud {
@@ -45,8 +47,14 @@ public class Put implements Noeud {
 
     public void TDS_variable() {
         if (this.expression instanceof Variable) {
-            // ((Variable) this.expression).TDS_variable();
-            this.expression = this.tds_parent.get_Variable_string_and_parent(((Variable) this.expression).nom);
+            Variable tmp = this.tds_parent.get_Variable_string_and_parent(((Variable) this.expression).nom);
+            if (tmp != null) {
+                this.expression = tmp;
+            }
+            else {
+                Logger.error("Variable " + ((Variable) this.expression).nom + " non déclarée dans la TDS : " + this.tds_parent.nom_fonction);
+                Error_list.tdsgen = true;
+            }
         }
         else {
             this.expression.TDS_variable();
