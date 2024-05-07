@@ -50,8 +50,12 @@ public class Constante extends Evaluable {
         System.out.println("constante " + valeur + " : " + type);
         // On met la valeur en pile
         String res = "";
-        if (valeur < 0) {res += "MOVN x0, #" + -valeur + "// On met la constante en négatif \n";} 
+        if (valeur < 0) {
+            res += "MOVZ x0, #0 // On met le deplacement en pile \n";
+            res += "SUB x0, x0, #" + -valeur + " // On met le deplacement en pile \n";
+        } 
         else {res += "MOVZ x0, #" + valeur + "\n";}
+        //res += generateAssemblyCode();
         res += "SUB sp, sp, #16 // On décrémente le pointeur de pile \n";
         res += "STR x0, [sp] // On met la constante en pile \n";
         return res;
@@ -79,5 +83,24 @@ public class Constante extends Evaluable {
 
     public void TDS_func_proc_change() {
         // Rien à faire
+    }
+
+    public String generateAssemblyCode() {
+        // !ça marche pas 
+        String commande = "";
+        int mask = 0xFFFF;
+
+        commande += "MOVZ X0, #0\n";
+
+        if (this.valeur < 0) {
+            long compl2 = (long) this.valeur & 0xFFFFFFFFL; 
+            commande += String.format("MOVK X0, #0x%04X, LSL #16\n", (compl2 >>> 16) & mask);
+            commande += String.format("MOVK X0, #0x%04X, LSL #0\n", compl2 & mask);
+        } else {
+            commande += String.format("MOVK X0, #0x%04X, LSL #16\n", (this.valeur >>> 16) & mask);
+            commande += String.format("MOVK X0, #0x%04X, LSL #0\n", this.valeur & mask);
+        }
+
+        return commande;
     }
 }
