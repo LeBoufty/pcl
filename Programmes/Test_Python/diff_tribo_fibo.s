@@ -497,12 +497,9 @@ RET // Retour de la fonction
 
 // Procédure acc_fib_trib
 P1 :
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x29, [sp] // Sauvegarde du pointeur de pile statique
-SUB sp, sp, #16 // On décrémente le pointeur de pile dynamique
-STR x29, [sp] // Sauvegarde du pointeur de pile
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR lr, [sp] // Sauvegarde du lien de retour
+STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
+MOV x29, sp // Mise à jour du pointeur de pile
+SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la procédure acc_fib_trib
 // Declaration de la variable trib
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable trib

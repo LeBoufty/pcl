@@ -86,15 +86,16 @@ public class ProcedureParams implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        // TODO: Produire le code assembleur pour la procédure
         System.out.println("=== Procédure ===");
         System.out.println(nom + " proc params : " + params);
 
         String res = "// Procédure " + this.nom + "\n";
 
         res += "P"+this.tds.get_num_reg() + " :\n";
-        res += "SUB sp, sp, #16 // On décrémente le pointeur de pile\nSTR x29, [sp] // Sauvegarde du pointeur de pile statique\nSUB sp, sp, #16 // On décrémente le pointeur de pile dynamique\nSTR x29, [sp] // Sauvegarde du pointeur de pile\nSUB sp, sp, #16 // On décrémente le pointeur de pile\nSTR lr, [sp] // Sauvegarde du lien de retour\n";
-
+        res += "STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour\n";
+        res += "MOV x29, sp // Mise à jour du pointeur de pile\n";
+        res += "SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n";
+        
         res += "// Définitions de la procédure "+nom+"\n";
         for (Noeud noeud : ((Bloc) definitions).instructions) {
             res += noeud.produire(tds)+"\n";
