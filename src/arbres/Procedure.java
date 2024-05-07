@@ -1,6 +1,7 @@
 package arbres;
 
 
+import outils.Error_list;
 import outils.GestionFichier;
 import outils.Logger;
 import outils.TDS.TDS_gen;
@@ -92,8 +93,8 @@ public class Procedure implements Noeud {
             this.TDS_variable();
             this.TDS_func_proc_change();
             if (!this.tds.valide_et_enfants()) {
-                Logger.error("TDS invalide - Arrêt du programme");
-                System.exit(1);
+                Logger.error("TDS invalide");
+                Error_list.tdsgen = true;
             }
             Logger.milestone("Fin de la vérification des TDS");
         }

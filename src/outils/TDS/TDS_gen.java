@@ -348,6 +348,7 @@ public class TDS_gen {
     public boolean valide() {
         // Vérifie si la TDS est valide
         // Vérifie pour sa TDS si deux variables n'ont pas le même nom
+        boolean valide_state = true;
 
         for (Map.Entry<Integer, Ligne_TDS> entry : this.TDS_vari.entrySet()) {
             if (entry.getValue().variable == null) { // Éviter les erreurs de pointeurs null
@@ -358,9 +359,10 @@ public class TDS_gen {
                     continue;
                 }
 
-                if (entry.getKey() != entry2.getKey() && entry.getValue().variable.nom.equals(entry2.getValue().variable.nom)) {
+                // Pour éviter d'avoir le message d'erreur deux fois, on vérifie si l'index est plus petit
+                if (entry.getKey() < entry2.getKey() && entry.getValue().variable.nom.equals(entry2.getValue().variable.nom)) {
                     Logger.error("TDS_gen : Deux variables ont le même nom : " + entry.getValue().variable.nom + " dans la TDS : " + this.nom_fonction);
-                    return false;
+                    valide_state = false;
                 }
             }
         }
@@ -369,31 +371,33 @@ public class TDS_gen {
         if (this.TDS_function != null) {
             for (Map.Entry<Integer, Ligne_TDS_func> entry : this.TDS_function.entrySet()) {
                 for (Map.Entry<Integer, Ligne_TDS_func> entry2 : this.TDS_function.entrySet()) {
-                    if (entry.getKey() != entry2.getKey() && entry.getValue().getnom().equals(entry2.getValue().getnom())) {
+                    if (entry.getKey() < entry2.getKey() && entry.getValue().getnom().equals(entry2.getValue().getnom())) {
                         Logger.error("TDS_gen : Deux fonctions ou procédures ont le même nom : " + entry.getValue().getnom() + " dans la TDS : " + this.nom_fonction);
-                        return false;
+                        valide_state = false;
                     }
                 }
             }
         }
 
-        return true;
+        return valide_state;
 
     }
 
     public boolean valide_et_enfants() {
         // Vérifie si la TDS est valide et si ses enfants le sont aussi
+        boolean valide_state = true;
+
         if (!this.valide()) {
-            return false;
+            valide_state = false;
         }
         
         for (TDS_gen tds : this.tds_childrens) {
             if (!tds.valide_et_enfants()) {
-                return false;
+                valide_state = false;
             }
         }
 
-        return true;
+        return valide_state;
     }
 
     public void TDS_add_func_proc(Noeud func_proc) {

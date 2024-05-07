@@ -2,7 +2,18 @@ with Ada.Text_IO ; use Ada.Text_IO ;
 
 procedure unDebut is
 
+    choix : integer ;
+
     function aireRectangle(larg : integer; long : integer) return integer is
+    aire: integer;
+    aire: integer;
+    begin
+        aire := larg * long ;
+        return aire ;
+    end aireRectangle ;
+
+    function aireRectangle(larg : integer; long : integer) return integer is
+    aire: integer;
     aire: integer;
     begin
         aire := larg * long ;
@@ -10,10 +21,10 @@ procedure unDebut is
     end aireRectangle ;
 
 
-
     procedure testProcedure(bo : integer) is
 
         function aireRectangle(larg : integer; long : integer) return integer is
+        aire: integer;
         aire: integer;
         begin
             aire := larg * long ;
@@ -28,6 +39,7 @@ procedure unDebut is
 
     function perimetreRectangle(larg : integer; long : integer) return integer is
         aire : integer;
+        choix: 
         procedure testProcedure(bo : integer) is
         begin
             bo := bo + 1;
@@ -38,7 +50,7 @@ procedure unDebut is
         aire := larg*2 + long*2;
         return aire ;
     end perimetreRectangle;
-    choix : integer ;
+    
 
     -- VARIABLES
 
@@ -48,7 +60,7 @@ test : integer ;
 -- PROCEDURE PRINCIPALE
 begin
     testProcedure(1);
-    choix := 2;
+    choix := character'val('a');
     valeur := aireRectangle(2, 3);
     choix := valeur + choix;
     for j in 1..2 loop

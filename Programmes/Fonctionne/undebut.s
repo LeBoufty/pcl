@@ -13,6 +13,7 @@ STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 
+// Définitions de la procédure undebut
 
 
 
@@ -223,7 +224,13 @@ F1 : // Début de la fonction
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
-SUB SP, SP, #4 // Réserve de l'espace pour les variables locales
+// Définitions de la fonction airerectangle
+// Declaration de la variable larg
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable larg
+
+// Declaration de la variable aire
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable aire
+
 // Instructions de la fonction airerectangle
 
 // Opération
@@ -241,11 +248,11 @@ MUL x0, x0, x1 // Opération *
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
-STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
 // Return 
-LDR x0, [x29, #-48] // On récupère la valeur de la variable aire
+LDR x0, [x29, #-64] // On récupère la valeur de la variable aire
 SUB sp, sp, #16 // aire Mise en pile var
 STR x0, [sp] // aire Mise en pile var
 LDR x26, [sp] // Valeur de retour dans le registre x26
@@ -258,7 +265,11 @@ F4 : // Début de la fonction
 STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
-SUB SP, SP, #4 // Réserve de l'espace pour les variables locales
+// Définitions de la fonction perimetrerectangle
+// Declaration de la variable aire
+SUB sp, sp, #16 // Allocation de 16 octets pour la variable aire
+
+
 // Instructions de la fonction perimetrerectangle
 
 // Opération
