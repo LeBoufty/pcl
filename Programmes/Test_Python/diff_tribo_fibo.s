@@ -75,7 +75,17 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction fibonacci
 // Instructions de la fonction fibonacci
-// if 189568618
+// Printf
+LDR x0, [x29, #16] // On récupère la valeur de la variable n
+SUB sp, sp, #16 // n Mise en pile var
+STR x0, [sp] // n Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// if 666641942
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable n
@@ -95,7 +105,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then189568618 // Branchement si la condition est vraie
+BNE then666641942 // Branchement si la condition est vraie
 // Return 
 // Appel de fonction fibonacci
 // Paramètre 0
@@ -148,8 +158,8 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end189568618 // Branchement à la fin du if
-then189568618 :
+B end666641942 // Branchement à la fin du if
+then666641942 :
 // Return 
 LDR x0, [x29, #32] // On récupère la valeur de la variable x1
 SUB sp, sp, #16 // x1 Mise en pile var
@@ -158,7 +168,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end189568618 :
+end666641942 :
 
 // Return 
 MOVZ x0, #0
@@ -483,6 +493,44 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable f2
 
 
 // Instructions de la procédure acc_fib_trib
+// Appel de fonction fibonacci
+// Paramètre 0
+MOVZ x0, #1
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+// Paramètre 1
+MOVZ x0, #0
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+// Paramètre 2
+LDR x0, [x29, #16] // On récupère la valeur de la variable n
+SUB sp, sp, #16 // n Mise en pile var
+STR x0, [sp] // n Mise en pile var
+// Gestion du chainage statique
+SUB sp, sp, #16 // Incrémentation du pointeur de pile
+STR x29, [sp] // Sauvegarde du chainage statique
+MOV x27, x29 // Mise à jour du chainage statique
+BL F2 // Appel de la fonction
+// Gestion du chainage statique
+ADD sp, sp, #16 // Le chainage statique ça dégage
+// Récupération du résultat
+ADD sp, sp, #48 // Décrémentation du pointeur de pile de la taille des paramètres
+SUB sp, sp, #16 // Réserve de l'espace pour le résultat
+STR x26, [sp] // Sauvegarde du résultat
+LDR x2, [sp] // On met la valeur de la variable droite dans x2 
+STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
+ADD sp, sp, #16 // On dépile la valeur 
+
+// Printf
+LDR x0, [x29, #-64] // On récupère la valeur de la variable fib
+SUB sp, sp, #16 // fib Mise en pile var
+STR x0, [sp] // fib Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
 // Appel de fonction tribonacci
 // Paramètre 0
 MOVZ x0, #1
@@ -515,48 +563,10 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// Appel de fonction fibonacci
-// Paramètre 0
-MOVZ x0, #1
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-// Paramètre 1
-MOVZ x0, #0
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-// Paramètre 2
-LDR x0, [x29, #16] // On récupère la valeur de la variable n
-SUB sp, sp, #16 // n Mise en pile var
-STR x0, [sp] // n Mise en pile var
-// Gestion du chainage statique
-SUB sp, sp, #16 // Incrémentation du pointeur de pile
-STR x29, [sp] // Sauvegarde du chainage statique
-MOV x27, x29 // Mise à jour du chainage statique
-BL F2 // Appel de la fonction
-// Gestion du chainage statique
-ADD sp, sp, #16 // Le chainage statique ça dégage
-// Récupération du résultat
-ADD sp, sp, #48 // Décrémentation du pointeur de pile de la taille des paramètres
-SUB sp, sp, #16 // Réserve de l'espace pour le résultat
-STR x26, [sp] // Sauvegarde du résultat
-LDR x2, [sp] // On met la valeur de la variable droite dans x2 
-STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
-ADD sp, sp, #16 // On dépile la valeur 
-
 // Printf
 LDR x0, [x29, #-48] // On récupère la valeur de la variable trib
 SUB sp, sp, #16 // trib Mise en pile var
 STR x0, [sp] // trib Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-LDR x0, [x29, #-64] // On récupère la valeur de la variable fib
-SUB sp, sp, #16 // fib Mise en pile var
-STR x0, [sp] // fib Mise en pile var
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
