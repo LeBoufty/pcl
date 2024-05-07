@@ -4,6 +4,8 @@ procedure Bool is
 
     a: Boolean;
     b: Boolean;
+    x: Integer;
+    y: Integer; 
 
 begin
     Put(3=3);
@@ -12,23 +14,19 @@ begin
     Put((false=false)/=(true=true));
     a:=true;
     a:= a=((true=true) = (a=a));
-    b:=a;
     Put(a);
-    Put(2<=3);
-    Put(3>=2);
-    Put(2>=2);
-    Put(2<=2);
-    Put(2>=3);
-    Put(2<3);
-    Put(2>3);
-    Put(2=3);
-    Put(2/=3);
-    Put(2=2);
-    Put(2/=2);
+    Put(b);
+    x:= 3;
+    y:= 4;
+    Put(x=y);
+    Put(x/=y);
+    Put(x>y);
+    Put(x<y);
+    Put(x>=y);
+    Put(x<=y);
     Put(a=b);
     Put(a*b);
     Put(b);
     a:= true;
-    b:= a + a + a;
     Put(b);
 end Bool;
