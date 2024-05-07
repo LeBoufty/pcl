@@ -75,47 +75,7 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction fibonacci
 // Instructions de la fonction fibonacci
-// Printf
-LDR x0, [x29, #16] // On récupère la valeur de la variable n
-SUB sp, sp, #16 // n Mise en pile var
-STR x0, [sp] // n Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-LDR x0, [x29, #32] // On récupère la valeur de la variable x1
-SUB sp, sp, #16 // x1 Mise en pile var
-STR x0, [sp] // x1 Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-LDR x0, [x29, #48] // On récupère la valeur de la variable x2
-SUB sp, sp, #16 // x2 Mise en pile var
-STR x0, [sp] // x2 Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-MOVZ x0, #11111
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// if 666641942
+// if 189568618
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable n
@@ -135,7 +95,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then666641942 // Branchement si la condition est vraie
+BNE then189568618 // Branchement si la condition est vraie
 // Return 
 // Appel de fonction fibonacci
 // Paramètre 0
@@ -188,8 +148,8 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end666641942 // Branchement à la fin du if
-then666641942 :
+B end189568618 // Branchement à la fin du if
+then189568618 :
 // Return 
 LDR x0, [x29, #32] // On récupère la valeur de la variable x1
 SUB sp, sp, #16 // x1 Mise en pile var
@@ -198,7 +158,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end666641942 :
+end189568618 :
 
 // Return 
 MOVZ x0, #0
@@ -520,26 +480,6 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable f2
 
 
 // Instructions de la procédure acc_fib_trib
-// Printf
-LDR x0, [x29, #16] // On récupère la valeur de la variable n
-SUB sp, sp, #16 // n Mise en pile var
-STR x0, [sp] // n Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
-// Printf
-MOVZ x0, #22222
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
 // Appel de fonction fibonacci
 // Paramètre 0
 MOVZ x0, #1

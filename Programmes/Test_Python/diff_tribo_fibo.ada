@@ -14,10 +14,6 @@ procedure diff_tribo_fibo is
 
         function fibonacci(n: Integer; x1: Integer; x2: Integer) return Integer is
             begin
-                Put(n);
-                Put(x1);
-                Put(x2);
-                Put(11111);
                 if n = 0 then
                     return x1;
                 else
@@ -50,8 +46,6 @@ procedure diff_tribo_fibo is
             end get_acceleration;
 
     begin
-        Put(n);
-        Put(22222);
         fib := fibonacci(n, 0, 1);
         Put(fib);
         trib := tribonacci(n, 0, 1, 1);
