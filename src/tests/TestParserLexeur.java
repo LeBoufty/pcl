@@ -40,6 +40,7 @@ public class TestParserLexeur {
         //programme = "Programmes/testsem/erreur2.adb";
         // programme = "Programmes/testsem/erreur6.adb";
         //programme = "Programmes/Fonctionne/undebut.adb";
+        // programme = "Programmes/testAdasimples/Fonction_Extended.ada";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
@@ -72,7 +73,7 @@ public class TestParserLexeur {
         //Logger.debug(AST.getTDS().toString());
         boolean valide = AST.valide();
         Logger.debug("Valide : " + valide);
-        if (valide){
+        if (valide && false){
             AST.produire(null); 
             GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
         }
