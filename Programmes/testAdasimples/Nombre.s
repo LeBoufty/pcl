@@ -25,9 +25,7 @@ SUB sp, sp, #16 // Allocation de 16 octets pour la variable b
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable c
 
 // Instructions de la procédure nombre
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x0064, LSL #0
+MOVZ x0, #100
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -44,9 +42,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x03E8, LSL #0
+MOVZ x0, #1000
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -63,9 +59,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x2710, LSL #0
+MOVZ x0, #10000
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -82,9 +76,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x86A0, LSL #0
+MOVZ x0, #34464
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -101,9 +93,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x4240, LSL #0
+MOVZ x0, #16960
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -120,9 +110,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x9680, LSL #0
+MOVZ x0, #38528
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -139,9 +127,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0xE100, LSL #0
+MOVZ x0, #57600
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -158,9 +144,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0xCA00, LSL #0
+MOVZ x0, #51712
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
@@ -177,9 +161,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x0001, LSL #0
+MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -199,9 +181,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x000A, LSL #0
+MOVZ x0, #10
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -221,9 +201,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x0064, LSL #0
+MOVZ x0, #100
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -243,9 +221,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x03E8, LSL #0
+MOVZ x0, #1000
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -265,9 +241,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x2710, LSL #0
+MOVZ x0, #10000
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -287,9 +261,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x86A0, LSL #0
+MOVZ x0, #34464
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -309,9 +281,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x4240, LSL #0
+MOVZ x0, #16960
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -331,9 +301,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0x9680, LSL #0
+MOVZ x0, #38528
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
@@ -353,9 +321,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-MOVZ X0, #0
-MOVK X0, #0x0000, LSL #16
-MOVK X0, #0xE100, LSL #0
+MOVZ x0, #57600
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x0, [sp] // Opération moins
