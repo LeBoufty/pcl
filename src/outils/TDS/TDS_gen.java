@@ -280,8 +280,9 @@ public class TDS_gen {
             if(index != null) {
                 return imbrication;
             }
-
-            TDS_parent = this.tds_parent;
+            
+            TDS_parent = TDS_parent.tds_parent;
+            
             imbrication++;
         }
 

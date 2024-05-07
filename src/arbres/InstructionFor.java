@@ -8,6 +8,7 @@ import outils.TDS.TDS_gen;
 public class InstructionFor implements Noeud {
 
     public int id;
+    public static int id_for = 0;
 
     public Variable iterateur;
     public boolean reverse;
@@ -76,17 +77,20 @@ public class InstructionFor implements Noeud {
             finDeBoucle.droite = new Operation(this.iterateur, new Constante(1), Operateur.PLUS);
             affectdepart = new Affectation(this.iterateur, borneInf);
         }
+        
         whileLoop.TDS_link(this.tds);
         affectdepart.TDS_link(this.tds);
         finDeBoucle.TDS_link(this.tds);
         whileLoop.corps = this.corps;
         whileLoop.ajouterInstruction(finDeBoucle);
-        return affectdepart.produire(tds) + "\n" + whileLoop.produire(tds);
+        String res = affectdepart.produire(tds);
+        res += "\n" + whileLoop.produire(tds);
+        return res;
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
 
-        this.tds = new TDS_gen(this, Parent, "for");
+        this.tds = new TDS_gen(this, Parent, "for" + id_for++);
         this.id = this.tds.get_num_reg();
         Logger.info("Création de la TDS de la boucle for n°" + this.id);
         

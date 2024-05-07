@@ -39,14 +39,15 @@ test : integer ;
 
 -- PROCEDURE PRINCIPALE
 begin
-    --  testProcedure(1);
+    testProcedure(1);
     valeur := aireRectangle(2, 3);
     choix := valeur + choix;
     for j in 1..2 loop
-        for j in 1..2 loop
-            valeur := aireRectangle(j, 2);
+        valeur := aireRectangle(j, 3);
+        for i in 1..2 loop
+            put('l');
+            valeur := 1;
         end loop;
-        perimetreRectangle(j, 2);
     end loop;
     choix := 1;
 
