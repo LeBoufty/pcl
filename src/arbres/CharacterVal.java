@@ -22,7 +22,7 @@ public class CharacterVal extends Evaluable {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        return "//Bonne chance pour produire le code pour cette fonctionnalité, c'est Chuck Norris qui l'a codée.";
+        return this.expression.produire(tds_actuelle);
     }
 
     public void TDS_creation(TDS_gen Parent, int type_variable) {
