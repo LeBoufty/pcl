@@ -105,8 +105,7 @@ public class Procedure implements Noeud {
         
         String res = "";
 
-        GestionFichier.AddcontenuHeader(".global main\n.extern printf // Import printf\n.section .data\nformat :\n.string \"%d\\n\"\nerreur_division_msg :\n.string \"Erreur : division par zéro\\n\"\n");
-        GestionFichier.AddcontenuHeader("format_char :\n.string \"%c\\n\"\n");
+        GestionFichier.AddcontenuHeader(".global main\n.extern printf // Import printf\n.section .data\nformat_char :\n.string \"%c\\n\"\nformat :\n.string \"%d\\n\"\nerreur_division_msg :\n.string \"Erreur : division par zéro\\n\"\n");
         GestionFichier.Addcontenu(".section .text\nmain :\n");
         GestionFichier.Addcontenu("STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour\nMOV x29, sp // Mise à jour du pointeur de pile\nSTR x29, [sp]\nSUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n");
         GestionFichier.AddcontenuFooter("B exit_program\n\nexit_program : //Fonction de sortie du programme \nmov x0,#0\nmov x8,#93\nsvc #0\nret\n");
