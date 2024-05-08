@@ -47,19 +47,27 @@ procedure diff_tribo_fibo is
 
     begin
         fib := fibonacci(n, 0, 1);
+        Put('f');
         Put(fib);
         trib := tribonacci(n, 0, 1, 1);
+        Put('t');
         Put(trib);
+        Put('d');
         Put(trib-fib);
         if n > 1 then
             f0 := tribonacci(n - 2, 0, 1, 1) - fibonacci(n - 2, 0, 1);
             f1 := tribonacci(n - 1, 0, 1, 1) - fibonacci(n - 1, 0, 1);
             f2 := trib - fib ;
+            Put('a');
             Put(get_acceleration(f0, f1, f2, n - 1, n));
         end if;
     end acc_fib_trib;
 
 begin
     n := 30;
-    acc_fib_trib(n);
+    for i in 2..n loop
+        Put('n');
+        Put(n);
+        acc_fib_trib(i);
+    end loop;
 end diff_tribo_fibo;
