@@ -35,7 +35,7 @@ public class Return implements Noeud {
         String res = "// Return \n";
 
         if (!this.estVide()) {
-            res += this.valeur.produire(tds_actuelle);
+            res += this.valeur.produire(tds_parent);
         }
 
         // Mise en place de la valeur de retour

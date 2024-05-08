@@ -5,15 +5,6 @@ procedure unDebut is
 
     function aireRectangle(larg : integer; long : integer) return integer is
     aire: integer;
-    aire: integer;
-    begin
-        aire := larg * long ;
-        return aire ;
-    end aireRectangle ;
-
-    function aireRectangle(larg : integer; long : integer) return integer is
-    aire: integer;
-    aire: integer;
     begin
         aire := larg * long ;
         return aire ;
@@ -21,15 +12,6 @@ procedure unDebut is
 
 
     procedure testProcedure(bo : integer) is
-
-        function aireRectangle(larg : integer; long : integer) return integer is
-        aire: integer;
-        aire: integer;
-        begin
-            aire := larg * long ;
-            choix := 0;
-            return aire ;
-        end aireRectang ;
 
     begin
         bo := bo + 1;
@@ -51,7 +33,7 @@ procedure unDebut is
     
 
     -- VARIABLES
-
+choix : integer ;
 valeur : integer ;
 test : integer ;
 
@@ -61,10 +43,11 @@ begin
     valeur := aireRectangle(2, 3);
     choix := valeur + choix;
     for j in 1..2 loop
-        for j in 1..2 loop
-            valeur := aireRectangle(j, 2);
+        valeur := aireRectangle(j, 3);
+        for i in 1..2 loop
+            put('l');
+            valeur := 1;
         end loop;
-        perimetreRectangle(j, 2);
     end loop;
     choix := 1;
 

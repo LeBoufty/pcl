@@ -57,7 +57,7 @@ public class AppelFonction extends Evaluable {
         return sortie;
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("Appel de fonction "+ this.fonction.nom);
         System.out.println("Paramètres : "+ this.params);
 
@@ -97,11 +97,6 @@ public class AppelFonction extends Evaluable {
         res += "STR x26, [sp] // Sauvegarde du résultat\n";
 
         return res;
-    }
-
-    public String produire(TDS_gen tds_actuelle){
-        this.tds_parent = tds_actuelle;
-        return this.produire();
     }
 
     public void TDS_creation(TDS_gen Parent, int variable_type) {

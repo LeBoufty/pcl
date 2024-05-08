@@ -58,7 +58,7 @@ public class AppelProcedure extends Evaluable {
         return sortie;
     }
 
-    public String produire() {
+    public String produire(TDS_gen tds_actuelle) {
         System.out.println("Appel de procédure "+ this.procedure.nom);
         System.out.println("Paramètres : "+ this.params);
 
@@ -92,11 +92,6 @@ public class AppelProcedure extends Evaluable {
         res += "ADD sp, sp, #16 // Le chainage statique ça dégage\n";
 
         return res;
-    }
-
-    public String produire(TDS_gen tds_actuelle){
-        this.tds_parent = tds_actuelle;
-        return this.produire();
     }
 
     public void TDS_creation(TDS_gen Parent, int variable_type) {

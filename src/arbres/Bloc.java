@@ -38,18 +38,11 @@ public class Bloc implements Noeud {
         return valide;
     }
 
-    public String produire() {
-        System.err.println("Bloc");
-        for (Noeud noeud : instructions) {
-            noeud.produire(tds_parent);
-        }
-        return "";
-    }
-
     public String produire(TDS_gen tds_actuelle){
         String res = "";
         for (Noeud noeud : instructions) {
-            res += noeud.produire(tds_actuelle);
+            // res += noeud.produire(tds_actuelle);
+            res += noeud.produire(tds_parent);
         }
         return res;
     }
