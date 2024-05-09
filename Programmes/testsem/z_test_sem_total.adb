@@ -16,8 +16,15 @@ procedure test_sem is
 
 -- Procédure incorrecte, comporte un return
     procedure uneProcedure (var_1 : Integer) is
+    -- Deux variables avec le même nom
+        var_2 : Integer ;
+        var_2 : Integer ;
+    -- Une variable avec le même nom qu'un paramètre
+        var_1 : Integer ;
     begin
-        for i in 1..var_1 loop
+        -- Itirérateur ne peut pas être modifié ou utilisé dans les bornes
+        for i in i..i loop
+            i := i + 1 ;
             return 1 ;
         end loop ;
     end uneProcedure ;
@@ -46,6 +53,9 @@ begin
 
     -- Opération incorrecte
     var_1 := var_1 + '2' ;
+
+    -- Fonction non définie
+    var_1 := uneFonction2(1) ;
 
 
 end test_sem ;

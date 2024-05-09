@@ -1,8 +1,6 @@
 package arbres;
 
 
-import java.util.ArrayList;
-
 import outils.Error_list;
 import outils.GestionFichier;
 import outils.Logger;
@@ -41,19 +39,21 @@ public class Procedure implements Noeud {
             Logger.error("procédure invalide : pas de nom");
             sortie = false;
         }
+
         if(definitions==null) {
             Logger.error("procédure "+nom+" invalide : pas de définitions");
             sortie = false;
         }
-        else if(definitions.valide()) {
-            sortie = false;
+        else{
+            sortie = definitions.valide() && sortie;
         }
+
         if(instructions==null) {
             Logger.error("procédure "+nom+" invalide : pas d'instructions");
             sortie = false;
         }
-        else if(instructions.valide()) {
-            sortie = false;
+        else{
+            sortie = instructions.valide() && sortie;
         }
 
         return sortie;

@@ -51,6 +51,7 @@ public class Fonction implements Noeud {
 
     public boolean valide() {
         boolean sortie = true;
+        
         for (Instanciation p : params) {
             sortie = p.valide() && sortie;
         }

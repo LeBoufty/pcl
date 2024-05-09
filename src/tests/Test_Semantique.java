@@ -11,6 +11,7 @@ public class Test_Semantique {
     public static void main(String[] args) throws Exception {
 
         String programme = "Programmes/testsem/z_test_sem_total.adb";
+        programme = "Programmes/testsem/erreur6.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();

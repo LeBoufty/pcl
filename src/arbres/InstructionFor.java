@@ -51,6 +51,10 @@ public class InstructionFor implements Noeud {
 
         if (this.borneInf != null) {
             sortie = this.borneInf.valide() && sortie;
+            if (is_iterateur_in_evaluable(this.borneInf)) {
+                Logger.error("InstructionFor "+ this.tds.nom_fonction +" invalide : l'itérateur ne peut pas être dans la borne inférieure");
+                sortie = false;
+            }
         }
         else {
             Logger.error("InstructionFor "+ this.toString() +" invalide : pas de borne inférieure");
@@ -59,6 +63,10 @@ public class InstructionFor implements Noeud {
 
         if (this.borneSup != null) {
             sortie = this.borneSup.valide() && sortie;
+            if (is_iterateur_in_evaluable(this.borneSup)) {
+                Logger.error("InstructionFor "+ this.tds.nom_fonction +" invalide : l'itérateur ne peut pas être dans la borne supérieure");
+                sortie = false;
+            }
         }
         else {
             Logger.error("InstructionFor "+ this.toString() +" invalide : pas de borne supérieure");
@@ -66,6 +74,10 @@ public class InstructionFor implements Noeud {
         }
         
         sortie = this.corps.valide() && sortie;
+        if (is_iterateur_in_noeud_mod(this.corps)) {
+            Logger.error("InstructionFor "+ this.tds.nom_fonction +" invalide : l'itérateur ne peut pas être modifié dans le corps de la boucle");
+            sortie = false;
+        }
 
         return sortie;
     }
@@ -218,4 +230,89 @@ public class InstructionFor implements Noeud {
         }
 
     }
+
+
+    private boolean is_iterateur_in_evaluable(Evaluable e) {
+        if (e instanceof Variable) {
+            return ((Variable) e).identifiant == this.iterateur.identifiant;
+        }
+        else if (e instanceof Operation) {
+            return is_iterateur_in_evaluable(((Operation) e).gauche) || is_iterateur_in_evaluable(((Operation) e).droite);
+        }
+        else if (e instanceof OperationUnaire) {
+            return is_iterateur_in_evaluable(((OperationUnaire) e).droite);
+        }
+        else if (e instanceof AppelFonction) {
+            for (Evaluable arg : ((AppelFonction) e).params) {
+                if (is_iterateur_in_evaluable(arg)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else if (e instanceof AppelProcedure) {
+            for (Evaluable arg : ((AppelProcedure) e).params) {
+                if (is_iterateur_in_evaluable(arg)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else if (e instanceof Constante) {
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
+
+    // Vérifie si l'itérateur est modifié dans le noeud
+    private boolean is_iterateur_in_noeud_mod(Noeud nd) {
+        if (nd instanceof Evaluable) {
+            return false;
+        }
+        
+        else if (nd instanceof Affectation) {
+            if (is_iterateur_in_evaluable(((Affectation) nd).gauche)) {
+                return true;
+            }
+            // Pas besoin de vérifier la droite car la variable n'est pas modifiée
+            return false;
+        }
+
+        else if (nd instanceof Bloc) {
+            for (Noeud n : ((Bloc) nd).instructions) {
+                if (is_iterateur_in_noeud_mod(n)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        else if (nd instanceof InstructionIf) {
+            if (is_iterateur_in_noeud_mod(((InstructionIf) nd).alors)) {
+                return true;
+            }
+            if (is_iterateur_in_noeud_mod(((InstructionIf) nd).sinon)) {
+                return true;
+            }
+            return false;
+        }
+        
+        else if (nd instanceof InstructionFor) {
+            if (is_iterateur_in_noeud_mod(((InstructionFor) nd).corps)) {
+                return true;
+            }
+            return false;
+        }
+        else if (nd instanceof InstructionWhile) {
+            if (is_iterateur_in_noeud_mod(((InstructionWhile) nd).corps)) {
+                return true;
+            }
+            return false;
+        }
+        
+        return false;
+    }
+    
 }

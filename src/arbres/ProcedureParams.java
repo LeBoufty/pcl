@@ -186,23 +186,7 @@ public class ProcedureParams implements Noeud {
 
         while (!liste.isEmpty()) {
             Noeud n = liste.remove(0);
-            // if (n instanceof Return) {
-            //     return true;
-            // }
-            // if (n instanceof Bloc) {
-            //     liste.addAll(((Bloc) n).instructions);
-            // }
-            // if (n instanceof InstructionIf) {
-            //     liste.add(((InstructionIf) n).alors);
-            //     liste.add(((InstructionIf) n).sinon);
-            // }
-            // if (n instanceof InstructionWhile) {
-            //     liste.add(((InstructionWhile) n).corps);
-            // }
-            // if (n instanceof InstructionFor) {
-            //     liste.add(((InstructionFor) n).corps);
-            // }
-            // En Switch case
+            
             switch (n.getClass().getName()) {
                 case "arbres.Return":
                     return true;
