@@ -41,7 +41,7 @@ public class AppelProcedure extends Evaluable {
     public boolean valide() {
         boolean sortie = true;
         for (Evaluable p : params) {
-            sortie = sortie && p.valide();
+            sortie = p.valide() && sortie;
         }
         if (params.size() != procedure.params.size()) {
             Logger.error("Appel de procedure "+ this.procedure.nom +" invalide : nombre de paramètres incorrect");

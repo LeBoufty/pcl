@@ -33,19 +33,28 @@ public class Operation extends Evaluable {
     }
     public boolean valide() {
         boolean sortie = true;
-        if (this.gauche == null) {
+
+        if (this.gauche != null) {
+            sortie = this.gauche.valide();
+        } else {
             Logger.error("Opération "+ this.hashCode() +" invalide : membre gauche null");
             sortie = false;
-        } else if (this.droite == null) {
+        }
+
+        if (this.droite != null) {
+            sortie = this.droite.valide() && sortie;
+        } else {
             Logger.error("Opération "+ this.hashCode() +" invalide : membre droit null");
             sortie = false;
-        } else {
-            sortie = this.gauche.valide() && this.droite.valide();
+        }
+
+        if (this.gauche != null && this.droite != null) {
             if (this.gauche.type != this.droite.type) {
                 Logger.error("Opération "+ this.toString() +" invalide : types différents");
                 sortie = false;
             }
         }
+
         return sortie;
     }
     public String toString() {

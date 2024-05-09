@@ -28,16 +28,20 @@ public class OperationUnaire extends Evaluable {
     }
     public boolean valide() {
         boolean sortie = true;
-        if (this.droite == null) {
+
+        if (this.droite != null) {
+            sortie = this.droite.valide();
+
+            if (this.droite.type != this.type) {
+                Logger.error("Opération "+ this.hashCode() +" invalide : type de retour de l'opérateur "+ this.operateur.toString() +" incompatible avec le type de la droite");
+                sortie = false;
+            }
+            
+        } else {
             Logger.error("Opération "+ this.hashCode() +" invalide : membre null");
             sortie = false;
-        } else {
-            sortie = this.droite.valide();
         }
-        if(this.droite.type!=this.type) {
-            Logger.error("Opération "+ this.hashCode() +" invalide : type de retour de l'opérateur "+ this.operateur.toString() +" incompatible avec le type de la droite");
-            sortie = false;
-        }
+
         return sortie;
     }
     public String toString() {

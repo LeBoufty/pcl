@@ -1,6 +1,6 @@
 with Ada.Text_IO ; use Ada.Text_IO ;
 
-procedure unDebut is
+procedure test_sem is
 
 -- Fonction incorrecte, n'a pas le même nom au début et à la fin
     function uneFonction (var_1 : Integer) return Integer is
@@ -17,7 +17,9 @@ procedure unDebut is
 -- Procédure incorrecte, comporte un return
     procedure uneProcedure (var_1 : Integer) is
     begin
-        return 1;
+        for i in 1..var_1 loop
+            return 1 ;
+        end loop ;
     end uneProcedure ;
 
 -- VARIABLES
@@ -46,5 +48,5 @@ begin
     var_1 := var_1 + '2' ;
 
 
-end unDebut ;
+end test_sem ;
 

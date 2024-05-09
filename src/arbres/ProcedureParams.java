@@ -46,25 +46,27 @@ public class ProcedureParams implements Noeud {
     }
     public boolean valide() {
         boolean sortie = true;
+
         for (Instanciation p : params) {
-            sortie = sortie && p.valide();
+            sortie = p.valide() && sortie;
         }
+
         if (!nom.matches("[a-zA-Z][a-zA-Z0-9_]*")) {
             Logger.error("Nom de procédure invalide : "+nom);
             sortie = false;
         }
-        // if (!(instructions instanceof Bloc) && !(instructions instanceof Return)) {
-        //     Logger.error("La fonction "+ nom +" doit se terminer par un return");
-        //     sortie = false;
-        // } else if (instructions instanceof Bloc) {
-        //     Bloc instrbloc = (Bloc) instructions;
-        //     if (!(instrbloc.instructions.get(instrbloc.instructions.size()-1) instanceof Return)) {
-        //         Logger.error("La fonction "+ nom +" doit se terminer par un return");
-        //         sortie = false;
-        //     }
-
-        // }
-        return sortie && definitions.valide() && instructions.valide();
+        if (definitions != null) {
+            sortie = definitions.valide() && sortie;
+        }
+        if (instructions != null) {
+            sortie = instructions.valide() && sortie;
+        }
+        if (recherche_return()) {
+            Logger.error("procédure "+nom+" invalide : return dans les instructions");
+            sortie = false;
+        }
+        
+        return sortie;
     }
     public void ajouterDefinition(Noeud definition) {
         if (this.definitions instanceof Bloc) {
@@ -175,5 +177,53 @@ public class ProcedureParams implements Noeud {
     public void TDS_func_proc_change() {
         definitions.TDS_func_proc_change();
         instructions.TDS_func_proc_change();
+    }
+
+    // Cherche si il y a un return dans les instructions, si oui renvoie true
+    private boolean recherche_return() {
+        ArrayList<Noeud> liste = new ArrayList<>();
+        liste.add(instructions);
+
+        while (!liste.isEmpty()) {
+            Noeud n = liste.remove(0);
+            // if (n instanceof Return) {
+            //     return true;
+            // }
+            // if (n instanceof Bloc) {
+            //     liste.addAll(((Bloc) n).instructions);
+            // }
+            // if (n instanceof InstructionIf) {
+            //     liste.add(((InstructionIf) n).alors);
+            //     liste.add(((InstructionIf) n).sinon);
+            // }
+            // if (n instanceof InstructionWhile) {
+            //     liste.add(((InstructionWhile) n).corps);
+            // }
+            // if (n instanceof InstructionFor) {
+            //     liste.add(((InstructionFor) n).corps);
+            // }
+            // En Switch case
+            switch (n.getClass().getName()) {
+                case "arbres.Return":
+                    return true;
+                case "arbres.Bloc":
+                    liste.addAll(((Bloc) n).instructions);
+                    break;
+                case "arbres.InstructionIf":
+                    liste.add(((InstructionIf) n).alors);
+                    liste.add(((InstructionIf) n).sinon);
+                    break;
+                case "arbres.InstructionWhile":
+                    liste.add(((InstructionWhile) n).corps);
+                    break;
+                case "arbres.InstructionFor":
+                    liste.add(((InstructionFor) n).corps);
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+        return false;
     }
 }

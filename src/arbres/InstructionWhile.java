@@ -24,11 +24,18 @@ public class InstructionWhile implements Noeud {
         return sortie;
     }
     public boolean valide() {
-        if(this.condition == null) {
-            Logger.error("InstructionWhile "+ this.toString() +" invalide : pas de condition");
-            return false;
+        Boolean sortie = true;
+
+        if (this.condition != null) {
+            sortie = this.condition.valide();
         }
-        return condition.valide() && corps.valide();
+        else {
+            Logger.error("InstructionWhile "+ this.toString() +" invalide : pas de condition");
+            sortie = false;
+        }
+
+        sortie = this.corps.valide() && sortie;
+        return sortie;
     }
     public void ajouterInstruction(Noeud instruction) {
         if (this.corps instanceof Bloc) {

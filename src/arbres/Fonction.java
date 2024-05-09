@@ -52,7 +52,7 @@ public class Fonction implements Noeud {
     public boolean valide() {
         boolean sortie = true;
         for (Instanciation p : params) {
-            sortie = sortie && p.valide();
+            sortie = p.valide() && sortie;
         }
         if (!nom.matches("[a-zA-Z][a-zA-Z0-9_]*")) {
             Logger.error("Nom de fonction invalide : "+nom);
@@ -62,7 +62,14 @@ public class Fonction implements Noeud {
             Logger.error("La fonction "+ nom +" doit se terminer par un return");
             sortie = false;
         }
-        return sortie && definitions.valide() && instructions.valide();
+        if (definitions != null) {
+            sortie = definitions.valide() && sortie;
+        }
+        if (instructions != null) {
+            sortie = instructions.valide() && sortie;
+        }
+        
+        return sortie;
     }
     
     public void ajouterDefinition(Noeud definition) {

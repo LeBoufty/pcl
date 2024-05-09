@@ -18,7 +18,13 @@ public class CharacterVal extends Evaluable {
     }
 
     public boolean valide() {
-        return this.expression.valide();
+        Boolean sortie = true;
+        // Regarde que l'expression est de type entier
+        if (this.expression != null && this.expression.type != Type.INTEGER) {
+            Logger.error("Character'Val invalide : expression non entière");
+            sortie = false;
+        }
+        return this.expression.valide() && sortie;
     }
 
     public String produire(TDS_gen tds_actuelle) {

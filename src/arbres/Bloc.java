@@ -33,7 +33,7 @@ public class Bloc implements Noeud {
     public boolean valide() {
         boolean valide = true;
         for (Noeud noeud : instructions) {
-            valide = valide && noeud.valide();
+            valide = noeud.valide() && valide;
         }
         return valide;
     }

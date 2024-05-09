@@ -34,11 +34,29 @@ public class InstructionIf implements Noeud {
         return sortie;
     }
     public boolean valide() {
-        if(this.condition == null) {
-            Logger.error("InstructionIf "+ this.toString() +" invalide : pas de condition");
-            return false;
+        Boolean sortie = true;
+
+        if(this.condition != null) {
+            sortie = this.condition.valide();
         }
-        return condition.valide() && alors.valide() && (sinon == null || sinon.valide());
+        else {
+            Logger.error("InstructionIf "+ this.toString() +" invalide : pas de condition");
+            sortie = false;
+        }
+
+        if(this.alors != null) {
+            sortie = this.alors.valide() && sortie;
+        }
+        else {
+            Logger.error("InstructionIf "+ this.toString() +" invalide : pas de alors");
+            sortie = false;
+        }
+
+        if(this.sinon != null) {
+            sortie = this.sinon.valide() && sortie;
+        }
+
+        return sortie;
     }
     public void ajouterInstructionAlors(Noeud instruction) {
         if (this.alors instanceof Bloc) {

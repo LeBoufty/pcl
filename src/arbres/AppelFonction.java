@@ -39,8 +39,9 @@ public class AppelFonction extends Evaluable {
     }
     public boolean valide() {
         boolean sortie = true;
+
         for (Evaluable p : params) {
-            sortie = sortie && p.valide();
+            sortie = p.valide() && sortie;
         }
         if (params.size() != fonction.params.size()) {
             Logger.error("Appel de fonction "+ this.fonction.nom +" invalide : nombre de paramètres incorrect");

@@ -1,6 +1,8 @@
 package arbres;
 
 
+import java.util.ArrayList;
+
 import outils.Error_list;
 import outils.GestionFichier;
 import outils.Logger;
@@ -29,7 +31,8 @@ public class Procedure implements Noeud {
         return "procedure "+nom+" is "+definitions.toString()+" begin "+instructions.toString()+" end "+nom+";";
     }
     public boolean valide() {
-        boolean sortie = definitions.valide() && instructions.valide();
+        boolean sortie = true;
+
         if (!nom.matches("[a-zA-Z][a-zA-Z0-9_]*")) {
             Logger.error("Nom de procédure invalide : "+nom);
             sortie = false;
@@ -42,10 +45,17 @@ public class Procedure implements Noeud {
             Logger.error("procédure "+nom+" invalide : pas de définitions");
             sortie = false;
         }
+        else if(definitions.valide()) {
+            sortie = false;
+        }
         if(instructions==null) {
             Logger.error("procédure "+nom+" invalide : pas d'instructions");
             sortie = false;
         }
+        else if(instructions.valide()) {
+            sortie = false;
+        }
+
         return sortie;
     }
 
@@ -161,4 +171,5 @@ public class Procedure implements Noeud {
         definitions.TDS_func_proc_change();
         instructions.TDS_func_proc_change();
     }
+
 }

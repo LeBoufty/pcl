@@ -39,19 +39,35 @@ public class InstructionFor implements Noeud {
         return sortie;
     }
     public boolean valide() {
-        if(this.iterateur == null) {
+        Boolean sortie = true;
+
+        if (this.iterateur != null) {
+            sortie = this.iterateur.valide() && sortie;
+        }
+        else {
             Logger.error("InstructionFor "+ this.toString() +" invalide : pas d'itérateur");
-            return false;
+            sortie = false;
         }
-        if(this.borneInf == null) {
+
+        if (this.borneInf != null) {
+            sortie = this.borneInf.valide() && sortie;
+        }
+        else {
             Logger.error("InstructionFor "+ this.toString() +" invalide : pas de borne inférieure");
-            return false;
+            sortie = false;
         }
-        if(this.borneSup == null) {
+
+        if (this.borneSup != null) {
+            sortie = this.borneSup.valide() && sortie;
+        }
+        else {
             Logger.error("InstructionFor "+ this.toString() +" invalide : pas de borne supérieure");
-            return false;
+            sortie = false;
         }
-        return this.iterateur.valide() && this.borneInf.valide() && this.borneSup.valide() && this.corps.valide();
+        
+        sortie = this.corps.valide() && sortie;
+
+        return sortie;
     }
     public void ajouterInstruction(Noeud instruction) {
         if (this.corps instanceof Bloc) {

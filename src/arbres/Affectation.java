@@ -23,19 +23,30 @@ public class Affectation implements Noeud {
     }
     public boolean valide() {
         boolean sortie = true;
-        if (this.gauche == null) {
+
+        if (this.gauche != null) {
+            sortie = this.gauche.valide();
+        }
+        else {
             Logger.error("Affectation "+ this.hashCode() +" invalide : membre gauche null");
             sortie = false;
-        } else if (this.droite == null) {
+        }
+        
+        if (this.droite != null) {
+            sortie = this.droite.valide() && sortie;
+        }
+        else {
             Logger.error("Affectation "+ this.hashCode() +" invalide : membre droit null");
             sortie = false;
-        } else {
-            sortie = this.gauche.valide() && this.droite.valide();
+        }
+
+        if (this.gauche != null && this.droite != null) {
             if (this.gauche.type != this.droite.type) {
                 Logger.error("Affectation "+ this.toString() +" invalide : types différents");
                 sortie = false;
             }
         }
+
         return sortie;
     }
 
