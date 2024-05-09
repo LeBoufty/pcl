@@ -558,6 +558,8 @@ public class Elagueur {
                 return declaration;
             case "£MOINSUnairePresent":
                 return new OperationUnaire((Evaluable)traduire(noeud.getEnfants().get(0)), OperateurUnaire.MOINS);
+            case "£CHARACTERVAL" :
+                return new CharacterVal((Evaluable) traduire(noeud.getEnfants().get(0)));
             case "£APPELfonction":
                 try{
                 
