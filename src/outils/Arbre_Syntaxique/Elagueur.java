@@ -855,7 +855,7 @@ public class Elagueur {
         switch (nom) {
             case "integer":
                 return Type.INTEGER;
-            case "character":
+            case "char":
                 return Type.CHARACTER;
             case "boolean":
                 return Type.BOOLEAN;
