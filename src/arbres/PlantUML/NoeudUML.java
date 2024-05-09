@@ -87,6 +87,17 @@ public class NoeudUML {
                     enfants.add(new NoeudUML(e));
                 }
                 break;
+            case "AppelProcedure":
+                this.titre = "Appel Procédure";
+                AppelProcedure ap = (AppelProcedure) n;
+                this.valeur = Repertoire.getNewID(ap);
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(ap.procedure.nom));
+                for (Evaluable e : ap.params) {
+                    enfants.add(new NoeudUML(e));
+                }
+                break;
             case "ProcedureParams":
                 this.titre = "Procédure";
                 ProcedureParams prp = (ProcedureParams) n;
@@ -241,6 +252,14 @@ public class NoeudUML {
                 nomsAttribues.add(this.valeur);
                 enfants = new ArrayList<NoeudUML>();
                 enfants.add(new NoeudUML(pu.expression));
+                break;
+            case "CharacterVal":
+                CharacterVal cv = (CharacterVal) n;
+                this.valeur = Repertoire.getNewID(cv);
+                this.titre = "characterval";
+                nomsAttribues.add(this.valeur);
+                enfants = new ArrayList<NoeudUML>();
+                enfants.add(new NoeudUML(cv.expression));
                 break;
             default:
                 // Cas par défaut, on sait jamais.
