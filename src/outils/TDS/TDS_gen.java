@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import outils.TDS.Ligne_TDS; // Faut le laisser pour l'ordi Arnaud
-
+import outils.Error_list;
 import outils.Logger;
 import arbres.AppelFonction;
 import arbres.AppelProcedure;
@@ -364,6 +364,7 @@ public class TDS_gen {
                 if (entry.getKey() < entry2.getKey() && entry.getValue().variable.nom.equals(entry2.getValue().variable.nom)) {
                     Logger.error("TDS_gen : Deux variables ont le même nom : " + entry.getValue().variable.nom + " dans la TDS : " + this.nom_fonction);
                     valide_state = false;
+                    Error_list.tdsgen = true;
                 }
             }
         }
@@ -375,6 +376,7 @@ public class TDS_gen {
                     if (entry.getKey() < entry2.getKey() && entry.getValue().getnom().equals(entry2.getValue().getnom())) {
                         Logger.error("TDS_gen : Deux fonctions ou procédures ont le même nom : " + entry.getValue().getnom() + " dans la TDS : " + this.nom_fonction);
                         valide_state = false;
+                        Error_list.tdsgen = true;
                     }
                 }
             }
