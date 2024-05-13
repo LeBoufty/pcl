@@ -11,7 +11,8 @@ public class Test_Semantique {
     public static void main(String[] args) throws Exception {
 
         String programme = "Programmes/testsem/z_test_sem_total.adb";
-        programme = "Programmes/testsem/erreur6.adb";
+        // programme = "Programmes/testsem/erreur6.adb";
+        programme = "Programmes/Exemple_Rapport/TDS_Showcase.adb";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();
@@ -35,7 +36,7 @@ public class Test_Semantique {
         Logger.debug(AST.toString());
 
         AST.TDS_creation(null,0);;
-        // Logger.debug(AST.getTDS().toString());
+        Logger.debug(AST.getTDS().toString());
 
         boolean valide = AST.valide();
         Logger.debug("Erreur AST : " + !valide);

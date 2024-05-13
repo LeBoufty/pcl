@@ -14,6 +14,21 @@ procedure test_sem is
         return var_1 ;
     end uneFonction ;
 
+-- Fonction dans une fonction dans une fonction
+    function lafonction (var_1 : Integer) return Integer is
+        function lafonction2 (var_1 : Integer) return Integer is
+            function lafonction3 (var_1 : Integer) return Integer is
+            begin
+                return var_1 ;
+                lafonction3(1) ;
+            end lafonction3 ;
+        begin
+            return var_1 ;
+        end lafonction2 ;
+    begin
+        return var_1 ;
+    end lafonction ;
+
 -- Procédure incorrecte, comporte un return
     procedure uneProcedure (var_1 : Integer) is
     -- Deux variables avec le même nom
@@ -57,6 +72,10 @@ begin
     -- Fonction non définie
     var_1 := uneFonction2(1) ;
 
+    -- Test and then
+    if var_1 = 1 and then var_2 = 2 then
+        var_1 := 1 ;
+    end if ;
 
 end test_sem ;
 
