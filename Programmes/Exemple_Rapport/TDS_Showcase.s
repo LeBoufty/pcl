@@ -39,8 +39,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 1338668845
-while1338668845 :
+// while 159413332
+while159413332 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -61,9 +61,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue1338668845
-B whileend1338668845
-whilecontinue1338668845 :
+BNE whilecontinue159413332
+B whileend159413332
+whilecontinue159413332 :
 // Appel de fonction fonction_a
 // Paramètre 0
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -80,6 +80,28 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #16 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+// Printf
+// Appel de fonction fonction_a
+// Paramètre 0
+LDR x0, [x29, #-48] // On récupère la valeur de la variable i
+SUB sp, sp, #16 // i Mise en pile var
+STR x0, [sp] // i Mise en pile var
+// Gestion du chainage statique
+SUB sp, sp, #16 // Incrémentation du pointeur de pile
+STR x29, [sp] // Sauvegarde du chainage statique
+MOV x27, x29 // Mise à jour du chainage statique
+BL F1 // Appel de la fonction
+// Gestion du chainage statique
+ADD sp, sp, #16 // Le chainage statique ça dégage
+// Récupération du résultat
+ADD sp, sp, #16 // Décrémentation du pointeur de pile de la taille des paramètres
+SUB sp, sp, #16 // Réserve de l'espace pour le résultat
+STR x26, [sp] // Sauvegarde du résultat
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -98,8 +120,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while1338668845
-whileend1338668845 :
+B while159413332
+whileend159413332 :
 
 
 B exit_program
@@ -261,6 +283,16 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
+
+// Printf
+LDR x0, [x29, #-48] // On récupère la valeur de la variable variable_b
+SUB sp, sp, #16 // variable_b Mise en pile var
+STR x0, [sp] // variable_b Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
 
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour

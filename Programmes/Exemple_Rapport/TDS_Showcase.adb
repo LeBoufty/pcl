@@ -20,6 +20,7 @@ procedure TDS_Showcase is
     begin
         variable_B := fonction_A(parametre_B);
         variable_B := variable_B + fonction_C(parametre_B);
+        put(variable_B);
     end procedure_B;
 
 begin
@@ -27,6 +28,7 @@ begin
     procedure_B(5);
     for i in 1..10 loop
         fonction_A(i);
+        put(fonction_A(i));
     end loop;
 
 end TDS_Showcase;
