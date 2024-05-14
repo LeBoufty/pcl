@@ -52,6 +52,7 @@ ADD sp, sp, #16
 // Gestion du chainage statique
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
+MOV x29, sp // Mise à jour du pointeur de pile
 MOV x27, x29 // Mise à jour du chainage statique
 SUB sp, sp, #48 // Déplacement du stack pointer pour fp, lr et l'itéareur
 MOVZ x0, #2

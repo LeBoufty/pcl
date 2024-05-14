@@ -98,6 +98,7 @@ public class InstructionFor implements Noeud {
         res += "// Gestion du chainage statique\n";
         res += "SUB sp, sp, #16 // Incrémentation du pointeur de pile\n";
         res += "STR x29, [sp] // Sauvegarde du chainage statique\n";
+        res += "MOV x29, sp // Mise à jour du pointeur de pile\n";
         res += "MOV x27, x29 // Mise à jour du chainage statique\n";
         res += "SUB sp, sp, #48 // Déplacement du stack pointer pour fp, lr et l'itéareur\n";
 
