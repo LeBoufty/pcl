@@ -64,10 +64,12 @@ procedure diff_tribo_fibo is
     end acc_fib_trib;
 
 begin
-    n := 30;
+    n := 5;
     for i in 2..n loop
         Put('n');
         Put(n);
+        Put('i');
+        Put(i);
         acc_fib_trib(i);
     end loop;
 end diff_tribo_fibo;
