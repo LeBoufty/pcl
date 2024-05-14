@@ -1,6 +1,8 @@
 .global main
 .extern printf // Import printf
 .section .data
+format_char :
+.string "%c\n"
 format :
 .string "%d\n"
 erreur_division_msg :
@@ -51,16 +53,6 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// Printf
-LDR x0, [x29, #-48] // On récupère la valeur de la variable a
-SUB sp, sp, #16 // a Mise en pile var
-STR x0, [sp] // a Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
-
 
 B exit_program
 
@@ -96,17 +88,12 @@ STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction add100
-// Instructions de la fonction add100
-// Printf
+// Declaration de la variable y
 LDR x0, [x29, #16] // On récupère la valeur de la variable x
 SUB sp, sp, #16 // x Mise en pile var
 STR x0, [sp] // x Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
 
+// Instructions de la fonction add100
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable x

@@ -9,6 +9,5 @@ procedure Addition9 is
 begin
     z:= 5;
     y:= 3;
-    j := y + z; --8
-    Put(j);
+    j := y + z;
 end Addition9;

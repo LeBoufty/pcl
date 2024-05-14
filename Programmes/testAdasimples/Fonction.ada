@@ -5,8 +5,10 @@ procedure Fonction is
     a: Integer;
 
     function Add100(x: Integer; x2: Integer) return Integer is
+
+    y: Integer := x;
+
     begin
-        Put(x);
         x := x + 100;
         return x;
     end Add100;
@@ -14,5 +16,4 @@ procedure Fonction is
 begin
     a := 10;
     a := Add100(a,515);
-    Put(a);
 end Fonction;
