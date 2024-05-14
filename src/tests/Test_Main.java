@@ -13,7 +13,7 @@ public class Test_Main {
     public static void main(String[] args) throws Exception {
         try {
 
-        String programme = "Programmes/Fonctionne/undebut.adb";
+        String programme = "Programmes/Test_Python/diff_tribo_fibo.ada";
         //programme = "Programmes/testsem/erreur6.adb";
         // String programme = "Programmes/Fonctionne/TurboMegaTest.ada";
         // programme = "Programmes/testsem/varnondef.adb";
@@ -59,24 +59,29 @@ public class Test_Main {
         AST.TDS_creation(null,0);
 
         // Affichage de la TDS
-        Logger.info(AST.getTDS().toString());
+        // Logger.info(AST.getTDS().toString());
 
         // Test de la validité de l'AST
         boolean valide = AST.valide();
 
         if (valide) {
-            Logger.info("Valide : " + valide);
+            Logger.info("Programme valide");
         } else {
-            Logger.error("Valide : " + valide);
+            Logger.debug("Erreur AST : " + !valide);
+            Logger.debug("Erreur TDS : " + Error_list.tdsgen);
+            Logger.debug("Erreur Semantique : " + Error_list.semantique);
+            Logger.debug("Erreur Langage : " + Error_list.elaguage);
+            Logger.debug("Erreur Traduction : " + Error_list.traduction);
             Logger.error("Arrêt du programme");
             return;
         }
 
-        Logger.info(AST.toString());
-        
+        // Génération du fichier .s
+        AST.produire(null);
         GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
 
         } catch (Exception e) {
+            Logger.error(e.getMessage());
             Logger.error("Erreur, arrêt du programme");
         }
     }

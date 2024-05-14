@@ -13,6 +13,7 @@ public class Test_Semantique {
         String programme = "Programmes/testsem/z_test_sem_total.adb";
         // programme = "Programmes/testsem/erreur6.adb";
         programme = "Programmes/Exemple_Rapport/TDS_Showcase.adb";
+        programme = "Programmes/Test_Python/diff_tribo_fibo.ada";
 
         Analyseur_L al = new Analyseur_L(programme);
         al.analyse_l();

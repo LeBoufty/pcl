@@ -187,6 +187,9 @@ public class ProcedureParams implements Noeud {
         while (!liste.isEmpty()) {
             Noeud n = liste.remove(0);
             
+            if (n == null) {
+                continue;
+            }
             switch (n.getClass().getName()) {
                 case "arbres.Return":
                     return true;

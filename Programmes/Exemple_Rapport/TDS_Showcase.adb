@@ -22,7 +22,7 @@ procedure TDS_Showcase is
         variable_B := variable_B + fonction_C(parametre_B);
         put(variable_B);
     end procedure_B;
-
+    
 begin
 
     procedure_B(5);
