@@ -29,6 +29,26 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
+// Printf
+MOVZ x0, #110
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
+BL printf
+ADD sp, sp, #16
+
+// Printf
+LDR x0, [x29, #-48] // On récupère la valeur de la variable n
+SUB sp, sp, #16 // n Mise en pile var
+STR x0, [sp] // n Mise en pile var
+MOV x1, x0
+ADRP x0, format
+ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 

@@ -65,6 +65,8 @@ procedure diff_tribo_fibo is
 
 begin
     n := 5;
+    Put('n');
+    Put(n);
     for i in 2..n loop
         Put('n');
         Put(n);
