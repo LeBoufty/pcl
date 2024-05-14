@@ -97,6 +97,13 @@ public class AppelFonction extends Evaluable {
         res += "SUB sp, sp, #16 // Réserve de l'espace pour le résultat\n";
         res += "STR x26, [sp] // Sauvegarde du résultat\n";
 
+        // if (this.tds_parent.get_num_reg() == this.fonction.getTDS().get_num_reg()) {
+        //     // Restauration du chainage statique cas récursif
+        //     res += "LDR x27, [sp] // Restauration du chainage statique\n";
+        // } else {
+        //     // Restauration du chainage statique cas non récursif
+        //     res += "LDR x29, [sp] // Restauration du chainage statique\n";
+        // }
         return res;
     }
 

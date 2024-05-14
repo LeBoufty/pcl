@@ -49,6 +49,12 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+// Gestion du chainage statique (oui un chainage statique dans un for)
+SUB sp, sp, #16 // Incrémentation du pointeur de pile
+STR x29, [sp] // Sauvegarde du chainage statique
+MOV x29, sp // Mise à jour du pointeur de pile
+MOV x27, x29 // Mise à jour du chainage statique
+SUB sp, sp, #48 // Déplacement du stack pointer pour fp, lr et l'itéareur
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -150,6 +156,9 @@ STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable g
 ADD sp, sp, #16 // On dépile la valeur 
 B while20132171
 whileend20132171 :
+ADD sp, sp, #48 // Décrémentation du pointeur de pile
+LDR x29, [sp] // Restauration du chainage statique
+ADD sp, sp, #16 // Le chainage statique ça dégage
 
 
 B exit_program
