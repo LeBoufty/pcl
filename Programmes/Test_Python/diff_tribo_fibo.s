@@ -49,7 +49,7 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
-// Gestion du chainage statique
+// Gestion du chainage statique (oui un chainage statique dans un for)
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
 MOV x29, sp // Mise à jour du pointeur de pile
@@ -156,6 +156,9 @@ STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable g
 ADD sp, sp, #16 // On dépile la valeur 
 B while20132171
 whileend20132171 :
+ADD sp, sp, #48 // Décrémentation du pointeur de pile
+LDR x29, [sp] // Restauration du chainage statique
+ADD sp, sp, #16 // Le chainage statique ça dégage
 
 
 B exit_program
@@ -262,6 +265,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #48 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x27, [sp] // Restauration du chainage statique
 LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
@@ -421,6 +425,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #64 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x27, [sp] // Restauration du chainage statique
 LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
@@ -622,6 +627,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #48 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x29, [sp] // Restauration du chainage statique
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
@@ -674,6 +680,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #64 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x29, [sp] // Restauration du chainage statique
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
@@ -795,6 +802,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #64 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x29, [sp] // Restauration du chainage statique
 // Appel de fonction fibonacci
 // Paramètre 0
 MOVZ x0, #1
@@ -831,6 +839,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #48 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x29, [sp] // Restauration du chainage statique
 LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
@@ -883,6 +892,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #64 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x29, [sp] // Restauration du chainage statique
 // Appel de fonction fibonacci
 // Paramètre 0
 MOVZ x0, #1
@@ -919,6 +929,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #48 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x29, [sp] // Restauration du chainage statique
 LDR x1, [sp] // On met l'opérande droite dans x1
 ADD sp, sp, #16 // On décrémente le pointeur de pile
 LDR x0, [sp] // On met l'opérande gauche dans x0
@@ -1001,6 +1012,7 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #80 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
+LDR x29, [sp] // Restauration du chainage statique
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format

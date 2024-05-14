@@ -94,8 +94,7 @@ public class InstructionFor implements Noeud {
     public String produire(TDS_gen tds_actuelle) {
         String res = "";
 
-        // Gestion du chainage statique
-        res += "// Gestion du chainage statique\n";
+        res += "// Gestion du chainage statique (oui un chainage statique dans un for)\n";
         res += "SUB sp, sp, #16 // Incrémentation du pointeur de pile\n";
         res += "STR x29, [sp] // Sauvegarde du chainage statique\n";
         res += "MOV x29, sp // Mise à jour du pointeur de pile\n";
@@ -123,6 +122,9 @@ public class InstructionFor implements Noeud {
         whileLoop.ajouterInstruction(finDeBoucle);
         res += affectdepart.produire(tds);
         res += "\n" + whileLoop.produire(tds);
+        res += "ADD sp, sp, #48 // Décrémentation du pointeur de pile\n";
+        res += "LDR x29, [sp] // Restauration du chainage statique\n";
+        res += "ADD sp, sp, #16 // Le chainage statique ça dégage\n";
         return res;
     }
 
