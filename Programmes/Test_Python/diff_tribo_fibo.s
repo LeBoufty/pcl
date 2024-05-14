@@ -49,6 +49,11 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+// Gestion du chainage statique
+SUB sp, sp, #16 // Incrémentation du pointeur de pile
+STR x29, [sp] // Sauvegarde du chainage statique
+MOV x27, x29 // Mise à jour du chainage statique
+SUB sp, sp, #48 // Déplacement du stack pointer pour fp, lr et l'itéareur
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
