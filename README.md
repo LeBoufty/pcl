@@ -18,3 +18,9 @@ Alors, si t'as jamais mis les pieds au Québec, c'est le temps de faire ta valis
 * **Pierre-Yves JACQUIER**
 * **Arnaud KRAFFT**
 * **Titouan LANGLAIS**
+
+## Compilation
+
+```sh
+gcc -g -o <nom programme> <fichier.s>
+```
