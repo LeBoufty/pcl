@@ -2212,8 +2212,6 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-
-// Opération
 // Appel de fonction for_in_while
 // Paramètre 0
 MOVZ x0, #10
@@ -2234,17 +2232,6 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
-MOVZ x0, #55
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x0, x1 // Opération =
-CSET x0, EQ // Opération =
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -2252,8 +2239,6 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-
-// Opération
 // Appel de fonction for_in_for_in_for_in_for
 // Paramètre 0
 MOVZ x0, #2
@@ -2274,17 +2259,6 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
-MOVZ x0, #24
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x0, x1 // Opération =
-CSET x0, EQ // Opération =
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
@@ -2355,6 +2329,7 @@ STP x29, lr, [sp, #-16] // Sauvegarde du pointeur de pile et du lien de retour
 MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la procédure procedure1
+
 // Instructions de la procédure procedure1
 // Printf
 
@@ -2388,7 +2363,7 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction fonction_recurive
 // Instructions de la fonction fonction_recurive
-// if 159413332
+// if 20132171
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable a
@@ -2408,7 +2383,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then159413332 // Branchement si la condition est vraie
+BNE then20132171 // Branchement si la condition est vraie
 // Return 
 
 // Opération
@@ -2453,8 +2428,8 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end159413332 // Branchement à la fin du if
-then159413332 :
+B end20132171 // Branchement à la fin du if
+then20132171 :
 // Return 
 MOVZ x0, #0
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -2463,7 +2438,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end159413332 :
+end20132171 :
 
 // Return 
 MOVZ x0, #0
@@ -2486,7 +2461,7 @@ SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met la constante en pile 
 
 // Instructions de la fonction fonction_recurive3
-// if 1028214719
+// if 186370029
 
 // Opération
 LDR x0, [x29, #48] // On récupère la valeur de la variable c
@@ -2506,7 +2481,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then1028214719 // Branchement si la condition est vraie
+BNE then186370029 // Branchement si la condition est vraie
 // Return 
 
 // Opération
@@ -2559,8 +2534,8 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end1028214719 // Branchement à la fin du if
-then1028214719 :
+B end186370029 // Branchement à la fin du if
+then186370029 :
 // Return 
 MOVZ x0, #0
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -2569,7 +2544,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end1028214719 :
+end186370029 :
 
 // Return 
 LDR x0, [x29, #-48] // On récupère la valeur de la variable d
@@ -2662,8 +2637,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 500977346
-while500977346 :
+// while 2094548358
+while2094548358 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -2686,9 +2661,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue500977346
-B whileend500977346
-whilecontinue500977346 :
+BNE whilecontinue2094548358
+B whileend2094548358
+whilecontinue2094548358 :
 
 // Opération
 MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
@@ -2729,8 +2704,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while500977346
-whileend500977346 :
+B while2094548358
+whileend2094548358 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -2761,8 +2736,8 @@ SUB sp, sp, #16 // a Mise en pile var
 STR x0, [sp] // a Mise en pile var
 
 // Instructions de la fonction while_test
-// while 20132171
-while20132171 :
+// while 51228289
+while51228289 :
 
 // Opération
 LDR x0, [x29, #-64] // On récupère la valeur de la variable i
@@ -2783,9 +2758,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue20132171
-B whileend20132171
-whilecontinue20132171 :
+BNE whilecontinue51228289
+B whileend51228289
+whilecontinue51228289 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable res
@@ -2822,8 +2797,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while20132171
-whileend20132171 :
+B while51228289
+whileend51228289 :
 
 // Return 
 LDR x0, [x29, #-48] // On récupère la valeur de la variable res
@@ -2861,8 +2836,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 186370029
-while186370029 :
+// while 455896770
+while455896770 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -2885,9 +2860,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue186370029
-B whileend186370029
-whilecontinue186370029 :
+BNE whilecontinue455896770
+B whileend455896770
+whilecontinue455896770 :
 
 // Opération
 MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
@@ -2928,8 +2903,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while186370029
-whileend186370029 :
+B while455896770
+whileend455896770 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -2970,8 +2945,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 2094548358
-while2094548358 :
+// while 1323165413
+while1323165413 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -2994,9 +2969,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue2094548358
-B whileend2094548358
-whilecontinue2094548358 :
+BNE whilecontinue1323165413
+B whileend1323165413
+whilecontinue1323165413 :
 // Gestion du chainage statique (oui un chainage statique dans un for)
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
@@ -3012,8 +2987,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 51228289
-while51228289 :
+// while 1880587981
+while1880587981 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable j
@@ -3036,9 +3011,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue51228289
-B whileend51228289
-whilecontinue51228289 :
+BNE whilecontinue1880587981
+B whileend1880587981
+whilecontinue1880587981 :
 
 // Opération
 
@@ -3092,8 +3067,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while51228289
-whileend51228289 :
+B while1880587981
+whileend1880587981 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -3115,8 +3090,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while2094548358
-whileend2094548358 :
+B while1323165413
+whileend1323165413 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -3167,8 +3142,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 455896770
-while455896770 :
+// while 511754216
+while511754216 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -3191,11 +3166,11 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue455896770
-B whileend455896770
-whilecontinue455896770 :
-// while 1323165413
-while1323165413 :
+BNE whilecontinue511754216
+B whileend511754216
+whilecontinue511754216 :
+// while 1721931908
+while1721931908 :
 
 // Opération
 MOVZ x0, #80 // Deplacement en pile VAR GLOBALE 
@@ -3219,9 +3194,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue1323165413
-B whileend1323165413
-whilecontinue1323165413 :
+BNE whilecontinue1721931908
+B whileend1721931908
+whilecontinue1721931908 :
 
 // Opération
 MOVZ x0, #48 // Deplacement en pile VAR GLOBALE 
@@ -3266,8 +3241,8 @@ MOVZ x1, #1 // On met le nombre de saut en pile
 MOV x28,x29 // Copie du frame pointer dans x28 (temporaire)
 BL set_global_var // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while1323165413
-whileend1323165413 :
+B while1721931908
+whileend1721931908 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -3286,21 +3261,11 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while455896770
-whileend455896770 :
+B while511754216
+whileend511754216 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
-
-// Printf
-LDR x0, [x29, #-80] // On récupère la valeur de la variable k
-SUB sp, sp, #16 // k Mise en pile var
-STR x0, [sp] // k Mise en pile var
-MOV x1, x0
-ADRP x0, format
-ADD x0, x0, :lo12:format
-BL printf
-ADD sp, sp, #16
 
 // Return 
 LDR x0, [x29, #-48] // On récupère la valeur de la variable res
@@ -3338,8 +3303,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 1880587981
-while1880587981 :
+// while 1198108795
+while1198108795 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -3362,9 +3327,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue1880587981
-B whileend1880587981
-whilecontinue1880587981 :
+BNE whilecontinue1198108795
+B whileend1198108795
+whilecontinue1198108795 :
 // Gestion du chainage statique (oui un chainage statique dans un for)
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
@@ -3380,8 +3345,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 511754216
-while511754216 :
+// while 214126413
+while214126413 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable j
@@ -3404,9 +3369,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue511754216
-B whileend511754216
-whilecontinue511754216 :
+BNE whilecontinue214126413
+B whileend214126413
+whilecontinue214126413 :
 // Gestion du chainage statique (oui un chainage statique dans un for)
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
@@ -3422,8 +3387,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 1721931908
-while1721931908 :
+// while 396873410
+while396873410 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable k
@@ -3446,9 +3411,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue1721931908
-B whileend1721931908
-whilecontinue1721931908 :
+BNE whilecontinue396873410
+B whileend396873410
+whilecontinue396873410 :
 // Gestion du chainage statique (oui un chainage statique dans un for)
 SUB sp, sp, #16 // Incrémentation du pointeur de pile
 STR x29, [sp] // Sauvegarde du chainage statique
@@ -3464,8 +3429,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 1198108795
-while1198108795 :
+// while 1706234378
+while1706234378 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable l
@@ -3488,9 +3453,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue1198108795
-B whileend1198108795
-whilecontinue1198108795 :
+BNE whilecontinue1706234378
+B whileend1706234378
+whilecontinue1706234378 :
 
 // Opération
 
@@ -3570,8 +3535,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while1198108795
-whileend1198108795 :
+B while1706234378
+whileend1706234378 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -3593,8 +3558,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while1721931908
-whileend1721931908 :
+B while396873410
+whileend396873410 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -3616,8 +3581,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while511754216
-whileend511754216 :
+B while214126413
+whileend214126413 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -3639,8 +3604,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while1880587981
-whileend1880587981 :
+B while1198108795
+whileend1198108795 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage

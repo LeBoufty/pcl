@@ -110,9 +110,8 @@ procedure TurboMegaTest is
                         res := res + i;
                         k := k + 1; 
                 end loop;
-                end loop;
-                Put(k);
-                return res;
+            end loop;
+            return res;
             end for_in_while;
 
     function for_in_for_in_for_in_for(a: Integer; b: Integer) return Integer is
@@ -233,7 +232,7 @@ begin
     Put(while_test(1,10) =55); -- 55
     Put(for_reverse_test(1,10) =55); -- 55
     Put(for_in_for(1,5) = 150); -- 150 
-    Put(for_in_while(1,10) =55); -- 55
-    Put(for_in_for_in_for_in_for(1,2) =24); -- 24
+    Put(for_in_while(1,10)); -- 55
+    Put(for_in_for_in_for_in_for(1,2)); -- 24
 
 end TurboMegaTest;
