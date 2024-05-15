@@ -13,6 +13,8 @@ public class Test_Main {
     public static void main(String[] args) throws Exception {
         try {
 
+        Logger.debug = false;
+
         String programme = "Programmes/Test_Python/diff_tribo_fibo.ada";
         //programme = "Programmes/testsem/erreur6.adb";
         // String programme = "Programmes/Fonctionne/TurboMegaTest.ada";
@@ -20,6 +22,7 @@ public class Test_Main {
         // programme = "Programmes/testsem/fctnondef.adb";
         // programme = "Programmes/testsem/mauvaistype.adb";
         // programme = "Programmes/testsem/erreur6.adb";
+        programme = "Programmes/Exemple_Rapport/TDS_Showcase.adb";
         
 
         // Création de l'analyseur lexical
@@ -62,16 +65,16 @@ public class Test_Main {
         // Logger.info(AST.getTDS().toString());
 
         // Test de la validité de l'AST
-        boolean valide = AST.valide();
+        boolean valide = AST.valide() && !Error_list.tdsgen && !Error_list.semantique && !Error_list.elaguage && !Error_list.traduction;
 
         if (valide) {
             Logger.info("Programme valide");
         } else {
-            Logger.debug("Erreur AST : " + !valide);
-            Logger.debug("Erreur TDS : " + Error_list.tdsgen);
-            Logger.debug("Erreur Semantique : " + Error_list.semantique);
-            Logger.debug("Erreur Langage : " + Error_list.elaguage);
-            Logger.debug("Erreur Traduction : " + Error_list.traduction);
+            Logger.info("Erreur AST : " + !valide);
+            Logger.info("Erreur TDS : " + Error_list.tdsgen);
+            Logger.info("Erreur Semantique : " + Error_list.semantique);
+            Logger.info("Erreur Langage : " + Error_list.elaguage);
+            Logger.info("Erreur Traduction : " + Error_list.traduction);
             Logger.error("Arrêt du programme");
             return;
         }

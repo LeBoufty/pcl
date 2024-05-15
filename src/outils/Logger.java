@@ -6,6 +6,7 @@ public class Logger {
     public static final String COLOR_INFO = "\u001B[32m";
     public static final String COLOR_DEBUG = "\u001B[36m";
     public static final String COLOR_MILESTONE = "\u001B[35m";
+    public static Boolean debug = true;
 
     public static void info(String message) {
         System.out.println(COLOR_INFO+"[INFO] "+message+COLOR_RESET);
@@ -17,6 +18,7 @@ public class Logger {
         System.out.println(COLOR_ERROR+"[ERROR] "+message+COLOR_RESET);
     }
     public static void debug(String message) {
+        if (!debug) return;
         System.out.println(COLOR_DEBUG+"[DEBUG] "+message+COLOR_RESET);
     }
     public static void milestone(String message) {
