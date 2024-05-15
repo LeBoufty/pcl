@@ -26,6 +26,11 @@ procedure TDS_Showcase is
 begin
 
     procedure_B(5);
+    if not true then
+        put('a');
+    else
+        put('b');
+    end if;
     for i in 1..10 loop
         fonction_A(i);
         put(fonction_A(i));

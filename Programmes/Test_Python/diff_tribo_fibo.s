@@ -62,8 +62,8 @@ LDR x2, [sp] // On met la valeur de la variable droite dans x2
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
 
-// while 20132171
-while20132171 :
+// while 1283928880
+while1283928880 :
 
 // Opération
 LDR x0, [x29, #-48] // On récupère la valeur de la variable i
@@ -85,9 +85,9 @@ LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Dépilement de la condition
 CMP x0, #0
 
-BNE whilecontinue20132171
-B whileend20132171
-whilecontinue20132171 :
+BNE whilecontinue1283928880
+B whileend1283928880
+whilecontinue1283928880 :
 // Printf
 MOVZ x0, #110
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -154,8 +154,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-B while20132171
-whileend20132171 :
+B while1283928880
+whileend1283928880 :
 ADD sp, sp, #48 // Décrémentation du pointeur de pile
 LDR x29, [sp] // Restauration du chainage statique
 ADD sp, sp, #16 // Le chainage statique ça dégage
@@ -196,7 +196,7 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction fibonacci
 // Instructions de la fonction fibonacci
-// if 793589513
+// if 980546781
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable n
@@ -216,7 +216,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then793589513 // Branchement si la condition est vraie
+BNE then980546781 // Branchement si la condition est vraie
 // Return 
 // Appel de fonction fibonacci
 // Paramètre 0
@@ -269,8 +269,8 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end793589513 // Branchement à la fin du if
-then793589513 :
+B end980546781 // Branchement à la fin du if
+then980546781 :
 // Return 
 LDR x0, [x29, #32] // On récupère la valeur de la variable x1
 SUB sp, sp, #16 // x1 Mise en pile var
@@ -279,7 +279,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end793589513 :
+end980546781 :
 
 // Return 
 MOVZ x0, #0
@@ -297,7 +297,7 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la fonction tribonacci
 // Instructions de la fonction tribonacci
-// if 1349393271
+// if 245257410
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable n
@@ -317,8 +317,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then1349393271 // Branchement si la condition est vraie
-// if 1338668845
+BNE then245257410 // Branchement si la condition est vraie
+// if 1705736037
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable n
@@ -338,8 +338,8 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then1338668845 // Branchement si la condition est vraie
-// if 159413332
+BNE then1705736037 // Branchement si la condition est vraie
+// if 455659002
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable n
@@ -359,7 +359,7 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then159413332 // Branchement si la condition est vraie
+BNE then455659002 // Branchement si la condition est vraie
 // Return 
 // Appel de fonction tribonacci
 // Paramètre 0
@@ -428,8 +428,8 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-B end159413332 // Branchement à la fin du if
-then159413332 :
+B end455659002 // Branchement à la fin du if
+then455659002 :
 // Return 
 LDR x0, [x29, #64] // On récupère la valeur de la variable x3
 SUB sp, sp, #16 // x3 Mise en pile var
@@ -438,9 +438,9 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end159413332 :
-B end1338668845 // Branchement à la fin du if
-then1338668845 :
+end455659002 :
+B end1705736037 // Branchement à la fin du if
+then1705736037 :
 // Return 
 LDR x0, [x29, #48] // On récupère la valeur de la variable x2
 SUB sp, sp, #16 // x2 Mise en pile var
@@ -449,9 +449,9 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end1338668845 :
-B end1349393271 // Branchement à la fin du if
-then1349393271 :
+end1705736037 :
+B end245257410 // Branchement à la fin du if
+then245257410 :
 // Return 
 LDR x0, [x29, #32] // On récupère la valeur de la variable x1
 SUB sp, sp, #16 // x1 Mise en pile var
@@ -460,7 +460,7 @@ LDR x26, [sp] // Valeur de retour dans le registre x26
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour
 RET // Retour de la fonction
-end1349393271 :
+end245257410 :
 
 // Return 
 MOVZ x0, #0
@@ -584,21 +584,14 @@ SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la procédure acc_fib_trib
 // Declaration de la variable trib
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable trib
-
 // Declaration de la variable fib
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable fib
-
 // Declaration de la variable f0
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable f0
-
 // Declaration de la variable f1
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable f1
-
 // Declaration de la variable f2
 SUB sp, sp, #16 // Allocation de 16 octets pour la variable f2
-
-
-
 
 // Instructions de la procédure acc_fib_trib
 // Appel de fonction fibonacci
@@ -628,7 +621,6 @@ STR x26, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-64] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-
 // Printf
 MOVZ x0, #102
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -638,7 +630,6 @@ ADRP x0, format_char
 ADD x0, x0, :lo12:format_char
 BL printf
 ADD sp, sp, #16
-
 // Printf
 LDR x0, [x29, #-64] // On récupère la valeur de la variable fib
 SUB sp, sp, #16 // fib Mise en pile var
@@ -648,7 +639,6 @@ ADRP x0, format
 ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
-
 // Appel de fonction tribonacci
 // Paramètre 0
 MOVZ x0, #1
@@ -680,7 +670,6 @@ STR x26, [sp] // Sauvegarde du résultat
 LDR x2, [sp] // On met la valeur de la variable droite dans x2 
 STR x2, [x29, #-48] // On met la valeur de la variable droite dans la variable gauche 
 ADD sp, sp, #16 // On dépile la valeur 
-
 // Printf
 MOVZ x0, #116
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -690,7 +679,6 @@ ADRP x0, format_char
 ADD x0, x0, :lo12:format_char
 BL printf
 ADD sp, sp, #16
-
 // Printf
 LDR x0, [x29, #-48] // On récupère la valeur de la variable trib
 SUB sp, sp, #16 // trib Mise en pile var
@@ -700,7 +688,6 @@ ADRP x0, format
 ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
-
 // Printf
 MOVZ x0, #100
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
@@ -710,7 +697,6 @@ ADRP x0, format_char
 ADD x0, x0, :lo12:format_char
 BL printf
 ADD sp, sp, #16
-
 // Printf
 
 // Opération
@@ -732,8 +718,7 @@ ADRP x0, format
 ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
-
-// if 1028214719
+// if 250421012
 
 // Opération
 LDR x0, [x29, #16] // On récupère la valeur de la variable n
@@ -753,9 +738,9 @@ STR x0, [sp] // On met le résultat en pile
 LDR x0, [sp] // Chargement de la condition
 ADD sp, sp, #16 // Décrémentation du pointeur de pile
 CMP x0, #0 // Comparaison de la condition
-BNE then1028214719 // Branchement si la condition est vraie
-B end1028214719 // Branchement à la fin du if
-then1028214719 :
+BNE then250421012 // Branchement si la condition est vraie
+B end250421012 // Branchement à la fin du if
+then250421012 :
 
 // Opération
 // Appel de fonction tribonacci
@@ -1009,7 +994,7 @@ ADRP x0, format
 ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
-end1028214719 :
+end250421012 :
 
 MOV sp, x29 // Restauration du pointeur de pile
 LDP x29, lr, [sp, #-16] // Restauration du pointeur de pile et du lien de retour

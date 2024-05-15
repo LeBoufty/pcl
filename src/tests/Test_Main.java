@@ -20,6 +20,7 @@ public class Test_Main {
         // programme = "Programmes/testsem/fctnondef.adb";
         // programme = "Programmes/testsem/mauvaistype.adb";
         // programme = "Programmes/testsem/erreur6.adb";
+        programme = "Programmes/Exemple_Rapport/TDS_Showcase.adb";
         
 
         // Création de l'analyseur lexical
@@ -62,7 +63,7 @@ public class Test_Main {
         // Logger.info(AST.getTDS().toString());
 
         // Test de la validité de l'AST
-        boolean valide = AST.valide();
+        boolean valide = AST.valide() && !Error_list.tdsgen && !Error_list.semantique && !Error_list.elaguage && !Error_list.traduction;
 
         if (valide) {
             Logger.info("Programme valide");
