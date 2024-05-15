@@ -104,8 +104,12 @@ public class ProcedureParams implements Noeud {
         }
 
         res += "// Instructions de la procédure "+nom+"\n";
-        for (Noeud noeud : ((Bloc) instructions).instructions) {
-            res += noeud.produire(tds)+"\n";
+        if (instructions instanceof Bloc) {
+            for (Noeud noeud : ((Bloc) instructions).instructions) {
+                res += noeud.produire(tds)+"\n";
+            }
+        } else if (instructions != null) {
+            res += instructions.produire(tds)+"\n";
         }
 
         // Restauration du pointeur de pile
