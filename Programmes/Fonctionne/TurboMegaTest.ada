@@ -102,13 +102,16 @@ procedure TurboMegaTest is
     
             res : Integer := 0;
             i : Integer := a;
-    
+            k : Integer := 0;
+
             begin
                 for i in a..b loop
-                    while i <= b loop
+                    while k <= b loop
                         res := res + i;
-                    end loop;
+                        k := k + 1; 
                 end loop;
+                end loop;
+                Put(k);
                 return res;
             end for_in_while;
 
@@ -229,7 +232,7 @@ begin
     Put(for_test(1,10) =55); -- 55
     Put(while_test(1,10) =55); -- 55
     Put(for_reverse_test(1,10) =55); -- 55
-    Put(for_in_for(1,5)); 
+    Put(for_in_for(1,5) = 150); -- 150 
     Put(for_in_while(1,10) =55); -- 55
     Put(for_in_for_in_for_in_for(1,2) =24); -- 24
 
