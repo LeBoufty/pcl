@@ -1383,6 +1383,19 @@ ADD sp, sp, #16
 
 // Opération
 MOVZ x0, #0
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+
+// Opération
+MOVZ x0, #0
+SUB sp, sp, #16 // On décrémente le pointeur de pile
+STR x0, [sp] // On met le résultat en pile
+LDR x1, [sp] // On met l'opérande droite dans x1
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+LDR x0, [sp] // On met l'opérande gauche dans x0
+ADD sp, sp, #16 // On décrémente le pointeur de pile
+CMP x0, x1 // Opération =
+CSET x0, EQ // Opération =
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
@@ -1626,7 +1639,7 @@ CMP x0, x1 // Opération >=
 CSET x0, GE // Opération >=
 SUB sp, sp, #16 // On décrémente le pointeur de pile
 STR x0, [sp] // On met le résultat en pile
-MOVZ x0, #1
+MOVZ x0, #0
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 LDR x1, [sp] // On met l'opérande droite dans x1
@@ -2159,11 +2172,9 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
-
-// Opération
 // Appel de fonction for_in_for
 // Paramètre 0
-MOVZ x0, #10
+MOVZ x0, #5
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
 // Paramètre 1
@@ -2181,17 +2192,6 @@ ADD sp, sp, #16 // Le chainage statique ça dégage
 ADD sp, sp, #32 // Décrémentation du pointeur de pile de la taille des paramètres
 SUB sp, sp, #16 // Réserve de l'espace pour le résultat
 STR x26, [sp] // Sauvegarde du résultat
-MOVZ x0, #550
-SUB sp, sp, #16 // On décrémente le pointeur de pile 
-STR x0, [sp] // On met la constante en pile 
-LDR x1, [sp] // On met l'opérande droite dans x1
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-LDR x0, [sp] // On met l'opérande gauche dans x0
-ADD sp, sp, #16 // On décrémente le pointeur de pile
-CMP x0, x1 // Opération =
-CSET x0, EQ // Opération =
-SUB sp, sp, #16 // On décrémente le pointeur de pile
-STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format

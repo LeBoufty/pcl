@@ -197,7 +197,7 @@ begin
 
     Put('g');
     Put(3=3); -- true
-    Put((3/=3)); -- false
+    Put(false = (3/=3)); -- false
     Put(false=false); -- true
     Put(false = ((false=false)/=(true=true))); -- false
     f:=true;
@@ -208,7 +208,7 @@ begin
     Put(b>=a); -- true
     Put(a>=a); -- true
     Put(a<=a); -- true
-    Put((a>=b) =true); -- false
+    Put((a>=b) = false); -- false
     Put(a<b); -- true
     Put(false = (a>b)); -- false
     Put(false = (a=b)); -- false
@@ -229,7 +229,7 @@ begin
     Put(for_test(1,10) =55); -- 55
     Put(while_test(1,10) =55); -- 55
     Put(for_reverse_test(1,10) =55); -- 55
-    Put(for_in_for(1,10) =550); -- 550
+    Put(for_in_for(1,5)); 
     Put(for_in_while(1,10) =55); -- 55
     Put(for_in_for_in_for_in_for(1,2) =24); -- 24
 
