@@ -22,7 +22,7 @@ public class Test_Main {
         // programme = "Programmes/testsem/fctnondef.adb";
         // programme = "Programmes/testsem/mauvaistype.adb";
         // programme = "Programmes/testsem/erreur6.adb";
-        programme = "Programmes/Exemple_Rapport/TDS_Showcase.adb";
+        //programme = "Programmes/Exemple_Rapport/TDS_Showcase.adb";
         
 
         // Création de l'analyseur lexical
@@ -69,6 +69,9 @@ public class Test_Main {
 
         if (valide) {
             Logger.info("Programme valide");
+            AST.produire(null);
+            GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
+
         } else {
             Logger.info("Erreur AST : " + !valide);
             Logger.info("Erreur TDS : " + Error_list.tdsgen);
@@ -78,10 +81,6 @@ public class Test_Main {
             Logger.error("Arrêt du programme");
             return;
         }
-
-        // Génération du fichier .s
-        AST.produire(null);
-        GestionFichier.produirefichier(programme.substring(0, programme.length()-4) + ".s");
 
         } catch (Exception e) {
             Logger.error(e.getMessage());
