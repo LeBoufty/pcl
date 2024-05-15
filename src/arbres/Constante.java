@@ -47,7 +47,7 @@ public class Constante extends Evaluable {
     }
 
     public String produire() {
-        System.out.println("constante " + valeur + " : " + type);
+        Logger.debug("constante " + valeur + " : " + type);
         // On met la valeur en pile
         String res = "";
         if (valeur < 0) {

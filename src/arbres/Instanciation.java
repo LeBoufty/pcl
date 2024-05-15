@@ -2,6 +2,7 @@ package arbres;
 
 
 import outils.TDS.TDS_gen;
+import outils.Logger;
 
 public abstract class Instanciation implements Noeud {
     public IType type;
@@ -20,7 +21,7 @@ public abstract class Instanciation implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println(nom + " Instanciation type : " + type);
+        Logger.debug(nom + " Instanciation type : " + type);
         return "";
     }
 

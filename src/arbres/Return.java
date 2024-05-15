@@ -30,7 +30,7 @@ public class Return implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("Return : " + valeur);
+        Logger.debug("Return : " + valeur);
 
         String res = "// Return \n";
 

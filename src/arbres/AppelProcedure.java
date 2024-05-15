@@ -59,14 +59,14 @@ public class AppelProcedure extends Evaluable {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("Appel de procédure "+ this.procedure.nom);
-        System.out.println("Paramètres : "+ this.params);
+        Logger.debug("Appel de procédure "+ this.procedure.nom);
+        Logger.debug("Paramètres : "+ this.params);
 
         String res = "";
 
         // Met en place les paramètres
         for (int i = 0; i < params.size(); i++) {
-            System.out.println("Paramètre "+ i +" : "+ params.get(i));
+            Logger.debug("Paramètre "+ i +" : "+ params.get(i));
             // Mettre la valeur du paramètre dans le registre x0
             res += "// Paramètre "+ i +"\n";
             res += params.get(i).produire(this.tds_parent);

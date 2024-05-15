@@ -51,8 +51,8 @@ public class Affectation implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("Affectation gauche : " + this.gauche.identifiant);
-        System.out.println("Affectation droite : " + this.droite);
+        Logger.debug("Affectation gauche : " + this.gauche.identifiant);
+        Logger.debug("Affectation droite : " + this.droite);
         
         String res = "";
         res += this.droite.produire(tds_parent); // Le résultat est en sommet de pile

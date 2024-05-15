@@ -83,7 +83,7 @@ public class InstructionIf implements Noeud {
         res += this.condition.produire(tds_parent);
         res += "LDR x0, [sp] // Chargement de la condition\n";
         res += "ADD sp, sp, #16 // Décrémentation du pointeur de pile\n";
-        System.out.println("InstructionIf");
+        Logger.debug("InstructionIf");
         res += "CMP x0, #0 // Comparaison de la condition\n";
         res += "BNE then"+ifid+" // Branchement si la condition est vraie\n";
         if (this.sinon != null) {

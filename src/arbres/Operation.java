@@ -62,8 +62,8 @@ public class Operation extends Evaluable {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("Operation gauche : " + this.gauche);
-        System.out.println("Operation droite : " + this.droite);
+        Logger.debug("Operation gauche : " + this.gauche);
+        Logger.debug("Operation droite : " + this.droite);
 
         String res = "\n// Opération\n";
 

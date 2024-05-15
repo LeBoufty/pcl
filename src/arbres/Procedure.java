@@ -111,7 +111,9 @@ public class Procedure implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("procedure "+nom+" is");
+        Logger.debug("procedure "+nom+" is");
+
+        Logger.info("Traduction du programme ");
         
         String res = "";
 
@@ -134,6 +136,8 @@ public class Procedure implements Noeud {
         }
 
         GestionFichier.Addcontenu(res);
+
+        Logger.info("Fin de la traduction du programme ");
         
         return "";
     }

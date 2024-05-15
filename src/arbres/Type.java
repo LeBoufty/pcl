@@ -15,7 +15,7 @@ public enum Type implements IType, Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("Type");
+        Logger.debug("Type");
         return "";
     }
 

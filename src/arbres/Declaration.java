@@ -11,9 +11,9 @@ public class Declaration extends Instanciation {
 
     @Override
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println(nom + " type declaration : " + type);
-        System.out.println(nom + " id declaration : " + variable.identifiant);
-        System.out.println(nom + " valeur declaration : " + valeur);
+        Logger.debug(nom + " type declaration : " + type);
+        Logger.debug(nom + " id declaration : " + variable.identifiant);
+        Logger.debug(nom + " valeur declaration : " + valeur);
         
         String res = "// Declaration de la variable " + nom + "\n";
     

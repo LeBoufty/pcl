@@ -31,18 +31,18 @@ public class Variable extends Evaluable {
 
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println(nom + " var type : " + type);
-        System.out.println(nom + " var id : " + identifiant);
+        Logger.debug(nom + " var type : " + type);
+        Logger.debug(nom + " var id : " + identifiant);
 
         String res = "";
 
         // On va chercher la variable dans la TDS
         int depl = tds_actuelle.get_index_and_parent(this.identifiant)*16;
         int Nb_saut = tds_actuelle.search_imbrication_TDS(this.identifiant);
-        System.out.println("    Deplacement de la variable : " + depl);
-        System.out.println("    Nombre de saut de la variable : " + Nb_saut);
+        Logger.debug("    Deplacement de la variable : " + depl);
+        Logger.debug("    Nombre de saut de la variable : " + Nb_saut);
 
-        System.out.println("Numero de la variable : " + this.identifiant + " Nom de la variable : " + this.nom);
+        Logger.debug("Numero de la variable : " + this.identifiant + " Nom de la variable : " + this.nom);
 
         if (Nb_saut == 0) { // Cas variable locale
             res += Store_Variable_X0_locale(depl);

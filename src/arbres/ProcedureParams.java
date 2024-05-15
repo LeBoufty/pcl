@@ -88,8 +88,8 @@ public class ProcedureParams implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("=== Procédure ===");
-        System.out.println(nom + " proc params : " + params);
+        Logger.debug("=== Procédure ===");
+        Logger.debug(nom + " proc params : " + params);
 
         String res = "// Procédure " + this.nom + "\n";
 

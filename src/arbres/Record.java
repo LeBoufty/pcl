@@ -1,5 +1,6 @@
 package arbres;
 
+import outils.Logger;
 
 import outils.TDS.TDS_gen;
 
@@ -24,7 +25,7 @@ public class Record implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-         System.out.println("Record");
+         Logger.debug("Record");
 
         return "";
 // TODO : à faire en dernier, probablement comme Instanciation.

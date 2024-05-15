@@ -38,7 +38,7 @@ public class Struct implements Noeud, IType {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println(nom);
+        Logger.debug(nom);
 
         return "";
 // TODO : cf Record. Il faudra utiliser des déplacements pour les champs.

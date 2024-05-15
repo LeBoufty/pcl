@@ -92,11 +92,11 @@ public class Fonction implements Noeud {
     }
 
     public String produire(TDS_gen tds_actuelle) {
-        System.out.println("=== Fonction ===");
-        System.out.println(nom + " fonc type : " + type);
-        System.out.println(nom + " fonc params : " + params);
-        System.out.println(nom + " fonc definition : " + definitions);
-        System.out.println(nom + " fonc instr : " + instructions);
+        Logger.debug("=== Fonction ===");
+        Logger.debug(nom + " fonc type : " + type);
+        Logger.debug(nom + " fonc params : " + params);
+        Logger.debug(nom + " fonc definition : " + definitions);
+        Logger.debug(nom + " fonc instr : " + instructions);
 
         // Générer le code
         String res = "F" + this.tds.get_num_reg() + " : // Début de la fonction\n"; 
@@ -121,7 +121,7 @@ public class Fonction implements Noeud {
         
         GestionFichier.AddcontenuFooter(res);
 
-        System.out.println("=== Fin Fonction ===");
+        Logger.debug("=== Fin Fonction ===");
 
         return "";
     }
