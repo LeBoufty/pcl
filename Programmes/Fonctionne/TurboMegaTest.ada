@@ -130,6 +130,29 @@ procedure TurboMegaTest is
             end loop;
             return res;
         end for_in_for_in_for_in_for;
+
+    function function_in_function_in_function_in_function(a : Integer) return Integer is
+
+        function function_in_function_in_function(a : Integer) return Integer is
+
+            function function_in_function(a : Integer) return Integer is
+
+                function function_fin(a : Integer) return Integer is
+                begin
+                    return 2*a;
+                end function_fin;
+
+                begin
+                    return 2*function_fin(a);
+                end function_in_function;
+            
+            begin
+                return 2*function_in_function(a);
+            end function_in_function_in_function;
+
+        begin
+            return 2*function_in_function_in_function(a);
+        end function_in_function_in_function_in_function;
 begin
     Put('a');
     a:= 1;
@@ -234,5 +257,6 @@ begin
     Put(for_in_for(1,5) = 150); -- 150 
     Put(for_in_while(1,10) =11); -- 11
     Put(for_in_for_in_for_in_for(1,2) =96); -- 96
+    Put(function_in_function_in_function_in_function(2) =32); -- 32
 
 end TurboMegaTest;
