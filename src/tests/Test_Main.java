@@ -16,13 +16,7 @@ public class Test_Main {
         Logger.debug = false;
 
         String programme = "Programmes/Test_Python/diff_tribo_fibo.ada";
-        //programme = "Programmes/testsem/erreur6.adb";
-        // String programme = "Programmes/Fonctionne/TurboMegaTest.ada";
-        // programme = "Programmes/testsem/varnondef.adb";
-        // programme = "Programmes/testsem/fctnondef.adb";
-        // programme = "Programmes/testsem/mauvaistype.adb";
-        // programme = "Programmes/testsem/erreur6.adb";
-        //programme = "Programmes/Exemple_Rapport/TDS_Showcase.adb";
+        //programme = "Programmes/Fonctionne/TurboMegaTest.ada";
         
 
         // Création de l'analyseur lexical
