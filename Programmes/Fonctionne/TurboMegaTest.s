@@ -59,6 +59,16 @@ STR x0, [sp] // On met la constante en pile
 
 
 // Instructions de la procédure turbomegatest
+// Printf
+MOVZ x0, #97
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
+BL printf
+ADD sp, sp, #16
+
 MOVZ x0, #1
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -477,6 +487,16 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+// Printf
+MOVZ x0, #98
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
+BL printf
+ADD sp, sp, #16
+
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -578,6 +598,16 @@ STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+MOVZ x0, #99
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
 BL printf
 ADD sp, sp, #16
 
@@ -775,6 +805,16 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+// Printf
+MOVZ x0, #100
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
+BL printf
+ADD sp, sp, #16
+
 MOVZ x0, #2
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -961,6 +1001,16 @@ ADD x0, x0, :lo12:format
 BL printf
 ADD sp, sp, #16
 
+// Printf
+MOVZ x0, #101
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
+BL printf
+ADD sp, sp, #16
+
 MOVZ x0, #5
 SUB sp, sp, #16 // On décrémente le pointeur de pile 
 STR x0, [sp] // On met la constante en pile 
@@ -1110,6 +1160,16 @@ STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+MOVZ x0, #102
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
 BL printf
 ADD sp, sp, #16
 
@@ -1294,6 +1354,16 @@ STR x0, [sp] // On met le résultat en pile
 MOV x1, x0
 ADRP x0, format
 ADD x0, x0, :lo12:format
+BL printf
+ADD sp, sp, #16
+
+// Printf
+MOVZ x0, #103
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
 BL printf
 ADD sp, sp, #16
 
@@ -1806,6 +1876,16 @@ BL printf
 ADD sp, sp, #16
 
 // Printf
+MOVZ x0, #104
+SUB sp, sp, #16 // On décrémente le pointeur de pile 
+STR x0, [sp] // On met la constante en pile 
+MOV x1, x0
+ADRP x0, format_char
+ADD x0, x0, :lo12:format_char
+BL printf
+ADD sp, sp, #16
+
+// Printf
 
 // Opération
 // Appel de fonction fonction1
@@ -2263,13 +2343,6 @@ MOV x29, sp // Mise à jour du pointeur de pile
 SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr
 // Définitions de la procédure procedure1
 // Instructions de la procédure procedure1
-LDR x0, [x29, #16] // On récupère la valeur de la variable a
-SUB sp, sp, #16 // a Mise en pile var
-STR x0, [sp] // a Mise en pile var
-LDR x2, [sp] // On met la valeur de la variable droite dans x2 
-STR x2, [x29, #16] // On met la valeur de la variable droite dans la variable gauche 
-ADD sp, sp, #16 // On dépile la valeur 
-
 // Printf
 
 // Opération

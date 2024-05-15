@@ -17,7 +17,6 @@ procedure TurboMegaTest is
 
     procedure procedure1(a: Integer; b: Integer) is
     begin
-        a:= a;
         Put(a+b);
     end procedure1;
 
@@ -130,6 +129,7 @@ procedure TurboMegaTest is
             return res;
         end for_in_for_in_for_in_for;
 begin
+    Put('a');
     a:= 1;
     b:= a + 1 - 1;
     c:=2;
@@ -143,6 +143,7 @@ begin
     Put(d=605); -- 605
     Put(e=605); -- 605
 
+    Put('b');
     a := 2;
     a := a+ -1;
     b := 2;
@@ -150,6 +151,7 @@ begin
     Put(a=1); -- 1
     Put(b=1); -- 1
 
+    Put('c');
     a:=2457;
     b:=76;
     c:=a/b;
@@ -161,6 +163,7 @@ begin
     Put(d=4); -- 4
     Put(e=25); -- 25
 
+    Put('d');
     a:=2;
     b:=3;
     c:=a*b;
@@ -172,6 +175,7 @@ begin
     Put(d=6); -- 6
     Put(e=100); -- 100
 
+    Put('e');
     a:=5;
     b:=2;
     c:= a rem b;
@@ -181,6 +185,7 @@ begin
     Put(c=1); -- 1
     Put(d=2); -- 2
 
+    Put('f');
     a:= 2;
     b:= 3;
     c:= 4;
@@ -190,6 +195,7 @@ begin
     Put(c=4); -- 4
     Put(d=43); -- 43
 
+    Put('g');
     Put(3=3); -- true
     Put((3/=3)); -- false
     Put(false=false); -- true
@@ -209,11 +215,11 @@ begin
     Put(a/=b); -- true
     Put(a=a); -- true
     Put(false = (a/=a)); -- false
-
     Put(f=g); -- true
     Put(f*g); -- true
     Put(g); -- true
 
+    Put('h');
     Put(fonction1(1,2) =3); -- 3
     a := -1;
     b := 2;
