@@ -99,18 +99,20 @@ public class ProcedureParams implements Noeud {
         res += "SUB sp, sp, #32 // Déplacement du stack pointer pour fp et lr\n";
         
         res += "// Définitions de la procédure "+nom+"\n";
-        for (Noeud noeud : ((Bloc) definitions).instructions) {
-            res += noeud.produire(tds)+"\n";
-        }
+        res += definitions.produire(tds)+"\n";
+        // for (Noeud noeud : ((Bloc) definitions).instructions) {
+        //     res += noeud.produire(tds)+"\n";
+        // }
 
         res += "// Instructions de la procédure "+nom+"\n";
-        if (instructions instanceof Bloc) {
-            for (Noeud noeud : ((Bloc) instructions).instructions) {
-                res += noeud.produire(tds)+"\n";
-            }
-        } else if (instructions != null) {
-            res += instructions.produire(tds)+"\n";
-        }
+        res += instructions.produire(tds)+"\n";
+        // if (instructions instanceof Bloc) {
+        //     for (Noeud noeud : ((Bloc) instructions).instructions) {
+        //         res += noeud.produire(tds)+"\n";
+        //     }
+        // } else if (instructions != null) {
+        //     res += instructions.produire(tds)+"\n";
+        // }
 
         // Restauration du pointeur de pile
         res += "MOV sp, x29 // Restauration du pointeur de pile\n";  
