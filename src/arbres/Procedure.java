@@ -137,7 +137,7 @@ public class Procedure implements Noeud {
 
         GestionFichier.Addcontenu(res);
 
-        Logger.info("Fin de la traduction du programme ");
+        Logger.milestone("Fin de la traduction du programme ");
         
         return "";
     }
