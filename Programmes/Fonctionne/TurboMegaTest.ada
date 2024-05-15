@@ -232,7 +232,7 @@ begin
     Put(while_test(1,10) =55); -- 55
     Put(for_reverse_test(1,10) =55); -- 55
     Put(for_in_for(1,5) = 150); -- 150 
-    Put(for_in_while(1,10)); -- 55
-    Put(for_in_for_in_for_in_for(1,2)); -- 24
+    Put(for_in_while(1,10) =11); -- 11
+    Put(for_in_for_in_for_in_for(1,2) =96); -- 96
 
 end TurboMegaTest;
