@@ -6,6 +6,8 @@
 *.ali
 *.o
 
+*.s
+
 env/
 venv/
 
