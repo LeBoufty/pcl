@@ -15,7 +15,7 @@ Alors, si t'as jamais mis les pieds au Québec, c'est le temps de faire ta valis
 ## Groupe 22
 
 * **Pierre GUYOT**
-* **Pierre-Yves JACQUIER**
+* **Pauline JACQUIER**
 * **Arnaud KRAFFT**
 * **Titouan LANGLAIS**
 
